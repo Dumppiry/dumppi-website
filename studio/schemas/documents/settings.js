@@ -7,6 +7,11 @@ export default {
       name: "siteTitle",
       title: "Site Title",
       type: "string"
+    },
+    {
+      name: "siteDescription",
+      title: "Site description",
+      type: "string"
     }
   ]
 };
