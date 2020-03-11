@@ -13,6 +13,7 @@ export default () =>
             .schemaType("settings")
             .documentId("settings")
         ),
+      S.divider(),
       ...S.documentTypeListItems().filter(
         listItem => !["settings"].includes(listItem.getId())
       )
