@@ -10,6 +10,7 @@ import settings from "./documents/settings";
 
 // Object types
 import localeString from "./objects/localeString";
+import localePortableText from "./objects/localePortableText";
 import portableText from "./objects/portableText";
 
 // Then we give our schema to the builder and provide the result to Sanity
@@ -26,6 +27,7 @@ export default createSchema({
 
     // Object types
     localeString,
+    localePortableText,
     portableText
   ])
 });

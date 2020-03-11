@@ -2,22 +2,33 @@ export default {
   name: "page",
   title: "Page",
   type: "document",
+  fieldsets: [
+    {
+      title: "Translations",
+      name: "translations",
+      options: { collapsible: true }
+    }
+  ],
   fields: [
     {
       name: "title",
       title: "Title",
-      type: "localeString",
-      validation: Rule => Rule.required()
+      type: "localeString"
     },
     {
       name: "content",
       title: "Content",
-      type: "portableText"
+      type: "localePortableText"
     }
   ],
   preview: {
     select: {
       title: "title"
+    },
+    prepare({ title }) {
+      return {
+        title: title.fi
+      };
     }
   }
 };
