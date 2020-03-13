@@ -37,7 +37,7 @@ export const query = graphql`
         en
         fi
       }
-      content: _rawContent(resolveReferences: { maxDepth: 4 })
+      content: _rawContent(resolveReferences: { maxDepth: 5 })
     }
   }
 `
