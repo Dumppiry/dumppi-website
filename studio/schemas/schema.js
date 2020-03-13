@@ -24,6 +24,7 @@ import headingPortableText from "./objects/portableText/headingPortableText";
 // Sections
 import bigHeadingSection from "./objects/sections/bigHeadingSection";
 import bigPeopleSection from "./objects/sections/bigPeopleSection";
+import smallPeopleSection from "./objects/sections/smallPeopleSection";
 // Other
 import subRoute from "./objects/subRoute";
 
@@ -50,8 +51,9 @@ export default createSchema({
     portableText,
     bigHeadingPortableText,
     headingPortableText,
-    bigPeopleSection,
     bigHeadingSection,
+    bigPeopleSection,
+    smallPeopleSection,
     subRoute
   ])
 });

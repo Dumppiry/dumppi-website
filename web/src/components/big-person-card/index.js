@@ -4,7 +4,7 @@ import styled from "styled-components"
 import img from "../../images/gatsby-astronaut.png"
 
 const BigPersonCard = ({ person, ...rest }) => (
-  <S.Container>
+  <S.Container {...rest}>
     <S.BigPersonImage src={img} />
     <S.Title>{person.title}</S.Title>
     <S.Info>
