@@ -12,7 +12,7 @@ export default {
       name: "buttons",
       title: "Buttons",
       type: "array",
-      of: [{ type: "localeString" }]
+      of: [{ type: "reference", to: [{ type: "page" }] }]
     }
   ]
 };

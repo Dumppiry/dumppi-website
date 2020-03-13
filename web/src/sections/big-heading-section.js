@@ -3,6 +3,7 @@ import PortableText from "@sanity/block-content-to-react"
 import styled from "styled-components"
 
 import Button from "../components/button"
+import Link from "../components/link"
 
 const serializers = {
   marks: {
@@ -17,8 +18,10 @@ const BigHeadingSection = ({ heading, buttons }) => {
     <S.Section>
       <S.Content>
         <PortableText blocks={heading} serializers={serializers} />
-        {buttons.map((button, index) => (
-          <Button primary={index === 0} title={button} />
+        {buttons.map((page, index) => (
+          <Link key={page._id} id={page._id}>
+            <Button primary={index === 0} title={page.title} />
+          </Link>
         ))}
       </S.Content>
     </S.Section>
