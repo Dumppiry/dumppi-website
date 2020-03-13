@@ -1,23 +1,15 @@
 import React from "react"
-import PortableText from "@sanity/block-content-to-react"
 import styled from "styled-components"
 
 import Button from "../components/button"
 import Link from "../components/link"
-
-const serializers = {
-  marks: {
-    highlight: ({ children, mark }) => (
-      <span style={{ color: "#AF271D" }}>{children}</span>
-    ),
-  },
-}
+import PortableText from "../components/portable-text/heading"
 
 const BigHeadingSection = ({ heading, buttons }) => {
   return (
     <S.Section>
       <S.Content>
-        <PortableText blocks={heading} serializers={serializers} />
+        <PortableText blocks={heading} />
         {buttons?.length > 0 && (
           <S.ButtonContainer>
             {buttons.map((page, index) => (

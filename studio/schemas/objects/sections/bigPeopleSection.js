@@ -1,23 +1,23 @@
-import { FiType } from "react-icons/fi";
+import { FiUsers } from "react-icons/fi";
 
 import { defaultLanguage } from "../../../supportedLanguages";
 
 export default {
-  name: "bigHeadingSection",
-  title: "Big Heading",
+  name: "bigPeopleSection",
+  title: "Big People :D",
   type: "object",
-  icon: FiType,
+  icon: FiUsers,
   fields: [
     {
       name: "heading",
       title: "Heading",
-      type: "localeBigHeadingPortableText"
+      type: "localeHeadingPortableText"
     },
     {
-      name: "buttons",
-      title: "Buttons",
+      name: "people",
+      title: "People",
       type: "array",
-      of: [{ type: "reference", to: [{ type: "page" }] }]
+      of: [{ type: "reference", to: [{ type: "person" }] }]
     }
   ],
   preview: {

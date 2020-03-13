@@ -15,7 +15,7 @@ const PageTemplate = ({ data, pageContext, ...rest }) => {
   useEffect(() => {
     setLocale(pageContext.locale)
     setCurrentPageId(_id)
-  }, [])
+  })
 
   return (
     <Layout>
