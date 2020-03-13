@@ -6,12 +6,15 @@ import schemaTypes from "all:part:@sanity/base/schema-type";
 
 // Document types
 import page from "./documents/page";
+import pageRoute from "./documents/pageRoute";
 import settings from "./documents/settings";
 
 // Object types
-import localeString from "./objects/localeString";
 import localePortableText from "./objects/localePortableText";
+import localeSlug from "./objects/localeSlug";
+import localeString from "./objects/localeString";
 import portableText from "./objects/portableText";
+import subRoute from "./objects/subRoute";
 
 // Then we give our schema to the builder and provide the result to Sanity
 export default createSchema({
@@ -23,11 +26,14 @@ export default createSchema({
     /* Your types here! */
     // Document types
     page,
+    pageRoute,
     settings,
 
     // Object types
-    localeString,
     localePortableText,
-    portableText
+    localeSlug,
+    localeString,
+    portableText,
+    subRoute
   ])
 });
