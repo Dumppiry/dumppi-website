@@ -3,7 +3,7 @@ import styled from "styled-components"
 
 const JobCard = ({ job, ...rest }) => (
   <S.Container>
-    <S.Info>
+    <S.Flex>
       <S.Type>@ {job.type}</S.Type>
       <S.Title>{job.title}</S.Title>
       <S.Details>
@@ -11,7 +11,7 @@ const JobCard = ({ job, ...rest }) => (
         {job.category && <S.Detail>@ {job.category}</S.Detail>}
       </S.Details>
       <S.CompanyLogo />
-    </S.Info>
+    </S.Flex>
   </S.Container>
 )
 
@@ -30,7 +30,7 @@ S.Container = styled.div`
     cursor: pointer;
   }
 `
-S.Info = styled.div`
+S.Flex = styled.div`
   padding: 30px 35px;
   display: flex;
   flex-direction: column;

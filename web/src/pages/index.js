@@ -10,6 +10,7 @@ import EventCard from "../components/event-card"
 import BigPersonCard from "../components/big-person-card"
 import SmallPersonCard from "../components/small-person-card"
 import JobCard from "../components/job-card"
+import CompanyCard from "../components/company-card"
 
 const exampleEvents = [
   {
@@ -66,6 +67,12 @@ const job = {
   category: "Osa-aikainen",
 }
 
+const company = {
+  name: "Solita",
+  description:
+    "Blaa blaa, vittu blaa. Digitalisaatio ja käsien heiluttelu yms. vessapapero hankinnat.",
+}
+
 const IndexPage = ({ data }) => {
   console.log(data)
   return (
@@ -87,6 +94,7 @@ const IndexPage = ({ data }) => {
         ))}
       </div>
       <JobCard job={job} />
+      <CompanyCard company={company} />
     </Layout>
   )
 }
