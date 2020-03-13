@@ -1,13 +1,13 @@
 import React from "react"
 import styled from "styled-components"
 
-import img from "../../images/gatsby-astronaut.png"
+import img from "../../images/gatsby-icon.png"
 
-const BigPersonCard = ({ person, ...rest }) => (
+const SmallPersonCard = ({ person, ...rest }) => (
   <S.Container>
-    <S.BigPersonImage src={img} />
-    <S.Title>{person.title}</S.Title>
+    <S.SmallPersonImage src={img} />
     <S.Info>
+      {person.title && <S.Title>{person.title}</S.Title>}
       <S.Name>{person.name}</S.Name>
       <S.AdditionalInfo>{person.phone}</S.AdditionalInfo>
       <S.AdditionalInfo>{person.email}</S.AdditionalInfo>
@@ -15,48 +15,40 @@ const BigPersonCard = ({ person, ...rest }) => (
   </S.Container>
 )
 
-export default BigPersonCard
+export default SmallPersonCard
 
 const S = {}
 
 S.Container = styled.div`
-  height: 493px;
-  width: 290px;
-  border-radius: 10px;
+  height: 100px;
+  width: 360px;
   display: flex;
-  flex-direction: column;
-  background-color: #ffffff;
-  box-shadow: 0 5px 40px 0 #f0f0f0;
+  align-items: center;
 `
 
-S.BigPersonImage = styled.img`
-  width: 100%;
-  height: 57%;
-  border-radius: 10px 10px 0 0;
+S.SmallPersonImage = styled.img`
+  width: 100px;
+  height: 100%;
+  border-radius: 25%;
+`
+S.Info = styled.div`
+  margin-left: 20px;
+  display: flex;
+  flex-direction: column;
 `
 
 S.Title = styled.span`
-  margin: 20px 25px 0 25px;
-  height: 48px;
-  width: 240px;
+  height: 24px;
   color: #af271d;
   font-family: Inter;
-  font-size: 20px;
-  font-weight: 600;
-  letter-spacing: -0.44px;
+  font-size: 16px;
+  font-weight: 500;
+  letter-spacing: -0.35px;
   line-height: 24px;
-`
-
-S.Info = styled.div`
-  margin: 20px 25px 43px 25px;
-  height: 68px;
-  display: flex;
-  flex-direction: column;
 `
 
 S.Name = styled.span`
   height: 24px;
-  width: 240px;
   color: #2c2c2c;
   font-family: Inter;
   font-size: 20px;
@@ -67,7 +59,6 @@ S.Name = styled.span`
 
 S.AdditionalInfo = styled.span`
   height: 17px;
-  width: 240px;
   color: #949494;
   font-family: Inter;
   font-size: 14px;

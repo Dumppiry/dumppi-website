@@ -8,6 +8,7 @@ import SEO from "../components/seo"
 import Button from "../components/button"
 import EventCard from "../components/event-card"
 import BigPersonCard from "../components/big-person-card"
+import SmallPersonCard from "../components/small-person-card"
 
 const exampleEvents = [
   {
@@ -39,9 +40,23 @@ const exampleEvents = [
 const person = {
   title: "Puheenjohtaja",
   name: "Emma Luukkonen",
-  phone: "+38 44 2536783",
+  phone: "+358 44 2536783",
   email: "pj@dumioy.net",
 }
+
+const smallPersons = [
+  {
+    name: "Paavo Väänänen",
+    phone: "+358 44 2536783",
+    email: "bile@dumioy.ab",
+  },
+  {
+    name: "Papi Vaan",
+    phone: "+358 44 2536783",
+    email: "bile@dumioy.ab",
+    title: "Toimitusjohtaja",
+  },
+]
 
 const IndexPage = ({ data }) => {
   console.log(data)
@@ -58,6 +73,11 @@ const IndexPage = ({ data }) => {
         ))}
       </div>
       <BigPersonCard person={person} />
+      <div style={{ marginTop: "20px" }}>
+        {smallPersons.map(sp => (
+          <SmallPersonCard person={sp} />
+        ))}
+      </div>
     </Layout>
   )
 }
