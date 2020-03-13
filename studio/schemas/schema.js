@@ -7,19 +7,23 @@ import schemaTypes from "all:part:@sanity/base/schema-type";
 // Document types
 import page from "./documents/page";
 import pageRoute from "./documents/pageRoute";
+import person from "./documents/person";
 import settings from "./documents/settings";
 
 // Object types
 // Localed fields
+import localeBigHeadingPortableText from "./objects/localeObjects/localeBigHeadingPortableText";
 import localeHeadingPortableText from "./objects/localeObjects/localeHeadingPortableText";
 import localePortableText from "./objects/localeObjects/localePortableText";
 import localeSlug from "./objects/localeObjects/localeSlug";
 import localeString from "./objects/localeObjects/localeString";
 // Portable text variants
 import portableText from "./objects/portableText/portableText";
+import bigHeadingPortableText from "./objects/portableText/bigHeadingPortableText";
 import headingPortableText from "./objects/portableText/headingPortableText";
 // Sections
 import bigHeadingSection from "./objects/sections/bigHeadingSection";
+import bigPeopleSection from "./objects/sections/bigPeopleSection";
 // Other
 import subRoute from "./objects/subRoute";
 
@@ -34,15 +38,19 @@ export default createSchema({
     // Document types
     page,
     pageRoute,
+    person,
     settings,
 
     // Object types
+    localeBigHeadingPortableText,
     localeHeadingPortableText,
     localePortableText,
     localeSlug,
     localeString,
-    headingPortableText,
     portableText,
+    bigHeadingPortableText,
+    headingPortableText,
+    bigPeopleSection,
     bigHeadingSection,
     subRoute
   ])

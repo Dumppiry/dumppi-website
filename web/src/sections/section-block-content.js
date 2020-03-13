@@ -4,10 +4,12 @@ import BasePortableText from "@sanity/block-content-to-react"
 import clientConfig from "../../client-config"
 
 import BigHeadingSection from "./big-heading-section"
+import BigPeopleSection from "./big-people-section"
 
 const serializers = {
   types: {
     bigHeadingSection: ({ node }) => <BigHeadingSection {...node} />,
+    bigPeopleSection: ({ node }) => <BigPeopleSection {...node} />,
   },
 }
 

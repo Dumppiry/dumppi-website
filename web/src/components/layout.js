@@ -4,7 +4,6 @@ import styled from "styled-components"
 
 import Navigation from "./navigation"
 import Footer from "./footer"
-import { useCurrentPage } from "../hooks/current-page"
 
 const Layout = ({ children }) => {
   return (

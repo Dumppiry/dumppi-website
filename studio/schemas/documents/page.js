@@ -22,7 +22,7 @@ export default {
       name: "content",
       title: "Content",
       type: "array",
-      of: [{ type: "bigHeadingSection" }]
+      of: [{ type: "bigHeadingSection" }, { type: "bigPeopleSection" }]
     }
   ],
   preview: {
