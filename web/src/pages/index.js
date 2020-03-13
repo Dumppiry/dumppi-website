@@ -9,6 +9,7 @@ import Button from "../components/button"
 import EventCard from "../components/event-card"
 import BigPersonCard from "../components/big-person-card"
 import SmallPersonCard from "../components/small-person-card"
+import JobCard from "../components/job-card"
 
 const exampleEvents = [
   {
@@ -58,6 +59,13 @@ const smallPersons = [
   },
 ]
 
+const job = {
+  type: "Kesätyö",
+  title: "Web Guru",
+  location: "Jyväskylä",
+  category: "Osa-aikainen",
+}
+
 const IndexPage = ({ data }) => {
   console.log(data)
   return (
@@ -78,6 +86,7 @@ const IndexPage = ({ data }) => {
           <SmallPersonCard person={sp} />
         ))}
       </div>
+      <JobCard job={job} />
     </Layout>
   )
 }
