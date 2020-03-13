@@ -1,7 +1,10 @@
+import { FiFileText } from "react-icons/fi";
+
 export default {
   name: "page",
   title: "Page",
   type: "document",
+  icon: FiFileText,
   fieldsets: [
     {
       title: "Translations",
