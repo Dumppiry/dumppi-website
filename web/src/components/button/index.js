@@ -2,8 +2,8 @@ import React from "react"
 import PropTypes from "prop-types"
 import styled, { css } from "styled-components"
 
-const Button = ({ title, primary, onClick }) => (
-  <S.Button primary={primary} onClick={onClick}>
+const Button = ({ title, primary, onClick, ...rest }) => (
+  <S.Button primary={primary} onClick={onClick} {...rest}>
     {title}
   </S.Button>
 )

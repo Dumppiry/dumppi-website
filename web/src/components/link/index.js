@@ -22,7 +22,7 @@ const Link = ({ id, children }) => {
   // Find the path to the wanted page with the id and locale
   const path = data.allSitePage.nodes.find(
     node => node.context.id === id && node.context.locale === locale
-  ).path
+  )?.path
 
   return <GatsbyLink to={path}>{children}</GatsbyLink>
 }
