@@ -37,6 +37,7 @@ S.Button = styled.button`
   color: #292929;
   :hover {
     background-color: #dbdbdb;
+    cursor: pointer;
   }
 
   ${props =>
