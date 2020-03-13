@@ -1,17 +1,28 @@
 import React from "react"
+import PropTypes from "prop-types"
 import styled, { css } from "styled-components"
 
-export const PrimaryButton = ({ text, onClick }) => (
-  <S.PrimaryButton onClick={onClick}>{text}</S.PrimaryButton>
+const Button = ({ title, primary, onClick }) => (
+  <S.Button primary={primary} onClick={onClick}>
+    {title}
+  </S.Button>
 )
 
-export const SecondaryButton = ({ text, onClick }) => (
-  <S.SecondaryButton onClick={onClick}>{text}</S.SecondaryButton>
-)
+Button.propTypes = {
+  title: PropTypes.string.isRequired,
+  primary: PropTypes.bool,
+  onClick: PropTypes.func.isRequired,
+}
+
+Button.defaultProps = {
+  primary: false,
+}
+
+export default Button
 
 const S = {}
 
-const baseStyle = css`
+S.Button = styled.button`
   border-radius: 10px;
   border: none;
   font-size: 16px;
@@ -20,21 +31,21 @@ const baseStyle = css`
   letter-spacing: -0.35px;
   padding: 0.875em 2.53em 0.8125em 2.53em;
   line-height: 1.5em;
-`
+  transition: all 80ms ease-in;
 
-S.PrimaryButton = styled.button`
-  ${baseStyle}
-  background-color: #af271d;
-  color: #ffffff;
-  :hover {
-    background-color: #8a1e16;
-  }
-`
-S.SecondaryButton = styled.button`
-  ${baseStyle}
   background-color: #f0f0f0;
   color: #292929;
   :hover {
     background-color: #dbdbdb;
   }
+
+  ${props =>
+    props.primary &&
+    css`
+      background-color: #af271d;
+      color: #ffffff;
+      :hover {
+        background-color: #8a1e16;
+      }
+    `}
 `

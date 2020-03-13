@@ -75,14 +75,20 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
       const topPath = node.slug[locale].current
       const page = {
         path: `/${topPath}`,
-        component: require.resolve("./src/templates/some-page.js"),
+        component: require.resolve("./src/templates/page.js"),
+        context: {
+          id: node.page._id,
+        },
       }
       createLocalePage(page, createPage, locale)
 
       node.subRoutes.map(sr => {
         const page = {
           path: `/${topPath}/${sr.slug[locale].current}`,
-          component: require.resolve("./src/templates/some-page.js"),
+          component: require.resolve("./src/templates/page.js"),
+          context: {
+            id: sr.page._id,
+          },
         }
         createLocalePage(page, createPage, locale)
       })

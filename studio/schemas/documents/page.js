@@ -21,7 +21,8 @@ export default {
     {
       name: "content",
       title: "Content",
-      type: "localePortableText"
+      type: "array",
+      of: [{ type: "bigHeadingSection" }]
     }
   ],
   preview: {

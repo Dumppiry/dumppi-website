@@ -1,0 +1,45 @@
+import React from "react";
+
+const highlightIcon = () => <span style={{ fontWeight: "bold" }}>H</span>;
+const highlightRender = props => (
+  <span style={{ color: "#AF271D" }}>{props.children}</span>
+);
+const TitleStyle = props => (
+  <span style={{ fontSize: "2em", fontWeight: 700 }}>{props.children}</span>
+);
+
+export default {
+  name: "headingPortableText",
+  type: "array",
+  title: "Heading portable text",
+  of: [
+    {
+      type: "block",
+      title: "Block",
+      styles: [
+        { title: "Normal", value: "normal" },
+        {
+          title: "Heading",
+          value: "h1",
+          blockEditor: {
+            render: TitleStyle
+          }
+        }
+      ],
+      lists: [],
+      marks: {
+        decorators: [
+          {
+            title: "Highlight",
+            value: "highlight",
+            blockEditor: {
+              icon: highlightIcon,
+              render: highlightRender
+            }
+          }
+        ],
+        annotations: []
+      }
+    }
+  ]
+};

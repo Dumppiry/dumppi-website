@@ -10,10 +10,17 @@ import pageRoute from "./documents/pageRoute";
 import settings from "./documents/settings";
 
 // Object types
-import localePortableText from "./objects/localePortableText";
-import localeSlug from "./objects/localeSlug";
-import localeString from "./objects/localeString";
-import portableText from "./objects/portableText";
+// Localed fields
+import localeHeadingPortableText from "./objects/localeObjects/localeHeadingPortableText";
+import localePortableText from "./objects/localeObjects/localePortableText";
+import localeSlug from "./objects/localeObjects/localeSlug";
+import localeString from "./objects/localeObjects/localeString";
+// Portable text variants
+import portableText from "./objects/portableText/portableText";
+import headingPortableText from "./objects/portableText/headingPortableText";
+// Sections
+import bigHeadingSection from "./objects/sections/bigHeadingSection";
+// Other
 import subRoute from "./objects/subRoute";
 
 // Then we give our schema to the builder and provide the result to Sanity
@@ -30,10 +37,13 @@ export default createSchema({
     settings,
 
     // Object types
+    localeHeadingPortableText,
     localePortableText,
     localeSlug,
     localeString,
+    headingPortableText,
     portableText,
+    bigHeadingSection,
     subRoute
   ])
 });

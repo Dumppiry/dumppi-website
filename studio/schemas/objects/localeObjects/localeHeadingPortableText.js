@@ -1,7 +1,7 @@
-import supportedLanguages from "../../supportedLanguages";
+import supportedLanguages from "../../../supportedLanguages";
 
 export default {
-  name: "localePortableText",
+  name: "localeHeadingPortableText",
   type: "object",
   fieldsets: [
     {
@@ -13,7 +13,7 @@ export default {
   fields: supportedLanguages.map(lang => ({
     title: lang.title,
     name: lang.id,
-    type: "portableText",
+    type: "headingPortableText",
     fieldset: lang.isDefault ? null : "translations"
   }))
 };

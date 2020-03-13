@@ -1,6 +1,6 @@
 import React from "react"
 import Proptypes from "prop-types"
-import { createLocaleTextGetter } from "../../utils"
+import { createLocaleTextGetter } from "../utils"
 
 function localize(Component) {
   return class Localize extends React.Component {

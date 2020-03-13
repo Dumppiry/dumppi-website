@@ -1,5 +1,5 @@
 import client from "part:@sanity/base/client";
-import supportedLanguages from "../../supportedLanguages";
+import supportedLanguages from "../../../supportedLanguages";
 
 export default {
   name: "localeSlug",

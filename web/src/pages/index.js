@@ -1,11 +1,11 @@
 import React from "react"
 import { graphql } from "gatsby"
 
-import localize from "../components/hoc/localize"
+import localize from "../hoc/localize"
 
 import Layout from "../components/layout"
 import SEO from "../components/seo"
-import { PrimaryButton, SecondaryButton } from "../components/button"
+import Button from "../components/button"
 import EventCard from "../components/event-card"
 
 const exampleEvents = [
@@ -42,8 +42,8 @@ const IndexPage = ({ data }) => {
       <SEO title="Home" />
       <h1>Moro</h1>
 
-      <PrimaryButton text="primary" onClick={() => console.log("moro")} />
-      <SecondaryButton text="secondary" onClick={() => console.log("moro")} />
+      <Button primary title="Primary" onClick={() => console.log("moro")} />
+      <Button title="Secondary" onClick={() => console.log("moro")} />
       <div style={{ marginTop: "20px" }}>
         {exampleEvents.map(e => (
           <EventCard event={e} />
