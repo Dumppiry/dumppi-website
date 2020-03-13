@@ -3,9 +3,7 @@ import styled from "styled-components"
 
 import img from "../../images/gatsby-astronaut.png"
 
-// event = { status: ..., name: ..., location: ..., time: ..., link: ... }
-
-const EventCard = ({ event, ...props }) => (
+const EventCard = ({ event, ...rest }) => (
   <S.Container>
     <S.EventImage src={img} />
     <S.EventInfo>

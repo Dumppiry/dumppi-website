@@ -7,6 +7,7 @@ import Layout from "../components/layout"
 import SEO from "../components/seo"
 import Button from "../components/button"
 import EventCard from "../components/event-card"
+import BigPersonCard from "../components/big-person-card"
 
 const exampleEvents = [
   {
@@ -35,6 +36,13 @@ const exampleEvents = [
   },
 ]
 
+const person = {
+  title: "Puheenjohtaja",
+  name: "Emma Luukkonen",
+  phone: "+38 44 2536783",
+  email: "pj@dumioy.net",
+}
+
 const IndexPage = ({ data }) => {
   console.log(data)
   return (
@@ -49,6 +57,7 @@ const IndexPage = ({ data }) => {
           <EventCard event={e} />
         ))}
       </div>
+      <BigPersonCard person={person} />
     </Layout>
   )
 }
