@@ -4,8 +4,11 @@ import styled from "styled-components"
 
 import Navigation from "./navigation"
 import Footer from "./footer"
+import { useCurrentPage } from "../hooks/current-page"
 
 const Layout = ({ children }) => {
+  const { locale } = useCurrentPage()
+
   return (
     <S.Layout>
       <Navigation />
@@ -20,6 +23,7 @@ const S = {}
 S.Layout = styled.div`
   min-height: 100vh;
   max-width: 100vw;
+  margin-top: 4rem;
   overflow-x: hidden;
   display: flex;
   flex-direction: column;

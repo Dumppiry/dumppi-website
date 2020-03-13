@@ -1,14 +1,22 @@
-import React from "react"
+import React, { useEffect } from "react"
 import { graphql } from "gatsby"
 
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 import localize from "../hoc/localize"
+import { useCurrentPage } from "../hooks/current-page"
 
 import SectionBlockContent from "../sections/section-block-content"
 
-const PageTemplate = ({ data, ...rest }) => {
+const PageTemplate = ({ data, pageContext, ...rest }) => {
   const { _id, title, content } = data.page
+  const { setLocale, setCurrentPageId } = useCurrentPage()
+
+  useEffect(() => {
+    setLocale(pageContext.locale)
+    setCurrentPageId(_id)
+  }, [])
+
   return (
     <Layout>
       <SEO title={title} />

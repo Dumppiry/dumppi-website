@@ -2,8 +2,9 @@ import React from "react"
 import { graphql, useStaticQuery, Link as GatsbyLink } from "gatsby"
 import PropTypes from "prop-types"
 
-const Link = ({ id, children }) => {
-  const locale = "en"
+import { useCurrentPage } from "../../hooks/current-page"
+
+const Link = ({ id, locale, children }) => {
   // Fetch all pages with their path and context
   const data = useStaticQuery(graphql`
     query LinkQuery {
@@ -19,9 +20,13 @@ const Link = ({ id, children }) => {
     }
   `)
 
+  const { locale: currentLocale } = useCurrentPage()
+
   // Find the path to the wanted page with the id and locale
   const path = data.allSitePage.nodes.find(
-    node => node.context.id === id && node.context.locale === locale
+    node =>
+      node.context.id === id &&
+      node.context.locale === (locale ?? currentLocale)
   )?.path
 
   return <GatsbyLink to={path}>{children}</GatsbyLink>

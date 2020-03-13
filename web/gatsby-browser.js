@@ -5,3 +5,17 @@
  */
 
 // You can delete this file if you're not using it
+const React = require("react")
+const PropTypes = require("prop-types")
+
+const { CurrentPageProvider } = require("./src/hooks/current-page")
+
+const Wrapper = ({ element }) => (
+  <CurrentPageProvider>{element}</CurrentPageProvider>
+)
+
+Wrapper.propTypes = {
+  element: PropTypes.node,
+}
+
+exports.wrapRootElement = Wrapper

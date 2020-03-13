@@ -18,13 +18,15 @@ const BigHeadingSection = ({ heading, buttons }) => {
     <S.Section>
       <S.Content>
         <PortableText blocks={heading} serializers={serializers} />
-        <S.ButtonContainer>
-          {buttons.map((page, index) => (
-            <Link key={page._id} id={page._id}>
-              <S.Button primary={index === 0} title={page.title} />
-            </Link>
-          ))}
-        </S.ButtonContainer>
+        {buttons?.length > 0 && (
+          <S.ButtonContainer>
+            {buttons.map((page, index) => (
+              <Link key={page._id} id={page._id}>
+                <S.Button primary={index === 0} title={page.title} />
+              </Link>
+            ))}
+          </S.ButtonContainer>
+        )}
       </S.Content>
     </S.Section>
   )
