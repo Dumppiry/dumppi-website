@@ -9,7 +9,7 @@ const BigPersonCard = ({ person, ...rest }) => (
     <S.Title>{person.title}</S.Title>
     <S.Info>
       <S.Name>{person.name}</S.Name>
-      <S.AdditionalInfo>{person.phone}</S.AdditionalInfo>
+      <S.AdditionalInfo>{person.phoneNumber}</S.AdditionalInfo>
       <S.AdditionalInfo>{person.email}</S.AdditionalInfo>
     </S.Info>
   </S.Container>
