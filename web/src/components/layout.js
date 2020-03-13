@@ -7,8 +7,6 @@ import Footer from "./footer"
 import { useCurrentPage } from "../hooks/current-page"
 
 const Layout = ({ children }) => {
-  const { locale } = useCurrentPage()
-
   return (
     <S.Layout>
       <Navigation />

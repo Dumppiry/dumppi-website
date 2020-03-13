@@ -6,7 +6,10 @@ import Link from "../link"
 
 import { useCurrentPage } from "../../hooks/current-page"
 
-const languages = ["fi", "en"]
+const languages = [
+  { code: "fi", icon: "🇫🇮" },
+  { code: "en", icon: "🇬🇧" },
+]
 
 const Navigation = () => {
   const data = useStaticQuery(graphql`
@@ -21,15 +24,15 @@ const Navigation = () => {
   return (
     <S.Navigation>
       <span>{data.settings.siteTitle}</span>
-      <ul>
+      <S.List>
         {languages.map(lang => (
-          <li>
-            <Link id={currentPageId} locale={lang}>
-              {lang}
-            </Link>
-          </li>
+          <S.ListItem>
+            <S.Link id={currentPageId} locale={lang.code}>
+              {lang.icon}
+            </S.Link>
+          </S.ListItem>
         ))}
-      </ul>
+      </S.List>
     </S.Navigation>
   )
 }
@@ -46,4 +49,18 @@ S.Navigation = styled.header`
   background-color: pink;
   display: flex;
   justify-content: space-between;
+`
+
+S.List = styled.ul`
+  display: flex;
+  list-style: none;
+`
+
+S.ListItem = styled.li`
+  margin: 0.25em;
+`
+
+S.Link = styled(Link)`
+  font-size: 1.75rem;
+  text-decoration: none;
 `

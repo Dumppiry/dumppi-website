@@ -4,7 +4,7 @@ import PropTypes from "prop-types"
 
 import { useCurrentPage } from "../../hooks/current-page"
 
-const Link = ({ id, locale, children }) => {
+const Link = ({ id, locale, children, ...rest }) => {
   // Fetch all pages with their path and context
   const data = useStaticQuery(graphql`
     query LinkQuery {
@@ -29,7 +29,11 @@ const Link = ({ id, locale, children }) => {
       node.context.locale === (locale ?? currentLocale)
   )?.path
 
-  return <GatsbyLink to={path}>{children}</GatsbyLink>
+  return (
+    <GatsbyLink to={path} {...rest}>
+      {children}
+    </GatsbyLink>
+  )
 }
 
 export default Link
