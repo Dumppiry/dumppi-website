@@ -1,11 +1,8 @@
 import React from "react"
+import IndexPage from "../pages/index"
 
 const SomePage = props => {
-  return (
-    <pre>
-      <code>{JSON.stringify(props, null, 2)}</code>
-    </pre>
-  )
+  return <IndexPage {...props} />
 }
 
 export default SomePage
