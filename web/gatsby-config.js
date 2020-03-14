@@ -11,6 +11,7 @@ const isDeployPreview = process.env.CONTEXT === "deploy-preview"
 module.exports = {
   plugins: [
     `gatsby-plugin-react-helmet`,
+    `gatsby-plugin-styled-components`,
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
