@@ -10,19 +10,27 @@ import PropTypes from "prop-types"
 import Helmet from "react-helmet"
 import { useStaticQuery, graphql } from "gatsby"
 
-function SEO({ description, lang, meta, title }) {
+import { useCurrentPage } from "../hooks/current-page"
+
+const SEO = ({ description, lang, meta, title }) => {
   const { site } = useStaticQuery(
     graphql`
       query {
         site: sanitySettings {
           siteTitle
-          siteDescription
+          siteDescription {
+            _type
+            en
+            fi
+          }
         }
       }
     `
   )
 
-  const metaDescription = description || site.siteDescription
+  const { locale } = useCurrentPage()
+
+  const metaDescription = description || site.siteDescription[locale]
 
   return (
     <Helmet

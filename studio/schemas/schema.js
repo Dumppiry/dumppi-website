@@ -17,6 +17,7 @@ import localeHeadingPortableText from "./objects/localeObjects/localeHeadingPort
 import localePortableText from "./objects/localeObjects/localePortableText";
 import localeSlug from "./objects/localeObjects/localeSlug";
 import localeString from "./objects/localeObjects/localeString";
+import localeText from "./objects/localeObjects/localeText";
 // Portable text variants
 import portableText from "./objects/portableText/portableText";
 import bigHeadingPortableText from "./objects/portableText/bigHeadingPortableText";
@@ -25,6 +26,7 @@ import headingPortableText from "./objects/portableText/headingPortableText";
 import bigHeadingSection from "./objects/sections/bigHeadingSection";
 import bigPeopleSection from "./objects/sections/bigPeopleSection";
 import smallPeopleSection from "./objects/sections/smallPeopleSection";
+import smallPeopleGroup from "./objects/sections/smallPeopleGroup";
 // Other
 import subRoute from "./objects/subRoute";
 
@@ -48,12 +50,14 @@ export default createSchema({
     localePortableText,
     localeSlug,
     localeString,
+    localeText,
     portableText,
     bigHeadingPortableText,
     headingPortableText,
     bigHeadingSection,
     bigPeopleSection,
     smallPeopleSection,
+    smallPeopleGroup,
     subRoute
   ])
 });

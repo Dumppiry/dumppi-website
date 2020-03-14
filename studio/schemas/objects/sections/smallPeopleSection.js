@@ -14,27 +14,10 @@ export default {
       type: "localeString"
     },
     {
-      name: "sections",
-      title: "Sections",
+      name: "groups",
+      title: "Groups",
       type: "array",
-      of: [
-        {
-          type: "object",
-          fields: [
-            {
-              name: "heading",
-              title: "Heading",
-              type: "localeHeadingPortableText"
-            },
-            {
-              name: "people",
-              title: "People",
-              type: "array",
-              of: [{ type: "reference", to: [{ type: "person" }] }]
-            }
-          ]
-        }
-      ]
+      of: [{ type: "smallPeopleGroup" }]
     }
   ],
   preview: {

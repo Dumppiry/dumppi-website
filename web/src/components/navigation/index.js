@@ -12,7 +12,7 @@ const languages = [
 ]
 
 const Navigation = () => {
-  const data = useStaticQuery(graphql`
+  const { settings } = useStaticQuery(graphql`
     query NavigationQuery {
       settings: sanitySettings {
         siteTitle
@@ -23,7 +23,7 @@ const Navigation = () => {
   const { currentPageId } = useCurrentPage()
   return (
     <S.Navigation>
-      <span>{data.settings.siteTitle}</span>
+      <span>{settings.siteTitle}</span>
       <S.List>
         {languages.map(lang => (
           <S.ListItem>
