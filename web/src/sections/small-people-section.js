@@ -2,24 +2,28 @@ import React from "react"
 import styled from "styled-components"
 
 import PortableText from "../components/portable-text/heading"
-import Person from "../components/big-person-card"
+import Person from "../components/small-person-card"
 
-const BigPeopleSection = ({ heading, people }) => {
+const SmallPeopleSection = ({ heading, sections }) => {
   return (
     <S.Section>
-      <PortableText blocks={heading} />
-      {people.length > 0 && (
-        <S.People>
-          {people.map(person => (
-            <S.Person person={person} />
-          ))}
-        </S.People>
-      )}
+      <h2>{heading}</h2>
+      {sections.length > 0 &&
+        sections.map(section => (
+          <>
+            <PortableText blocks={section.heading} />
+            <S.People>
+              {section.people.map(person => (
+                <S.Person person={person} />
+              ))}
+            </S.People>
+          </>
+        ))}
     </S.Section>
   )
 }
 
-export default BigPeopleSection
+export default SmallPeopleSection
 
 const S = {}
 
@@ -45,6 +49,6 @@ S.People = styled.div`
 `
 
 S.Person = styled(Person)`
-  width: calc(100% / 3 - 1.5rem);
+  width: calc(100% / 2 - 1.5rem);
   margin: 1.5rem 0;
 `

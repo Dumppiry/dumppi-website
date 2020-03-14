@@ -6,12 +6,15 @@ export default {
     {
       name: "siteTitle",
       title: "Site Title",
-      type: "string"
+      type: "string",
+      validation: Rule => Rule.required()
     },
     {
       name: "siteDescription",
       title: "Site description",
-      type: "string"
+      type: "localeText",
+      rows: 5,
+      validation: Rule => Rule.required()
     }
   ]
 };

@@ -22,7 +22,11 @@ export default {
       name: "content",
       title: "Content",
       type: "array",
-      of: [{ type: "bigHeadingSection" }, { type: "bigPeopleSection" }]
+      of: [
+        { type: "bigHeadingSection" },
+        { type: "bigPeopleSection" },
+        { type: "smallPeopleSection" }
+      ]
     }
   ],
   preview: {

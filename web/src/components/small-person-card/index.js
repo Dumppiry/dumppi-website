@@ -4,12 +4,12 @@ import styled from "styled-components"
 import img from "../../images/gatsby-icon.png"
 
 const SmallPersonCard = ({ person, ...rest }) => (
-  <S.Container>
+  <S.Container {...rest}>
     <S.SmallPersonImage src={img} />
     <S.Info>
       {person.title && <S.Title>{person.title}</S.Title>}
       <S.Name>{person.name}</S.Name>
-      <S.AdditionalInfo>{person.phone}</S.AdditionalInfo>
+      <S.AdditionalInfo>{person.phoneNumber}</S.AdditionalInfo>
       <S.AdditionalInfo>{person.email}</S.AdditionalInfo>
     </S.Info>
   </S.Container>
@@ -20,8 +20,6 @@ export default SmallPersonCard
 const S = {}
 
 S.Container = styled.div`
-  height: 100px;
-  width: 360px;
   display: flex;
   align-items: center;
 `

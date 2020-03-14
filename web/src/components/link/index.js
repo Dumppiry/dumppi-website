@@ -25,8 +25,8 @@ const Link = ({ id, locale, children, ...rest }) => {
   // Find the path to the wanted page with the id and locale
   const path = data.allSitePage.nodes.find(
     node =>
-      node.context.id === id &&
-      node.context.locale === (locale ?? currentLocale)
+      node.context?.id === id &&
+      node.context?.locale === (locale ?? currentLocale)
   )?.path
 
   return (

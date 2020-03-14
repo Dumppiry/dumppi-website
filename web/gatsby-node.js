@@ -112,3 +112,18 @@ exports.onCreatePage = ({ page, actions }) => {
 
   createLocalePage(page, createPage)
 }
+
+exports.createSchemaCustomization = ({ actions }) => {
+  const { createTypes } = actions
+  const typeDefs = `
+    type SitePage implements Node {
+      context: SitePageContext
+    }
+
+    type SitePageContext {
+      id: String
+      locale: String
+    }
+  `
+  createTypes(typeDefs)
+}
