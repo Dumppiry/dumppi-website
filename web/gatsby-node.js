@@ -3,11 +3,12 @@
 
 const extraLanguages = ["en"] // English is currently the default so it isn't needed here.
 
-const createLocalePage = (page, createPage, locale) => {
+const createLocalePage = (page, createPage, locale, reporter) => {
   const { context, ...rest } = page
 
+  let localePage
   if (extraLanguages.includes(locale)) {
-    createPage({
+    localePage = {
       ...rest,
       path: `/${locale}${page.path}`,
       // every page for each language gets the language code as a prefix
@@ -16,16 +17,18 @@ const createLocalePage = (page, createPage, locale) => {
         ...context,
         locale,
       },
-    })
+    }
   } else {
-    createPage({
+    localePage = {
       ...rest,
       context: {
         ...context,
         locale,
       },
-    })
+    }
   }
+  reporter.info(`Creating page: ${localePage.path}`)
+  createPage(localePage)
 }
 
 exports.createPages = async ({ graphql, actions, reporter }) => {
@@ -80,7 +83,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
           id: node.page._id,
         },
       }
-      createLocalePage(page, createPage, locale)
+      createLocalePage(page, createPage, locale, reporter)
 
       node.subRoutes.map(sr => {
         const page = {
@@ -90,28 +93,19 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
             id: sr.page._id,
           },
         }
-        createLocalePage(page, createPage, locale)
+        createLocalePage(page, createPage, locale, reporter)
       })
     })
   })
-
-  // generate your dynamic content here...
-  // const page = {
-  //   path: "some-page",
-  //   component: require.resolve(`./src/templates/some-page.js`),
-  //   context: {
-  //     slug: "some-page-slug",
-  //   },
-  // }
 }
 
-exports.onCreatePage = ({ page, actions }) => {
-  const { createPage, deletePage } = actions
+// exports.onCreatePage = ({ page, actions }) => {
+//   const { createPage, deletePage } = actions
 
-  deletePage(page)
+//   deletePage(page)
 
-  createLocalePage(page, createPage)
-}
+//   createLocalePage(page, createPage)
+// }
 
 exports.createSchemaCustomization = ({ actions }) => {
   const { createTypes } = actions

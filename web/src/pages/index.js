@@ -74,7 +74,6 @@ const company = {
 }
 
 const IndexPage = ({ data }) => {
-  console.log(data)
   return (
     <Layout>
       <SEO title="Home" />
@@ -100,21 +99,3 @@ const IndexPage = ({ data }) => {
 }
 
 export default localize(IndexPage)
-
-export const query = graphql`
-  query MyQuery {
-    allSanityPage {
-      edges {
-        node {
-          id
-          title {
-            _type
-            fi
-            en
-          }
-          _rawContent
-        }
-      }
-    }
-  }
-`
