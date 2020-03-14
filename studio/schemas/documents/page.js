@@ -5,13 +5,6 @@ export default {
   title: "Page",
   type: "document",
   icon: FiFileText,
-  fieldsets: [
-    {
-      title: "Translations",
-      name: "translations",
-      options: { collapsible: true }
-    }
-  ],
   fields: [
     {
       name: "title",

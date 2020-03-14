@@ -5,6 +5,8 @@ import createSchema from "part:@sanity/base/schema-creator";
 import schemaTypes from "all:part:@sanity/base/schema-type";
 
 // Document types
+import event from "./documents/event";
+import location from "./documents/location";
 import page from "./documents/page";
 import pageRoute from "./documents/pageRoute";
 import person from "./documents/person";
@@ -16,6 +18,7 @@ import localeBigHeadingPortableText from "./objects/localeObjects/localeBigHeadi
 import localeHeadingPortableText from "./objects/localeObjects/localeHeadingPortableText";
 import localePortableText from "./objects/localeObjects/localePortableText";
 import localeSlug from "./objects/localeObjects/localeSlug";
+import localeEventSlug from "./objects/localeObjects/localeEventSlug";
 import localeString from "./objects/localeObjects/localeString";
 import localeText from "./objects/localeObjects/localeText";
 // Portable text variants
@@ -27,6 +30,8 @@ import bigHeadingSection from "./objects/sections/bigHeadingSection";
 import bigPeopleSection from "./objects/sections/bigPeopleSection";
 import smallPeopleSection from "./objects/sections/smallPeopleSection";
 import smallPeopleGroup from "./objects/sections/smallPeopleGroup";
+// Event stuff
+import eventLink from "./objects/event/link";
 // Other
 import subRoute from "./objects/subRoute";
 
@@ -39,6 +44,8 @@ export default createSchema({
   types: schemaTypes.concat([
     /* Your types here! */
     // Document types
+    event,
+    location,
     page,
     pageRoute,
     person,
@@ -49,6 +56,7 @@ export default createSchema({
     localeHeadingPortableText,
     localePortableText,
     localeSlug,
+    localeEventSlug,
     localeString,
     localeText,
     portableText,
@@ -58,6 +66,7 @@ export default createSchema({
     bigPeopleSection,
     smallPeopleSection,
     smallPeopleGroup,
+    eventLink,
     subRoute
   ])
 });
