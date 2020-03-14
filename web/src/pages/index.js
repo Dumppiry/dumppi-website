@@ -1,5 +1,4 @@
 import React from "react"
-import { graphql } from "gatsby"
 
 import localize from "../hoc/localize"
 
