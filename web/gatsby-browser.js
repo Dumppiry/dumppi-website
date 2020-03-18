@@ -7,11 +7,15 @@
 // You can delete this file if you're not using it
 const React = require("react")
 const PropTypes = require("prop-types")
+const { ApolloProvider } = require("@apollo/react-hooks")
 
+const { client } = require("./src/apollo-client")
 const { CurrentPageProvider } = require("./src/hooks/current-page")
 
 const Wrapper = ({ element }) => (
-  <CurrentPageProvider>{element}</CurrentPageProvider>
+  <ApolloProvider client={client}>
+    <CurrentPageProvider>{element}</CurrentPageProvider>
+  </ApolloProvider>
 )
 
 Wrapper.propTypes = {

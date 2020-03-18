@@ -6,6 +6,7 @@ import schemaTypes from "all:part:@sanity/base/schema-type";
 
 // Document types
 import event from "./documents/event";
+import eventCategory from "./documents/eventCategory";
 import location from "./documents/location";
 import page from "./documents/page";
 import pageRoute from "./documents/pageRoute";
@@ -45,6 +46,7 @@ export default createSchema({
     /* Your types here! */
     // Document types
     event,
+    eventCategory,
     location,
     page,
     pageRoute,

@@ -1,38 +1,56 @@
 import React from "react"
 import styled from "styled-components"
+import Img from "gatsby-image"
 
-import img from "../../images/gatsby-astronaut.png"
+import { useCurrentPage } from "../../hooks/current-page"
 
-const EventCard = ({ event, ...rest }) => (
-  <S.Container>
-    <S.EventImage src={img} />
-    <S.EventInfo>
-      {event.time && <S.AdditionalInfo>{event.time}</S.AdditionalInfo>}
-      <S.Name>{event.name}</S.Name>
-      {event.location && (
-        <S.AdditionalInfo>{`@ ${event.location}`}</S.AdditionalInfo>
-      )}
+const EventCard = ({ event }) => {
+  const { locale } = useCurrentPage()
 
-      <S.Link>Lue lisää...</S.Link>
-    </S.EventInfo>
-    <S.StatusBar status={event.status} />
-  </S.Container>
-)
+  const options = {
+    weekday: "long",
+    month: "numeric",
+    day: "numeric",
+    hour: "numeric",
+    minute: "numeric",
+  }
+
+  return (
+    <S.Container>
+      <S.EventImage fluid={event.image.asset.fluid} />
+      <S.EventInfo>
+        {event.startDate && (
+          <S.AdditionalInfo>
+            {new Intl.DateTimeFormat(locale, options).format(
+              new Date(event.startDate)
+            )}
+          </S.AdditionalInfo>
+        )}
+        <S.Name>{event.title}</S.Name>
+        {event.location?.title && (
+          <S.AdditionalInfo>{`@ ${event.location.title}`}</S.AdditionalInfo>
+        )}
+        <S.Link>Lue lisää -></S.Link>
+      </S.EventInfo>
+      <S.StatusBar status={event.status} />
+    </S.Container>
+  )
+}
 
 export default EventCard
 
 const S = {}
 
-S.Container = styled.div`
+S.Container = styled.article`
   height: 410px;
-  width: 290px;
+  width: 100%;
   border-radius: 10px;
   display: flex;
   flex-direction: column;
   background-color: #ffffff;
   box-shadow: 0 5px 40px 0 #f0f0f0;
 `
-S.EventImage = styled.img`
+S.EventImage = styled(Img)`
   width: 100%;
   height: 42%;
   border-radius: 10px 10px 0 0;
@@ -59,11 +77,15 @@ S.AdditionalInfo = styled.span`
   font-weight: 500;
   letter-spacing: -0.31px;
   line-height: 17px;
+
+  /* Capitalize the first letter because of Intl stuff */
+  &::first-letter {
+    text-transform: uppercase;
+  }
 `
 
-S.Link = styled.span`
+S.Link = styled.a`
   height: 20px;
-  width: 106px;
   color: #af271d;
   font-family: Inter;
   font-size: 16px;
@@ -71,6 +93,7 @@ S.Link = styled.span`
   letter-spacing: -0.35px;
   line-height: 20px;
   margin-top: 20px;
+  cursor: pointer;
 `
 
 const statusColors = {

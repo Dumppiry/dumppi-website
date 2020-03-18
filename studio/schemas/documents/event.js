@@ -53,6 +53,12 @@ export default {
       to: [{ type: "location" }]
     },
     {
+      name: "category",
+      title: "Category",
+      type: "reference",
+      to: [{ type: "eventCategory" }]
+    },
+    {
       name: "price",
       title: "Price, €",
       type: "number",
