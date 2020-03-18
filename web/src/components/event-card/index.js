@@ -1,11 +1,25 @@
 import React from "react"
-import styled from "styled-components"
+import { graphql, useStaticQuery } from "gatsby"
 import Img from "gatsby-image"
+import styled from "styled-components"
 
 import { useCurrentPage } from "../../hooks/current-page"
+import Link from "../link"
+
+const EVENT_SETTINGS_QUERY = graphql`
+  query EventSettingsQuery {
+    settings: sanityEventSettings {
+      readMoreText {
+        fi
+        en
+      }
+    }
+  }
+`
 
 const EventCard = ({ event }) => {
   const { locale } = useCurrentPage()
+  const { settings } = useStaticQuery(EVENT_SETTINGS_QUERY)
 
   const options = {
     weekday: "long",
@@ -30,7 +44,9 @@ const EventCard = ({ event }) => {
         {event.location?.title && (
           <S.AdditionalInfo>{`@ ${event.location.title}`}</S.AdditionalInfo>
         )}
-        <S.Link>Lue lisää -></S.Link>
+        <S.Link id={event._id} locale={locale}>
+          {settings.readMoreText[locale]} ->
+        </S.Link>
       </S.EventInfo>
       <S.StatusBar status={event.status} />
     </S.Container>
@@ -84,7 +100,7 @@ S.AdditionalInfo = styled.span`
   }
 `
 
-S.Link = styled.a`
+S.Link = styled(Link)`
   height: 20px;
   color: #af271d;
   font-family: Inter;

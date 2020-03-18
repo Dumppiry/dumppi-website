@@ -13,8 +13,16 @@ export default () =>
             .schemaType("settings")
             .documentId("settings")
         ),
+      S.listItem()
+        .title("Event Settings")
+        .icon(FiSettings)
+        .child(
+          S.editor()
+            .schemaType("eventSettings")
+            .documentId("eventSettings")
+        ),
       S.divider(),
       ...S.documentTypeListItems().filter(
-        listItem => !["settings"].includes(listItem.getId())
+        listItem => !["settings", "eventSettings"].includes(listItem.getId())
       )
     ]);

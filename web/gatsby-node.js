@@ -31,7 +31,7 @@ const createLocalePage = (page, createPage, locale, reporter) => {
   createPage(localePage)
 }
 
-exports.createPages = async ({ graphql, actions, reporter }) => {
+const createPages = async ({ graphql, actions, reporter }) => {
   const { createPage } = actions
 
   const result = await graphql(`
@@ -99,13 +99,63 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
   })
 }
 
-// exports.onCreatePage = ({ page, actions }) => {
-//   const { createPage, deletePage } = actions
+const createEventPages = async ({ graphql, actions, reporter }) => {
+  const { createPage } = actions
 
-//   deletePage(page)
+  const result = await graphql(`
+    {
+      allSanityEvent {
+        nodes {
+          _id
+          slug {
+            fi {
+              current
+            }
+            en {
+              current
+            }
+          }
+        }
+      }
+      sanityEventSettings {
+        eventsBaseSlug {
+          en {
+            current
+          }
+          fi {
+            current
+          }
+        }
+      }
+    }
+  `)
 
-//   createLocalePage(page, createPage)
-// }
+  if (result.errors) throw result.errors
+
+  const events = (result.data.allSanityEvent || {}).nodes || []
+
+  const locales = ["fi", ...extraLanguages]
+  locales.map(locale => {
+    const basePath =
+      result.data.sanityEventSettings.eventsBaseSlug[locale].current
+    events.map(node => {
+      const path = node.slug[locale].current
+      const page = {
+        path: `/${basePath}/${path}`,
+        component: require.resolve("./src/templates/event.js"),
+        context: {
+          id: node._id,
+        },
+      }
+      createLocalePage(page, createPage, locale, reporter)
+    })
+  })
+}
+
+exports.createPages = ({ graphql, actions, reporter }) => {
+  createPages({ graphql, actions, reporter })
+  createEventPages({ graphql, actions, reporter })
+}
 
 exports.createSchemaCustomization = ({ actions }) => {
   const { createTypes } = actions
