@@ -10,14 +10,14 @@ const SmallPeopleSection = ({ heading, groups }) => {
       <h2>{heading}</h2>
       {groups?.length > 0 &&
         groups.map(section => (
-          <>
+          <S.Group>
             <PortableText blocks={section.heading} />
             <S.People>
               {section.people.map(person => (
-                <S.Person key={person._key} person={person} />
+                <Person key={person._key} person={person} />
               ))}
             </S.People>
-          </>
+          </S.Group>
         ))}
     </S.Section>
   )
@@ -42,13 +42,25 @@ S.Section = styled.section`
   }
 `
 
-S.People = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
+S.Group = styled.div`
+  margin-top: 2.5rem;
+  margin-bottom: 5rem;
+
+  h2 {
+    font-size: 1.75rem;
+  }
 `
 
-S.Person = styled(Person)`
-  width: calc(100% / 2 - 1.5rem);
-  margin: 1.5rem 0;
+S.People = styled.div`
+  --grid-columns: 1;
+  display: grid;
+  grid-template-columns: repeat(var(--grid-columns), 1fr);
+  grid-gap: 2rem;
+
+  /* @media (min-width: 575px) {
+    --grid-columns: 2;
+  } */
+  @media (min-width: 768px) {
+    --grid-columns: 2;
+  }
 `

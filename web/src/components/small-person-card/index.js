@@ -6,15 +6,15 @@ import { getFixedGatsbyImage } from "gatsby-source-sanity"
 import { sanity } from "../../../client-config"
 
 const SmallPersonCard = ({ person, ...rest }) => {
-  const fluidProps = getFixedGatsbyImage(
-    person.image.asset._id,
+  const fixedProps = getFixedGatsbyImage(
+    person.image?.asset._id,
     { width: 100, height: 100 },
     sanity
   )
 
   return (
     <S.Container {...rest}>
-      <S.SmallPersonImage fixed={fluidProps} />
+      <S.SmallPersonImage fixed={fixedProps} />
       <S.Info>
         {person.title && <S.Title>{person.title}</S.Title>}
         <S.Name>{person.name}</S.Name>
@@ -46,7 +46,6 @@ S.Info = styled.div`
 `
 
 S.Title = styled.span`
-  height: 24px;
   color: #af271d;
   font-family: Inter;
   font-size: 16px;
@@ -56,7 +55,6 @@ S.Title = styled.span`
 `
 
 S.Name = styled.span`
-  height: 24px;
   color: #2c2c2c;
   font-family: Inter;
   font-size: 20px;
@@ -66,7 +64,6 @@ S.Name = styled.span`
 `
 
 S.AdditionalInfo = styled.span`
-  height: 17px;
   color: #949494;
   font-family: Inter;
   font-size: 14px;

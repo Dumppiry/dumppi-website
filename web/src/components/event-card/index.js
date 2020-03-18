@@ -31,7 +31,7 @@ const EventCard = ({ event }) => {
 
   return (
     <S.Container>
-      <S.EventImage fluid={event.image.asset.fluid} />
+      <S.EventImage fluid={event.image?.asset.fluid} />
       <S.EventInfo>
         {event.startDate && (
           <S.AdditionalInfo>

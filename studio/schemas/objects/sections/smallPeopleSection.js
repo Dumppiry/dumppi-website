@@ -22,16 +22,20 @@ export default {
   ],
   preview: {
     select: {
-      heading: "heading"
+      heading: "heading",
+      groups: "groups"
     },
-    prepare({ heading }) {
+    prepare({ heading, groups }) {
+      const subtitle = groups
+        .map(group => {
+          return group.heading[defaultLanguage][0].children
+            .map(child => child.text)
+            .join("");
+        })
+        .join(", ");
       return {
-        title: heading[defaultLanguage][0].children
-          .map(child => child.text)
-          .join(""),
-        subtitle: heading[defaultLanguage][1].children
-          .map(child => child.text)
-          .join("")
+        title: heading[defaultLanguage],
+        subtitle
       };
     }
   }

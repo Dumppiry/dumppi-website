@@ -21,15 +21,12 @@ S.Layout = styled.div`
   min-height: 100vh;
   max-width: 100vw;
   margin-top: 4.5rem;
-  overflow-x: hidden;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
 `
 
 S.Content = styled.main`
   flex: 1 0 auto;
   max-width: 940px;
+  margin: auto;
   padding: 1rem;
 `
 

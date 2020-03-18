@@ -11,7 +11,7 @@ const BigPeopleSection = ({ heading, people }) => {
       {people.length > 0 && (
         <S.People>
           {people.map(person => (
-            <S.Person key={person._key} person={person} />
+            <Person key={person._key} person={person} />
           ))}
         </S.People>
       )}
@@ -39,12 +39,16 @@ S.Section = styled.section`
 `
 
 S.People = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-`
+  --grid-columns: 1;
+  display: grid;
+  grid-template-columns: repeat(var(--grid-columns), 1fr);
+  grid-gap: 2rem;
+  justify-items: center;
 
-S.Person = styled(Person)`
-  width: calc(100% / 3 - 1.5rem);
-  margin: 1.5rem 0;
+  @media (min-width: 575px) {
+    --grid-columns: 2;
+  }
+  @media (min-width: 768px) {
+    --grid-columns: 3;
+  }
 `
