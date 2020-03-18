@@ -1,19 +1,29 @@
 import React from "react"
 import styled from "styled-components"
+import Img from "gatsby-image"
+import { getFixedGatsbyImage } from "gatsby-source-sanity"
 
-import img from "../../images/gatsby-icon.png"
+import { sanity } from "../../../client-config"
 
-const SmallPersonCard = ({ person, ...rest }) => (
-  <S.Container {...rest}>
-    <S.SmallPersonImage src={img} />
-    <S.Info>
-      {person.title && <S.Title>{person.title}</S.Title>}
-      <S.Name>{person.name}</S.Name>
-      <S.AdditionalInfo>{person.phoneNumber}</S.AdditionalInfo>
-      <S.AdditionalInfo>{person.email}</S.AdditionalInfo>
-    </S.Info>
-  </S.Container>
-)
+const SmallPersonCard = ({ person, ...rest }) => {
+  const fluidProps = getFixedGatsbyImage(
+    person.image.asset._id,
+    { width: 100, height: 100 },
+    sanity
+  )
+
+  return (
+    <S.Container {...rest}>
+      <S.SmallPersonImage fixed={fluidProps} />
+      <S.Info>
+        {person.title && <S.Title>{person.title}</S.Title>}
+        <S.Name>{person.name}</S.Name>
+        <S.AdditionalInfo>{person.phoneNumber}</S.AdditionalInfo>
+        <S.AdditionalInfo>{person.email}</S.AdditionalInfo>
+      </S.Info>
+    </S.Container>
+  )
+}
 
 export default SmallPersonCard
 
@@ -24,10 +34,10 @@ S.Container = styled.div`
   align-items: center;
 `
 
-S.SmallPersonImage = styled.img`
+S.SmallPersonImage = styled(Img)`
   width: 100px;
-  height: 100%;
-  border-radius: 25%;
+  height: 100px;
+  border-radius: 50%;
 `
 S.Info = styled.div`
   margin-left: 20px;

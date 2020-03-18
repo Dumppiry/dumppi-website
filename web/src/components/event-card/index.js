@@ -26,7 +26,7 @@ const EventCard = ({ event }) => {
             )}
           </S.AdditionalInfo>
         )}
-        <S.Name>{event.title}</S.Name>
+        <S.Name>{event.title[locale]}</S.Name>
         {event.location?.title && (
           <S.AdditionalInfo>{`@ ${event.location.title}`}</S.AdditionalInfo>
         )}

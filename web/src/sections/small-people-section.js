@@ -4,12 +4,12 @@ import styled from "styled-components"
 import PortableText from "../components/portable-text/heading"
 import Person from "../components/small-person-card"
 
-const SmallPeopleSection = ({ heading, sections }) => {
+const SmallPeopleSection = ({ heading, groups }) => {
   return (
     <S.Section>
       <h2>{heading}</h2>
-      {sections.length > 0 &&
-        sections.map(section => (
+      {groups?.length > 0 &&
+        groups.map(section => (
           <>
             <PortableText blocks={section.heading} />
             <S.People>
