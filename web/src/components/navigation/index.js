@@ -46,14 +46,17 @@ S.Navigation = styled.header`
   z-index: 100;
   top: 0;
   width: 100%;
+  height: 4.5rem;
   background-color: pink;
   display: flex;
   justify-content: space-between;
+  align-items: center;
 `
 
 S.List = styled.ul`
   display: flex;
   list-style: none;
+  margin: 0;
 `
 
 S.ListItem = styled.li`

@@ -117,15 +117,8 @@ const createEventPages = async ({ graphql, actions, reporter }) => {
           }
         }
       }
-      sanityEventSettings {
-        eventsBaseSlug {
-          en {
-            current
-          }
-          fi {
-            current
-          }
-        }
+      settings: sanityEventSettings {
+        eventsBaseSlug: _rawEventsBaseSlug
       }
     }
   `)
@@ -136,8 +129,13 @@ const createEventPages = async ({ graphql, actions, reporter }) => {
 
   const locales = ["fi", ...extraLanguages]
   locales.map(locale => {
-    const basePath =
-      result.data.sanityEventSettings.eventsBaseSlug[locale].current
+    const basePath = result.data.settings.eventsBaseSlug[locale].current
+    const page = {
+      path: `/${basePath}`,
+      component: require.resolve("./src/templates/events.js"),
+    }
+    createLocalePage(page, createPage, locale, reporter)
+
     events.map(node => {
       const path = node.slug[locale].current
       const page = {

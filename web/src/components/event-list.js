@@ -26,16 +26,17 @@ const EVENTS_QUERY = graphql`
   }
 `
 
-const EventList = () => {
-  const { events } = useStaticQuery(EVENTS_QUERY)
+const EventList = ({ events }) => {
+  const data = useStaticQuery(EVENTS_QUERY)
+
   return (
     <S.List>
-      {events.nodes
-        .filter(event => new Date(event.startDate) > new Date())
-        .slice(0, 3)
-        .map(event => (
-          <EventCard key={event._id} event={event} />
-        ))}
+      {events
+        ? events.nodes.map(event => <EventCard key={event._id} event={event} />)
+        : data.events.nodes
+            .filter(event => new Date(event.startDate) > new Date())
+            .slice(0, 3)
+            .map(event => <EventCard key={event._id} event={event} />)}
     </S.List>
   )
 }

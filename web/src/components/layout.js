@@ -20,7 +20,7 @@ const S = {}
 S.Layout = styled.div`
   min-height: 100vh;
   max-width: 100vw;
-  margin-top: 4rem;
+  margin-top: 4.5rem;
   overflow-x: hidden;
   display: flex;
   flex-direction: column;
@@ -30,7 +30,7 @@ S.Layout = styled.div`
 S.Content = styled.main`
   flex: 1 0 auto;
   max-width: 940px;
-  padding: 0 1rem;
+  padding: 1rem;
 `
 
 Layout.propTypes = {
