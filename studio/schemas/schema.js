@@ -15,6 +15,7 @@ import person from "./documents/person";
 import settings from "./documents/settings";
 // Navigations
 import mainNavigation from "./documents/navigation/main";
+import fullNavigation from "./documents/navigation/full";
 
 // Object types
 // Localed fields
@@ -39,6 +40,7 @@ import smallPeopleGroup from "./objects/sections/smallPeopleGroup";
 import eventLink from "./objects/event/link";
 // Other
 import subRoute from "./objects/subRoute";
+import navigationItem from "./objects/navigationItem";
 
 // Then we give our schema to the builder and provide the result to Sanity
 export default createSchema({
@@ -58,6 +60,7 @@ export default createSchema({
     person,
     settings,
     mainNavigation,
+    fullNavigation,
 
     // Object types
     localeBigHeadingPortableText,
@@ -76,6 +79,7 @@ export default createSchema({
     smallPeopleSection,
     smallPeopleGroup,
     eventLink,
-    subRoute
+    subRoute,
+    navigationItem
   ])
 });

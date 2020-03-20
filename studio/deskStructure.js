@@ -29,11 +29,22 @@ export default () =>
             .schemaType("mainNavigation")
             .documentId("mainNavigation")
         ),
+      S.listItem()
+        .title("Full Navigation")
+        .icon(FiAlignRight)
+        .child(
+          S.editor()
+            .schemaType("fullNavigation")
+            .documentId("fullNavigation")
+        ),
       S.divider(),
       ...S.documentTypeListItems().filter(
         listItem =>
-          !["settings", "eventSettings", "mainNavigation"].includes(
-            listItem.getId()
-          )
+          ![
+            "settings",
+            "eventSettings",
+            "mainNavigation",
+            "fullNavigation"
+          ].includes(listItem.getId())
       )
     ]);
