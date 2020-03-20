@@ -11,7 +11,7 @@ const languages = [
   { code: "en", icon: "🇬🇧" },
 ]
 
-const Navigation = () => {
+const Navigation = ({ pageTitle }) => {
   const { settings } = useStaticQuery(graphql`
     query NavigationQuery {
       settings: sanitySettings {
@@ -23,16 +23,23 @@ const Navigation = () => {
   const { currentPageId } = useCurrentPage()
   return (
     <S.Navigation>
-      <span>{settings.siteTitle}</span>
-      <S.List>
-        {languages.map(lang => (
-          <S.ListItem>
-            <S.Link id={currentPageId} locale={lang.code}>
-              {lang.icon}
-            </S.Link>
-          </S.ListItem>
-        ))}
-      </S.List>
+      <S.NavBar>
+        <span>{settings.siteTitle}</span>
+        <S.List>
+          {languages.map(lang => (
+            <S.ListItem>
+              <S.Link id={currentPageId} locale={lang.code}>
+                {lang.icon}
+              </S.Link>
+            </S.ListItem>
+          ))}
+        </S.List>
+      </S.NavBar>
+      {pageTitle && (
+        <S.Heading>
+          <h1>{pageTitle}</h1>
+        </S.Heading>
+      )}
     </S.Navigation>
   )
 }
@@ -42,12 +49,17 @@ export default Navigation
 const S = {}
 
 S.Navigation = styled.header`
-  position: fixed;
+  /* position: fixed; */
   z-index: 100;
   top: 0;
   width: 100%;
-  height: 4.5rem;
-  background-color: pink;
+  /* height: 4.5rem; */
+  padding: 0.5rem 1rem;
+  background: linear-gradient(#70130c, #ab1d13);
+  color: white;
+`
+
+S.NavBar = styled.nav`
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -66,4 +78,13 @@ S.ListItem = styled.li`
 S.Link = styled(Link)`
   font-size: 1.75rem;
   text-decoration: none;
+`
+
+S.Heading = styled.div`
+  max-width: 940px;
+  margin: 5rem auto;
+
+  h1 {
+    font-size: 3.75rem;
+  }
 `

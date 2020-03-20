@@ -18,7 +18,7 @@ const PageTemplate = ({ data, pageContext, ...rest }) => {
   })
 
   return (
-    <Layout>
+    <Layout pageTitle={title}>
       <SEO title={title} />
       <SectionBlockContent blocks={content} />
     </Layout>
