@@ -1,7 +1,8 @@
 import React from "react"
 import { graphql, useStaticQuery } from "gatsby"
 import Img from "gatsby-image"
-import styled from "styled-components"
+import styled, { css } from "styled-components"
+import { FiUserCheck, FiUserX } from "react-icons/fi"
 
 import { useCurrentPage } from "../../hooks/current-page"
 import Link from "../link"
@@ -29,6 +30,8 @@ const EventCard = ({ event }) => {
     minute: "numeric",
   }
 
+  const status = event.price === 0 || !event.price ? "free" : event.status
+
   return (
     <S.Container>
       <S.EventImage fluid={event.image?.asset.fluid} />
@@ -48,7 +51,23 @@ const EventCard = ({ event }) => {
           {settings.readMoreText[locale]} ->
         </S.Link>
       </S.EventInfo>
-      <S.StatusBar status={event.status} />
+      <S.StatusBar status={status}>
+        {status === "free" ? (
+          <>
+            <S.Icon>
+              <FiUserCheck />
+            </S.Icon>
+            <span>Kukkuu</span>
+          </>
+        ) : (
+          <>
+            <S.Icon>
+              <FiUserCheck />
+            </S.Icon>
+            <span>Kukkuu</span>
+          </>
+        )}
+      </S.StatusBar>
     </S.Container>
   )
 }
@@ -73,18 +92,19 @@ S.EventImage = styled(Img)`
 `
 
 S.EventInfo = styled.div`
-  height: 55%;
   display: flex;
   flex-direction: column;
-  padding: 25px 25px 0 25px;
+  flex-grow: 1;
+  padding: 1.5rem;
 `
-S.Name = styled.span`
+S.Name = styled.h4`
   color: #2c2c2c;
   font-family: Inter;
   font-size: 20px;
   font-weight: 600;
   letter-spacing: -0.44px;
   line-height: 24px;
+  margin: 0.35em 0;
 `
 S.AdditionalInfo = styled.span`
   color: #949494;
@@ -101,14 +121,13 @@ S.AdditionalInfo = styled.span`
 `
 
 S.Link = styled(Link)`
-  height: 20px;
-  color: #af271d;
+  margin-top: auto;
   font-family: Inter;
-  font-size: 16px;
   font-weight: 500;
   letter-spacing: -0.35px;
   line-height: 20px;
-  margin-top: 20px;
+  color: #af271d;
+  text-decoration: none;
   cursor: pointer;
 `
 
@@ -118,9 +137,21 @@ const statusColors = {
   full: "#af271d",
 }
 
+const FreeStyles = css`
+  background-color: ${() => statusColors.free};
+  color: white;
+`
+
 S.StatusBar = styled.div`
   width: 100%;
-  height: 13%;
-  background-color: ${({ status }) => statusColors[status] || "#f0f0f0"};
+  background-color: #f0f0f0;
   border-radius: 0 0 10px 10px;
+  padding: 1rem 1.5rem;
+  color: #2c2c2c;
+
+  ${props => props.status === "free" && FreeStyles}
+`
+
+S.Icon = styled.span`
+  margin-right: 0.5em;
 `

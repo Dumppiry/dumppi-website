@@ -1,5 +1,5 @@
 import S from "@sanity/desk-tool/structure-builder";
-import { FiSettings } from "react-icons/fi";
+import { FiSettings, FiAlignRight } from "react-icons/fi";
 
 export default () =>
   S.list()
@@ -21,8 +21,19 @@ export default () =>
             .schemaType("eventSettings")
             .documentId("eventSettings")
         ),
+      S.listItem()
+        .title("Main Navigation")
+        .icon(FiAlignRight)
+        .child(
+          S.editor()
+            .schemaType("mainNavigation")
+            .documentId("mainNavigation")
+        ),
       S.divider(),
       ...S.documentTypeListItems().filter(
-        listItem => !["settings", "eventSettings"].includes(listItem.getId())
+        listItem =>
+          !["settings", "eventSettings", "mainNavigation"].includes(
+            listItem.getId()
+          )
       )
     ]);

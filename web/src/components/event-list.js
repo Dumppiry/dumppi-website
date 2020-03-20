@@ -21,6 +21,7 @@ const EVENTS_QUERY = graphql`
         }
         startDate
         endDate
+        price
       }
     }
   }

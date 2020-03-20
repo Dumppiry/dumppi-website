@@ -13,6 +13,8 @@ import page from "./documents/page";
 import pageRoute from "./documents/pageRoute";
 import person from "./documents/person";
 import settings from "./documents/settings";
+// Navigations
+import mainNavigation from "./documents/navigation/main";
 
 // Object types
 // Localed fields
@@ -55,6 +57,7 @@ export default createSchema({
     pageRoute,
     person,
     settings,
+    mainNavigation,
 
     // Object types
     localeBigHeadingPortableText,
