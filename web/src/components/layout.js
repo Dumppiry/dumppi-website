@@ -36,7 +36,7 @@ S.Content = styled.main`
   flex: 1 0 auto;
   max-width: 940px;
   margin: auto;
-  padding: 1rem;
+  padding: 0 1rem;
 `
 
 Layout.propTypes = {

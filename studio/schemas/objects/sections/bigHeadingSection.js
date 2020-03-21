@@ -18,6 +18,11 @@ export default {
       title: "Buttons",
       type: "array",
       of: [{ type: "reference", to: [{ type: "page" }] }]
+    },
+    {
+      name: "image",
+      title: "Image",
+      type: "image"
     }
   ],
   preview: {

@@ -41,9 +41,6 @@ S.Items = styled.ul`
 
   height: 100%;
   overflow: auto;
-  /* & > ul {
-    overflow: auto;
-  } */
 `
 
 S.SubItems = styled.ul`

@@ -5,7 +5,7 @@ import Button from "../components/button"
 import Link from "../components/link"
 import PortableText from "../components/portable-text/heading"
 
-const BigHeadingSection = ({ heading, buttons }) => {
+const BigHeadingSection = ({ heading, buttons, image }) => {
   return (
     <S.Section>
       <S.Content>
@@ -36,7 +36,7 @@ S.Section = styled.section`
   background-color: white;
 
   h1 {
-    margin: 2.5rem 0;
+    margin: 0 0 2.5rem 0;
     font-size: 3.75rem;
     color: #2c2c2c;
   }
