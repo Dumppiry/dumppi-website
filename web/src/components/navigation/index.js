@@ -33,7 +33,7 @@ S.Navigation = styled.header`
 S.Heading = styled.div`
   max-width: 940px;
   margin: auto;
-  padding: 5rem 0;
+  padding: 5rem 1rem;
 
   h1 {
     font-size: 3.75rem;

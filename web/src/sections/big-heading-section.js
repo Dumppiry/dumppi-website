@@ -32,18 +32,22 @@ S.Section = styled.section`
   margin: 5rem 0;
   text-align: center;
   border-radius: 1rem;
-  padding: 5rem;
+  padding: 2rem;
   background-color: white;
 
   h1 {
     margin: 0 0 2.5rem 0;
-    font-size: 3.75rem;
+    font-size: min(10vw, 3.75rem);
     color: #2c2c2c;
   }
   p {
     margin: 2.5rem 0;
-    font-size: 1.25rem;
+    font-size: min(4vw, 1.25rem);
     color: #949494;
+  }
+
+  @media (min-width: 768px) {
+    padding: 5rem;
   }
 `
 
@@ -53,13 +57,24 @@ S.Content = styled.div`
 `
 
 S.ButtonContainer = styled.div`
-  width: 80%;
+  --grid-columns: 1;
   margin: auto;
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(var(--grid-columns), 1fr);
   grid-gap: 1.25rem;
-  justify-content: stretch;
-  align-items: stretch;
+
+  @media (min-width: 575px) {
+  }
+  @media (min-width: 768px) {
+    --grid-columns: 2;
+    width: 80%;
+    align-items: stretch;
+    justify-content: stretch;
+  }
+  @media (min-width: 991px) {
+  }
+  @media (min-width: 1199px) {
+  }
 `
 
 S.Button = styled(Button)`

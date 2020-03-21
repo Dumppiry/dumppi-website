@@ -1,5 +1,5 @@
 import S from "@sanity/desk-tool/structure-builder";
-import { FiSettings, FiAlignRight } from "react-icons/fi";
+import { FiSettings, FiAlignRight, FiFileText } from "react-icons/fi";
 
 export default () =>
   S.list()
@@ -38,13 +38,22 @@ export default () =>
             .documentId("fullNavigation")
         ),
       S.divider(),
+      S.listItem()
+        .title("Front Page")
+        .icon(FiFileText)
+        .child(
+          S.editor()
+            .schemaType("frontPage")
+            .documentId("frontPage")
+        ),
       ...S.documentTypeListItems().filter(
         listItem =>
           ![
             "settings",
             "eventSettings",
             "mainNavigation",
-            "fullNavigation"
+            "fullNavigation",
+            "frontPage"
           ].includes(listItem.getId())
       )
     ]);

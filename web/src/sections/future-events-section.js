@@ -8,7 +8,7 @@ const FutureEventsSection = ({ heading }) => {
   return (
     <S.Section>
       <PortableText blocks={heading} />
-      <EventList />
+      <S.EventList />
     </S.Section>
   )
 }
@@ -30,4 +30,8 @@ S.Section = styled.section`
     font-size: 1.25rem;
     color: #949494;
   }
+`
+
+S.EventList = styled(EventList)`
+  margin-top: 5rem;
 `

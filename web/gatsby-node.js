@@ -31,6 +31,32 @@ const createLocalePage = (page, createPage, locale, reporter) => {
   createPage(localePage)
 }
 
+const createFrontPage = async ({ graphql, actions, reporter }) => {
+  const { createPage } = actions
+
+  const result = await graphql(`
+    {
+      sanityFrontPage {
+        _id
+      }
+    }
+  `)
+
+  if (result.errors) throw result.errors
+
+  const locales = ["fi", ...extraLanguages]
+  locales.map(locale => {
+    const page = {
+      path: `/`,
+      component: require.resolve("./src/templates/front-page.js"),
+      context: {
+        id: result.data.sanityFrontPage._id,
+      },
+    }
+    createLocalePage(page, createPage, locale, reporter)
+  })
+}
+
 const createPages = async ({ graphql, actions, reporter }) => {
   const { createPage } = actions
 
@@ -151,6 +177,7 @@ const createEventPages = async ({ graphql, actions, reporter }) => {
 }
 
 exports.createPages = ({ graphql, actions, reporter }) => {
+  createFrontPage({ graphql, actions, reporter })
   createPages({ graphql, actions, reporter })
   createEventPages({ graphql, actions, reporter })
 }

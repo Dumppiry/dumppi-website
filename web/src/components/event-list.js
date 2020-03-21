@@ -27,11 +27,11 @@ const EVENTS_QUERY = graphql`
   }
 `
 
-const EventList = ({ events }) => {
+const EventList = ({ events, ...rest }) => {
   const data = useStaticQuery(EVENTS_QUERY)
 
   return (
-    <S.List>
+    <S.List {...rest}>
       {events
         ? events.nodes.map(event => <EventCard key={event._id} event={event} />)
         : data.events.nodes

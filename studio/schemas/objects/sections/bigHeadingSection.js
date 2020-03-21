@@ -17,12 +17,7 @@ export default {
       name: "buttons",
       title: "Buttons",
       type: "array",
-      of: [{ type: "reference", to: [{ type: "page" }] }]
-    },
-    {
-      name: "image",
-      title: "Image",
-      type: "image"
+      of: [{ type: "reference", to: [{ type: "page" }, { type: "frontPage" }] }]
     }
   ],
   preview: {

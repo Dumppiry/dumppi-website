@@ -10,6 +10,7 @@ import eventCategory from "./documents/eventCategory";
 import eventSettings from "./documents/eventSettings";
 import location from "./documents/location";
 import page from "./documents/page";
+import frontPage from "./documents/frontPage";
 import pageRoute from "./documents/pageRoute";
 import person from "./documents/person";
 import settings from "./documents/settings";
@@ -56,6 +57,7 @@ export default createSchema({
     eventSettings,
     location,
     page,
+    frontPage,
     pageRoute,
     person,
     settings,

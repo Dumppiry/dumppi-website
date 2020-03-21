@@ -9,7 +9,7 @@ import LanguageMenu from "./language-menu"
 import Link from "../link"
 
 const NavBar = ({ hideItems }) => {
-  const { settings, mainNav } = useStaticQuery(graphql`
+  const { settings, mainNav, frontPage } = useStaticQuery(graphql`
     query NavigationQuery {
       settings: sanitySettings {
         siteTitle
@@ -24,6 +24,9 @@ const NavBar = ({ hideItems }) => {
           }
         }
       }
+      frontPage: sanityFrontPage {
+        _id
+      }
     }
   `)
 
@@ -31,20 +34,22 @@ const NavBar = ({ hideItems }) => {
 
   return (
     <S.NavBar>
-      <span>{settings.siteTitle}</span>
+      <S.Link id={frontPage._id}>{settings.siteTitle}</S.Link>
       <S.List>
-        {!hideItems ? (
-          mainNav.items.map(item => (
+        <S.Span>
+          {!hideItems ? (
+            mainNav.items.map(item => (
+              <S.ListItem>
+                <S.Link id={item._id}>{item.title[locale]}</S.Link>
+              </S.ListItem>
+            ))
+          ) : (
             <S.ListItem>
-              <S.Link id={item._id}>{item.title[locale]}</S.Link>
+              <LanguageMenu />
             </S.ListItem>
-          ))
-        ) : (
-          <S.ListItem>
-            <LanguageMenu />
-          </S.ListItem>
-        )}
-        <S.ListItem>
+          )}
+        </S.Span>
+        <S.ListItem nav>
           <ToggleNavButton />
         </S.ListItem>
       </S.List>
@@ -70,19 +75,24 @@ S.List = styled.ul`
   margin: 0;
 `
 
+S.Span = styled.span`
+  display: none;
+
+  @media (min-width: 768px) {
+    display: flex;
+  }
+`
+
 S.ListItem = styled.li`
-  margin: 1em 2em;
+  margin: 1em;
+  margin-right: ${props => (props.nav ? 0 : "2em")};
   display: flex;
   align-items: center;
-
-  &:last-child {
-    margin-right: 0;
-  }
 `
 
 S.Link = styled(Link)`
   text-decoration: none;
-  color: white;
+  color: inherit;
 
   :hover {
     opacity: 0.8;
