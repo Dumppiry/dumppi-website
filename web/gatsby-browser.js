@@ -11,10 +11,13 @@ const { ApolloProvider } = require("@apollo/react-hooks")
 
 const { client } = require("./src/apollo-client")
 const { CurrentPageProvider } = require("./src/hooks/current-page")
+const { NavigationProvider } = require("./src/hooks/navigation")
 
 const Wrapper = ({ element }) => (
   <ApolloProvider client={client}>
-    <CurrentPageProvider>{element}</CurrentPageProvider>
+    <NavigationProvider>
+      <CurrentPageProvider>{element}</CurrentPageProvider>
+    </NavigationProvider>
   </ApolloProvider>
 )
 

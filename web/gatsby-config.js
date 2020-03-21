@@ -42,5 +42,12 @@ module.exports = {
         pathToConfigModule: `src/utils/typography`,
       },
     },
+    {
+      resolve: `gatsby-plugin-portal`,
+      options: {
+        key: "fullpage-menu",
+        id: "fullpage-menu",
+      },
+    },
   ],
 }

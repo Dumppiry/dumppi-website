@@ -1,11 +1,19 @@
-import React from "react"
+import React, { useEffect } from "react"
 import PropTypes from "prop-types"
 import styled from "styled-components"
 
 import Navigation from "./navigation"
 import Footer from "./footer"
 
+import { useNavigation } from "../hooks/navigation"
+
 const Layout = ({ children, pageTitle }) => {
+  const { hideNav } = useNavigation()
+
+  useEffect(() => {
+    hideNav()
+  }, [])
+
   return (
     <S.Layout>
       <Navigation pageTitle={pageTitle} />
