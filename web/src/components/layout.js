@@ -20,6 +20,8 @@ const S = {}
 S.Layout = styled.div`
   min-height: 100vh;
   max-width: 100vw;
+  display: flex;
+  flex-direction: column;
 `
 
 S.Content = styled.main`
