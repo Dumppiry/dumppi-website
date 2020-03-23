@@ -5,6 +5,11 @@ import config from "../../client-config"
 
 const serializers = {
   types: {},
+  marks: {
+    highlight: ({ children }) => (
+      <span style={{ color: "#AF271D" }}>{children}</span>
+    ),
+  },
 }
 
 const BlockContent = ({ blocks }) => {

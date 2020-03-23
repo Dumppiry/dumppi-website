@@ -62,7 +62,7 @@ const EventCard = ({ event }) => {
         ) : (
           <>
             <S.Icon>
-              <FiUserCheck />
+              <FiUserX />
             </S.Icon>
             <span>Kukkuu</span>
           </>

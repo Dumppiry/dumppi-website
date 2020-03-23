@@ -11,7 +11,7 @@ const Button = ({ title, primary, onClick, ...rest }) => (
 Button.propTypes = {
   title: PropTypes.string.isRequired,
   primary: PropTypes.bool,
-  onClick: PropTypes.func.isRequired,
+  onClick: PropTypes.func,
 }
 
 Button.defaultProps = {

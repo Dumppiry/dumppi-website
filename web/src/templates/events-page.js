@@ -9,18 +9,17 @@ import localize from "../hoc/localize"
 import { useCurrentPage } from "../hooks/current-page"
 
 const EventTemplate = ({ data, pageContext, ...rest }) => {
-  const { events } = data
+  const { events, page } = data
   const { setLocale, setCurrentPageId } = useCurrentPage()
 
   useEffect(() => {
     setLocale(pageContext.locale)
-    // TODO: Keksi tälle jostain joku id, myös gatsby-node.js
-    // setCurrentPageId(event._id)
+    setCurrentPageId(page._id)
   })
 
   return (
-    <Layout>
-      <SEO title="REPLACE THIS tapahtumat" />
+    <Layout pageTitle={page.title}>
+      <SEO title={page.title} />
       <EventList events={events} />
     </Layout>
   )
@@ -30,6 +29,10 @@ export default localize(EventTemplate)
 
 export const query = graphql`
   query EventsTemplateQuery {
+    page: sanityEventsPage {
+      _id
+      title: _rawTitle
+    }
     events: allSanityEvent {
       nodes {
         _id

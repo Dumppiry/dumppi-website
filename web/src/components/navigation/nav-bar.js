@@ -16,11 +16,17 @@ const NavBar = ({ hideItems }) => {
       }
       mainNav: sanityMainNavigation {
         items {
-          _id
-          title {
-            _type
-            en
-            fi
+          ... on SanityEventsPage {
+            id
+            title: _rawTitle
+          }
+          ... on SanityFrontPage {
+            id
+            title: _rawTitle
+          }
+          ... on SanityPage {
+            id
+            title: _rawTitle
           }
         }
       }

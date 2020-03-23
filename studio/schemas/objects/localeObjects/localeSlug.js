@@ -15,6 +15,7 @@ export default {
     title: lang.title,
     name: lang.id,
     type: "slug",
+    validation: Rule => Rule.required(),
     fieldset: lang.isDefault ? null : "translations",
     options: {
       source: async (doc, options) => {

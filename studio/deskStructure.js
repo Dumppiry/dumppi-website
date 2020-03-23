@@ -1,5 +1,10 @@
 import S from "@sanity/desk-tool/structure-builder";
-import { FiSettings, FiAlignRight, FiFileText } from "react-icons/fi";
+import {
+  FiSettings,
+  FiAlignRight,
+  FiFileText,
+  FiCalendar
+} from "react-icons/fi";
 
 export default () =>
   S.list()
@@ -46,6 +51,14 @@ export default () =>
             .schemaType("frontPage")
             .documentId("frontPage")
         ),
+      S.listItem()
+        .title("Events Page")
+        .icon(FiCalendar)
+        .child(
+          S.editor()
+            .schemaType("eventsPage")
+            .documentId("eventsPage")
+        ),
       ...S.documentTypeListItems().filter(
         listItem =>
           ![
@@ -53,7 +66,8 @@ export default () =>
             "eventSettings",
             "mainNavigation",
             "fullNavigation",
-            "frontPage"
+            "frontPage",
+            "eventsPage"
           ].includes(listItem.getId())
       )
     ]);

@@ -10,7 +10,12 @@ export default {
       name: "items",
       title: "Items",
       type: "array",
-      of: [{ type: "reference", to: [{ type: "page" }] }]
+      of: [
+        {
+          type: "reference",
+          to: [{ type: "page" }, { type: "frontPage" }, { type: "eventsPage" }]
+        }
+      ]
     }
   ],
   preview: {

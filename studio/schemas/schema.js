@@ -11,6 +11,7 @@ import eventSettings from "./documents/eventSettings";
 import location from "./documents/location";
 import page from "./documents/page";
 import frontPage from "./documents/frontPage";
+import eventsPage from "./documents/eventsPage";
 import pageRoute from "./documents/pageRoute";
 import person from "./documents/person";
 import settings from "./documents/settings";
@@ -58,6 +59,7 @@ export default createSchema({
     location,
     page,
     frontPage,
+    eventsPage,
     pageRoute,
     person,
     settings,

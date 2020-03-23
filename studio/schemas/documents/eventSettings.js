@@ -4,12 +4,6 @@ export default {
   type: "document",
   fields: [
     {
-      name: "eventsBaseSlug",
-      title: "Events base slug",
-      type: "localeSlug",
-      validation: Rule => Rule.required()
-    },
-    {
       name: "readMoreText",
       title: "Read more text",
       type: "localeString",

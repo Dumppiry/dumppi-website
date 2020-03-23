@@ -7,13 +7,18 @@ export default {
       name: "page",
       title: "Page",
       type: "reference",
-      to: [{ type: "page" }]
+      to: [{ type: "page" }, { type: "frontPage" }, { type: "eventsPage" }]
     },
     {
       name: "subPages",
       title: "Sub Pages",
       type: "array",
-      of: [{ type: "reference", to: [{ type: "page" }] }]
+      of: [
+        {
+          type: "reference",
+          to: [{ type: "page" }, { type: "frontPage" }, { type: "eventsPage" }]
+        }
+      ]
     }
   ],
   preview: {

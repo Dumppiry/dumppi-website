@@ -9,7 +9,7 @@ const BigPersonCard = ({ person, ...rest }) => {
   const { title, name, phoneNumber, email, image } = person
 
   const fluidProps = getFluidGatsbyImage(
-    person.image?.asset._id,
+    image?.asset._id,
     { maxWidth: 290 },
     sanity
   )

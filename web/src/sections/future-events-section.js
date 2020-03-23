@@ -1,14 +1,39 @@
 import React from "react"
+import { graphql, useStaticQuery } from "gatsby"
 import styled from "styled-components"
 
 import PortableText from "../components/portable-text/heading"
 import EventList from "../components/event-list"
+import Link from "../components/link"
+import Button from "../components/button"
+
+import { useCurrentPage } from "../hooks/current-page"
+
+const FUTURE_EVENTS_QUERY = graphql`
+  query FutureEventsSectionQuery {
+    eventsPage: sanityEventsPage {
+      _id
+    }
+    settings: sanityEventSettings {
+      readMoreText {
+        fi
+        en
+      }
+    }
+  }
+`
 
 const FutureEventsSection = ({ heading }) => {
+  const { eventsPage, settings } = useStaticQuery(FUTURE_EVENTS_QUERY)
+  const { locale } = useCurrentPage()
+
   return (
     <S.Section>
       <PortableText blocks={heading} />
       <S.EventList />
+      <S.Link id={eventsPage._id}>
+        <Button title={settings.readMoreText[locale]} />
+      </S.Link>
     </S.Section>
   )
 }
@@ -19,6 +44,8 @@ const S = {}
 
 S.Section = styled.section`
   margin: 5rem 0;
+  display: flex;
+  flex-direction: column;
 
   h2 {
     margin: 1.25rem 0;
@@ -34,4 +61,9 @@ S.Section = styled.section`
 
 S.EventList = styled(EventList)`
   margin-top: 5rem;
+  margin-bottom: 2.5rem;
+`
+
+S.Link = styled(Link)`
+  align-self: center;
 `
