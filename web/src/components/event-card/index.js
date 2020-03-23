@@ -33,7 +33,7 @@ const EventCard = ({ event }) => {
   const status = event.price === 0 || !event.price ? "free" : event.status
 
   return (
-    <S.Container>
+    <S.Container id={event._id}>
       <S.EventImage fluid={event.image?.asset.fluid} />
       <S.EventInfo>
         {event.startDate && (
@@ -47,9 +47,7 @@ const EventCard = ({ event }) => {
         {event.location?.title && (
           <S.AdditionalInfo>{`@ ${event.location.title}`}</S.AdditionalInfo>
         )}
-        <S.Link id={event._id} locale={locale}>
-          {settings.readMoreText[locale]} ->
-        </S.Link>
+        <S.ReadMore>{settings.readMoreText[locale]} -></S.ReadMore>
       </S.EventInfo>
       <S.StatusBar status={status}>
         {status === "free" ? (
@@ -76,7 +74,7 @@ export default EventCard
 
 const S = {}
 
-S.Container = styled.article`
+S.Container = styled(Link)`
   height: 410px;
   width: 100%;
   border-radius: 10px;
@@ -84,6 +82,13 @@ S.Container = styled.article`
   flex-direction: column;
   background-color: #ffffff;
   box-shadow: 0 5px 40px 0 #f0f0f0;
+  transition: all 200ms ease-in-out;
+  text-decoration: none;
+
+  :hover {
+    box-shadow: 0 5px 40px 10px #f0f0f0;
+    transform: translateY(-3px);
+  }
 `
 S.EventImage = styled(Img)`
   width: 100%;
@@ -120,15 +125,13 @@ S.AdditionalInfo = styled.span`
   }
 `
 
-S.Link = styled(Link)`
+S.ReadMore = styled.span`
   margin-top: auto;
   font-family: Inter;
   font-weight: 500;
   letter-spacing: -0.35px;
   line-height: 20px;
   color: #af271d;
-  text-decoration: none;
-  cursor: pointer;
 `
 
 const statusColors = {

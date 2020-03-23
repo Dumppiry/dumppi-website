@@ -10,6 +10,9 @@ import event from "./documents/event";
 import eventCategory from "./documents/eventCategory";
 import eventSettings from "./documents/eventSettings";
 import location from "./documents/location";
+import job from "./documents/job";
+import jobCategory from "./documents/jobCategory";
+import jobType from "./documents/jobType";
 import page from "./documents/page";
 import frontPage from "./documents/frontPage";
 import eventsPage from "./documents/eventsPage";
@@ -39,6 +42,7 @@ import bigHeadingSection from "./objects/sections/bigHeadingSection";
 import bigPeopleSection from "./objects/sections/bigPeopleSection";
 import futureEventsSection from "./objects/sections/futureEventsSection";
 import partnersSection from "./objects/sections/partnersSection";
+import recentJobsSection from "./objects/sections/recentJobsSection";
 import smallPeopleSection from "./objects/sections/smallPeopleSection";
 import smallPeopleGroup from "./objects/sections/smallPeopleGroup";
 // Event stuff
@@ -61,6 +65,9 @@ export default createSchema({
     eventCategory,
     eventSettings,
     location,
+    job,
+    jobCategory,
+    jobType,
     page,
     frontPage,
     eventsPage,
@@ -86,6 +93,7 @@ export default createSchema({
     bigPeopleSection,
     futureEventsSection,
     partnersSection,
+    recentJobsSection,
     smallPeopleSection,
     smallPeopleGroup,
     eventLink,
