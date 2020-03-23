@@ -24,7 +24,8 @@ export default {
         { type: "bigHeadingSection" },
         { type: "bigPeopleSection" },
         { type: "smallPeopleSection" },
-        { type: "futureEventsSection" }
+        { type: "futureEventsSection" },
+        { type: "partnersSection" }
       ]
     }
   ],

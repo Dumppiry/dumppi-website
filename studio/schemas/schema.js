@@ -5,6 +5,7 @@ import createSchema from "part:@sanity/base/schema-creator";
 import schemaTypes from "all:part:@sanity/base/schema-type";
 
 // Document types
+import company from "./documents/company";
 import event from "./documents/event";
 import eventCategory from "./documents/eventCategory";
 import eventSettings from "./documents/eventSettings";
@@ -13,6 +14,7 @@ import page from "./documents/page";
 import frontPage from "./documents/frontPage";
 import eventsPage from "./documents/eventsPage";
 import pageRoute from "./documents/pageRoute";
+import partners from "./documents/partners";
 import person from "./documents/person";
 import settings from "./documents/settings";
 // Navigations
@@ -36,6 +38,7 @@ import headingPortableText from "./objects/portableText/headingPortableText";
 import bigHeadingSection from "./objects/sections/bigHeadingSection";
 import bigPeopleSection from "./objects/sections/bigPeopleSection";
 import futureEventsSection from "./objects/sections/futureEventsSection";
+import partnersSection from "./objects/sections/partnersSection";
 import smallPeopleSection from "./objects/sections/smallPeopleSection";
 import smallPeopleGroup from "./objects/sections/smallPeopleGroup";
 // Event stuff
@@ -53,6 +56,7 @@ export default createSchema({
   types: schemaTypes.concat([
     /* Your types here! */
     // Document types
+    company,
     event,
     eventCategory,
     eventSettings,
@@ -61,6 +65,7 @@ export default createSchema({
     frontPage,
     eventsPage,
     pageRoute,
+    partners,
     person,
     settings,
     mainNavigation,
@@ -80,6 +85,7 @@ export default createSchema({
     bigHeadingSection,
     bigPeopleSection,
     futureEventsSection,
+    partnersSection,
     smallPeopleSection,
     smallPeopleGroup,
     eventLink,

@@ -6,6 +6,7 @@ import clientConfig from "../../client-config"
 import BigHeadingSection from "./big-heading-section"
 import BigPeopleSection from "./big-people-section"
 import FutureEventsSection from "./future-events-section"
+import PartnersSection from "./partners-section"
 import SmallPeopleSection from "./small-people-section"
 
 const serializers = {
@@ -13,6 +14,7 @@ const serializers = {
     bigHeadingSection: ({ node }) => <BigHeadingSection {...node} />,
     bigPeopleSection: ({ node }) => <BigPeopleSection {...node} />,
     futureEventsSection: ({ node }) => <FutureEventsSection {...node} />,
+    partnersSection: ({ node }) => <PartnersSection {...node} />,
     smallPeopleSection: ({ node }) => <SmallPeopleSection {...node} />,
   },
 }

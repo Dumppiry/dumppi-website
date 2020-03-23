@@ -5,6 +5,7 @@ import {
   FiFileText,
   FiCalendar
 } from "react-icons/fi";
+import { FaRegHandshake } from "react-icons/fa";
 
 export default () =>
   S.list()
@@ -59,6 +60,14 @@ export default () =>
             .schemaType("eventsPage")
             .documentId("eventsPage")
         ),
+      S.listItem()
+        .title("Partners")
+        .icon(FaRegHandshake)
+        .child(
+          S.editor()
+            .schemaType("partners")
+            .documentId("partners")
+        ),
       ...S.documentTypeListItems().filter(
         listItem =>
           ![
@@ -67,7 +76,8 @@ export default () =>
             "mainNavigation",
             "fullNavigation",
             "frontPage",
-            "eventsPage"
+            "eventsPage",
+            "partners"
           ].includes(listItem.getId())
       )
     ]);
