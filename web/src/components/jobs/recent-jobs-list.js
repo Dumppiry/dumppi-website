@@ -51,7 +51,7 @@ const RecentJobsList = ({ ...rest }) => {
   return (
     <S.List {...rest}>
       {jobs.nodes.map(job => (
-        <JobCard {...job} />
+        <JobCard key={job._id} {...job} />
       ))}
     </S.List>
   )

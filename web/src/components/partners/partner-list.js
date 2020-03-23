@@ -7,6 +7,7 @@ const PARTNERS_QUERY = graphql`
   query PartnersQuery {
     sanityPartners {
       partners {
+        _id
         name
         image {
           asset {
@@ -26,7 +27,7 @@ const PartnerList = props => {
   return (
     <S.List {...props}>
       {sanityPartners.partners.map(partner => (
-        <S.Item>
+        <S.Item key={partner._id}>
           <Img fluid={partner.image.asset.fluid} objectFit="contain" />
         </S.Item>
       ))}

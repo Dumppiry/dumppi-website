@@ -26,15 +26,15 @@ const NavBar = ({ hideItems }) => {
       mainNav: sanityMainNavigation {
         items {
           ... on SanityEventsPage {
-            id
+            _id
             title: _rawTitle
           }
           ... on SanityFrontPage {
-            id
+            _id
             title: _rawTitle
           }
           ... on SanityPage {
-            id
+            _id
             title: _rawTitle
           }
         }
@@ -54,7 +54,7 @@ const NavBar = ({ hideItems }) => {
           fixed={settings.logo.asset.fixed}
           objectFit="contain"
           alt="Logo"
-          critical
+          loading="eager"
         />
         <S.SiteTitle>{settings.siteTitle}</S.SiteTitle>
       </S.BrandLink>
@@ -62,7 +62,7 @@ const NavBar = ({ hideItems }) => {
         <S.Span>
           {!hideItems ? (
             mainNav.items.map(item => (
-              <S.ListItem>
+              <S.ListItem key={item._id}>
                 <S.Link id={item._id}>{item.title[locale]}</S.Link>
               </S.ListItem>
             ))

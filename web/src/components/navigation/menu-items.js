@@ -11,7 +11,7 @@ const MenuItems = ({ items }) => {
   return (
     <S.Items>
       {items.map(item => (
-        <S.TopLevelItem>
+        <S.TopLevelItem key={item._key}>
           <S.Link id={item.page._id}>{item.page.title[locale]}</S.Link>
           {item.subPages.length > 0 && (
             <S.SubItems>
