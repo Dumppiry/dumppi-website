@@ -16,12 +16,12 @@ module.exports = {
       resolve: `gatsby-plugin-manifest`,
       options: {
         name: `Dumppi ry`,
-        short_name: `starter`,
+        short_name: `Dumppi`,
         start_url: `/`,
         background_color: `#AF271D`,
         theme_color: `#AF271D`,
         display: `minimal-ui`,
-        icon: `src/images/gatsby-icon.png`, // This path is relative to the root of the site.
+        icon: `src/images/pingviini.png`, // This path is relative to the root of the site.
       },
     },
     // this (optional) plugin enables Progressive Web App + Offline functionality

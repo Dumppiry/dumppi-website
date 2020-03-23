@@ -18,8 +18,6 @@ const EventTemplate = ({ data, pageContext, ...rest }) => {
     setCurrentPageId(event._id)
   })
 
-  console.log(event.price)
-
   return (
     <Layout>
       <SEO title={event.title} />

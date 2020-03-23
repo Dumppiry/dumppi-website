@@ -1,5 +1,6 @@
 import React from "react"
 import { graphql, useStaticQuery } from "gatsby"
+import Img from "gatsby-image"
 import styled from "styled-components"
 
 import { useCurrentPage } from "../../hooks/current-page"
@@ -13,6 +14,14 @@ const NavBar = ({ hideItems }) => {
     query NavigationQuery {
       settings: sanitySettings {
         siteTitle
+        logo {
+          _type
+          asset {
+            fixed(height: 50, width: 50) {
+              ...GatsbySanityImageFixed_noBase64
+            }
+          }
+        }
       }
       mainNav: sanityMainNavigation {
         items {
@@ -40,7 +49,14 @@ const NavBar = ({ hideItems }) => {
 
   return (
     <S.NavBar>
-      <S.Link id={frontPage._id}>{settings.siteTitle}</S.Link>
+      <S.BrandLink id={frontPage._id}>
+        <S.Img
+          fixed={settings.logo.asset.fixed}
+          objectFit="contain"
+          alt="Logo"
+        />
+        <S.SiteTitle>{settings.siteTitle}</S.SiteTitle>
+      </S.BrandLink>
       <S.List>
         <S.Span>
           {!hideItems ? (
@@ -75,6 +91,12 @@ S.NavBar = styled.nav`
   padding: 1rem 2rem;
 `
 
+S.Img = styled(Img)`
+  img {
+    margin: 0;
+  }
+`
+
 S.List = styled.ul`
   display: flex;
   list-style: none;
@@ -99,8 +121,15 @@ S.ListItem = styled.li`
 S.Link = styled(Link)`
   text-decoration: none;
   color: inherit;
+`
 
-  :hover {
-    opacity: 0.8;
-  }
+S.BrandLink = styled(S.Link)`
+  display: flex;
+  align-items: center;
+`
+
+S.SiteTitle = styled.span`
+  font-size: 1.5rem;
+  font-weight: 500;
+  margin-left: 1.8rem;
 `

@@ -15,6 +15,12 @@ export default {
       type: "localeText",
       rows: 5,
       validation: Rule => Rule.required()
+    },
+    {
+      name: "logo",
+      title: "Logo",
+      type: "image",
+      validation: Rule => Rule.required()
     }
   ]
 };
