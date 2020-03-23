@@ -54,6 +54,7 @@ const NavBar = ({ hideItems }) => {
           fixed={settings.logo.asset.fixed}
           objectFit="contain"
           alt="Logo"
+          critical
         />
         <S.SiteTitle>{settings.siteTitle}</S.SiteTitle>
       </S.BrandLink>
