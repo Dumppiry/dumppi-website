@@ -4,6 +4,8 @@ import styled from "styled-components"
 
 import EventCard from "./event-card"
 
+import { useCurrentPage } from "../hooks/current-page"
+
 const EVENTS_QUERY = graphql`
   query EventsQuery {
     events: allSanityEvent(sort: { fields: startDate, order: ASC }) {
@@ -22,22 +24,33 @@ const EVENTS_QUERY = graphql`
         startDate
         endDate
         price
+        hasRegistration
+        registrationStartDate
+        registrationEndDate
+        registrationMaxCapacity
       }
     }
   }
 `
 
 const EventList = ({ events, ...rest }) => {
+  const { locale } = useCurrentPage()
   const data = useStaticQuery(EVENTS_QUERY)
 
   return (
     <S.List {...rest}>
       {events
-        ? events.nodes.map(event => <EventCard key={event._id} event={event} />)
+        ? events.nodes.map(event => <EventCard key={event._id} {...event} />)
         : data.events.nodes
             .filter(event => new Date(event.startDate) > new Date())
             .slice(0, 3)
-            .map(event => <EventCard key={event._id} event={event} />)}
+            .map(event => (
+              <EventCard
+                key={event._id}
+                {...event}
+                title={event.title[locale]}
+              />
+            ))}
     </S.List>
   )
 }

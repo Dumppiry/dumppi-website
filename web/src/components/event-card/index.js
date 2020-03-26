@@ -18,7 +18,15 @@ const EVENT_SETTINGS_QUERY = graphql`
   }
 `
 
-const EventCard = ({ event }) => {
+const EventCard = ({
+  _id,
+  image,
+  title,
+  startDate,
+  endDate,
+  location,
+  price,
+}) => {
   const { locale } = useCurrentPage()
   const { settings } = useStaticQuery(EVENT_SETTINGS_QUERY)
 
@@ -30,22 +38,22 @@ const EventCard = ({ event }) => {
     minute: "numeric",
   }
 
-  const status = event.price === 0 || !event.price ? "free" : event.status
+  const status = price === 0 || !price ? "free" : status
 
   return (
-    <S.Container id={event._id}>
-      <S.EventImage fluid={event.image?.asset.fluid} />
+    <S.Container id={_id}>
+      <S.EventImage fluid={image?.asset.fluid} />
       <S.EventInfo>
-        {event.startDate && (
+        {startDate && (
           <S.AdditionalInfo>
             {new Intl.DateTimeFormat(locale, options).format(
-              new Date(event.startDate)
+              new Date(startDate)
             )}
           </S.AdditionalInfo>
         )}
-        <S.Name>{event.title[locale]}</S.Name>
-        {event.location?.title && (
-          <S.AdditionalInfo>{`@ ${event.location.title}`}</S.AdditionalInfo>
+        <S.Name>{title}</S.Name>
+        {location?.title && (
+          <S.AdditionalInfo>{`@ ${location.title}`}</S.AdditionalInfo>
         )}
         <S.ReadMore>{settings.readMoreText[locale]} -></S.ReadMore>
       </S.EventInfo>

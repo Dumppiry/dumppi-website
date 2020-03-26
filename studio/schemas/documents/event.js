@@ -2,6 +2,14 @@ import { FiCalendar } from "react-icons/fi";
 
 import supportedLanguages from "../../supportedLanguages";
 
+const requiredIfHasRegistration = (field, context) => {
+  const { document } = context;
+
+  return document.hasRegistration && !field
+    ? "Required if event has registration"
+    : true;
+};
+
 export default {
   name: "event",
   title: "Event",
@@ -19,6 +27,9 @@ export default {
       options: { collapsible: true }
     }
   ],
+  initialValue: {
+    hasRegistration: false
+  },
   fields: [
     {
       name: "title",
@@ -97,11 +108,21 @@ export default {
       of: [{ type: "eventLink" }]
     },
     {
+      name: "hasRegistration",
+      title: "Has registration",
+      type: "boolean",
+      fieldset: "registration",
+      validation: Rule => Rule.required()
+    },
+    {
       name: "registrationStartDate",
       title: "Start",
       type: "datetime",
       fieldset: "registration",
-      validation: Rule => Rule.max(Rule.valueOfField("startDate"))
+      validation: Rule =>
+        Rule.max(Rule.valueOfField("startDate")).custom(
+          requiredIfHasRegistration
+        )
     },
     {
       name: "registrationEndDate",
@@ -109,9 +130,19 @@ export default {
       type: "datetime",
       fieldset: "registration",
       validation: Rule =>
-        Rule.min(Rule.valueOfField("startDate")).max(
-          Rule.valueOfField("startDate")
-        )
+        Rule.min(Rule.valueOfField("registrationStartDate"))
+          .max(Rule.valueOfField("startDate"))
+          .custom(requiredIfHasRegistration)
+    },
+    {
+      name: "registrationMaxCapacity",
+      title: "Maximum Capacity",
+      type: "number",
+      fieldset: "registration",
+      validation: Rule =>
+        Rule.custom(requiredIfHasRegistration)
+          .min(0)
+          .integer()
     }
   ],
   preview: {
@@ -120,7 +151,7 @@ export default {
     },
     prepare({ title }) {
       return {
-        title: title.fi
+        title: title?.fi
       };
     }
   }

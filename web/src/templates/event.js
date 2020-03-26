@@ -72,6 +72,10 @@ export const query = graphql`
         title
         url
       }
+      hasRegistration
+      registrationStartDate
+      registrationEndDate
+      registrationMaxCapacity
     }
   }
 `

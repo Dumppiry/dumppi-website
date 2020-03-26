@@ -3,6 +3,7 @@ import Img from "gatsby-image"
 import styled from "styled-components"
 
 import PortableText from "../components/block-content"
+import EventRegistration from "./event-registration"
 
 const Event = props => {
   const {
@@ -13,6 +14,10 @@ const Event = props => {
     category,
     price,
     contactPerson,
+    hasRegistration,
+    registrationStartDate,
+    registrationEndDate,
+    registrationMaxCapacity,
   } = props
 
   return (
@@ -23,8 +28,17 @@ const Event = props => {
       {category && <h3>{category.title}</h3>}
       {typeof price === "number" && <h3>{price.toFixed(2)} €</h3>}
       {contactPerson && <h3>{contactPerson.name}</h3>}
-      <h2>Tapahtuman kuvaus:</h2>
-      <PortableText blocks={description} />
+      <S.Content>
+        <h2>Tapahtuman kuvaus:</h2>
+        <PortableText blocks={description} />
+        {hasRegistration && (
+          <EventRegistration
+            startDate={registrationStartDate}
+            endDate={registrationEndDate}
+            maxCapacity={registrationMaxCapacity}
+          />
+        )}
+      </S.Content>
     </S.Event>
   )
 }
@@ -34,6 +48,10 @@ export default Event
 const S = {}
 
 S.Event = styled.article``
+
+S.Content = styled.section`
+  max-width: 570px;
+`
 
 S.Img = styled(Img)`
   margin: 5rem 0;
