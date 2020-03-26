@@ -1,11 +1,11 @@
 import React from "react"
 import { graphql, useStaticQuery } from "gatsby"
 import Img from "gatsby-image"
-import styled, { css } from "styled-components"
-import { FiUserCheck, FiUserX } from "react-icons/fi"
+import styled from "styled-components"
 
 import { useCurrentPage } from "../../hooks/current-page"
 import Link from "../link"
+import EventStatus from "./event-status"
 
 const EVENT_SETTINGS_QUERY = graphql`
   query EventSettingsQuery {
@@ -26,6 +26,10 @@ const EventCard = ({
   endDate,
   location,
   price,
+  hasRegistration,
+  registrationStartDate,
+  registrationEndDate,
+  registrationMaxCapacity,
 }) => {
   const { locale } = useCurrentPage()
   const { settings } = useStaticQuery(EVENT_SETTINGS_QUERY)
@@ -37,19 +41,15 @@ const EventCard = ({
     hour: "numeric",
     minute: "numeric",
   }
-
-  const status = price === 0 || !price ? "free" : status
+  const dateTimeFormat = new Intl.DateTimeFormat(locale, options)
+  const localizeDate = dateString => dateTimeFormat.format(new Date(dateString))
 
   return (
     <S.Container id={_id}>
       <S.EventImage fluid={image?.asset.fluid} />
       <S.EventInfo>
         {startDate && (
-          <S.AdditionalInfo>
-            {new Intl.DateTimeFormat(locale, options).format(
-              new Date(startDate)
-            )}
-          </S.AdditionalInfo>
+          <S.AdditionalInfo>{localizeDate(startDate)}</S.AdditionalInfo>
         )}
         <S.Name>{title}</S.Name>
         {location?.title && (
@@ -57,23 +57,15 @@ const EventCard = ({
         )}
         <S.ReadMore>{settings.readMoreText[locale]} -></S.ReadMore>
       </S.EventInfo>
-      <S.StatusBar status={status}>
-        {status === "free" ? (
-          <>
-            <S.Icon>
-              <FiUserCheck />
-            </S.Icon>
-            <span>Kukkuu</span>
-          </>
-        ) : (
-          <>
-            <S.Icon>
-              <FiUserX />
-            </S.Icon>
-            <span>Kukkuu</span>
-          </>
-        )}
-      </S.StatusBar>
+      <EventStatus
+        {...{
+          price,
+          hasRegistration,
+          registrationStartDate,
+          registrationEndDate,
+          registrationMaxCapacity,
+        }}
+      />
     </S.Container>
   )
 }
@@ -140,29 +132,4 @@ S.ReadMore = styled.span`
   letter-spacing: -0.35px;
   line-height: 20px;
   color: #af271d;
-`
-
-const statusColors = {
-  open: "#54c754",
-  free: "#437ad3",
-  full: "#af271d",
-}
-
-const FreeStyles = css`
-  background-color: ${() => statusColors.free};
-  color: white;
-`
-
-S.StatusBar = styled.div`
-  width: 100%;
-  background-color: #f0f0f0;
-  border-radius: 0 0 10px 10px;
-  padding: 1rem 1.5rem;
-  color: #2c2c2c;
-
-  ${props => props.status === "free" && FreeStyles}
-`
-
-S.Icon = styled.span`
-  margin-right: 0.5em;
 `
