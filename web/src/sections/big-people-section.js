@@ -11,7 +11,7 @@ const BigPeopleSection = ({ heading, people }) => {
       {people.length > 0 && (
         <S.People>
           {people.map(person => (
-            <Person key={person._key} person={person} />
+            <Person key={person._id} person={person} />
           ))}
         </S.People>
       )}

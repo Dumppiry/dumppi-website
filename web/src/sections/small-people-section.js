@@ -14,7 +14,7 @@ const SmallPeopleSection = ({ heading, groups }) => {
             <PortableText blocks={section.heading} />
             <S.People>
               {section.people.map(person => (
-                <Person key={person._key} person={person} />
+                <Person key={person._id} person={person} />
               ))}
             </S.People>
           </S.Group>
