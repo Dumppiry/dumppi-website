@@ -1,4 +1,5 @@
 import React from "react"
+import { motion, AnimatePresence } from "framer-motion"
 import styled from "styled-components"
 
 import NavBar from "./nav-bar"
@@ -8,11 +9,22 @@ const Navigation = ({ pageTitle }) => {
   return (
     <S.Navigation>
       <NavBar />
-      {pageTitle && (
-        <S.Heading>
-          <h1>{pageTitle}</h1>
-        </S.Heading>
-      )}
+      <AnimatePresence>
+        {pageTitle && (
+          <S.Heading
+            key="content"
+            initial="collapsed"
+            animate="open"
+            exit="collapsed"
+            variants={{
+              open: { opacity: 1, height: "auto" },
+              collapsed: { opacity: 0, height: 0 },
+            }}
+          >
+            <h1>{pageTitle}</h1>
+          </S.Heading>
+        )}
+      </AnimatePresence>
       <FullPageNav />
     </S.Navigation>
   )
@@ -30,7 +42,7 @@ S.Navigation = styled.header`
   color: white;
 `
 
-S.Heading = styled.div`
+S.Heading = styled(motion.div)`
   max-width: 940px;
   margin: auto;
   padding: 5rem 1rem;

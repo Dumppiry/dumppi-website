@@ -5,7 +5,7 @@ import Button from "../components/button"
 import Link from "../components/link"
 import PortableText from "../components/portable-text/heading"
 
-const BigHeadingSection = ({ heading, buttons, image }) => {
+const BigHeadingSection = ({ heading, buttons }) => {
   return (
     <S.Section>
       <S.Content>
