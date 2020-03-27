@@ -35,6 +35,7 @@ S.Layout = styled.div`
 S.Content = styled.main`
   flex: 1 0 auto;
   max-width: 940px;
+  width: 100%;
   margin: auto;
   padding: 0 1rem;
 `
