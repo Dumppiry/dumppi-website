@@ -28,12 +28,12 @@ const EventTemplate = ({ data, pageContext, ...rest }) => {
 export default localize(EventTemplate)
 
 export const query = graphql`
-  query EventsTemplateQuery {
+  query EventsTemplateQuery($locale: String!) {
     page: sanityEventsPage {
       _id
       title: _rawTitle
     }
-    events: allSanityEvent {
+    events: allSanityEvent(sort: { fields: startDate, order: ASC }) {
       nodes {
         _id
         title: _rawTitle
@@ -52,6 +52,7 @@ export const query = graphql`
         registrationStartDate
         registrationEndDate
         registrationMaxCapacity
+        month: startDate(formatString: "MMMM YYYY", locale: $locale)
       }
     }
   }

@@ -1,8 +1,10 @@
 import React from "react"
 import { graphql, useStaticQuery } from "gatsby"
 import styled from "styled-components"
+import _ from "lodash"
 
 import EventCard from "./event-card"
+import PortableText from "../components/portable-text/heading"
 
 import { useCurrentPage } from "../hooks/current-page"
 
@@ -37,20 +39,29 @@ const EventList = ({ events, ...rest }) => {
   const { locale } = useCurrentPage()
   const data = useStaticQuery(EVENTS_QUERY)
 
-  return (
+  const eventData = events
+    ? _.groupBy(events.nodes, n => n.month) // { march: [], april: [] ...}
+    : data.events.nodes
+
+  return events ? (
+    _.keys(eventData).map(month => (
+      <S.Container>
+        <S.Title hasMargin>{month}</S.Title>
+        <S.List {...rest}>
+          {eventData[month].map(event => (
+            <EventCard key={event._id} {...event} title={event.title[locale]} />
+          ))}
+        </S.List>
+      </S.Container>
+    ))
+  ) : (
     <S.List {...rest}>
-      {events
-        ? events.nodes.map(event => <EventCard key={event._id} {...event} />)
-        : data.events.nodes
-            .filter(event => new Date(event.startDate) > new Date())
-            .slice(0, 3)
-            .map(event => (
-              <EventCard
-                key={event._id}
-                {...event}
-                title={event.title[locale]}
-              />
-            ))}
+      {eventData
+        .filter(event => new Date(event.startDate) > new Date())
+        .slice(0, 3)
+        .map(event => (
+          <EventCard key={event._id} {...event} title={event.title[locale]} />
+        ))}
     </S.List>
   )
 }
@@ -71,4 +82,11 @@ S.List = styled.div`
   @media (min-width: 768px) {
     --grid-columns: 3;
   }
+`
+
+S.Title = styled.h1`
+  text-transform: capitalize;
+`
+S.Container = styled.div`
+  margin-top: 5rem;
 `
