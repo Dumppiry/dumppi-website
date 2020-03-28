@@ -143,6 +143,22 @@ export default {
         Rule.custom(requiredIfHasRegistration)
           .min(0)
           .integer()
+    },
+    {
+      name: "registrationForm",
+      title: "Registration Form",
+      type: "reference",
+      to: [{ type: "eventRegistrationForm" }],
+      fieldset: "registration",
+      validation: Rule => Rule.custom(requiredIfHasRegistration)
+    },
+    {
+      name: "registrationSubmissions",
+      title: "Registration Submissions",
+      type: "array",
+      of: [{ type: "string" }],
+      // readOnly: true,
+      fieldset: "registration"
     }
   ],
   preview: {

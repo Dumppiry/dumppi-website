@@ -1,9 +1,15 @@
 import React from "react"
 import PropTypes from "prop-types"
+import { AnimatePresence } from "framer-motion"
 import styled, { css } from "styled-components"
 
-const Button = ({ title, primary, onClick, ...rest }) => (
-  <S.Button primary={primary} onClick={onClick} {...rest}>
+import ThreeDotsWave from "../loaders/three-dots-wave"
+
+const Button = ({ title, primary, onClick, loading, disabled, ...rest }) => (
+  <S.Button primary={primary} onClick={onClick} disabled={disabled} {...rest}>
+    <AnimatePresence initial={false}>
+      {loading && <ThreeDotsWave />}
+    </AnimatePresence>
     {title}
   </S.Button>
 )
@@ -12,6 +18,7 @@ Button.propTypes = {
   title: PropTypes.string.isRequired,
   primary: PropTypes.bool,
   onClick: PropTypes.func,
+  disabled: PropTypes.bool,
 }
 
 Button.defaultProps = {
@@ -32,6 +39,9 @@ S.Button = styled.button`
   padding: 0.875em 2.53em 0.8125em 2.53em;
   line-height: 1.5em;
   transition: all 80ms ease-in;
+
+  display: flex;
+  align-items: center;
 
   background-color: #f0f0f0;
   color: #292929;

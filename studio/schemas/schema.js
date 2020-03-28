@@ -8,6 +8,7 @@ import schemaTypes from "all:part:@sanity/base/schema-type";
 import company from "./documents/company";
 import event from "./documents/event";
 import eventCategory from "./documents/eventCategory";
+import eventRegistrationForm from "./documents/eventRegistrationForm";
 import eventSettings from "./documents/eventSettings";
 import location from "./documents/location";
 import job from "./documents/job";
@@ -48,8 +49,9 @@ import smallPeopleGroup from "./objects/sections/smallPeopleGroup";
 // Event stuff
 import eventLink from "./objects/event/link";
 // Other
-import subRoute from "./objects/subRoute";
+import field from "./objects/field";
 import navigationItem from "./objects/navigationItem";
+import subRoute from "./objects/subRoute";
 
 // Then we give our schema to the builder and provide the result to Sanity
 export default createSchema({
@@ -63,6 +65,7 @@ export default createSchema({
     company,
     event,
     eventCategory,
+    eventRegistrationForm,
     eventSettings,
     location,
     job,
@@ -97,7 +100,8 @@ export default createSchema({
     smallPeopleSection,
     smallPeopleGroup,
     eventLink,
-    subRoute,
-    navigationItem
+    field,
+    navigationItem,
+    subRoute
   ])
 });

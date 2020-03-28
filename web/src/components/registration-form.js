@@ -1,0 +1,181 @@
+import React, { useState } from "react"
+import axios from "axios"
+import styled from "styled-components"
+
+import useForm from "../hooks/useForm"
+import Button from "./button"
+
+const Input = ({
+  fieldLabel,
+  type,
+  name,
+  inputValues,
+  required,
+  value,
+  handleChange,
+}) => {
+  switch (type) {
+    case "input":
+      return (
+        <input
+          name={name}
+          value={value}
+          onChange={handleChange}
+          required={required}
+        />
+      )
+
+    case "textarea":
+      return (
+        <textarea
+          name={name}
+          value={value}
+          onChange={handleChange}
+          required={required}
+        />
+      )
+
+    case "checkbox":
+      return (
+        <input
+          type="checkbox"
+          name={name}
+          value={value}
+          onChange={handleChange}
+          required={required}
+        />
+      )
+
+    case "radio":
+      return (
+        <fieldset
+          style={{ display: "flex", flexDirection: "column", border: "none" }}
+        >
+          {inputValues.map(inputValue => (
+            <div
+              style={{
+                display: "flex",
+                marginBottom: "0.5em",
+              }}
+            >
+              <input
+                type="radio"
+                id={inputValue}
+                checked={inputValue === value}
+                value={inputValue}
+                onChange={handleChange}
+                name={fieldLabel}
+                required={required}
+                style={{ marginRight: "0.5em" }}
+              />
+              <label for={inputValue} name={fieldLabel}>
+                {inputValue}
+              </label>
+            </div>
+          ))}
+        </fieldset>
+      )
+
+    default:
+      return null
+  }
+}
+
+const RegistrationForm = ({ eventId, fields }) => {
+  const initialState = {}
+  fields.forEach(field => {
+    let value
+
+    switch (field.inputType) {
+      case "checkbox":
+        value = false
+        break
+
+      case "radio":
+        value = null
+        break
+
+      default:
+        value = ""
+        break
+    }
+
+    initialState[field.label] = value
+  })
+
+  const submit = async () => {
+    setLoading(true)
+
+    try {
+      const { data } = await axios.post(
+        "/.netlify/functions/send-registration-form",
+        {
+          eventId,
+          fields: values,
+        }
+      )
+      reset()
+      console.log(data)
+    } catch (error) {
+      console.log(error)
+    }
+    setLoading(false)
+  }
+
+  const { values, reset, handleChange, handleSubmit } = useForm(
+    submit,
+    initialState
+  )
+
+  const [loading, setLoading] = useState(false)
+
+  return (
+    <S.Form onSubmit={handleSubmit}>
+      <pre>
+        <code>{JSON.stringify(values, null, 2)}</code>
+      </pre>
+      {fields.map(field => (
+        <S.Field key={field._key}>
+          <S.Label>
+            {field.label}
+            {field.required && " *"}
+          </S.Label>
+          <Input
+            fieldLabel={field.label}
+            type={field.inputType}
+            name={field.label}
+            inputValues={field.inputValues}
+            required={field.required}
+            value={values[field.label]}
+            handleChange={handleChange}
+          />
+        </S.Field>
+      ))}
+      <Button
+        primary
+        title="Submit"
+        type="submit"
+        // onClick={handleSubmit}
+        loading={loading}
+      />
+    </S.Form>
+  )
+}
+
+export default RegistrationForm
+
+const S = {}
+
+S.Form = styled.form`
+  margin: 1.25rem 0;
+`
+
+S.Field = styled.div`
+  margin: 1.25rem 0;
+  display: flex;
+  flex-direction: column;
+`
+
+S.Label = styled.label`
+  margin-bottom: 0.625rem;
+`
