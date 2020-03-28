@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import client from "part:@sanity/base/client";
-import { Table, Pagination } from "antd";
+import { Table } from "antd";
 
 const EventRegistrationSubmissionsPreview = ({ document }) => {
   const { registrationForm, registrationSubmissions } = document.displayed;
@@ -15,7 +15,10 @@ const EventRegistrationSubmissionsPreview = ({ document }) => {
         dataIndex: field.label.fi
       }));
       setColumns(columns);
-      const subs = registrationSubmissions.map(JSON.parse);
+      const subs = registrationSubmissions.map((s, index) => ({
+        key: index,
+        ...JSON.parse(s)
+      }));
       setSubmissions(subs);
     });
   }, [registrationSubmissions]);

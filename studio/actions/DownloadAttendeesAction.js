@@ -7,8 +7,6 @@ export function DownloadAttendeesAction(props) {
 
   const { registrationSubmissions, startDate, slug } = props.published;
 
-  console.log(props);
-
   return {
     label: "Download attendees",
     icon: FiDownload,

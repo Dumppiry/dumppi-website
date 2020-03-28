@@ -2,6 +2,7 @@ import { defaultLanguage } from "../../supportedLanguages";
 
 export default {
   name: "subRoute",
+  title: "Sub-route",
   type: "object",
   fields: [
     {

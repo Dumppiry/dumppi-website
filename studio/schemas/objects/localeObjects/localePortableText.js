@@ -2,6 +2,7 @@ import supportedLanguages from "../../../supportedLanguages";
 
 export default {
   name: "localePortableText",
+  title: "Portable text",
   type: "object",
   fieldsets: [
     {

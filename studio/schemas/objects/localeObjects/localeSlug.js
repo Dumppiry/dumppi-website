@@ -3,6 +3,7 @@ import supportedLanguages from "../../../supportedLanguages";
 
 export default {
   name: "localeSlug",
+  title: "Slug",
   type: "object",
   fieldsets: [
     {

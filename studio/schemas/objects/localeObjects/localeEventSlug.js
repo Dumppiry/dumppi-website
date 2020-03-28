@@ -1,8 +1,8 @@
-import client from "part:@sanity/base/client";
 import supportedLanguages from "../../../supportedLanguages";
 
 export default {
   name: "localeEventSlug",
+  title: "Event slug",
   type: "object",
   fieldsets: [
     {
