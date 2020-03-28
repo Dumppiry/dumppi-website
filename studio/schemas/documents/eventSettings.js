@@ -14,6 +14,19 @@ export default {
       title: "Default Future Events Description",
       type: "localeHeadingPortableText",
       validation: Rule => Rule.required()
+    },
+    {
+      name: "noEventsText",
+      title: "No events text",
+      type: "localeString",
+      validation: Rule => Rule.required()
     }
-  ]
+  ],
+  preview: {
+    prepare() {
+      return {
+        title: "Event Settings"
+      };
+    }
+  }
 };
