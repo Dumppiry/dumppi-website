@@ -19,6 +19,18 @@ export default {
       validation: Rule => Rule.required()
     },
     {
+      name: "fieldId",
+      title: "ID",
+      type: "slug",
+      options: {
+        source: (doc, options) => {
+          const { label } = options.parent;
+          return label?.en;
+        }
+      },
+      validation: Rule => Rule.required()
+    },
+    {
       name: "required",
       title: "Required field",
       type: "boolean",

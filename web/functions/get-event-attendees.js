@@ -9,8 +9,6 @@ exports.handler = async (event, context) => {
 
   const { eventId, fields } = JSON.parse(event.body)
 
-  console.log(eventId, fields)
-
   const data = {
     mutations: [
       {

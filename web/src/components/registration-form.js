@@ -6,6 +6,7 @@ import useForm from "../hooks/useForm"
 import Button from "./button"
 
 const Input = ({
+  id,
   fieldLabel,
   type,
   name,
@@ -18,7 +19,7 @@ const Input = ({
     case "input":
       return (
         <input
-          name={name}
+          name={id}
           value={value}
           onChange={handleChange}
           required={required}
@@ -28,7 +29,7 @@ const Input = ({
     case "textarea":
       return (
         <textarea
-          name={name}
+          name={id}
           value={value}
           onChange={handleChange}
           required={required}
@@ -39,7 +40,7 @@ const Input = ({
       return (
         <input
           type="checkbox"
-          name={name}
+          name={id}
           value={value}
           onChange={handleChange}
           required={required}
@@ -64,11 +65,11 @@ const Input = ({
                 checked={inputValue === value}
                 value={inputValue}
                 onChange={handleChange}
-                name={fieldLabel}
+                name={id}
                 required={required}
                 style={{ marginRight: "0.5em" }}
               />
-              <label for={inputValue} name={fieldLabel}>
+              <label for={inputValue} name={id}>
                 {inputValue}
               </label>
             </div>
@@ -100,7 +101,7 @@ const RegistrationForm = ({ eventId, fields }) => {
         break
     }
 
-    initialState[field.label] = value
+    initialState[field.fieldId.current] = value
   })
 
   const submit = async () => {
@@ -131,9 +132,6 @@ const RegistrationForm = ({ eventId, fields }) => {
 
   return (
     <S.Form onSubmit={handleSubmit}>
-      <pre>
-        <code>{JSON.stringify(values, null, 2)}</code>
-      </pre>
       {fields.map(field => (
         <S.Field key={field._key}>
           <S.Label>
@@ -141,12 +139,13 @@ const RegistrationForm = ({ eventId, fields }) => {
             {field.required && " *"}
           </S.Label>
           <Input
+            id={field.fieldId.current}
             fieldLabel={field.label}
             type={field.inputType}
             name={field.label}
             inputValues={field.inputValues}
             required={field.required}
-            value={values[field.label]}
+            value={values[field.fieldId.current]}
             handleChange={handleChange}
           />
         </S.Field>

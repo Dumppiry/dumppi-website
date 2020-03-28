@@ -12,7 +12,7 @@ const EventRegistrationSubmissionsPreview = ({ document }) => {
       const columns = form?.fields.map((field, index) => ({
         key: index,
         title: field.label.fi,
-        dataIndex: field.label.fi
+        dataIndex: field.fieldId.current
       }));
       setColumns(columns);
       const subs = registrationSubmissions.map((s, index) => ({
