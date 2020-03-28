@@ -7,6 +7,7 @@ import EventRegistration from "./event-registration"
 
 const Event = props => {
   const {
+    _id,
     title,
     image,
     description,
@@ -18,6 +19,7 @@ const Event = props => {
     registrationStartDate,
     registrationEndDate,
     registrationMaxCapacity,
+    registrationForm,
   } = props
 
   return (
@@ -33,9 +35,11 @@ const Event = props => {
         <PortableText blocks={description} />
         {hasRegistration && (
           <EventRegistration
+            eventId={_id}
             startDate={registrationStartDate}
             endDate={registrationEndDate}
             maxCapacity={registrationMaxCapacity}
+            form={registrationForm}
           />
         )}
       </S.Content>

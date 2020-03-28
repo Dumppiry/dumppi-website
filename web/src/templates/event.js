@@ -76,6 +76,10 @@ export const query = graphql`
       registrationStartDate
       registrationEndDate
       registrationMaxCapacity
+      registrationForm {
+        _id
+        fields: _rawFields
+      }
     }
   }
 `

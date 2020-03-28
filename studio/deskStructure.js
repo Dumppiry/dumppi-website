@@ -7,6 +7,8 @@ import {
 } from "react-icons/fi";
 import { FaRegHandshake } from "react-icons/fa";
 
+import EventSubmissionsPreview from "./components/EventRegistrationSubmissionsPreview";
+
 export default () =>
   S.list()
     .title("Content")
@@ -61,6 +63,21 @@ export default () =>
             .documentId("eventsPage")
         ),
       S.listItem()
+        .title("Events")
+        .icon(FiCalendar)
+        .child(
+          S.documentList()
+            .schemaType("event")
+            .title("Events")
+            .filter('_type == "event"')
+            .child(
+              S.document().views([
+                S.view.form(),
+                S.view.component(EventSubmissionsPreview).title("Attendees")
+              ])
+            )
+        ),
+      S.listItem()
         .title("Partners")
         .icon(FaRegHandshake)
         .child(
@@ -77,6 +94,7 @@ export default () =>
             "fullNavigation",
             "frontPage",
             "eventsPage",
+            "event",
             "partners"
           ].includes(listItem.getId())
       )

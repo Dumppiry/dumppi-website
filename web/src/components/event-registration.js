@@ -1,9 +1,16 @@
 import React from "react"
 import styled, { css } from "styled-components"
 
+import RegistrationForm from "./registration-form"
 import { useCurrentPage } from "../hooks/current-page"
 
-const EventRegistration = ({ startDate, endDate, maxCapacity }) => {
+const EventRegistration = ({
+  eventId,
+  startDate,
+  endDate,
+  maxCapacity,
+  form,
+}) => {
   const { locale } = useCurrentPage()
 
   const attendeeCount = 14 // TODO: Calculate this
@@ -26,22 +33,23 @@ const EventRegistration = ({ startDate, endDate, maxCapacity }) => {
         HUOM! Ilmoittautumalla tapahtumaan hyväksyt ilmoittautumisen pelisäännöt
         sekä lisäämisesi tapahtumarekisteriin.
       </p>
-      <div>
-        <S.Meta>
-          <S.HeadingRed>Aukeaa:</S.HeadingRed>
-          <S.Date>{localizeDate(startDate)}</S.Date>
-        </S.Meta>
-        <S.Meta>
-          <S.HeadingRed>Sulkeutuu:</S.HeadingRed>
-          <S.Date>{localizeDate(endDate)}</S.Date>
-        </S.Meta>
+      <S.Meta>
+        <S.HeadingRed>Aukeaa:</S.HeadingRed>
+        <S.Date>{localizeDate(startDate)}</S.Date>
+      </S.Meta>
+      <S.Meta>
+        <S.HeadingRed>Sulkeutuu:</S.HeadingRed>
+        <S.Date>{localizeDate(endDate)}</S.Date>
+      </S.Meta>
+      <S.NarrowContainer>
         <S.BarContainer>
           <S.Bar percentage={(attendeeCount / maxCapacity) * 100} />
           <span>
             Ilmoittautuneita {attendeeCount}/{maxCapacity}
           </span>
         </S.BarContainer>
-      </div>
+        <RegistrationForm eventId={eventId} fields={form.fields} />
+      </S.NarrowContainer>
     </S.Section>
   )
 }
@@ -81,11 +89,14 @@ S.Date = styled.span`
   font-weight: 400;
 `
 
+S.NarrowContainer = styled.div`
+  max-width: 470px;
+`
+
 S.BarContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  max-width: 470px;
 `
 
 S.Bar = styled.div`
