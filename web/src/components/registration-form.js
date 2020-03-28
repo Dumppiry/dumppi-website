@@ -82,7 +82,7 @@ const Input = ({
   }
 }
 
-const RegistrationForm = ({ eventId, fields }) => {
+const RegistrationForm = ({ eventId, fields, refresh }) => {
   const initialState = {}
   fields.forEach(field => {
     let value
@@ -116,6 +116,7 @@ const RegistrationForm = ({ eventId, fields }) => {
         }
       )
       reset()
+      refresh()
       console.log(data)
     } catch (error) {
       console.log(error)

@@ -1,7 +1,9 @@
-import React from "react"
+import React, { useEffect, useState } from "react"
+import axios from "axios"
 import styled, { css } from "styled-components"
 
 import RegistrationForm from "./registration-form"
+import RegistrationSubmissions from "./registration-submissions"
 import { useCurrentPage } from "../hooks/current-page"
 
 const EventRegistration = ({
@@ -12,8 +14,23 @@ const EventRegistration = ({
   form,
 }) => {
   const { locale } = useCurrentPage()
+  const [submissions, setSubmissions] = useState([])
 
-  const attendeeCount = 14 // TODO: Calculate this
+  useEffect(() => {
+    axios
+      .get(`/.netlify/functions/get-event-attendees?eventId=${eventId}`)
+      .then(({ data }) => {
+        setSubmissions(data)
+      })
+  }, [])
+
+  const handleRefresh = () => {
+    axios
+      .get(`/.netlify/functions/get-event-attendees?eventId=${eventId}`)
+      .then(({ data }) => {
+        setSubmissions(data)
+      })
+  }
 
   const localizeDate = dateString =>
     new Date(dateString).toLocaleString(locale, {
@@ -43,12 +60,17 @@ const EventRegistration = ({
       </S.Meta>
       <S.NarrowContainer>
         <S.BarContainer>
-          <S.Bar percentage={(attendeeCount / maxCapacity) * 100} />
+          <S.Bar percentage={(submissions.length / maxCapacity) * 100} />
           <span>
-            Ilmoittautuneita {attendeeCount}/{maxCapacity}
+            Ilmoittautuneita {submissions.length}/{maxCapacity}
           </span>
         </S.BarContainer>
-        <RegistrationForm eventId={eventId} fields={form.fields} />
+        <RegistrationForm
+          eventId={eventId}
+          fields={form.fields}
+          refresh={handleRefresh}
+        />
+        <RegistrationSubmissions submissions={submissions} />
       </S.NarrowContainer>
     </S.Section>
   )
@@ -116,7 +138,7 @@ S.Bar = styled.div`
     border-radius: 6px;
     transition: all 500ms ease-in-out;
 
-    --bg-color: #2c2c2c;
+    --bg-color: #54c754;
     ${props => {
       if (props.percentage <= 75)
         return css`

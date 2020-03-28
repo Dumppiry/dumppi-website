@@ -1,50 +1,33 @@
-const axios = require("axios")
+const sanityClient = require("@sanity/client")
 
 const { sanity } = require("../client-config")
-
 const { SANITY_WRITE_TOKEN } = process.env
 
+const client = sanityClient({
+  projectId: sanity.projectId,
+  dataset: sanity.dataset,
+  token: SANITY_WRITE_TOKEN,
+  useCdn: false,
+})
+
 exports.handler = async (event, context) => {
-  const sanityMutationUrl = `https://${sanity.projectId}.api.sanity.io/v1/data/mutate/${sanity.dataset}`
-
-  const { eventId, fields } = JSON.parse(event.body)
-
-  const data = {
-    mutations: [
-      {
-        patch: {
-          id: eventId,
-          setIfMissing: {
-            registrationSubmissions: [],
-          },
-          insert: {
-            after: "registrationSubmissions[-1]",
-            items: [JSON.stringify(fields)],
-          },
-        },
-      },
-    ],
-  }
+  const { eventId } = event.queryStringParameters
 
   try {
-    const res = await axios({
-      method: "post",
-      url: sanityMutationUrl,
-      data,
-      headers: {
-        Authorization: `Bearer ${SANITY_WRITE_TOKEN}`,
-        "Content-Type": "application/json",
-      },
-    })
+    const query = `*[_type == "event" && _id == $eventId][0]{registrationSubmissions}`
+    const params = { eventId }
+    const results = await client.fetch(query, params)
+
+    const submissions = results.registrationSubmissions.map(JSON.parse)
 
     return {
       statusCode: 200,
-      body: JSON.stringify(res.data, null, 2),
+      body: JSON.stringify(submissions, null, 2),
     }
   } catch (error) {
     return {
       statusCode: 500,
-      body: JSON.stringify({ error, tried: data }, null, 2),
+      body: JSON.stringify({ error }, null, 2),
     }
   }
 }
