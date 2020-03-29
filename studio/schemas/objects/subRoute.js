@@ -9,11 +9,7 @@ export default {
       name: "page",
       type: "reference",
       description: "Select the page that this route should point to",
-      to: [
-        {
-          type: "page"
-        }
-      ]
+      to: [{ type: "page" }, { type: "eventsPage" }, { type: "benefitsPage" }]
     },
     {
       name: "slug",
