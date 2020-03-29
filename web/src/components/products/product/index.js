@@ -25,7 +25,7 @@ S.Container = styled.div`
   align-items: flex-start;
   border-radius: 5px;
   background-color: #fafafa;
-  height: 255px;
+  height: 100%;
   padding: 2rem 4rem 3rem 4rem;
 `
 
