@@ -83,7 +83,12 @@ const createPages = async ({ graphql, actions, reporter }) => {
           }
           subRoutes {
             page {
-              _id
+              ... on SanityPage {
+                _id
+              }
+              ... on SanityBenefitsPage {
+                _id
+              }
             }
             slug {
               fi {

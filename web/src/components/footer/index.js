@@ -2,9 +2,15 @@ import React from "react"
 import { graphql, useStaticQuery } from "gatsby"
 import styled from "styled-components"
 
+import { FaFacebook, FaInstagram, FaTwitter, FaLinkedin } from "react-icons/fa"
+
 import Nav from "./nav"
+import SomeLinks from "./some-links"
+import { useCurrentPage } from "../../hooks/current-page"
 
 const Footer = () => {
+  const { locale } = useCurrentPage()
+
   const { settings, nav } = useStaticQuery(graphql`
     query FooterQuery {
       settings: sanitySettings {
@@ -13,6 +19,8 @@ const Footer = () => {
         instagramUrl
         twitterUrl
         linkedinUrl
+        postalAddress
+        contactInfoText: _rawContactInfoText
       }
       nav: sanityFullNavigation {
         items: topLevelItems {
@@ -38,12 +46,39 @@ const Footer = () => {
     }
   `)
 
+  const soMeLinks = [
+    {
+      icon: FaFacebook,
+      url: settings.facebookUrl,
+    },
+    {
+      icon: FaInstagram,
+      url: settings.instagramUrl,
+    },
+    {
+      icon: FaTwitter,
+      url: settings.twitterUrl,
+    },
+    {
+      icon: FaLinkedin,
+      url: settings.linkedinUrl,
+    },
+  ]
+
   return (
     <S.Footer>
-      <S.Content>
+      <S.Container>
         <h2>{settings.siteTitle}</h2>
-        <S.Nav items={nav.items} />
-      </S.Content>
+        <S.Content>
+          <S.Nav items={nav.items} />
+          <S.Contact>
+            <S.Title>{settings.contactInfoText[locale]}</S.Title>
+            <S.Text>{settings.postalAddress}</S.Text>
+            <S.SomeLinks links={soMeLinks} />
+            <S.Text>© {settings.siteTitle}</S.Text>
+          </S.Contact>
+        </S.Content>
+      </S.Container>
     </S.Footer>
   )
 }
@@ -60,7 +95,7 @@ S.Footer = styled.footer`
   color: white;
 `
 
-S.Content = styled.div`
+S.Container = styled.div`
   max-width: 940px;
   margin: auto;
 
@@ -74,6 +109,44 @@ S.Content = styled.div`
   }
 `
 
-S.Nav = styled(Nav)`
+S.Content = styled.div`
   margin-top: 4rem;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-gap: 1.75rem;
+
+  @media (min-width: 575px) {
+    grid-template-columns: 4fr 1fr;
+  }
 `
+
+S.Contact = styled.div`
+  display: flex;
+  flex-direction: column;
+`
+
+S.Title = styled.span`
+  color: #ffffff;
+  font-family: Inter;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: -0.31px;
+  line-height: 17px;
+  text-transform: uppercase;
+  margin-bottom: 1.5em;
+`
+
+S.Text = styled.p`
+  color: #ffffff;
+  font-family: Inter;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: -0.31px;
+  line-height: 17px;
+`
+
+S.SomeLinks = styled(SomeLinks)`
+  margin: 2.5rem 0;
+`
+
+S.Nav = styled(Nav)``

@@ -25,9 +25,9 @@ const Nav = ({ items, ...rest }) => {
     <S.Masonry
       breakpointCols={{
         default: 4,
-        1100: 3,
-        700: 2,
-        500: 1,
+        991: 3,
+        768: 2,
+        460: 1,
       }}
       columnClassName="masonry-grid_column"
       {...rest}

@@ -9,6 +9,13 @@ export default {
       options: {
         collapsible: true
       }
+    },
+    {
+      name: "translations",
+      title: "Translations",
+      options: {
+        collapsible: true
+      }
     }
   ],
   fields: [
@@ -58,6 +65,19 @@ export default {
       type: "url",
       fieldset: "socialMedia",
       validation: Rule => Rule.uri({ schemes: ["https"] }).required()
+    },
+    {
+      name: "postalAddress",
+      title: "Postal address",
+      type: "text",
+      validation: Rule => Rule.required()
+    },
+    {
+      name: "contactInfoText",
+      title: "Contact info",
+      type: "localeString",
+      fieldset: "translations",
+      validation: Rule => Rule.required()
     }
   ]
 };
