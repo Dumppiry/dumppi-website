@@ -9,6 +9,10 @@ const Footer = () => {
     query FooterQuery {
       settings: sanitySettings {
         siteTitle
+        facebookUrl
+        instagramUrl
+        twitterUrl
+        linkedinUrl
       }
       nav: sanityFullNavigation {
         items: topLevelItems {
