@@ -1,4 +1,5 @@
 import React from "react"
+import { AnimatePresence, motion } from "framer-motion"
 import styled from "styled-components"
 
 import Link from "../link"
@@ -8,10 +9,26 @@ import { useCurrentPage } from "../../hooks/current-page"
 const MenuItems = ({ items }) => {
   const { locale } = useCurrentPage()
 
+  const listVariants = {
+    hidden: { opacity: 0 },
+    show: {
+      opacity: 1,
+      transition: {
+        delayChildren: 0.2,
+        staggerChildren: 0.1,
+      },
+    },
+  }
+
+  const itemVariants = {
+    hidden: { opacity: 0, x: 0, y: 30 },
+    show: { opacity: 1, x: 0, y: 0 },
+  }
+
   return (
-    <S.Items>
+    <S.Items variants={listVariants} initial="hidden" animate="show">
       {items.map(item => (
-        <S.TopLevelItem key={item._key}>
+        <S.TopLevelItem key={item._key} variants={itemVariants}>
           <S.Link id={item.page._id} activeClassName="active">
             {item.page.title[locale]}
           </S.Link>
@@ -36,7 +53,7 @@ export default MenuItems
 
 const S = {}
 
-S.Items = styled.ul`
+S.Items = styled(motion.ul)`
   width: 100%;
   max-width: 940px;
   margin: auto;
@@ -64,7 +81,7 @@ S.SubItems = styled.ul`
   }
 `
 
-S.TopLevelItem = styled.li`
+S.TopLevelItem = styled(motion.li)`
   font-size: 2.5rem;
   color: #2c2c2c;
   font-weight: 600;
