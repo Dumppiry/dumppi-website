@@ -1,10 +1,25 @@
 import React, { useEffect, useState } from "react"
+import { graphql, useStaticQuery } from "gatsby"
 import axios from "axios"
 import styled, { css } from "styled-components"
 
 import RegistrationForm from "./registration-form"
 import RegistrationSubmissions from "./registration-submissions"
+import BlockContent from "./block-content"
 import { useCurrentPage } from "../hooks/current-page"
+
+const REGISTRATION_QUERY = graphql`
+  query EventRegistrationQuery {
+    settings: sanityEventSettings {
+      registrationTitle: _rawRegistrationTitle
+      registrationGuideText: _rawRegistrationGuideText
+      opens: _rawRegistrationOpensText
+      closes: _rawRegistrationClosesText
+      submitButtonText: _rawRegistrationSubmitButtonText
+      attendeesText: _rawRegistrationAttendeesText
+    }
+  }
+`
 
 const EventRegistration = ({
   eventId,
@@ -16,6 +31,7 @@ const EventRegistration = ({
 }) => {
   const { locale } = useCurrentPage()
   const [submissions, setSubmissions] = useState([])
+  const { settings } = useStaticQuery(REGISTRATION_QUERY)
 
   useEffect(() => {
     axios
@@ -45,25 +61,21 @@ const EventRegistration = ({
 
   return (
     <S.Section>
-      {/* // TODO: Translate */}
-      <h2>Ilmoittautuminen:</h2>
-      <p>
-        HUOM! Ilmoittautumalla tapahtumaan hyväksyt ilmoittautumisen pelisäännöt
-        sekä lisäämisesi tapahtumarekisteriin.
-      </p>
+      <h2>{settings.registrationTitle[locale]}</h2>
+      <BlockContent blocks={settings.registrationGuideText[locale]} />
       <S.Meta>
-        <S.HeadingRed>Aukeaa:</S.HeadingRed>
+        <S.HeadingRed>{settings.opens[locale]}</S.HeadingRed>
         <S.Date>{localizeDate(startDate)}</S.Date>
       </S.Meta>
       <S.Meta>
-        <S.HeadingRed>Sulkeutuu:</S.HeadingRed>
+        <S.HeadingRed>{settings.closes[locale]}</S.HeadingRed>
         <S.Date>{localizeDate(endDate)}</S.Date>
       </S.Meta>
       <S.NarrowContainer>
         <S.BarContainer>
           <S.Bar percentage={(submissions.length / maxCapacity) * 100} />
           <span>
-            Ilmoittautuneita {submissions.length}/{maxCapacity}
+            {settings.attendeesText[locale]} {submissions.length}/{maxCapacity}
           </span>
         </S.BarContainer>
         <RegistrationForm
@@ -71,6 +83,7 @@ const EventRegistration = ({
           defaultFields={defaultFields}
           fields={form.fields}
           refresh={handleRefresh}
+          submitText={settings.submitButtonText[locale]}
         />
         <RegistrationSubmissions submissions={submissions} />
       </S.NarrowContainer>

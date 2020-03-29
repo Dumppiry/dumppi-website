@@ -2,7 +2,9 @@ const axios = require("axios")
 
 const { sanity } = require("../client-config")
 
-const { SANITY_WRITE_TOKEN } = process.env
+// const { SANITY_WRITE_TOKEN } = process.env
+const SANITY_WRITE_TOKEN =
+  "skatQ8vjoBTJ8LSHErbc7OjdO4NjIHpQfi57Sc4Dir9jyKTO7qWx9JNcFXxwyxCogrRw8PasVKazemlgvcWt9YOoWlaM3UusmJaDv0C6e2S55BwDcd7bfHixwRvJsfSHpMv51Y9HhTZRxiHt9S8vohi4rOZ5DanNsCH5qzWHYfilYTFMI97O"
 
 exports.handler = async (event, context) => {
   const sanityMutationUrl = `https://${sanity.projectId}.api.sanity.io/v1/data/mutate/${sanity.dataset}`

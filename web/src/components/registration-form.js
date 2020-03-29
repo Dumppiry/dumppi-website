@@ -1,21 +1,11 @@
 import React, { useState } from "react"
-import { graphql, useStaticQuery } from "gatsby"
 import axios from "axios"
 import styled from "styled-components"
 
 import useForm from "../hooks/useForm"
 import Button from "./button"
 
-const Input = ({
-  id,
-  fieldLabel,
-  type,
-  name,
-  inputValues,
-  required,
-  value,
-  handleChange,
-}) => {
+const Input = ({ id, type, inputValues, required, value, handleChange }) => {
   switch (type) {
     case "input":
       return (
@@ -83,7 +73,13 @@ const Input = ({
   }
 }
 
-const RegistrationForm = ({ eventId, defaultFields, fields, refresh }) => {
+const RegistrationForm = ({
+  eventId,
+  defaultFields,
+  fields,
+  refresh,
+  submitText,
+}) => {
   const dFields = defaultFields.map(df => ({ _key: df._key, ...df.field }))
   const initialState = {}
   const allFields = [...dFields, ...fields]
@@ -156,7 +152,7 @@ const RegistrationForm = ({ eventId, defaultFields, fields, refresh }) => {
       ))}
       <Button
         primary
-        title="Submit"
+        title={submitText}
         type="submit"
         // onClick={handleSubmit}
         loading={loading}
