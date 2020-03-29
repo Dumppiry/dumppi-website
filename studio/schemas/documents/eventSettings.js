@@ -73,6 +73,13 @@ export default {
       validation: Rule => Rule.required()
     },
     {
+      name: "registrationNotOpenText",
+      title: "Registration not open text",
+      type: "localeString",
+      fieldset: "registration",
+      validation: Rule => Rule.required()
+    },
+    {
       name: "registrationSuccessText",
       title: "Success text",
       type: "localeString",

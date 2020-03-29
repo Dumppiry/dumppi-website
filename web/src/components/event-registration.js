@@ -96,26 +96,28 @@ const EventRegistration = ({
             {settings.attendeesText[locale]} {submissions.length}/{maxCapacity}
           </span>
         </S.BarContainer>
-        {registrationOpen ? (
-          <RegistrationForm
-            eventId={eventId}
-            defaultFields={defaultFields}
-            fields={form.fields}
-            refresh={handleRefresh}
-            submitText={settings.submitButtonText[locale]}
-            successText={settings.successText[locale]}
-            errorText={settings.errorText[locale]}
-          />
-        ) : (
-          <h3>Not open</h3>
-        )}
+        <S.FormContainer>
+          {registrationOpen ? (
+            <RegistrationForm
+              eventId={eventId}
+              defaultFields={defaultFields}
+              fields={form.fields}
+              refresh={handleRefresh}
+              submitText={settings.submitButtonText[locale]}
+              successText={settings.successText[locale]}
+              errorText={settings.errorText[locale]}
+            />
+          ) : (
+            <h3>Not open</h3>
+          )}
+        </S.FormContainer>
       </S.NarrowContainer>
       <S.AttendeesContainer>
         <h3>{settings.attendeesTitle[locale]}</h3>
         {submissions.length > 0 ? (
           <RegistrationSubmissions submissions={submissions} />
         ) : (
-          <p>{noAttendeesText[locale]}</p>
+          <p>{settings.noAttendeesText[locale]}</p>
         )}
       </S.AttendeesContainer>
     </S.Section>
@@ -176,6 +178,10 @@ S.BarContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+`
+
+S.FormContainer = styled.div`
+  margin: 1.25rem 0;
 `
 
 S.Bar = styled.div`
