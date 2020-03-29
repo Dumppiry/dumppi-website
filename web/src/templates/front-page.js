@@ -61,6 +61,7 @@ const S = {}
 
 S.Img = styled(Img)`
   width: 100vw;
+  min-height: 500px;
   position: relative;
   left: 50%;
   right: 50%;
