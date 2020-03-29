@@ -35,6 +35,11 @@ S.List = styled.div`
 
 S.Benefit = styled(Benefit)`
   margin-bottom: 1rem;
+  border-bottom: 2px solid #f0f0f0;
+
+  :last-child {
+    border-bottom: none;
+  }
 `
 
 S.Category = styled.span`

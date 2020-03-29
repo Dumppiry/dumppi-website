@@ -31,6 +31,7 @@ const S = {}
 S.Container = styled.div`
   display: flex;
   align-items: flex-start;
+  padding: 2.5rem 0;
 `
 S.InfoContainer = styled.div`
   display: flex;
