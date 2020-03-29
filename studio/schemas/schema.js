@@ -17,10 +17,13 @@ import jobType from "./documents/jobType";
 import page from "./documents/page";
 import frontPage from "./documents/frontPage";
 import eventsPage from "./documents/eventsPage";
+import benefitsPage from "./documents/benefitsPage";
 import pageRoute from "./documents/pageRoute";
 import partners from "./documents/partners";
 import person from "./documents/person";
 import settings from "./documents/settings";
+import benefit from "./documents/benefit";
+import benefitCategory from "./documents/benefitCategory";
 // Navigations
 import mainNavigation from "./documents/navigation/main";
 import fullNavigation from "./documents/navigation/full";
@@ -75,12 +78,15 @@ export default createSchema({
     page,
     frontPage,
     eventsPage,
+    benefitsPage,
     pageRoute,
     partners,
     person,
     settings,
     mainNavigation,
     fullNavigation,
+    benefit,
+    benefitCategory,
 
     // Object types
     localeBigHeadingPortableText,

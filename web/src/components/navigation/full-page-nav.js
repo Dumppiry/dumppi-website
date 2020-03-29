@@ -16,6 +16,7 @@ const FullPageNavQuery = graphql`
         _key
         page {
           ...PageFragment
+          ...BenefitsPageFragment
         }
         subPages {
           ...PageFragment
@@ -26,10 +27,11 @@ const FullPageNavQuery = graphql`
 
   fragment PageFragment on SanityPage {
     _id
-    title {
-      fi
-      en
-    }
+    title: _rawTitle
+  }
+  fragment BenefitsPageFragment on SanityBenefitsPage {
+    _id
+    title: _rawTitle
   }
 `
 
