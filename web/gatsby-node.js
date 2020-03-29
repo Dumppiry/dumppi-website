@@ -65,7 +65,12 @@ const createPages = async ({ graphql, actions, reporter }) => {
       allSanityPageRoute {
         nodes {
           page {
-            _id
+            ... on SanityPage {
+              _id
+            }
+            ... on SanityBenefitsPage {
+              _id
+            }
           }
           slug {
             _type
@@ -101,10 +106,14 @@ const createPages = async ({ graphql, actions, reporter }) => {
   const locales = ["fi", ...extraLanguages]
   locales.map(locale => {
     pageNodes.map(node => {
+      console.log(node.page._id)
       const topPath = node.slug[locale].current
       const page = {
         path: `/${topPath}`,
-        component: require.resolve("./src/templates/page.js"),
+        component:
+          node.page._id === "benefitsPage"
+            ? require.resolve("./src/templates/benefits-page.js")
+            : require.resolve("./src/templates/page.js"),
         context: {
           id: node.page._id,
         },

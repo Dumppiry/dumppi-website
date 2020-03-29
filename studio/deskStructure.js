@@ -3,7 +3,8 @@ import {
   FiSettings,
   FiAlignRight,
   FiFileText,
-  FiCalendar
+  FiCalendar,
+  FiGift
 } from "react-icons/fi";
 import { FaRegHandshake } from "react-icons/fa";
 
@@ -85,6 +86,14 @@ export default () =>
             .schemaType("partners")
             .documentId("partners")
         ),
+      S.listItem()
+        .title("Benefits page")
+        .icon(FiGift)
+        .child(
+          S.editor()
+            .schemaType("benefitsPage")
+            .documentId("benefitsPage")
+        ),
       ...S.documentTypeListItems().filter(
         listItem =>
           ![
@@ -95,7 +104,8 @@ export default () =>
             "frontPage",
             "eventsPage",
             "event",
-            "partners"
+            "partners",
+            "benefitsPage"
           ].includes(listItem.getId())
       )
     ]);

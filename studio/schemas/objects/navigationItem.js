@@ -7,7 +7,12 @@ export default {
       name: "page",
       title: "Page",
       type: "reference",
-      to: [{ type: "page" }, { type: "frontPage" }, { type: "eventsPage" }]
+      to: [
+        { type: "page" },
+        { type: "frontPage" },
+        { type: "eventsPage" },
+        { type: "benefitsPage" }
+      ]
     },
     {
       name: "subPages",

@@ -12,7 +12,7 @@ export default {
       name: "page",
       title: "Page",
       type: "reference",
-      to: [{ type: "page" }]
+      to: [{ type: "page" }, { type: "benefitsPage" }]
     },
     {
       name: "slug",
