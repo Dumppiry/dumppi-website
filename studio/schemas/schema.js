@@ -51,6 +51,7 @@ import recentJobsSection from "./objects/sections/recentJobsSection";
 import smallPeopleSection from "./objects/sections/smallPeopleSection";
 import smallPeopleGroup from "./objects/sections/smallPeopleGroup";
 import keyFigureSection from "./objects/sections/keyFiguresSection";
+import productsSection from "./objects/sections/productsSection";
 // Event stuff
 import eventLink from "./objects/event/link";
 // Other
@@ -59,6 +60,7 @@ import field from "./objects/field";
 import navigationItem from "./objects/navigationItem";
 import subRoute from "./objects/subRoute";
 import keyFigure from "./objects/keyFigure";
+import product from "./objects/product";
 
 // Then we give our schema to the builder and provide the result to Sanity
 export default createSchema({
@@ -109,12 +111,14 @@ export default createSchema({
     recentJobsSection,
     smallPeopleSection,
     keyFigureSection,
+    productsSection,
     smallPeopleGroup,
     eventLink,
     defaultField,
     field,
     navigationItem,
     subRoute,
-    keyFigure
+    keyFigure,
+    product
   ])
 });

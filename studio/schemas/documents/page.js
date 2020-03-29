@@ -22,7 +22,8 @@ export default {
         { type: "futureEventsSection" },
         { type: "partnersSection" },
         { type: "recentJobsSection" },
-        { type: "keyFiguresSection" }
+        { type: "keyFiguresSection" },
+        { type: "productsSection" }
       ]
     }
   ],
