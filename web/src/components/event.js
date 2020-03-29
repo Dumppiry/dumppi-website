@@ -1,4 +1,5 @@
 import React from "react"
+import { graphql, useStaticQuery } from "gatsby"
 import Img from "gatsby-image"
 import { FiMapPin } from "react-icons/fi"
 import styled, { css } from "styled-components"
@@ -6,6 +7,19 @@ import styled, { css } from "styled-components"
 import PortableText from "../components/block-content"
 import EventRegistration from "./event-registration"
 import { useCurrentPage } from "../hooks/current-page"
+
+const TRANSLATIONS_QUERY = graphql`
+  query EventTranslationsQuery {
+    translations: sanityEventSettings {
+      time: _rawTime
+      location: _rawLocation
+      price: _rawPrice
+      links: _rawLinks
+      category: _rawCategory
+      contactPerson: _rawContactPerson
+    }
+  }
+`
 
 const Event = props => {
   const {
@@ -30,13 +44,15 @@ const Event = props => {
 
   const { locale } = useCurrentPage()
 
+  const { translations } = useStaticQuery(TRANSLATIONS_QUERY)
+
   return (
     <S.Event>
       <S.Img fluid={image?.asset.fluid} />
       <h1>{title}</h1>
       <S.Meta>
         <S.Card>
-          <S.CardTitle>Aika:</S.CardTitle>
+          <S.CardTitle>{translations.time[locale]}</S.CardTitle>
           <S.CardSubtitle>
             {new Date(startDate).toLocaleDateString(locale, {
               weekday: "long",
@@ -54,7 +70,7 @@ const Event = props => {
         {location && (
           <S.Card>
             {" "}
-            <S.CardTitle>Paikka:</S.CardTitle>
+            <S.CardTitle>{translations.location[locale]}</S.CardTitle>
             <S.CardSubtitle>
               <FiMapPin /> {location.title}
             </S.CardSubtitle>
@@ -63,13 +79,13 @@ const Event = props => {
         )}
         {typeof price === "number" && (
           <S.Card>
-            <S.CardTitle>Hinta:</S.CardTitle>
+            <S.CardTitle>{translations.price[locale]}</S.CardTitle>
             <S.CardSubtitle huge>{price.toFixed(2)} €</S.CardSubtitle>
           </S.Card>
         )}
         {links?.length > 0 && (
           <S.Card>
-            <S.CardTitle>Linkit:</S.CardTitle>
+            <S.CardTitle>{translations.links[locale]}</S.CardTitle>
             {links.map(link => (
               <S.CardLink
                 href={link.url}
@@ -83,13 +99,13 @@ const Event = props => {
         )}
         {category?.title && (
           <S.Card>
-            <S.CardTitle>Kategoria:</S.CardTitle>
+            <S.CardTitle>{translations.category[locale]}</S.CardTitle>
             <S.CardSubtitle>{category.title}</S.CardSubtitle>
           </S.Card>
         )}
         {contactPerson?.name && (
           <S.Card>
-            <S.CardTitle>Yhteyshenkilö:</S.CardTitle>
+            <S.CardTitle>{translations.contactPerson[locale]}</S.CardTitle>
             <S.CardSubtitle>{contactPerson.name}</S.CardSubtitle>
             <S.EmailLink href={`mailto:${contactPerson.email}`}>
               {contactPerson.email}
