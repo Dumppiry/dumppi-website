@@ -17,6 +17,12 @@ export default {
       type: "image"
     },
     {
+      name: "hero",
+      title: "Hero",
+      type: "bigHeadingSection",
+      validation: Rule => Rule.required()
+    },
+    {
       name: "content",
       title: "Content",
       type: "array",
