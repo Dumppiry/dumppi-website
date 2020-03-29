@@ -12,12 +12,16 @@ const MenuItems = ({ items }) => {
     <S.Items>
       {items.map(item => (
         <S.TopLevelItem key={item._key}>
-          <S.Link id={item.page._id}>{item.page.title[locale]}</S.Link>
+          <S.Link id={item.page._id} activeClassName="active">
+            {item.page.title[locale]}
+          </S.Link>
           {item.subPages.length > 0 && (
             <S.SubItems>
               {item.subPages.map(sp => (
                 <S.SubLevelItem>
-                  <S.Link id={sp._id}>{sp.title[locale]}</S.Link>
+                  <S.Link id={sp._id} activeClassName="active">
+                    {sp.title[locale]}
+                  </S.Link>
                 </S.SubLevelItem>
               ))}
             </S.SubItems>
@@ -77,6 +81,10 @@ S.SubLevelItem = styled.li`
 S.Link = styled(Link)`
   text-decoration: none;
   color: inherit;
+
+  &.active {
+    color: #af271d;
+  }
 
   :hover {
     color: #af271d;

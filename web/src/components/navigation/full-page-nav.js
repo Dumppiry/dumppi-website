@@ -9,7 +9,7 @@ import MenuItems from "./menu-items"
 
 import { useNavigation } from "../../hooks/navigation"
 
-const FullPageNavQuery = graphql`
+export const FullPageNavQuery = graphql`
   query MyQuery {
     nav: sanityFullNavigation {
       items: topLevelItems {
