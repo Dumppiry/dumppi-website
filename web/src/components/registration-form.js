@@ -84,8 +84,10 @@ const Input = ({
 }
 
 const RegistrationForm = ({ eventId, defaultFields, fields, refresh }) => {
+  const dFields = defaultFields.map(df => ({ _key: df._key, ...df.field }))
   const initialState = {}
-  fields.forEach(field => {
+  const allFields = [...dFields, ...fields]
+  allFields.forEach(field => {
     let value
 
     switch (field.inputType) {
@@ -131,11 +133,10 @@ const RegistrationForm = ({ eventId, defaultFields, fields, refresh }) => {
   )
 
   const [loading, setLoading] = useState(false)
-  console.log(defaultFields)
 
   return (
     <S.Form onSubmit={handleSubmit}>
-      {[...defaultFields.map(df => df.field), ...fields].map(field => (
+      {allFields.map(field => (
         <S.Field key={field._key}>
           <S.Label>
             {field.label}

@@ -18,13 +18,17 @@ exports.handler = async (event, context) => {
     const params = { eventId }
     const results = await client.fetch(query, params)
 
-    const submissions = results.registrationSubmissions.map(JSON.parse)
+    const submissions =
+      (results.registrationSubmissions &&
+        results.registrationSubmissions.map(JSON.parse)) ||
+      []
 
     return {
       statusCode: 200,
       body: JSON.stringify(submissions, null, 2),
     }
   } catch (error) {
+    console.log(error)
     return {
       statusCode: 500,
       body: JSON.stringify({ error }, null, 2),

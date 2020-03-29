@@ -23,7 +23,7 @@ const EventTemplate = ({ data, pageContext, ...rest }) => {
       <SEO title={event.title} />
       <Event
         {...event}
-        registrationDefaultFields={settings.egistrationDefaultFields}
+        registrationDefaultFields={settings.registrationDefaultFields}
       />
       <FutureEventsSection heading={settings.defaultFutureEventsDescription} />
     </Layout>
