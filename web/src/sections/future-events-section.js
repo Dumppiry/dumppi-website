@@ -6,6 +6,7 @@ import PortableText from "../components/portable-text/heading"
 import EventList from "../components/event-list"
 import Link from "../components/link"
 import Button from "../components/button"
+import ButtonLink from "../components/button-link"
 
 import { useCurrentPage } from "../hooks/current-page"
 
@@ -31,9 +32,7 @@ const FutureEventsSection = ({ heading }) => {
     <S.Section>
       <PortableText blocks={heading} />
       <S.EventList />
-      <S.Link id={eventsPage._id}>
-        <Button title={settings.readMoreText[locale]} />
-      </S.Link>
+      <S.ButtonLink page={eventsPage} title={settings.readMoreText[locale]} />
     </S.Section>
   )
 }
@@ -64,6 +63,6 @@ S.EventList = styled(EventList)`
   margin-bottom: 2.5rem;
 `
 
-S.Link = styled(Link)`
+S.ButtonLink = styled(ButtonLink)`
   align-self: center;
 `
