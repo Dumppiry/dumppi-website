@@ -13,6 +13,7 @@ const REGISTRATION_QUERY = graphql`
     settings: sanityEventSettings {
       registrationTitle: _rawRegistrationTitle
       registrationGuideText: _rawRegistrationGuideText
+      registrationNotOpenText: _rawRegistrationNotOpenText
       opens: _rawRegistrationOpensText
       closes: _rawRegistrationClosesText
       submitButtonText: _rawRegistrationSubmitButtonText
@@ -108,7 +109,7 @@ const EventRegistration = ({
               errorText={settings.errorText[locale]}
             />
           ) : (
-            <h3>Not open</h3>
+            <h3>{settings.registrationNotOpenText[locale]}</h3>
           )}
         </S.FormContainer>
       </S.NarrowContainer>

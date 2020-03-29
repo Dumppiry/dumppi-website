@@ -5,10 +5,62 @@ export default {
   fieldsets: [
     {
       name: "registration",
-      title: "Registration"
+      title: "Registration",
+      options: {
+        collapsible: true
+      }
+    },
+    {
+      name: "metaTranslations",
+      title: "Event meta translations",
+      options: {
+        collapsible: true
+      }
     }
   ],
   fields: [
+    {
+      name: "time",
+      title: "Time",
+      type: "localeString",
+      fieldset: "metaTranslations",
+      validation: Rule => Rule.required()
+    },
+    {
+      name: "location",
+      title: "Location",
+      type: "localeString",
+      fieldset: "metaTranslations",
+      validation: Rule => Rule.required()
+    },
+    {
+      name: "price",
+      title: "Price",
+      type: "localeString",
+      fieldset: "metaTranslations",
+      validation: Rule => Rule.required()
+    },
+    {
+      name: "links",
+      title: "Links",
+      type: "localeString",
+      fieldset: "metaTranslations",
+      validation: Rule => Rule.required()
+    },
+    {
+      name: "category",
+      title: "Category",
+      type: "localeString",
+      fieldset: "metaTranslations",
+      validation: Rule => Rule.required()
+    },
+    {
+      name: "contactPerson",
+      title: "Contact person",
+      type: "localeString",
+      fieldset: "metaTranslations",
+      validation: Rule => Rule.required()
+    },
     {
       name: "registrationDefaultFields",
       title: "Default Fields",
