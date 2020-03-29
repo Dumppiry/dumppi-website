@@ -5,7 +5,7 @@ import BigHeadingSection from "./big-heading-section"
 import BigPeopleSection from "./big-people-section"
 import FutureEventsSection from "./future-events-section"
 import PartnersSection from "./partners-section"
-import RecentJobsSection from "./recent-jobs-section"
+import JobsSection from "./jobs-section"
 import SmallPeopleSection from "./small-people-section"
 import KeyFiguresSection from "./key-figures-section"
 import ProductsSection from "./products-section"
@@ -48,8 +48,8 @@ const SectionBlockContent = ({ blocks }) => {
             Component = PartnersSection
             break
 
-          case "recentJobsSection":
-            Component = RecentJobsSection
+          case "jobsSection":
+            Component = JobsSection
             break
 
           case "smallPeopleSection":

@@ -2,18 +2,18 @@ import React from "react"
 import styled from "styled-components"
 
 import PortableText from "../components/portable-text/heading"
-import RecentJobsList from "../components/jobs/recent-jobs-list"
+import JobsList from "../components/jobs/jobs-list"
 
-const RecentJobsSection = ({ heading }) => {
+const JobsSection = ({ heading, type }) => {
   return (
     <S.Section>
       <PortableText blocks={heading} />
-      <RecentJobsList />
+      <JobsList type={type} />
     </S.Section>
   )
 }
 
-export default RecentJobsSection
+export default JobsSection
 
 const S = {}
 

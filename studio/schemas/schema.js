@@ -47,7 +47,7 @@ import bigHeadingSection from "./objects/sections/bigHeadingSection";
 import bigPeopleSection from "./objects/sections/bigPeopleSection";
 import futureEventsSection from "./objects/sections/futureEventsSection";
 import partnersSection from "./objects/sections/partnersSection";
-import recentJobsSection from "./objects/sections/recentJobsSection";
+import jobsSection from "./objects/sections/jobsSection";
 import smallPeopleSection from "./objects/sections/smallPeopleSection";
 import smallPeopleGroup from "./objects/sections/smallPeopleGroup";
 import keyFigureSection from "./objects/sections/keyFiguresSection";
@@ -108,7 +108,7 @@ export default createSchema({
     bigPeopleSection,
     futureEventsSection,
     partnersSection,
-    recentJobsSection,
+    jobsSection,
     smallPeopleSection,
     keyFigureSection,
     productsSection,

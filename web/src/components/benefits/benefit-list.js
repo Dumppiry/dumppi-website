@@ -5,8 +5,6 @@ import _ from "lodash"
 import Benefit from "./benefit"
 
 const BenefitList = ({ benefits, ...rest }) => {
-  console.log(benefits.nodes)
-  console.log(_.groupBy(benefits.nodes, n => n.category.title))
   const benefitsByCategory = _.groupBy(benefits.nodes, n => n.category.title)
   return (
     <S.List>

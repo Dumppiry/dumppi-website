@@ -3,8 +3,8 @@ import { FiCalendar } from "react-icons/fi";
 import { defaultLanguage } from "../../../supportedLanguages";
 
 export default {
-  name: "recentJobsSection",
-  title: "Recent Jobs",
+  name: "jobsSection",
+  title: "Jobs",
   type: "object",
   icon: FiCalendar,
   fields: [
@@ -12,6 +12,15 @@ export default {
       name: "heading",
       title: "Heading",
       type: "localeHeadingPortableText"
+    },
+    {
+      name: "type",
+      title: "Type",
+      type: "string",
+      options: {
+        list: ["All", "Recent (only 3 most recently added)"],
+        layout: "radio"
+      }
     }
   ],
   preview: {
