@@ -14,6 +14,7 @@ const Input = ({ id, type, inputValues, required, value, handleChange }) => {
           value={value}
           onChange={handleChange}
           required={required}
+          maxLength="200"
         />
       )
 
@@ -24,6 +25,7 @@ const Input = ({ id, type, inputValues, required, value, handleChange }) => {
           value={value}
           onChange={handleChange}
           required={required}
+          maxLength="800"
         />
       )
 
@@ -60,7 +62,7 @@ const Input = ({ id, type, inputValues, required, value, handleChange }) => {
                 required={required}
                 style={{ marginRight: "0.5em" }}
               />
-              <label for={inputValue} name={id}>
+              <label htmlFor={inputValue} name={id}>
                 {inputValue}
               </label>
             </div>
@@ -79,8 +81,14 @@ const RegistrationForm = ({
   fields,
   refresh,
   submitText,
+  successText,
+  errorText,
 }) => {
+  const [success, setSuccess] = useState(false)
+  const [errors, setErrors] = useState(false)
+
   const dFields = defaultFields.map(df => ({ _key: df._key, ...df.field }))
+
   const initialState = {}
   const allFields = [...dFields, ...fields]
   allFields.forEach(field => {
@@ -105,6 +113,8 @@ const RegistrationForm = ({
 
   const submit = async () => {
     setLoading(true)
+    setSuccess(false)
+    setErrors(false)
 
     try {
       const { data } = await axios.post(
@@ -116,9 +126,10 @@ const RegistrationForm = ({
       )
       reset()
       refresh()
-      console.log(data)
+      setSuccess(true)
     } catch (error) {
-      console.log(error)
+      console.log(error.response)
+      setErrors(true)
     }
     setLoading(false)
   }
@@ -150,13 +161,9 @@ const RegistrationForm = ({
           />
         </S.Field>
       ))}
-      <Button
-        primary
-        title={submitText}
-        type="submit"
-        // onClick={handleSubmit}
-        loading={loading}
-      />
+      <Button primary title={submitText} type="submit" loading={loading} />
+      {success && <S.Success>{successText}</S.Success>}
+      {errors && <S.Error>{errorText}</S.Error>}
     </S.Form>
   )
 }
@@ -177,4 +184,22 @@ S.Field = styled.div`
 
 S.Label = styled.label`
   margin-bottom: 0.625rem;
+`
+
+S.Success = styled.p`
+  color: #54c754;
+  font-family: Inter;
+  font-size: 20px;
+  font-weight: 600;
+  letter-spacing: -0.44px;
+  line-height: 24px;
+`
+
+S.Error = styled.p`
+  color: #af271d;
+  font-family: Inter;
+  font-size: 20px;
+  font-weight: 600;
+  letter-spacing: -0.44px;
+  line-height: 24px;
 `

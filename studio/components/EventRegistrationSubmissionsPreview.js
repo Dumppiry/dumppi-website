@@ -8,11 +8,21 @@ const EventRegistrationSubmissionsPreview = ({ document }) => {
   const [submissions, setSubmissions] = useState([]);
 
   useEffect(() => {
-    client.getDocument(registrationForm?._ref).then(form => {
-      const columns = form?.fields.map((field, index) => ({
+    const query = `
+      {
+        'fields': *[_id == $formId][0].fields,
+        'defaultFields': *[_type == 'eventSettings'][0].registrationDefaultFields[].field
+      }
+    `;
+    const params = {
+      formId: registrationForm?._ref
+    };
+    client.fetch(query, params).then(({ defaultFields, fields }) => {
+      const columns = [...defaultFields, ...fields].map((field, index) => ({
         key: index,
         title: field.label.fi,
-        dataIndex: field.fieldId.current
+        dataIndex: field.fieldId.current,
+        ellipsis: true
       }));
       setColumns(columns);
       const subs = registrationSubmissions.map((s, index) => ({

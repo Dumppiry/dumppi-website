@@ -16,7 +16,10 @@ const REGISTRATION_QUERY = graphql`
       opens: _rawRegistrationOpensText
       closes: _rawRegistrationClosesText
       submitButtonText: _rawRegistrationSubmitButtonText
+      attendeesTitle: _rawRegistrationAttendeesTitle
       attendeesText: _rawRegistrationAttendeesText
+      successText: _rawRegistrationSuccessText
+      errorText: _rawRegistrationErrorText
     }
   }
 `
@@ -84,9 +87,14 @@ const EventRegistration = ({
           fields={form.fields}
           refresh={handleRefresh}
           submitText={settings.submitButtonText[locale]}
+          successText={settings.successText}
+          errorText={settings.errorText}
         />
-        <RegistrationSubmissions submissions={submissions} />
       </S.NarrowContainer>
+      <S.AttendeesContainer>
+        <h3>{settings.attendeesTitle}</h3>
+        <RegistrationSubmissions submissions={submissions} />
+      </S.AttendeesContainer>
     </S.Section>
   )
 }
@@ -128,6 +136,17 @@ S.Date = styled.span`
 
 S.NarrowContainer = styled.div`
   max-width: 470px;
+`
+
+S.AttendeesContainer = styled.div`
+  margin: 5rem 0;
+
+  h3 {
+    font-size: 28px;
+    line-height: 34px;
+    letter-spacing: -0.61px;
+    font-weight: 600;
+  }
 `
 
 S.BarContainer = styled.div`

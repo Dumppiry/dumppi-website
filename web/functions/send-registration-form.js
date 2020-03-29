@@ -1,17 +1,66 @@
 const axios = require("axios")
+const sanityClient = require("@sanity/client")
 
 const { sanity } = require("../client-config")
 
-// const { SANITY_WRITE_TOKEN } = process.env
-const SANITY_WRITE_TOKEN =
-  "skatQ8vjoBTJ8LSHErbc7OjdO4NjIHpQfi57Sc4Dir9jyKTO7qWx9JNcFXxwyxCogrRw8PasVKazemlgvcWt9YOoWlaM3UusmJaDv0C6e2S55BwDcd7bfHixwRvJsfSHpMv51Y9HhTZRxiHt9S8vohi4rOZ5DanNsCH5qzWHYfilYTFMI97O"
+const { SANITY_WRITE_TOKEN } = process.env
+
+const client = sanityClient({
+  projectId: sanity.projectId,
+  dataset: sanity.dataset,
+  token: SANITY_WRITE_TOKEN,
+  useCdn: false,
+})
+
+const validateFields = (allFields, submittedFields) => {
+  const errors = []
+
+  allFields.forEach(field => {
+    const { required, inputType } = field
+    const id = field.fieldId.current
+    // console.log(`Validating ${id}, required: ${required}`)
+    // console.log(`Content is ${submittedFields[id]}`)
+
+    if (required && !!!submittedFields[id]) {
+      errors.push(`Field ${id} is required.`)
+    }
+    if (inputType === "input" && submittedFields[id].length > 200) {
+      errors.push(`Field ${id} is too long.`)
+    }
+    if (inputType === "textarea" && submittedFields[id].length > 8) {
+      errors.push(`Field ${id} is too long.`)
+    }
+  })
+
+  return errors
+}
 
 exports.handler = async (event, context) => {
   const sanityMutationUrl = `https://${sanity.projectId}.api.sanity.io/v1/data/mutate/${sanity.dataset}`
 
   const { eventId, fields } = JSON.parse(event.body)
 
-  console.log(eventId, fields)
+  const query = `
+    {
+      'event': *[_id == $eventId][0]{ registrationForm->{fields} },
+      "defFields": *[_type == 'eventSettings'][0].registrationDefaultFields
+    }
+  `
+  const params = { eventId }
+  const res = await client.fetch(query, params)
+
+  const allFields = [
+    ...res.defFields.map(df => df.field),
+    ...res.event.registrationForm.fields,
+  ]
+
+  const errors = validateFields(allFields, fields)
+  if (errors.length > 0) {
+    return {
+      statusCode: 422,
+      body: JSON.stringify({ errors }, null, 2),
+    }
+  }
 
   const data = {
     mutations: [
@@ -48,7 +97,7 @@ exports.handler = async (event, context) => {
   } catch (error) {
     return {
       statusCode: 500,
-      body: JSON.stringify({ error, tried: data }, null, 2),
+      body: JSON.stringify(error.errorMessage, null, 2),
     }
   }
 }

@@ -1,9 +1,7 @@
 const sanityClient = require("@sanity/client")
 
 const { sanity } = require("../client-config")
-// const { SANITY_WRITE_TOKEN } = process.env
-const SANITY_WRITE_TOKEN =
-  "skatQ8vjoBTJ8LSHErbc7OjdO4NjIHpQfi57Sc4Dir9jyKTO7qWx9JNcFXxwyxCogrRw8PasVKazemlgvcWt9YOoWlaM3UusmJaDv0C6e2S55BwDcd7bfHixwRvJsfSHpMv51Y9HhTZRxiHt9S8vohi4rOZ5DanNsCH5qzWHYfilYTFMI97O"
+const { SANITY_WRITE_TOKEN } = process.env
 
 const client = sanityClient({
   projectId: sanity.projectId,
@@ -22,7 +20,10 @@ exports.handler = async (event, context) => {
 
     const submissions =
       (results.registrationSubmissions &&
-        results.registrationSubmissions.map(JSON.parse)) ||
+        results.registrationSubmissions.map(rs => {
+          const submission = JSON.parse(rs)
+          return [submission.nickname || submission.name, submission.comment]
+        })) ||
       []
 
     return {

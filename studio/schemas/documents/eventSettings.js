@@ -59,6 +59,27 @@ export default {
       validation: Rule => Rule.required()
     },
     {
+      name: "registrationAttendeesTitle",
+      title: "Attendees title",
+      type: "localeString",
+      fieldset: "registration",
+      validation: Rule => Rule.required()
+    },
+    {
+      name: "registrationSuccessText",
+      title: "Success text",
+      type: "localeString",
+      fieldset: "registration",
+      validation: Rule => Rule.required()
+    },
+    {
+      name: "registrationErrorText",
+      title: "Error text",
+      type: "localeString",
+      fieldset: "registration",
+      validation: Rule => Rule.required()
+    },
+    {
       name: "readMoreText",
       title: "Read more text",
       type: "localeString",
