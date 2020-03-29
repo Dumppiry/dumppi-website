@@ -20,6 +20,7 @@ const REGISTRATION_QUERY = graphql`
       attendeesText: _rawRegistrationAttendeesText
       successText: _rawRegistrationSuccessText
       errorText: _rawRegistrationErrorText
+      noAttendeesText: _rawRegistrationNoAttendeesText
     }
   }
 `
@@ -111,7 +112,11 @@ const EventRegistration = ({
       </S.NarrowContainer>
       <S.AttendeesContainer>
         <h3>{settings.attendeesTitle[locale]}</h3>
-        <RegistrationSubmissions submissions={submissions} />
+        {submissions.length > 0 ? (
+          <RegistrationSubmissions submissions={submissions} />
+        ) : (
+          <p>{noAttendeesText[locale]}</p>
+        )}
       </S.AttendeesContainer>
     </S.Section>
   )
