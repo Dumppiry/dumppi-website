@@ -27,7 +27,7 @@ const validateFields = (allFields, submittedFields) => {
     if (inputType === "input" && submittedFields[id].length > 200) {
       errors.push(`Field ${id} is too long.`)
     }
-    if (inputType === "textarea" && submittedFields[id].length > 8) {
+    if (inputType === "textarea" && submittedFields[id].length > 800) {
       errors.push(`Field ${id} is too long.`)
     }
   })

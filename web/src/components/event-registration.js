@@ -87,12 +87,12 @@ const EventRegistration = ({
           fields={form.fields}
           refresh={handleRefresh}
           submitText={settings.submitButtonText[locale]}
-          successText={settings.successText}
-          errorText={settings.errorText}
+          successText={settings.successText[locale]}
+          errorText={settings.errorText[locale]}
         />
       </S.NarrowContainer>
       <S.AttendeesContainer>
-        <h3>{settings.attendeesTitle}</h3>
+        <h3>{settings.attendeesTitle[locale]}</h3>
         <RegistrationSubmissions submissions={submissions} />
       </S.AttendeesContainer>
     </S.Section>
