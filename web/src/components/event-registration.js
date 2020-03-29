@@ -34,6 +34,7 @@ const EventRegistration = ({
 }) => {
   const { locale } = useCurrentPage()
   const [submissions, setSubmissions] = useState([])
+  const [registrationOpen, setRegistrationOpen] = useState(false)
   const { settings } = useStaticQuery(REGISTRATION_QUERY)
 
   useEffect(() => {
@@ -42,6 +43,19 @@ const EventRegistration = ({
       .then(({ data }) => {
         setSubmissions(data)
       })
+
+    const interval = setInterval(() => {
+      if (
+        new Date(startDate) <= new Date() &&
+        new Date(endDate) >= new Date()
+      ) {
+        setRegistrationOpen(true)
+      } else setRegistrationOpen(false)
+    }, 1000)
+
+    return () => {
+      clearInterval(interval)
+    }
   }, [])
 
   const handleRefresh = () => {
@@ -81,15 +95,19 @@ const EventRegistration = ({
             {settings.attendeesText[locale]} {submissions.length}/{maxCapacity}
           </span>
         </S.BarContainer>
-        <RegistrationForm
-          eventId={eventId}
-          defaultFields={defaultFields}
-          fields={form.fields}
-          refresh={handleRefresh}
-          submitText={settings.submitButtonText[locale]}
-          successText={settings.successText[locale]}
-          errorText={settings.errorText[locale]}
-        />
+        {registrationOpen ? (
+          <RegistrationForm
+            eventId={eventId}
+            defaultFields={defaultFields}
+            fields={form.fields}
+            refresh={handleRefresh}
+            submitText={settings.submitButtonText[locale]}
+            successText={settings.successText[locale]}
+            errorText={settings.errorText[locale]}
+          />
+        ) : (
+          <h3>Not open</h3>
+        )}
       </S.NarrowContainer>
       <S.AttendeesContainer>
         <h3>{settings.attendeesTitle[locale]}</h3>
