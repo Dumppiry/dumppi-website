@@ -8,6 +8,7 @@ import PartnersSection from "./partners-section"
 import RecentJobsSection from "./recent-jobs-section"
 import SmallPeopleSection from "./small-people-section"
 import KeyFiguresSection from "./key-figures-section"
+import ProductsSection from "./products-section"
 
 const SectionBlockContent = ({ blocks }) => {
   const container = {
@@ -57,6 +58,10 @@ const SectionBlockContent = ({ blocks }) => {
 
           case "keyFiguresSection":
             Component = KeyFiguresSection
+            break
+
+          case "productsSection":
+            Component = ProductsSection
             break
 
           default:

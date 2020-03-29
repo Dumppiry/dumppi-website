@@ -106,7 +106,6 @@ const createPages = async ({ graphql, actions, reporter }) => {
   const locales = ["fi", ...extraLanguages]
   locales.map(locale => {
     pageNodes.map(node => {
-      console.log(node.page._id)
       const topPath = node.slug[locale].current
       const page = {
         path: `/${topPath}`,
