@@ -1,8 +1,7 @@
 import React from "react"
 import styled from "styled-components"
 
-import Button from "../components/button"
-import Link from "../components/link"
+import ButtonLink from "../components/button-link"
 import PortableText from "../components/portable-text/heading"
 
 const BigHeadingSection = ({ heading, buttons }) => {
@@ -13,9 +12,7 @@ const BigHeadingSection = ({ heading, buttons }) => {
         {buttons?.length > 0 && (
           <S.ButtonContainer>
             {buttons.map((page, index) => (
-              <Link key={page._id} id={page._id}>
-                <S.Button primary={index === 0} title={page.title} />
-              </Link>
+              <S.ButtonLink page={page} primary={index === 0} />
             ))}
           </S.ButtonContainer>
         )}
@@ -77,7 +74,12 @@ S.ButtonContainer = styled.div`
   }
 `
 
-S.Button = styled(Button)`
-  width: 100%;
+S.ButtonLink = styled(ButtonLink)`
   height: 100%;
+  :nth-child(even) {
+    justify-self: start;
+  }
+  :nth-child(odd) {
+    justify-self: end;
+  }
 `
