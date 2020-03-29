@@ -42,7 +42,7 @@ exports.handler = async (event, context) => {
 
   const query = `
     {
-      'event': *[_id == $eventId][0]{ registrationForm->{fields} },
+      'event': *[_id == $eventId][0]{ registrationForm->{fields}, registrationStartDate, registrationEndDate },
       "defFields": *[_type == 'eventSettings'][0].registrationDefaultFields
     }
   `
@@ -55,6 +55,12 @@ exports.handler = async (event, context) => {
   ]
 
   const errors = validateFields(allFields, fields)
+
+  if (new Date(res.event.registrationStartDate) > new Date())
+    errors.push("Registration not yet open")
+  if (new Date(res.event.registrationEndDate) < new Date())
+    errors.push("Registration not open anymore")
+
   if (errors.length > 0) {
     return {
       statusCode: 422,
