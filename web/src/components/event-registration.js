@@ -12,6 +12,7 @@ const EventRegistration = ({
   endDate,
   maxCapacity,
   form,
+  defaultFields,
 }) => {
   const { locale } = useCurrentPage()
   const [submissions, setSubmissions] = useState([])
@@ -67,6 +68,7 @@ const EventRegistration = ({
         </S.BarContainer>
         <RegistrationForm
           eventId={eventId}
+          defaultFields={defaultFields}
           fields={form.fields}
           refresh={handleRefresh}
         />

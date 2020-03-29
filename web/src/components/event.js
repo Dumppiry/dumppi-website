@@ -15,6 +15,7 @@ const Event = props => {
     category,
     price,
     contactPerson,
+    registrationDefaultFields,
     hasRegistration,
     registrationStartDate,
     registrationEndDate,
@@ -40,6 +41,7 @@ const Event = props => {
             endDate={registrationEndDate}
             maxCapacity={registrationMaxCapacity}
             form={registrationForm}
+            defaultFields={registrationDefaultFields}
           />
         )}
       </S.Content>

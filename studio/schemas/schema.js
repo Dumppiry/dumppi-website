@@ -49,6 +49,7 @@ import smallPeopleGroup from "./objects/sections/smallPeopleGroup";
 // Event stuff
 import eventLink from "./objects/event/link";
 // Other
+import defaultField from "./objects/defaultField";
 import field from "./objects/field";
 import navigationItem from "./objects/navigationItem";
 import subRoute from "./objects/subRoute";
@@ -100,6 +101,7 @@ export default createSchema({
     smallPeopleSection,
     smallPeopleGroup,
     eventLink,
+    defaultField,
     field,
     navigationItem,
     subRoute

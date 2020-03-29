@@ -2,7 +2,20 @@ export default {
   name: "eventSettings",
   title: "Event Settings",
   type: "document",
+  fieldsets: [
+    {
+      name: "registration",
+      title: "Registration"
+    }
+  ],
   fields: [
+    {
+      name: "registrationDefaultFields",
+      title: "Registration Default Fields",
+      type: "array",
+      of: [{ type: "defaultField" }],
+      fieldset: "registration"
+    },
     {
       name: "readMoreText",
       title: "Read more text",

@@ -21,7 +21,10 @@ const EventTemplate = ({ data, pageContext, ...rest }) => {
   return (
     <Layout>
       <SEO title={event.title} />
-      <Event {...event} />
+      <Event
+        {...event}
+        registrationDefaultFields={settings.egistrationDefaultFields}
+      />
       <FutureEventsSection heading={settings.defaultFutureEventsDescription} />
     </Layout>
   )
@@ -33,6 +36,7 @@ export const query = graphql`
   query EventTemplateQuery($id: String!) {
     settings: sanityEventSettings {
       defaultFutureEventsDescription: _rawDefaultFutureEventsDescription
+      registrationDefaultFields: _rawRegistrationDefaultFields
     }
     event: sanityEvent(_id: { eq: $id }) {
       _id

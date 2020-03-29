@@ -1,4 +1,5 @@
 import React, { useState } from "react"
+import { graphql, useStaticQuery } from "gatsby"
 import axios from "axios"
 import styled from "styled-components"
 
@@ -82,7 +83,7 @@ const Input = ({
   }
 }
 
-const RegistrationForm = ({ eventId, fields, refresh }) => {
+const RegistrationForm = ({ eventId, defaultFields, fields, refresh }) => {
   const initialState = {}
   fields.forEach(field => {
     let value
@@ -130,10 +131,11 @@ const RegistrationForm = ({ eventId, fields, refresh }) => {
   )
 
   const [loading, setLoading] = useState(false)
+  console.log(defaultFields)
 
   return (
     <S.Form onSubmit={handleSubmit}>
-      {fields.map(field => (
+      {[...defaultFields.map(df => df.field), ...fields].map(field => (
         <S.Field key={field._key}>
           <S.Label>
             {field.label}
