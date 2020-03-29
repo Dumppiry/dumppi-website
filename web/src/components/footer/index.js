@@ -2,12 +2,35 @@ import React from "react"
 import { graphql, useStaticQuery } from "gatsby"
 import styled from "styled-components"
 
+import Nav from "./nav"
+
 const Footer = () => {
-  const { settings } = useStaticQuery(graphql`
+  const { settings, nav } = useStaticQuery(graphql`
     query FooterQuery {
       settings: sanitySettings {
         siteTitle
       }
+      nav: sanityFullNavigation {
+        items: topLevelItems {
+          _key
+          page {
+            ...PageFragment
+            ...BenefitsPageFragment
+          }
+          subPages {
+            ...PageFragment
+          }
+        }
+      }
+    }
+
+    fragment PageFragment on SanityPage {
+      _id
+      title: _rawTitle
+    }
+    fragment BenefitsPageFragment on SanityBenefitsPage {
+      _id
+      title: _rawTitle
     }
   `)
 
@@ -15,6 +38,7 @@ const Footer = () => {
     <S.Footer>
       <S.Content>
         <h2>{settings.siteTitle}</h2>
+        <S.Nav items={nav.items} />
       </S.Content>
     </S.Footer>
   )
@@ -37,7 +61,15 @@ S.Content = styled.div`
   margin: auto;
 
   h2 {
-    font-size: 1.5rem;
+    color: #ffffff;
+    font-family: Inter;
+    font-size: 24px;
     font-weight: 500;
+    letter-spacing: -0.52px;
+    line-height: 29px;
   }
+`
+
+S.Nav = styled(Nav)`
+  margin-top: 4rem;
 `
