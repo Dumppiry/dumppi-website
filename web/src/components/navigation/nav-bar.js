@@ -60,17 +60,11 @@ const NavBar = ({ hideItems }) => {
       </S.BrandLink>
       <S.List>
         <S.Span>
-          {!hideItems ? (
-            mainNav.items.map(item => (
-              <S.ListItem key={item._id}>
-                <S.Link id={item._id}>{item.title[locale]}</S.Link>
-              </S.ListItem>
-            ))
-          ) : (
-            <S.ListItem>
-              <LanguageMenu />
+          {mainNav.items.map(item => (
+            <S.ListItem key={item._id}>
+              <S.Link id={item._id}>{item.title[locale]}</S.Link>
             </S.ListItem>
-          )}
+          ))}
         </S.Span>
         <S.ListItem nav>
           <ToggleNavButton />

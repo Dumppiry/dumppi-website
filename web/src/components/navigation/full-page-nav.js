@@ -2,9 +2,11 @@ import React, { useEffect } from "react"
 import { graphql, useStaticQuery } from "gatsby"
 import { createPortal } from "react-dom"
 import { RemoveScroll } from "react-remove-scroll"
+import { motion } from "framer-motion"
 import styled from "styled-components"
 
 import NavBar from "./nav-bar"
+import LanguageMenu from "./language-menu"
 import MenuItems from "./menu-items"
 
 import { useNavigation } from "../../hooks/navigation"
@@ -41,11 +43,14 @@ const MenuModal = () => {
 
   return showNav ? (
     <RemoveScroll removeScrollBar>
-      <S.Wrapper>
+      <S.Wrapper initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
         <S.Header>
-          <NavBar hideItems />
+          <NavBar />
         </S.Header>
-        <MenuItems items={nav.items} />
+        <S.Content>
+          <LanguageMenu />
+          <MenuItems items={nav.items} />
+        </S.Content>
       </S.Wrapper>
     </RemoveScroll>
   ) : null
@@ -80,7 +85,7 @@ export default FullPageNav
 
 const S = {}
 
-S.Wrapper = styled.div`
+S.Wrapper = styled(motion.div)`
   background-color: white;
   width: 100vw;
   height: 100vh;
@@ -109,4 +114,13 @@ S.HeaderWrapper = styled.div`
   width: 100%;
   display: flex;
   justify-content: flex-end;
+`
+
+S.Content = styled.div`
+  width: 100%;
+  max-width: 940px;
+  margin: auto;
+  padding: 2rem;
+  height: 100%;
+  overflow: auto;
 `

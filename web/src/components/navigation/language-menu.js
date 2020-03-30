@@ -5,8 +5,8 @@ import Link from "../link"
 import { useCurrentPage } from "../../hooks/current-page"
 
 const languages = [
-  { code: "fi", icon: "🇫🇮" },
-  { code: "en", icon: "🇬🇧" },
+  { code: "fi", icon: "🇫🇮", title: "Suomeksi" },
+  { code: "en", icon: "🇬🇧", title: "In English" },
 ]
 
 const LanguageMenu = () => {
@@ -16,7 +16,7 @@ const LanguageMenu = () => {
     <div>
       {languages.map(lang => (
         <S.Link id={currentPageId} locale={lang.code}>
-          {lang.icon}
+          {lang.title}
         </S.Link>
       ))}
     </div>
@@ -30,5 +30,11 @@ const S = {}
 S.Link = styled(Link)`
   text-decoration: none;
   font-size: inherit;
-  margin: 0.25em;
+  color: inherit;
+  margin: 0.5em 1em 0.5em 0;
+  transition: color 200ms ease-in-out;
+
+  :hover {
+    color: #af271d;
+  }
 `

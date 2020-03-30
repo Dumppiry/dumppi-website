@@ -14,7 +14,7 @@ const MenuItems = ({ items }) => {
     show: {
       opacity: 1,
       transition: {
-        delayChildren: 0.2,
+        delayChildren: 0.25,
         staggerChildren: 0.1,
       },
     },
@@ -54,14 +54,9 @@ export default MenuItems
 const S = {}
 
 S.Items = styled(motion.ul)`
-  width: 100%;
-  max-width: 940px;
-  margin: auto;
-  padding: 0 2rem;
   list-style: none;
-
-  height: 100%;
-  overflow: auto;
+  margin: 0;
+  margin-bottom: 10rem;
 `
 
 S.SubItems = styled.ul`
@@ -98,6 +93,7 @@ S.SubLevelItem = styled.li`
 S.Link = styled(Link)`
   text-decoration: none;
   color: inherit;
+  transition: color 200ms ease-in-out;
 
   &.active {
     color: #af271d;
