@@ -62,43 +62,58 @@ const createPages = async ({ graphql, actions, reporter }) => {
 
   const result = await graphql(`
     {
-      allSanityPageRoute {
-        nodes {
+      nav: sanityFullNavigation(
+        topLevelItems: { elemMatch: { _type: { ne: "eventsPage" } } }
+      ) {
+        topLevelItems {
           page {
-            ... on SanityPage {
-              _id
-            }
-            ... on SanityBenefitsPage {
-              _id
-            }
+            __typename
+            ...PageFragment
+            ...BenefitsPageFragment
+            ...EventsPageFragment
           }
-          slug {
-            _type
-            en {
-              current
-            }
-            fi {
-              current
-            }
+          subPages {
+            __typename
+            ...PageFragment
+            ...BenefitsPageFragment
+            ...EventsPageFragment
           }
-          subRoutes {
-            page {
-              ... on SanityPage {
-                _id
-              }
-              ... on SanityBenefitsPage {
-                _id
-              }
-            }
-            slug {
-              fi {
-                current
-              }
-              en {
-                current
-              }
-            }
-          }
+        }
+      }
+    }
+
+    fragment PageFragment on SanityPage {
+      _id
+      slug {
+        fi {
+          current
+        }
+        en {
+          current
+        }
+      }
+    }
+
+    fragment BenefitsPageFragment on SanityBenefitsPage {
+      _id
+      slug {
+        fi {
+          current
+        }
+        en {
+          current
+        }
+      }
+    }
+
+    fragment EventsPageFragment on SanityEventsPage {
+      _id
+      slug {
+        fi {
+          current
+        }
+        en {
+          current
         }
       }
     }
@@ -106,30 +121,48 @@ const createPages = async ({ graphql, actions, reporter }) => {
 
   if (result.errors) throw result.errors
 
-  const pageNodes = (result.data.allSanityPageRoute || {}).nodes || []
+  const topLevelItems = (result.data.nav || {}).topLevelItems || []
 
   const locales = ["fi", ...extraLanguages]
   locales.map(locale => {
-    pageNodes.map(node => {
-      const topPath = node.slug[locale].current
+    topLevelItems.map(node => {
+      const topPath = node.page.slug[locale].current
+
+      let component = require.resolve("./src/templates/page.js")
+      switch (node.page.__typename) {
+        case "SanityBenefitsPage":
+          component = require.resolve("./src/templates/benefits-page.js")
+          break
+
+        default:
+          break
+      }
+
       const page = {
         path: `/${topPath}`,
-        component:
-          node.page._id === "benefitsPage"
-            ? require.resolve("./src/templates/benefits-page.js")
-            : require.resolve("./src/templates/page.js"),
+        component,
         context: {
           id: node.page._id,
         },
       }
       createLocalePage(page, createPage, locale, reporter)
 
-      node.subRoutes.map(sr => {
+      node.subPages.map(sp => {
+        let component = require.resolve("./src/templates/page.js")
+        switch (sp.__typename) {
+          case "SanityBenefitsPage":
+            component = require.resolve("./src/templates/benefits-page.js")
+            break
+
+          default:
+            break
+        }
+
         const page = {
-          path: `/${topPath}/${sr.slug[locale].current}`,
-          component: require.resolve("./src/templates/page.js"),
+          path: `/${topPath}/${sp.slug[locale].current}`,
+          component,
           context: {
-            id: sr.page._id,
+            id: sp._id,
           },
         }
         createLocalePage(page, createPage, locale, reporter)

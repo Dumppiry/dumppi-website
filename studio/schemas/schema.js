@@ -18,7 +18,6 @@ import page from "./documents/page";
 import frontPage from "./documents/frontPage";
 import eventsPage from "./documents/eventsPage";
 import benefitsPage from "./documents/benefitsPage";
-import pageRoute from "./documents/pageRoute";
 import partners from "./documents/partners";
 import person from "./documents/person";
 import settings from "./documents/settings";
@@ -57,7 +56,6 @@ import eventLink from "./objects/event/link";
 import defaultField from "./objects/defaultField";
 import field from "./objects/field";
 import navigationItem from "./objects/navigationItem";
-import subRoute from "./objects/subRoute";
 import keyFigure from "./objects/keyFigure";
 import product from "./objects/product";
 
@@ -83,7 +81,6 @@ export default createSchema({
     frontPage,
     eventsPage,
     benefitsPage,
-    pageRoute,
     partners,
     person,
     settings,
@@ -115,7 +112,6 @@ export default createSchema({
     defaultField,
     field,
     navigationItem,
-    subRoute,
     keyFigure,
     product
   ])
