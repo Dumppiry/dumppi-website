@@ -1,13 +1,28 @@
 import React from "react"
-import styled from "styled-components"
+import { graphql, useStaticQuery } from "gatsby"
 import Img from "gatsby-image"
 import { getFixedGatsbyImage } from "gatsby-source-sanity"
+import styled from "styled-components"
 
 import { sanity } from "../../../client-config"
 
+const QUERY = graphql`
+  query SmallPersonCardQuery {
+    settings: sanitySettings {
+      placeholderPersonImage {
+        asset {
+          _id
+        }
+      }
+    }
+  }
+`
+
 const SmallPersonCard = ({ person, ...rest }) => {
+  const { settings } = useStaticQuery(QUERY)
+
   const fixedProps = getFixedGatsbyImage(
-    person.image?.asset._id,
+    person.image?.asset._id ?? settings.placeholderPersonImage.asset._id,
     { width: 100, height: 100 },
     sanity
   )

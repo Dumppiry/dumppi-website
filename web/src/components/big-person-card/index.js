@@ -1,15 +1,29 @@
 import React from "react"
+import { graphql, useStaticQuery } from "gatsby"
 import Img from "gatsby-image"
 import { getFluidGatsbyImage } from "gatsby-source-sanity"
 import styled from "styled-components"
 
 import { sanity } from "../../../client-config"
 
+const QUERY = graphql`
+  query BigPersonCardQuery {
+    settings: sanitySettings {
+      placeholderPersonImage {
+        asset {
+          _id
+        }
+      }
+    }
+  }
+`
+
 const BigPersonCard = ({ person, ...rest }) => {
   const { title, name, phoneNumber, email, image } = person
+  const { settings } = useStaticQuery(QUERY)
 
   const fluidProps = getFluidGatsbyImage(
-    image?.asset._id,
+    image?.asset?._id ?? settings.placeholderPersonImage.asset._id,
     { maxWidth: 290 },
     sanity
   )

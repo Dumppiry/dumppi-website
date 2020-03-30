@@ -16,6 +16,13 @@ export default {
       options: {
         collapsible: true
       }
+    },
+    {
+      name: "placeholders",
+      title: "Placeholders",
+      options: {
+        collapsible: true
+      }
     }
   ],
   fields: [
@@ -89,6 +96,13 @@ export default {
       title: "Contact info",
       type: "localeString",
       fieldset: "translations",
+      validation: Rule => Rule.required()
+    },
+    {
+      name: "placeholderPersonImage",
+      title: "Person placeholder image",
+      type: "image",
+      fieldset: "placeholders",
       validation: Rule => Rule.required()
     }
   ]
