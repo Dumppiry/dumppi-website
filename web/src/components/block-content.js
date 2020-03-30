@@ -12,7 +12,7 @@ const serializers = {
   },
 }
 
-const BlockContent = ({ blocks }) => {
+const BlockContent = ({ blocks, ...rest }) => {
   return (
     <BaseBlockContent
       blocks={blocks}
@@ -20,6 +20,7 @@ const BlockContent = ({ blocks }) => {
       imageOptions={{ w: 720, h: 240, fit: "min" }}
       projectId={config.sanity.projectId}
       dataset={config.sanity.dataset}
+      {...rest}
     />
   )
 }

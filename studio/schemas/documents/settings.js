@@ -69,7 +69,19 @@ export default {
     {
       name: "postalAddress",
       title: "Postal address",
-      type: "text",
+      type: "array",
+      of: [
+        {
+          type: "block",
+          title: "Block",
+          styles: [{ title: "Normal", value: "normal" }],
+          marks: {
+            decorators: [],
+            annotations: []
+          },
+          lists: []
+        }
+      ],
       validation: Rule => Rule.required()
     },
     {

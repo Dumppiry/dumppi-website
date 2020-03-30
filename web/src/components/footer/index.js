@@ -1,9 +1,10 @@
 import React from "react"
 import { graphql, useStaticQuery } from "gatsby"
-import styled from "styled-components"
+import styled, { css } from "styled-components"
 
 import { FaFacebook, FaInstagram, FaTwitter, FaLinkedin } from "react-icons/fa"
 
+import BlockContent from "../block-content"
 import Nav from "./nav"
 import SomeLinks from "./some-links"
 import { useCurrentPage } from "../../hooks/current-page"
@@ -19,7 +20,7 @@ const Footer = () => {
         instagramUrl
         twitterUrl
         linkedinUrl
-        postalAddress
+        postalAddress: _rawPostalAddress
         contactInfoText: _rawContactInfoText
       }
       nav: sanityFullNavigation {
@@ -70,10 +71,10 @@ const Footer = () => {
       <S.Container>
         <h2>{settings.siteTitle}</h2>
         <S.Content>
-          <S.Nav items={nav.items} />
+          <Nav items={nav.items} />
           <S.Contact>
             <S.Title>{settings.contactInfoText[locale]}</S.Title>
-            <S.Text>{settings.postalAddress}</S.Text>
+            <BlockContent blocks={settings.postalAddress} />
             <S.SomeLinks links={soMeLinks} />
             <S.Text>© {settings.siteTitle}</S.Text>
           </S.Contact>
@@ -148,5 +149,3 @@ S.Text = styled.p`
 S.SomeLinks = styled(SomeLinks)`
   margin: 2.5rem 0;
 `
-
-S.Nav = styled(Nav)``
