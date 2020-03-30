@@ -55,8 +55,7 @@ const S = {}
 
 S.Items = styled(motion.ul)`
   list-style: none;
-  margin: 0;
-  margin-bottom: 10rem;
+  margin: 2.5rem 0 10rem;
 `
 
 S.SubItems = styled.ul`

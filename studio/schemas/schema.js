@@ -35,7 +35,6 @@ import localeBigHeadingPortableText from "./objects/localeObjects/localeBigHeadi
 import localeHeadingPortableText from "./objects/localeObjects/localeHeadingPortableText";
 import localePortableText from "./objects/localeObjects/localePortableText";
 import localeSlug from "./objects/localeObjects/localeSlug";
-import localeEventSlug from "./objects/localeObjects/localeEventSlug";
 import localeString from "./objects/localeObjects/localeString";
 import localeText from "./objects/localeObjects/localeText";
 // Portable text variants
@@ -98,7 +97,6 @@ export default createSchema({
     localeHeadingPortableText,
     localePortableText,
     localeSlug,
-    localeEventSlug,
     localeString,
     localeText,
     portableText,

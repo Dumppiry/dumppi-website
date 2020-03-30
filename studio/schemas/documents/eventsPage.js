@@ -15,7 +15,7 @@ export default {
     {
       name: "slug",
       title: "Slug",
-      type: "localeEventSlug",
+      type: "localeSlug",
       validation: Rule => Rule.required()
     },
     {

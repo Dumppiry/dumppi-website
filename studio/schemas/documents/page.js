@@ -9,7 +9,14 @@ export default {
     {
       name: "title",
       title: "Title",
-      type: "localeString"
+      type: "localeString",
+      validation: Rule => Rule.required()
+    },
+    {
+      name: "slug",
+      title: "Slug",
+      type: "localeSlug",
+      validation: Rule => Rule.required()
     },
     {
       name: "content",
@@ -36,5 +43,17 @@ export default {
         title: title.fi
       };
     }
-  }
+  },
+  orderings: [
+    {
+      title: "Title, ASC",
+      name: "titleAsc",
+      by: [{ field: "title.fi", direction: "asc" }]
+    },
+    {
+      title: "Title, DESC",
+      name: "titleDesc",
+      by: [{ field: "title.fi", direction: "desc" }]
+    }
+  ]
 };

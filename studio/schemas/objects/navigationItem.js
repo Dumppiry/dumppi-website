@@ -7,12 +7,23 @@ export default {
       name: "page",
       title: "Page",
       type: "reference",
-      to: [
-        { type: "page" },
-        { type: "frontPage" },
-        { type: "eventsPage" },
-        { type: "benefitsPage" }
-      ]
+      to: [{ type: "page" }, { type: "eventsPage" }, { type: "benefitsPage" }],
+      validation: Rule =>
+        Rule.custom((field, context) => {
+          const pageId = field._ref;
+          const { document: doc, parent } = context;
+
+          const allTopLevelItemIds = doc.topLevelItems
+            .filter(tl => tl._key !== parent._key)
+            .map(tl => tl.page._ref);
+          const allSubLevelItemIds = doc.topLevelItems
+            .map(tl => tl.subPages?.map(sp => sp._ref))
+            .filter(Boolean)
+            .flat();
+          const allItemIds = [...allTopLevelItemIds, ...allSubLevelItemIds];
+
+          return allItemIds.includes(pageId) ? "Duplicate item" : true;
+        })
     },
     {
       name: "subPages",
@@ -21,7 +32,33 @@ export default {
       of: [
         {
           type: "reference",
-          to: [{ type: "page" }, { type: "frontPage" }, { type: "eventsPage" }]
+          to: [
+            { type: "page" },
+            { type: "eventsPage" },
+            { type: "benefitsPage" }
+          ],
+          validation: Rule =>
+            Rule.custom((field, context) => {
+              const pageId = field._ref;
+              const { document: doc } = context;
+
+              const allTopLevelItemIds = doc.topLevelItems.map(
+                tl => tl.page._ref
+              );
+
+              const allSubLevelItemIds = doc.topLevelItems
+                .map(tl =>
+                  tl.subPages
+                    ?.filter(sp => sp._key !== field._key)
+                    .map(sp => sp._ref)
+                )
+                .filter(Boolean)
+                .flat();
+
+              const allItemIds = [...allTopLevelItemIds, ...allSubLevelItemIds];
+
+              return allItemIds.includes(pageId) ? "Duplicate item" : true;
+            })
         }
       ]
     }

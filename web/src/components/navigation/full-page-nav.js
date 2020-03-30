@@ -19,9 +19,12 @@ export const FullPageNavQuery = graphql`
         page {
           ...PageFragment
           ...BenefitsPageFragment
+          ...EventsPageFragment
         }
         subPages {
           ...PageFragment
+          ...BenefitsPageFragment
+          ...EventsPageFragment
         }
       }
     }
@@ -32,6 +35,10 @@ export const FullPageNavQuery = graphql`
     title: _rawTitle
   }
   fragment BenefitsPageFragment on SanityBenefitsPage {
+    _id
+    title: _rawTitle
+  }
+  fragment EventsPageFragment on SanityEventsPage {
     _id
     title: _rawTitle
   }

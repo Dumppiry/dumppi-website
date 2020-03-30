@@ -13,7 +13,11 @@ export default {
       of: [
         {
           type: "reference",
-          to: [{ type: "page" }, { type: "frontPage" }, { type: "eventsPage" }]
+          to: [
+            { type: "page" },
+            { type: "eventsPage" },
+            { type: "benefitsPage" }
+          ]
         }
       ]
     }

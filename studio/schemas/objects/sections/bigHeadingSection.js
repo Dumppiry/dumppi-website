@@ -26,10 +26,10 @@ export default {
     },
     prepare({ heading }) {
       return {
-        title: heading[defaultLanguage][0].children
+        title: heading[defaultLanguage][0]?.children
           .map(child => child.text)
           .join(""),
-        subtitle: heading[defaultLanguage][1].children
+        subtitle: heading[defaultLanguage][1]?.children
           .map(child => child.text)
           .join("")
       };

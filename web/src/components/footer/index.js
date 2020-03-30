@@ -29,9 +29,12 @@ const Footer = () => {
           page {
             ...PageFragment
             ...BenefitsPageFragment
+            ...EventsPageFragment
           }
           subPages {
             ...PageFragment
+            ...BenefitsPageFragment
+            ...EventsPageFragment
           }
         }
       }
@@ -42,6 +45,10 @@ const Footer = () => {
       title: _rawTitle
     }
     fragment BenefitsPageFragment on SanityBenefitsPage {
+      _id
+      title: _rawTitle
+    }
+    fragment EventsPageFragment on SanityEventsPage {
       _id
       title: _rawTitle
     }

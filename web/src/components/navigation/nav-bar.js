@@ -9,7 +9,7 @@ import ToggleNavButton from "./toggle-nav-button"
 import LanguageMenu from "./language-menu"
 import Link from "../link"
 
-const NavBar = ({ hideItems }) => {
+const NavBar = () => {
   const { settings, mainNav, frontPage } = useStaticQuery(graphql`
     query NavigationQuery {
       settings: sanitySettings {
@@ -29,7 +29,7 @@ const NavBar = ({ hideItems }) => {
             _id
             title: _rawTitle
           }
-          ... on SanityFrontPage {
+          ... on SanityBenefitsPage {
             _id
             title: _rawTitle
           }
