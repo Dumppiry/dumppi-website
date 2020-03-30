@@ -48,7 +48,7 @@ const Event = props => {
 
   return (
     <S.Event>
-      <S.Img fluid={image?.asset.fluid} />
+      {image && <S.Img fluid={image?.asset.fluid} />}
       <h1>{title}</h1>
       <S.Meta>
         <S.Card>

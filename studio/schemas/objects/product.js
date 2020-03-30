@@ -4,7 +4,7 @@ import { FiPackage } from "react-icons/fi";
 
 const Icon = ({ name }) => {
   const TagName = Fi[name];
-  return <TagName />;
+  return !!TagName ? <TagName /> : <p>{name}</p>;
 };
 
 export default {
