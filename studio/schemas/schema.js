@@ -50,6 +50,7 @@ import smallPeopleSection from "./objects/sections/smallPeopleSection";
 import smallPeopleGroup from "./objects/sections/smallPeopleGroup";
 import keyFigureSection from "./objects/sections/keyFiguresSection";
 import productsSection from "./objects/sections/productsSection";
+import mainPartnersSection from "./objects/sections/mainPartnersSection";
 // Event stuff
 import eventLink from "./objects/event/link";
 // Other
@@ -103,6 +104,7 @@ export default createSchema({
     bigPeopleSection,
     futureEventsSection,
     partnersSection,
+    mainPartnersSection,
     jobsSection,
     smallPeopleSection,
     keyFigureSection,

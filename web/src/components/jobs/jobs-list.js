@@ -59,7 +59,8 @@ const JOBS_QUERY = graphql`
 
 const JobsList = ({ type, ...rest }) => {
   const { allJobs, recentJobs } = useStaticQuery(JOBS_QUERY)
-  const jobs = type === "Recent" ? recentJobs : allJobs
+  console.log(type)
+  const jobs = type.includes("Recent") ? recentJobs : allJobs
   return (
     <S.List {...rest}>
       {jobs.nodes.map(job => (

@@ -3,7 +3,31 @@ import styled from "styled-components"
 import { graphql, useStaticQuery } from "gatsby"
 import Img from "gatsby-image/withIEPolyfill"
 
+const MAIN_PARTNERS_QUERY = graphql`
+  query MainPartnersQuery {
+    allSanityCompany(
+      filter: { description: { fi: { ne: null }, en: { ne: null } } }
+    ) {
+      nodes {
+        _id
+        link
+        name
+        cardColor {
+          hex
+        }
+        description {
+          en
+          fi
+          _type
+        }
+      }
+    }
+  }
+`
+
 const MainPartnerList = ({ ...rest }) => {
+  const { allSanityCompany } = useStaticQuery(MAIN_PARTNERS_QUERY)
+  console.log(allSanityCompany)
   return (
     <S.List {...rest}>
       <S.item></S.item>
