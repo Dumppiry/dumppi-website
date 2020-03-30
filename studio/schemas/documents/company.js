@@ -1,3 +1,4 @@
+import React from "react";
 import { FiDollarSign } from "react-icons/fi";
 
 export default {
@@ -28,6 +29,19 @@ export default {
       name: "address",
       title: "Address",
       type: "string"
+    },
+    {
+      name: "description",
+      title: "Description",
+      type: "localeString",
+      description:
+        "Fill this if you want company to appear in main partners section."
+    },
+    {
+      name: "cardColor",
+      title: "Card base color",
+      type: "color",
+      description: "NOTE: if set, white font will be used. Be cautious!"
     }
   ],
   preview: {
