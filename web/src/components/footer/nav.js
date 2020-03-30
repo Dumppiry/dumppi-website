@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React from "react"
 import styled from "styled-components"
 import Masonry from "react-masonry-css"
 
@@ -8,18 +8,6 @@ import { useCurrentPage } from "../../hooks/current-page"
 
 const Nav = ({ items, ...rest }) => {
   const { locale } = useCurrentPage()
-
-  const mapChildren = () => {
-    let col = []
-    const numC = this.state.columns
-    for (let i = 0; i < numC; i++) {
-      col.push([])
-    }
-    return this.props.children.reduce((p, c, i) => {
-      p[i % numC].push(c)
-      return p
-    }, col)
-  }
 
   return (
     <S.Masonry
@@ -38,7 +26,7 @@ const Nav = ({ items, ...rest }) => {
           {item.subPages.length > 0 && (
             <S.SubItems>
               {item.subPages.map(sp => (
-                <S.SubLevelItem>
+                <S.SubLevelItem key={sp._id}>
                   <S.Link id={sp._id}>{sp.title[locale]}</S.Link>
                 </S.SubLevelItem>
               ))}

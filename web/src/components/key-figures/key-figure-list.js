@@ -6,7 +6,7 @@ import KeyFigure from "./figure"
 const KeyFigureList = ({ figures, ...rest }) => (
   <S.List {...rest}>
     {figures.map(f => (
-      <S.Item>
+      <S.Item key={f._key}>
         <KeyFigure figure={f.figure} description={f.description} />
       </S.Item>
     ))}

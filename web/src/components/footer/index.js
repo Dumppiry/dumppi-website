@@ -56,18 +56,22 @@ const Footer = () => {
 
   const soMeLinks = [
     {
+      key: "facebook",
       icon: FaFacebook,
       url: settings.facebookUrl,
     },
     {
+      key: "instagram",
       icon: FaInstagram,
       url: settings.instagramUrl,
     },
     {
+      key: "twitter",
       icon: FaTwitter,
       url: settings.twitterUrl,
     },
     {
+      key: "linkedin",
       icon: FaLinkedin,
       url: settings.linkedinUrl,
     },

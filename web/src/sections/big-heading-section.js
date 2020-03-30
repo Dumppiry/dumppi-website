@@ -12,7 +12,7 @@ const BigHeadingSection = ({ heading, buttons }) => {
         {buttons?.length > 0 && (
           <S.ButtonContainer>
             {buttons.map((page, index) => (
-              <S.ButtonLink page={page} primary={index === 0} />
+              <S.ButtonLink key={index} page={page} primary={index === 0} />
             ))}
           </S.ButtonContainer>
         )}

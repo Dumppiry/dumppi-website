@@ -7,7 +7,12 @@ const SocialMediaLinks = ({ links = [], ...rest }) => {
       {links.map(link => {
         const Icon = link.icon
         return (
-          <S.Link href={link.url} target="_blank" rel="noopener noreferrer">
+          <S.Link
+            key={link.key}
+            href={link.url}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             {<Icon />}
           </S.Link>
         )
