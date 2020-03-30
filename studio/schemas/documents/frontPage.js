@@ -32,7 +32,8 @@ export default {
         { type: "smallPeopleSection" },
         { type: "futureEventsSection" },
         { type: "partnersSection" },
-        { type: "jobsSection" }
+        { type: "jobsSection" },
+        { type: "mainPartnersSection" }
       ]
     }
   ],

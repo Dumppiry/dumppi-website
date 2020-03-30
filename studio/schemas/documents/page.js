@@ -30,7 +30,8 @@ export default {
         { type: "partnersSection" },
         { type: "jobsSection" },
         { type: "keyFiguresSection" },
-        { type: "productsSection" }
+        { type: "productsSection" },
+        { type: "mainPartnersSection" }
       ]
     }
   ],

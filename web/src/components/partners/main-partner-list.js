@@ -1,7 +1,8 @@
 import React from "react"
 import styled from "styled-components"
 import { graphql, useStaticQuery } from "gatsby"
-import Img from "gatsby-image/withIEPolyfill"
+
+import MainPartnerCard from "./main-partner-card"
 
 const MAIN_PARTNERS_QUERY = graphql`
   query MainPartnersQuery {
@@ -20,6 +21,13 @@ const MAIN_PARTNERS_QUERY = graphql`
           fi
           _type
         }
+        image {
+          asset {
+            fluid(maxWidth: 150) {
+              ...GatsbySanityImageFluid
+            }
+          }
+        }
       }
     }
   }
@@ -27,10 +35,12 @@ const MAIN_PARTNERS_QUERY = graphql`
 
 const MainPartnerList = ({ ...rest }) => {
   const { allSanityCompany } = useStaticQuery(MAIN_PARTNERS_QUERY)
-  console.log(allSanityCompany)
+
   return (
     <S.List {...rest}>
-      <S.item></S.item>
+      {allSanityCompany.nodes.map(company => (
+        <MainPartnerCard partner={company} />
+      ))}
     </S.List>
   )
 }
@@ -39,11 +49,11 @@ export default MainPartnerList
 
 const S = {}
 
-S.List = styled.ul`
+S.List = styled.div`
   --grid-columns: 2;
   display: grid;
   grid-template-columns: repeat(var(--grid-columns), 1fr);
-  grid-gap: 3rem 15%;
+  grid-gap: 2rem;
   list-style: none;
   margin: 0;
 
