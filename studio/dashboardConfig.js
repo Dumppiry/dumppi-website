@@ -1,42 +1,18 @@
 export default {
   widgets: [
     {
-      name: "sanity-tutorials"
+      name: "netlify",
+      options: {
+        title: "Netlify deploys",
+        sites: [
+          {
+            title: "dumppi.fi",
+            apiId: "7e2f1f4a-d981-44b3-a4e2-09ed0f606b3e",
+            buildHookId: "5e8b837280d09101aecf89dd",
+            name: "confident-heisenberg-a5b89e",
+          },
+        ],
+      },
     },
-    {
-      name: "project-info",
-      __experimental_before: [
-        {
-          name: "netlify",
-          options: {
-            description:
-              "NOTE: Because these sites are static builds, they need to be re-deployed to see the changes when documents are published.",
-            sites: [
-              {
-                buildHookId: "",
-                title: "Website",
-                name: "dumppi-website",
-                apiId: ""
-              }
-            ]
-          }
-        }
-      ],
-      data: [
-        {
-          title: "GitHub repo",
-          value: "https://github.com/papivaan/dumppi-website/",
-          category: "Code"
-        },
-        {
-          title: "Frontend",
-          value: "https://www.dumppi.fi",
-          category: "apps"
-        }
-      ]
-    },
-    {
-      name: "project-users"
-    }
-  ]
+  ],
 };
