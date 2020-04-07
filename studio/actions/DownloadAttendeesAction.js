@@ -5,7 +5,7 @@ import { FiDownload } from "react-icons/fi";
 export function DownloadAttendeesAction(props) {
   const [dialogOpen, setDialogOpen] = React.useState(false);
 
-  const { registrationSubmissions, startDate, slug } = props.published;
+  const { registrationSubmissions, startDate, slug } = props.published || {};
 
   return {
     label: "Download attendees",
@@ -24,7 +24,7 @@ export function DownloadAttendeesAction(props) {
         >
           Download as CSV
         </CSVLink>
-      )
-    }
+      ),
+    },
   };
 }
