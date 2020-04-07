@@ -1,7 +1,10 @@
 import React from "react"
 import { graphql, useStaticQuery } from "gatsby"
 import Img from "gatsby-image"
+import { getFluidGatsbyImage } from "gatsby-source-sanity"
 import styled from "styled-components"
+
+import { sanity } from "../../../client-config"
 
 import { useCurrentPage } from "../../hooks/current-page"
 import Link from "../link"
@@ -13,6 +16,11 @@ const EVENT_SETTINGS_QUERY = graphql`
       readMoreText {
         fi
         en
+      }
+      placeholderEventImage {
+        asset {
+          _id
+        }
       }
     }
   }
@@ -34,6 +42,12 @@ const EventCard = ({
   const { locale } = useCurrentPage()
   const { settings } = useStaticQuery(EVENT_SETTINGS_QUERY)
 
+  const fluidProps = getFluidGatsbyImage(
+    image?.asset?._id ?? settings.placeholderEventImage.asset._id,
+    { maxWidth: 290 },
+    sanity
+  )
+
   const options = {
     weekday: "long",
     month: "numeric",
@@ -46,7 +60,7 @@ const EventCard = ({
 
   return (
     <S.Container id={_id}>
-      <S.EventImage fluid={image?.asset.fluid} />
+      <S.EventImage fluid={fluidProps} />
       <S.EventInfo>
         {startDate && (
           <S.AdditionalInfo>{localizeDate(startDate)}</S.AdditionalInfo>

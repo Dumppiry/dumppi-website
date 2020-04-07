@@ -20,9 +20,7 @@ const EVENTS_QUERY = graphql`
         location: _rawLocation(resolveReferences: { maxDepth: 1 })
         image {
           asset {
-            fluid(maxWidth: 700) {
-              ...GatsbySanityImageFluid
-            }
+            _id
           }
         }
         startDate
