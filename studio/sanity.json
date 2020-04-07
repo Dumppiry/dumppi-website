@@ -12,16 +12,14 @@
     "@sanity/components",
     "@sanity/default-layout",
     "@sanity/default-login",
+    "@sanity/dashboard",
     "@sanity/desk-tool",
     "@sanity/color-input",
-    "@sanity/dashboard",
     "dashboard-widget-netlify"
   ],
   "env": {
     "development": {
-      "plugins": [
-        "@sanity/vision"
-      ]
+      "plugins": ["@sanity/vision"]
     }
   },
   "parts": [
