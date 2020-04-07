@@ -48,7 +48,7 @@ const Event = props => {
 
   return (
     <S.Event>
-      {image && <S.Img fluid={image?.asset.fluid} />}
+      {image?.asset && <S.Img fluid={image?.asset.fluid} />}
       <h1>{title}</h1>
       <S.Meta>
         <S.Card>
@@ -136,6 +136,8 @@ export default Event
 const S = {}
 
 S.Event = styled.article`
+  margin: 5rem 0;
+
   h1 {
     color: #2c2c2c;
     font-family: Inter;
