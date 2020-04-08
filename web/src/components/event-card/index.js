@@ -7,7 +7,7 @@ import styled from "styled-components"
 import { sanity } from "../../../client-config"
 
 import { useCurrentPage } from "../../hooks/current-page"
-import Link from "../link"
+import { InternalLink } from "../link"
 import EventStatus from "./event-status"
 
 const EVENT_SETTINGS_QUERY = graphql`
@@ -88,7 +88,7 @@ export default EventCard
 
 const S = {}
 
-S.Container = styled(Link)`
+S.Container = styled(InternalLink)`
   height: 410px;
   width: 100%;
   border-radius: 10px;

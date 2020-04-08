@@ -4,8 +4,9 @@ import Img from "gatsby-image"
 import { FiMapPin } from "react-icons/fi"
 import styled, { css } from "styled-components"
 
-import PortableText from "../components/block-content"
 import EventRegistration from "./event-registration"
+import PortableText from "../components/block-content"
+import { ExternalLink } from "../components/link"
 import { useCurrentPage } from "../hooks/current-page"
 
 const TRANSLATIONS_QUERY = graphql`
@@ -87,13 +88,7 @@ const Event = props => {
           <S.Card>
             <S.CardTitle>{translations.links[locale]}</S.CardTitle>
             {links.map(link => (
-              <S.CardLink
-                href={link.url}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                {link.title}
-              </S.CardLink>
+              <S.CardLink href={link.url}>{link.title}</S.CardLink>
             ))}
           </S.Card>
         )}
@@ -225,7 +220,7 @@ S.CardSubtitle = styled.span`
     `}
 `
 
-S.CardLink = styled.a`
+S.CardLink = styled(ExternalLink)`
   ${SubtitleStyles}
   margin-bottom: 1rem;
   text-decoration: none;
@@ -251,7 +246,7 @@ S.CardText = styled.span`
   ${TextStyles}
 `
 
-S.EmailLink = styled.a`
+S.EmailLink = styled(ExternalLink)`
   ${TextStyles}
   text-decoration: none;
   transition: color 200ms ease-in-out;

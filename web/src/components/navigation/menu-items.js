@@ -2,7 +2,7 @@ import React from "react"
 import { AnimatePresence, motion } from "framer-motion"
 import styled from "styled-components"
 
-import Link from "../link"
+import { InternalLink } from "../link"
 
 import { useCurrentPage } from "../../hooks/current-page"
 
@@ -89,7 +89,7 @@ S.SubLevelItem = styled.li`
   margin: 1.25rem 0;
 `
 
-S.Link = styled(Link)`
+S.Link = styled(InternalLink)`
   text-decoration: none;
   color: inherit;
   transition: color 200ms ease-in-out;

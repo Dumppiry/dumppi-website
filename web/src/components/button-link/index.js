@@ -3,7 +3,7 @@ import PropTypes from "prop-types"
 import styled from "styled-components"
 
 import Button from "../button"
-import Link from "../link"
+import { ExternalLink, InternalLink } from "../link"
 
 const ButtonLink = ({ title, primary, link, ...rest }) => {
   switch (link?._type) {
@@ -16,7 +16,7 @@ const ButtonLink = ({ title, primary, link, ...rest }) => {
 
     case "externalLink":
       return (
-        <S.ExtLink href={link.url} target="_blank" rel="noopener noreferrer">
+        <S.ExtLink href={link.url}>
           <Button primary={primary} title={title} as="span" />
         </S.ExtLink>
       )
@@ -60,12 +60,12 @@ ButtonLink.propTypes = {
 
 const S = {}
 
-S.Link = styled(Link)`
+S.Link = styled(InternalLink)`
   text-decoration: none;
   width: fit-content;
 `
 
-S.ExtLink = styled.a`
+S.ExtLink = styled(ExternalLink)`
   text-decoration: none;
   width: fit-content;
 `
