@@ -88,8 +88,8 @@ const EventList = ({ events, ...rest }) => {
 
   return events ? (
     _.keys(eventData).map(month => (
-      <S.Container>
-        <S.Title hasMargin>{month}</S.Title>
+      <S.Container key={month}>
+        <S.Title>{month}</S.Title>
         {eventData[month].length === 0 ? (
           <p>{data.settings.noEventsText[locale]}</p>
         ) : (
