@@ -10,7 +10,7 @@ const BigHeadingSection = ({ heading, buttons }) => {
       <S.Content>
         <PortableText blocks={heading} />
         {buttons?.length > 0 && (
-          <S.ButtonContainer>
+          <S.ButtonContainer oneChild={buttons.length === 1}>
             {buttons.map((b, index) => (
               <S.ButtonLink
                 key={b._key}
@@ -68,7 +68,7 @@ S.ButtonContainer = styled.div`
   @media (min-width: 575px) {
   }
   @media (min-width: 768px) {
-    --grid-columns: 2;
+    --grid-columns: ${props => (props.oneChild ? "1" : "2")};
     width: 80%;
     align-items: stretch;
     justify-content: stretch;
@@ -86,5 +86,8 @@ S.ButtonLink = styled(ButtonLink)`
   }
   :nth-child(odd) {
     justify-self: end;
+  }
+  :only-child {
+    justify-self: center;
   }
 `
