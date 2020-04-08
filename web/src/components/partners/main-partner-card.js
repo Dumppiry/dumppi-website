@@ -21,7 +21,7 @@ const MainPartnerCard = ({ partner }) => {
         objectFit="contain"
         objectPosition="0%"
       />
-      <S.Description color={!!cardColor}>{description[locale]}</S.Description>
+      <S.Description color={cardColor}>{description[locale]}</S.Description>
     </S.Container>
   )
 }

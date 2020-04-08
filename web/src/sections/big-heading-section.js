@@ -11,8 +11,13 @@ const BigHeadingSection = ({ heading, buttons }) => {
         <PortableText blocks={heading} />
         {buttons?.length > 0 && (
           <S.ButtonContainer>
-            {buttons.map((page, index) => (
-              <S.ButtonLink key={index} page={page} primary={index === 0} />
+            {buttons.map((b, index) => (
+              <S.ButtonLink
+                key={b._key}
+                link={b.link[0]}
+                title={b.title}
+                primary={index === 0}
+              />
             ))}
           </S.ButtonContainer>
         )}

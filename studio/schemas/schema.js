@@ -53,11 +53,15 @@ import productsSection from "./objects/sections/productsSection";
 import mainPartnersSection from "./objects/sections/mainPartnersSection";
 // Event stuff
 import eventLink from "./objects/event/link";
+// Links
+import externalLink from "./objects/links/externalLink";
+import internalLink from "./objects/links/internalLink";
+import link from "./objects/links/link";
 // Other
 import defaultField from "./objects/defaultField";
 import field from "./objects/field";
-import navigationItem from "./objects/navigationItem";
 import keyFigure from "./objects/keyFigure";
+import navigationItem from "./objects/navigationItem";
 import product from "./objects/product";
 
 // Then we give our schema to the builder and provide the result to Sanity
@@ -111,10 +115,13 @@ export default createSchema({
     productsSection,
     smallPeopleGroup,
     eventLink,
+    externalLink,
+    internalLink,
+    link,
     defaultField,
     field,
     navigationItem,
     keyFigure,
-    product
-  ])
+    product,
+  ]),
 });
