@@ -44,13 +44,14 @@ import headingPortableText from "./objects/portableText/headingPortableText";
 import bigHeadingSection from "./objects/sections/bigHeadingSection";
 import bigPeopleSection from "./objects/sections/bigPeopleSection";
 import futureEventsSection from "./objects/sections/futureEventsSection";
-import partnersSection from "./objects/sections/partnersSection";
 import jobsSection from "./objects/sections/jobsSection";
-import smallPeopleSection from "./objects/sections/smallPeopleSection";
-import smallPeopleGroup from "./objects/sections/smallPeopleGroup";
 import keyFigureSection from "./objects/sections/keyFiguresSection";
-import productsSection from "./objects/sections/productsSection";
 import mainPartnersSection from "./objects/sections/mainPartnersSection";
+import partnersSection from "./objects/sections/partnersSection";
+import productsSection from "./objects/sections/productsSection";
+import smallPeopleGroup from "./objects/sections/smallPeopleGroup";
+import smallPeopleSection from "./objects/sections/smallPeopleSection";
+import textSection from "./objects/sections/textSection";
 // Event stuff
 import eventLink from "./objects/event/link";
 // Links
@@ -100,13 +101,14 @@ export default createSchema({
     bigHeadingSection,
     bigPeopleSection,
     futureEventsSection,
-    partnersSection,
-    mainPartnersSection,
     jobsSection,
-    smallPeopleSection,
     keyFigureSection,
+    mainPartnersSection,
+    partnersSection,
     productsSection,
     smallPeopleGroup,
+    smallPeopleSection,
+    textSection,
     eventLink,
     externalLink,
     internalLink,

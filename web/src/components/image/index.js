@@ -7,7 +7,7 @@ import config from "../../../client-config"
 
 const Image = ({ asset, alt }) => {
   const fluidProps = getFluidGatsbyImage(
-    asset._ref,
+    asset._id,
     { maxWidth: 960 },
     config.sanity
   )

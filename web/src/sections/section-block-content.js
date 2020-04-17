@@ -11,6 +11,7 @@ import SmallPeopleSection from "./small-people-section"
 import KeyFiguresSection from "./key-figures-section"
 import ProductsSection from "./products-section"
 import MainPartnersSection from "./main-partners-section"
+import TextSection from "./text-section"
 
 const SectionBlockContent = ({ blocks }) => {
   const container = {
@@ -70,6 +71,10 @@ const SectionBlockContent = ({ blocks }) => {
 
           case "mainPartnersSection":
             Component = MainPartnersSection
+            break
+
+          case "textSection":
+            Component = TextSection
             break
 
           default:
