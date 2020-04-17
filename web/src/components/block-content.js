@@ -4,9 +4,14 @@ import BaseBlockContent from "@sanity/block-content-to-react"
 import config from "../../client-config"
 
 import { ExternalLink, InternalLink } from "./link"
+import Image from "./image"
+import Video from "./video"
 
 const serializers = {
-  types: {},
+  types: {
+    youtube: ({ node }) => <Video {...node} />,
+    mainImage: ({ node }) => <Image {...node} />,
+  },
   marks: {
     highlight: ({ children }) => (
       <span style={{ color: "#AF271D" }}>{children}</span>

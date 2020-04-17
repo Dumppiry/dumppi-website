@@ -61,8 +61,10 @@ import link from "./objects/links/link";
 import defaultField from "./objects/defaultField";
 import field from "./objects/field";
 import keyFigure from "./objects/keyFigure";
+import mainImage from "./objects/mainImage";
 import navigationItem from "./objects/navigationItem";
 import product from "./objects/product";
+import youtube from "./objects/youtube";
 
 // Then we give our schema to the builder and provide the result to Sanity
 export default createSchema({
@@ -113,7 +115,9 @@ export default createSchema({
     field,
     navigationItem,
     keyFigure,
+    mainImage,
     product,
+    youtube,
     localeBigHeadingPortableText,
     localeHeadingPortableText,
     localePortableText,
