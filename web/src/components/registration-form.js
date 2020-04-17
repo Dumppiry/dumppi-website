@@ -117,13 +117,10 @@ const RegistrationForm = ({
     setErrors(false)
 
     try {
-      const { data } = await axios.post(
-        "/.netlify/functions/send-registration-form",
-        {
-          eventId,
-          fields: values,
-        }
-      )
+      await axios.post("/.netlify/functions/send-registration-form", {
+        eventId,
+        fields: values,
+      })
       reset()
       refresh()
       setSuccess(true)

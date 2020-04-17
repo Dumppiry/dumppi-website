@@ -4,8 +4,6 @@ import styled from "styled-components"
 
 import PortableText from "../components/portable-text/heading"
 import EventList from "../components/event-list"
-import Link from "../components/link"
-import Button from "../components/button"
 import ButtonLink from "../components/button-link"
 
 import { useCurrentPage } from "../hooks/current-page"

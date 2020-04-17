@@ -30,7 +30,11 @@ const NotFoundPage = () => {
       <S.Content>
         <h1>NOT FOUND</h1>
         <p>You just hit a route that doesn&#39;t exist... the sadness.</p>
-        <img src={SadPenguin} style={{ width: "100%", maxWidth: "380px" }} />
+        <img
+          src={SadPenguin}
+          alt="Sad penguin"
+          style={{ width: "100%", maxWidth: "380px" }}
+        />
       </S.Content>
     </Layout>
   )

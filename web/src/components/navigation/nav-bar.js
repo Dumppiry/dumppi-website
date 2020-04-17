@@ -6,7 +6,6 @@ import styled from "styled-components"
 import { useCurrentPage } from "../../hooks/current-page"
 
 import ToggleNavButton from "./toggle-nav-button"
-import LanguageMenu from "./language-menu"
 import { InternalLink } from "../link"
 
 const NavBar = () => {
