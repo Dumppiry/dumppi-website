@@ -2,6 +2,7 @@ import React from "react"
 import styled from "styled-components"
 import Img from "gatsby-image/withIEPolyfill"
 
+import { ExternalLink } from "../link"
 import { useCurrentPage } from "../../hooks/current-page"
 
 const MainPartnerCard = ({ partner }) => {
@@ -9,13 +10,7 @@ const MainPartnerCard = ({ partner }) => {
   const { description, image, link, cardColor, ...rest } = partner
 
   return (
-    <S.Container
-      href={link}
-      target="_blank"
-      rel="noreferrer noopener"
-      {...rest}
-      color={cardColor}
-    >
+    <S.Container href={link} {...rest} color={cardColor}>
       <S.Img
         fluid={image.asset.fluid}
         objectFit="contain"
@@ -30,7 +25,7 @@ export default MainPartnerCard
 
 const S = {}
 
-S.Container = styled.a`
+S.Container = styled(ExternalLink)`
   display: flex;
   flex-direction: column;
   border-radius: 10px;

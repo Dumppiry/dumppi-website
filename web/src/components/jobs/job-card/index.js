@@ -3,13 +3,14 @@ import Img from "gatsby-image/withIEPolyfill"
 import styled from "styled-components"
 import { FiMapPin, FiClock } from "react-icons/fi"
 
+import { ExternalLink } from "../../link"
 import { useCurrentPage } from "../../../hooks/current-page"
 
 const JobCard = ({ title, link, type, category, location, company }) => {
   const { locale } = useCurrentPage()
 
   return (
-    <S.Container href={link} target="_blank" rel="noreferrer noopener">
+    <S.Container href={link}>
       <S.Content>
         {type && <S.Type color={type.color.hex}>{type.title[locale]}</S.Type>}
         <S.Title>{title}</S.Title>
@@ -41,7 +42,7 @@ export default JobCard
 
 const S = {}
 
-S.Container = styled.a`
+S.Container = styled(ExternalLink)`
   display: flex;
   flex-direction: column;
   border-radius: 10px;

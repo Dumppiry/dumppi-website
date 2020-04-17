@@ -44,13 +44,14 @@ import headingPortableText from "./objects/portableText/headingPortableText";
 import bigHeadingSection from "./objects/sections/bigHeadingSection";
 import bigPeopleSection from "./objects/sections/bigPeopleSection";
 import futureEventsSection from "./objects/sections/futureEventsSection";
-import partnersSection from "./objects/sections/partnersSection";
 import jobsSection from "./objects/sections/jobsSection";
-import smallPeopleSection from "./objects/sections/smallPeopleSection";
-import smallPeopleGroup from "./objects/sections/smallPeopleGroup";
 import keyFigureSection from "./objects/sections/keyFiguresSection";
-import productsSection from "./objects/sections/productsSection";
 import mainPartnersSection from "./objects/sections/mainPartnersSection";
+import partnersSection from "./objects/sections/partnersSection";
+import productsSection from "./objects/sections/productsSection";
+import smallPeopleGroup from "./objects/sections/smallPeopleGroup";
+import smallPeopleSection from "./objects/sections/smallPeopleSection";
+import textSection from "./objects/sections/textSection";
 // Event stuff
 import eventLink from "./objects/event/link";
 // Links
@@ -61,8 +62,10 @@ import link from "./objects/links/link";
 import defaultField from "./objects/defaultField";
 import field from "./objects/field";
 import keyFigure from "./objects/keyFigure";
+import mainImage from "./objects/mainImage";
 import navigationItem from "./objects/navigationItem";
 import product from "./objects/product";
+import youtube from "./objects/youtube";
 
 // Then we give our schema to the builder and provide the result to Sanity
 export default createSchema({
@@ -95,6 +98,28 @@ export default createSchema({
     benefitCategory,
 
     // Object types
+    bigHeadingSection,
+    bigPeopleSection,
+    futureEventsSection,
+    jobsSection,
+    keyFigureSection,
+    mainPartnersSection,
+    partnersSection,
+    productsSection,
+    smallPeopleGroup,
+    smallPeopleSection,
+    textSection,
+    eventLink,
+    externalLink,
+    internalLink,
+    link,
+    defaultField,
+    field,
+    navigationItem,
+    keyFigure,
+    mainImage,
+    product,
+    youtube,
     localeBigHeadingPortableText,
     localeHeadingPortableText,
     localePortableText,
@@ -104,24 +129,5 @@ export default createSchema({
     portableText,
     bigHeadingPortableText,
     headingPortableText,
-    bigHeadingSection,
-    bigPeopleSection,
-    futureEventsSection,
-    partnersSection,
-    mainPartnersSection,
-    jobsSection,
-    smallPeopleSection,
-    keyFigureSection,
-    productsSection,
-    smallPeopleGroup,
-    eventLink,
-    externalLink,
-    internalLink,
-    link,
-    defaultField,
-    field,
-    navigationItem,
-    keyFigure,
-    product,
   ]),
 });

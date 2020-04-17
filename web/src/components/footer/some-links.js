@@ -1,18 +1,15 @@
 import React from "react"
 import styled from "styled-components"
 
+import { ExternalLink } from "../link"
+
 const SocialMediaLinks = ({ links = [], ...rest }) => {
   return (
     <S.Container {...rest}>
       {links.map(link => {
         const Icon = link.icon
         return (
-          <S.Link
-            key={link.key}
-            href={link.url}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
+          <S.Link key={link.key} href={link.url}>
             {<Icon />}
           </S.Link>
         )
@@ -29,7 +26,7 @@ S.Container = styled.div`
   display: flex;
 `
 
-S.Link = styled.a`
+S.Link = styled(ExternalLink)`
   font-size: 2.5rem;
   color: #ffffff;
   margin-right: 1.25rem;

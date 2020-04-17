@@ -10,13 +10,13 @@ export default {
       name: "title",
       title: "Title",
       type: "localeString",
-      validation: Rule => Rule.required()
+      validation: (Rule) => Rule.required(),
     },
     {
       name: "slug",
       title: "Slug",
       type: "localeSlug",
-      validation: Rule => Rule.required()
+      validation: (Rule) => Rule.required(),
     },
     {
       name: "content",
@@ -24,6 +24,7 @@ export default {
       type: "array",
       of: [
         { type: "bigHeadingSection" },
+        { type: "textSection" },
         { type: "bigPeopleSection" },
         { type: "smallPeopleSection" },
         { type: "futureEventsSection" },
@@ -31,30 +32,30 @@ export default {
         { type: "jobsSection" },
         { type: "keyFiguresSection" },
         { type: "productsSection" },
-        { type: "mainPartnersSection" }
-      ]
-    }
+        { type: "mainPartnersSection" },
+      ],
+    },
   ],
   preview: {
     select: {
-      title: "title"
+      title: "title",
     },
     prepare({ title }) {
       return {
-        title: title.fi
+        title: title.fi,
       };
-    }
+    },
   },
   orderings: [
     {
       title: "Title, ASC",
       name: "titleAsc",
-      by: [{ field: "title.fi", direction: "asc" }]
+      by: [{ field: "title.fi", direction: "asc" }],
     },
     {
       title: "Title, DESC",
       name: "titleDesc",
-      by: [{ field: "title.fi", direction: "desc" }]
-    }
-  ]
+      by: [{ field: "title.fi", direction: "desc" }],
+    },
+  ],
 };

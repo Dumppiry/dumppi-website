@@ -69,7 +69,7 @@ export const query = graphql`
       contactPerson: _rawContactPerson(resolveReferences: { maxDepth: 2 })
       startDate
       endDate
-      description: _rawDescription
+      description: _rawDescription(resolveReferences: { maxDepth: 3 })
       links {
         _key
         _type

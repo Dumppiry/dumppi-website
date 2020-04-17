@@ -2,7 +2,7 @@ import React from "react"
 import styled from "styled-components"
 import Masonry from "react-masonry-css"
 
-import Link from "../link"
+import { InternalLink } from "../link"
 
 import { useCurrentPage } from "../../hooks/current-page"
 
@@ -91,7 +91,7 @@ S.SubLevelItem = styled.li`
   margin-bottom: 1.5em;
 `
 
-S.Link = styled(Link)`
+S.Link = styled(InternalLink)`
   text-decoration: none;
   color: inherit;
   transition: color 200ms ease-in-out;

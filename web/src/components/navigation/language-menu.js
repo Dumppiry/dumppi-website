@@ -1,7 +1,7 @@
 import React from "react"
 import styled from "styled-components"
 
-import Link from "../link"
+import { InternalLink } from "../link"
 import { useCurrentPage } from "../../hooks/current-page"
 
 const languages = [
@@ -27,7 +27,7 @@ export default LanguageMenu
 
 const S = {}
 
-S.Link = styled(Link)`
+S.Link = styled(InternalLink)`
   text-decoration: none;
   font-size: inherit;
   color: inherit;

@@ -7,7 +7,7 @@ import { useCurrentPage } from "../../hooks/current-page"
 
 import ToggleNavButton from "./toggle-nav-button"
 import LanguageMenu from "./language-menu"
-import Link from "../link"
+import { InternalLink } from "../link"
 
 const NavBar = () => {
   const { settings, mainNav, frontPage } = useStaticQuery(graphql`
@@ -113,7 +113,7 @@ S.ListItem = styled.li`
   align-items: center;
 `
 
-S.Link = styled(Link)`
+S.Link = styled(InternalLink)`
   text-decoration: none;
   color: inherit;
 `

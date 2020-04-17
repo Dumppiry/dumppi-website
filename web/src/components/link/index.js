@@ -1,10 +1,24 @@
 import React from "react"
 import { graphql, useStaticQuery, Link as GatsbyLink } from "gatsby"
 import PropTypes from "prop-types"
+import styled, { css } from "styled-components"
 
 import { useCurrentPage } from "../../hooks/current-page"
 
-const Link = ({ id, locale, children, ...rest }) => {
+export const ExternalLink = ({ href, children, ...rest }) => {
+  return (
+    <S.ExtLink href={href} target="_blank" rel="nooppener noreferrer" {...rest}>
+      {children}
+    </S.ExtLink>
+  )
+}
+
+ExternalLink.propTypes = {
+  href: PropTypes.string.isRequired,
+  children: PropTypes.element.isRequired,
+}
+
+export const InternalLink = ({ id, locale, children, ...rest }) => {
   // Fetch all pages with their path and context
   const data = useStaticQuery(graphql`
     query LinkQuery {
@@ -30,15 +44,27 @@ const Link = ({ id, locale, children, ...rest }) => {
   )?.path
 
   return (
-    <GatsbyLink to={path} {...rest}>
+    <S.IntLink to={path} {...rest}>
       {children}
-    </GatsbyLink>
+    </S.IntLink>
   )
 }
 
-export default Link
-
-Link.propTypes = {
+InternalLink.propTypes = {
   id: PropTypes.string.isRequired,
-  children: PropTypes.node.isRequired,
+  children: PropTypes.element.isRequired,
 }
+
+const S = {}
+
+const LinkStyles = css`
+  color: #af271d;
+`
+
+S.ExtLink = styled.a`
+  ${LinkStyles}
+`
+
+S.IntLink = styled(GatsbyLink)`
+  ${LinkStyles}
+`
