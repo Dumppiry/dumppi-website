@@ -14,5 +14,14 @@ export default {
         isHighlighted: true,
       },
     },
+    {
+      name: "caption",
+      title: "Caption",
+      type: "string",
+      description: "This is shown next to the image on the frontend",
+      options: {
+        isHighlighted: true,
+      },
+    },
   ],
 };
