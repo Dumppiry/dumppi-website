@@ -22,6 +22,8 @@ export default {
       name: "fieldId",
       title: "ID",
       type: "slug",
+      description:
+        "Unique identifier for a field within the form. Is shown on the attendee exports, so make it human understandable.",
       options: {
         source: (doc, options) => {
           const { label } = options.parent;
