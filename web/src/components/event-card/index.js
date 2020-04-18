@@ -7,7 +7,7 @@ import styled from "styled-components"
 import { sanity } from "../../../client-config"
 
 import { useCurrentPage } from "../../hooks/current-page"
-import { InternalLink } from "../link"
+import { InternalLink as Link } from "../link"
 import EventStatus from "./event-status"
 
 const EVENT_SETTINGS_QUERY = graphql`
@@ -58,7 +58,7 @@ const EventCard = ({
   }
   const dateTimeFormat = new Intl.DateTimeFormat(locale, options)
   const localizeDate = dateString => dateTimeFormat.format(new Date(dateString))
-  console.log(settings.readMoreText)
+
   return (
     <S.Container id={_id}>
       <S.EventImage fluid={fluidProps} />
@@ -91,7 +91,7 @@ export default EventCard
 
 const S = {}
 
-S.Container = styled(InternalLink)`
+S.Container = styled(Link)`
   height: 410px;
   width: 100%;
   border-radius: 10px;

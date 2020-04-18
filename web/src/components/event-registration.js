@@ -23,6 +23,7 @@ const REGISTRATION_QUERY = graphql`
       successText: _rawRegistrationSuccessText
       errorText: _rawRegistrationErrorText
       noAttendeesText: _rawRegistrationNoAttendeesText
+      nextInLineText: _rawRegistrationNextInLineText
     }
   }
 `
@@ -117,7 +118,25 @@ const EventRegistration = ({
       <S.AttendeesContainer>
         <h3>{settings.attendeesTitle[locale]}</h3>
         {submissions.length > 0 ? (
-          <RegistrationSubmissions submissions={submissions} />
+          <>
+            {submissions.length > maxCapacity ? (
+              <>
+                <RegistrationSubmissions
+                  submissions={submissions.slice(0, maxCapacity)}
+                />
+                <br />
+                <h3>{settings.nextInLineText[locale]}</h3>
+                <RegistrationSubmissions
+                  submissions={submissions.slice(
+                    maxCapacity,
+                    submissions.length
+                  )}
+                />
+              </>
+            ) : (
+              <RegistrationSubmissions submissions={submissions} />
+            )}
+          </>
         ) : (
           <p>{settings.noAttendeesText[locale]}</p>
         )}

@@ -41,23 +41,30 @@ const EventStatus = ({
   })
 
   const showSubmissions =
-    hasRegistration && registrationOpen && registrationMaxCapacity
+    hasRegistration &&
+    registrationOpen &&
+    registrationMaxCapacity &&
+    _.isArray(submissions)
 
   const returnStatus = () => {
     if (price === 0 || !hasRegistration) return "free"
     if (showSubmissions && submissions.length < registrationMaxCapacity)
       return "open"
-    if (showSubmissions && submissions.length >= registrationMaxCapacity)
+    if (
+      registrationOpen &&
+      showSubmissions &&
+      submissions.length >= registrationMaxCapacity
+    )
       return "full"
-    if (hasRegistration && new Date(registrationStartDate) < new Date())
+    if (hasRegistration && new Date(registrationStartDate) > new Date())
       return "toBeOpen"
-    if (hasRegistration && new Date(registrationEndDate) > new Date())
+    if (hasRegistration && new Date(registrationEndDate) < new Date())
       return "closed"
-    return undefined
+    return "default"
   }
-  console.log(registrationStartDate)
+
   const status = returnStatus()
-  console.log(status)
+
   return (
     <S.StatusBar status={status}>
       <div>
@@ -115,6 +122,10 @@ const statusDisplayTexts = {
   closed: {
     fi: "Ilmo on loppunut",
     en: "Registration has ended",
+  },
+  default: {
+    fi: "Hetkinen...",
+    en: "Loading...",
   },
 }
 

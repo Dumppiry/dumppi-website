@@ -115,7 +115,7 @@ const RegistrationForm = ({
     setLoading(true)
     setSuccess(false)
     setErrors(false)
-    console.log("SUBMITTED")
+
     try {
       await axios.post("/.netlify/functions/send-registration-form", {
         eventId,

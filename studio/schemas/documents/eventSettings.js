@@ -118,6 +118,13 @@ export default {
       validation: (Rule) => Rule.required(),
     },
     {
+      name: "registrationNextInLineText",
+      title: "Registration next in line text",
+      type: "localeString",
+      fieldset: "registration",
+      validation: (Rule) => Rule.required(),
+    },
+    {
       name: "registrationNoAttendeesText",
       title: "No attendees text",
       type: "localeString",
