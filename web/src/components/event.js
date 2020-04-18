@@ -46,6 +46,11 @@ const Event = props => {
   const { locale } = useCurrentPage()
   const { translations } = useStaticQuery(TRANSLATIONS_QUERY)
 
+  const isOneDayEvent = (start, end) =>
+    start.getFullYear() === end.getFullYear() &&
+    start.getMonth() === end.getMonth() &&
+    start.getDate() === end.getDate()
+
   return (
     <S.Event>
       {image?.asset && <S.Img fluid={image?.asset.fluid} />}
@@ -53,22 +58,53 @@ const Event = props => {
       <S.Meta>
         <S.Card>
           <S.CardTitle>{translations.time[locale]}</S.CardTitle>
-          <S.CardSubtitle>
-            {new Date(startDate).toLocaleDateString(locale, {
-              weekday: "long",
-              day: "2-digit",
-              month: "2-digit",
-            })}
-          </S.CardSubtitle>
-          <S.CardText>
-            {new Date(startDate).toLocaleTimeString(
-              locale === "fi" ? [] : locale, //sorry, but this works
-              {
-                hour: "2-digit",
-                minute: "2-digit",
-              }
-            )}
-          </S.CardText>
+          {isOneDayEvent(new Date(startDate), new Date(endDate)) ? (
+            <>
+              <S.CardSubtitle>
+                {new Date(startDate).toLocaleDateString(locale, {
+                  weekday: "long",
+                  day: "2-digit",
+                  month: "2-digit",
+                })}
+              </S.CardSubtitle>
+              <S.CardText>
+                {new Date(startDate).toLocaleTimeString(
+                  locale === "fi" ? [] : locale, //sorry, but this works
+                  {
+                    hour: "2-digit",
+                    minute: "2-digit",
+                  }
+                )}{" "}
+                -{" "}
+                {new Date(endDate).toLocaleTimeString(
+                  locale === "fi" ? [] : locale, //sorry, but this works
+                  {
+                    hour: "2-digit",
+                    minute: "2-digit",
+                  }
+                )}
+              </S.CardText>
+            </>
+          ) : (
+            <>
+              <S.CardSubtitle>
+                {new Date(startDate).toLocaleString(locale, {
+                  day: "numeric",
+                  month: "numeric",
+                  hour: "numeric",
+                  minute: "numeric",
+                })}
+              </S.CardSubtitle>
+              <S.CardText>
+                {new Date(endDate).toLocaleString(locale, {
+                  day: "numeric",
+                  month: "numeric",
+                  hour: "numeric",
+                  minute: "numeric",
+                })}
+              </S.CardText>
+            </>
+          )}
         </S.Card>
         {location && (
           <S.Card>
