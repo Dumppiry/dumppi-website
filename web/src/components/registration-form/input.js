@@ -52,7 +52,12 @@ const Input = (props) => {
     case "radio":
       return (
         <fieldset
-          style={{ display: "flex", flexDirection: "column", border: "none" }}
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            border: "none",
+            margin: 0,
+          }}
         >
           {inputValues.map((inputValue, index) => (
             <div
