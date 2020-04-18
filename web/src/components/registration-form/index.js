@@ -2,78 +2,9 @@ import React, { useState } from "react"
 import axios from "axios"
 import styled from "styled-components"
 
-import useForm from "../hooks/useForm"
-import Button from "./button"
-
-const Input = ({ id, type, inputValues, required, value, handleChange }) => {
-  switch (type) {
-    case "input":
-      return (
-        <input
-          name={id}
-          value={value}
-          onChange={handleChange}
-          required={required}
-          maxLength="200"
-        />
-      )
-
-    case "textarea":
-      return (
-        <textarea
-          name={id}
-          value={value}
-          onChange={handleChange}
-          required={required}
-          maxLength="800"
-        />
-      )
-
-    case "checkbox":
-      return (
-        <input
-          type="checkbox"
-          name={id}
-          value={value}
-          onChange={handleChange}
-          required={required}
-        />
-      )
-
-    case "radio":
-      return (
-        <fieldset
-          style={{ display: "flex", flexDirection: "column", border: "none" }}
-        >
-          {inputValues.map(inputValue => (
-            <div
-              style={{
-                display: "flex",
-                marginBottom: "0.5em",
-              }}
-            >
-              <input
-                type="radio"
-                id={inputValue}
-                checked={inputValue === value}
-                value={inputValue}
-                onChange={handleChange}
-                name={id}
-                required={required}
-                style={{ marginRight: "0.5em" }}
-              />
-              <label htmlFor={inputValue} name={id}>
-                {inputValue}
-              </label>
-            </div>
-          ))}
-        </fieldset>
-      )
-
-    default:
-      return null
-  }
-}
+import useForm from "../../hooks/useForm"
+import Button from "../button"
+import Input from "./input"
 
 const RegistrationForm = ({
   eventId,
@@ -87,11 +18,11 @@ const RegistrationForm = ({
   const [success, setSuccess] = useState(false)
   const [errors, setErrors] = useState(false)
 
-  const dFields = defaultFields.map(df => ({ _key: df._key, ...df.field }))
+  const dFields = defaultFields.map((df) => ({ _key: df._key, ...df.field }))
 
   const initialState = {}
   const allFields = [...dFields, ...fields]
-  allFields.forEach(field => {
+  allFields.forEach((field) => {
     let value
 
     switch (field.inputType) {
@@ -140,7 +71,7 @@ const RegistrationForm = ({
 
   return (
     <S.Form onSubmit={handleSubmit}>
-      {allFields.map(field => (
+      {allFields.map((field) => (
         <S.Field key={field._key}>
           <S.Label>
             {field.label}

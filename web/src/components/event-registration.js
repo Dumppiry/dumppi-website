@@ -70,7 +70,7 @@ const EventRegistration = ({
       })
   }
 
-  const localizeDate = dateString =>
+  const localizeDate = (dateString) =>
     new Date(dateString).toLocaleString(locale, {
       weekday: "long",
       day: "2-digit",
@@ -217,13 +217,13 @@ S.Bar = styled.div`
     content: "";
     position: absolute;
     max-width: 100%;
-    width: ${props => props.percentage}%;
+    width: ${(props) => props.percentage}%;
     height: 1.25rem;
     border-radius: 6px;
     transition: all 500ms ease-in-out;
 
     --bg-color: #54c754;
-    ${props => {
+    ${(props) => {
       if (props.percentage <= 75)
         return css`
           --bg-color: #54c754;
