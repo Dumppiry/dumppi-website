@@ -38,7 +38,7 @@ export const InternalLink = ({ id, locale, children, ...rest }) => {
 
   // Find the path to the wanted page with the id and locale
   const path = data.allSitePage.nodes.find(
-    node =>
+    (node) =>
       node.context?.id === id &&
       node.context?.locale === (locale ?? currentLocale)
   )?.path
@@ -59,6 +59,7 @@ const S = {}
 
 const LinkStyles = css`
   color: #af271d;
+  transition: all 120ms ease-in-out;
 `
 
 S.ExtLink = styled.a`

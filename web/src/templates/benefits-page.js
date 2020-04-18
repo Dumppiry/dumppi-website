@@ -48,6 +48,7 @@ export const query = graphql`
           _id
           name
           address
+          link
           image {
             asset {
               fluid(maxWidth: 400) {

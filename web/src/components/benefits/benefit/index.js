@@ -4,6 +4,7 @@ import Img from "gatsby-image/withIEPolyfill"
 import _ from "lodash"
 
 import PortableText from "../../block-content"
+import { ExternalLink } from "../../link"
 
 const Benefit = ({ benefit, ...rest }) => {
   const { company, description } = benefit
@@ -11,13 +12,17 @@ const Benefit = ({ benefit, ...rest }) => {
   return (
     <S.Container {...rest}>
       <S.ImageContainer>
-        <Img fluid={company.image.asset.fluid} objectFit="contain" />
+        <S.Link href={company.link}>
+          <Img fluid={company.image.asset.fluid} objectFit="contain" />
+        </S.Link>
       </S.ImageContainer>
       <S.InfoContainer>
-        <S.CompanyName>{company.name}</S.CompanyName>
-        <S.Address>
-          {_.isEmpty(company.Address) ? "" : company.address}
-        </S.Address>
+        <S.CompanyName>
+          <S.Link href={company.link}>{company.name}</S.Link>
+        </S.CompanyName>
+        {!_.isEmpty(company.address) && (
+          <S.Address>{company.address}</S.Address>
+        )}
         <PortableText blocks={description} />
       </S.InfoContainer>
     </S.Container>
@@ -60,4 +65,13 @@ S.Address = styled.span`
   letter-spacing: -0.35px;
   line-height: 24px;
   margin-bottom: 1rem;
+`
+
+S.Link = styled(ExternalLink)`
+  text-decoration: none;
+  color: inherit;
+
+  :hover {
+    color: #af271d;
+  }
 `
