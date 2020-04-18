@@ -82,6 +82,7 @@ const RegistrationForm = ({
             fieldLabel={field.label}
             type={field.inputType}
             name={field.label}
+            placeholder={field.placeholder}
             inputValues={field.inputValues}
             required={field.required}
             value={values[field.fieldId.current]}
@@ -112,6 +113,10 @@ S.Field = styled.div`
 
 S.Label = styled.label`
   margin-bottom: 0.625rem;
+  color: #292929;
+  font-weight: 500;
+  letter-spacing: -0.35px;
+  line-height: 24px;
 `
 
 S.Success = styled.p`
