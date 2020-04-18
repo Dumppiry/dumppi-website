@@ -44,7 +44,6 @@ const Event = props => {
   } = props
 
   const { locale } = useCurrentPage()
-
   const { translations } = useStaticQuery(TRANSLATIONS_QUERY)
 
   return (
@@ -62,10 +61,13 @@ const Event = props => {
             })}
           </S.CardSubtitle>
           <S.CardText>
-            {new Date(endDate).toLocaleTimeString(locale, {
-              hour: "2-digit",
-              minute: "2-digit",
-            })}
+            {new Date(startDate).toLocaleTimeString(
+              locale === "fi" ? [] : locale, //sorry, but this works
+              {
+                hour: "2-digit",
+                minute: "2-digit",
+              }
+            )}
           </S.CardText>
         </S.Card>
         {location && (

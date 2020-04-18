@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react"
 import { graphql, useStaticQuery } from "gatsby"
 import axios from "axios"
 import styled, { css } from "styled-components"
+import _ from "lodash"
 
 import RegistrationForm from "./registration-form"
 import RegistrationSubmissions from "./registration-submissions"
@@ -43,7 +44,7 @@ const EventRegistration = ({
     axios
       .get(`/.netlify/functions/get-event-attendees?eventId=${eventId}`)
       .then(({ data }) => {
-        setSubmissions(data)
+        if (_.isArray(data)) setSubmissions(data)
       })
 
     const interval = setInterval(() => {
@@ -64,7 +65,7 @@ const EventRegistration = ({
     axios
       .get(`/.netlify/functions/get-event-attendees?eventId=${eventId}`)
       .then(({ data }) => {
-        setSubmissions(data)
+        if (_.isArray(data)) setSubmissions(data)
       })
   }
 

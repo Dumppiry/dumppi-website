@@ -24,6 +24,7 @@ S.List = styled.ul`
   grid-gap: 1rem;
   list-style: none;
   margin: 0;
+  width: 100%;
 
   @media (min-width: 768px) {
     --grid-columns: 4;

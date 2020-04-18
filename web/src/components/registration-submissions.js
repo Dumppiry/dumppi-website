@@ -4,14 +4,15 @@ import styled from "styled-components"
 const RegistrationSubmissions = ({ submissions }) => {
   return (
     <S.List>
-      {submissions.map((fields, index) => (
-        <S.Item key={index}>
-          <S.Content>
-            <S.Title>{fields[0]}</S.Title>
-            <S.Subtitle>{fields[1]}</S.Subtitle>
-          </S.Content>
-        </S.Item>
-      ))}
+      {submissions &&
+        submissions.map((fields, index) => (
+          <S.Item key={index}>
+            <S.Content>
+              <S.Title>{fields[0]}</S.Title>
+              <S.Subtitle>{fields[1]}</S.Subtitle>
+            </S.Content>
+          </S.Item>
+        ))}
     </S.List>
   )
 }
