@@ -1,5 +1,3 @@
-require("dotenv").config()
-
 const sanityClient = require("@sanity/client")
 
 const { sanity } = require("../client-config")
@@ -22,7 +20,7 @@ exports.handler = async (event, context) => {
 
     const submissions =
       (results.registrationSubmissions &&
-        results.registrationSubmissions.map(rs => {
+        results.registrationSubmissions.map((rs) => {
           const submission = JSON.parse(rs)
           return [submission.nickname || submission.name, submission.comment]
         })) ||

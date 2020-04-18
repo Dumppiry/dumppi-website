@@ -1,7 +1,5 @@
 // Load variables from `.env` as soon as possible
-require("dotenv").config({
-  path: `.env.${process.env.NODE_ENV || "development"}`,
-})
+require("dotenv").config()
 
 const clientConfig = require("./client-config")
 
