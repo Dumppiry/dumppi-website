@@ -27,7 +27,7 @@ const RegistrationForm = ({
 
     switch (field.inputType) {
       case "checkbox":
-        value = false
+        value = true
         break
 
       case "radio":

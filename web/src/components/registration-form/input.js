@@ -40,7 +40,7 @@ const Input = (props) => {
 
     case "checkbox":
       return (
-        <input
+        <S.Checkbox
           type="checkbox"
           name={id}
           value={value}
@@ -54,8 +54,9 @@ const Input = (props) => {
         <fieldset
           style={{ display: "flex", flexDirection: "column", border: "none" }}
         >
-          {inputValues.map((inputValue) => (
+          {inputValues.map((inputValue, index) => (
             <div
+              key={index}
               style={{
                 display: "flex",
                 marginBottom: "0.5em",
@@ -122,6 +123,42 @@ S.TextInput = styled.input`
 S.TextArea = styled.textarea`
   ${inputStyles}
   resize: none;
+`
+
+S.Checkbox = styled.input`
+  appearance: none;
+  border: none;
+  background-image: none;
+  box-shadow: none;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  --size: 1.75em;
+  height: var(--size);
+  width: var(--size);
+
+  border-radius: 5px;
+  background-color: #f0f0f0;
+
+  transition: all 200ms ease-in-out;
+
+  :checked {
+    background-color: #af271d;
+
+    ::after {
+      content: "";
+      display: block;
+      width: 50%;
+      height: 35%;
+
+      --border-width: calc(var(--size) * 0.075);
+      border-left: var(--border-width) solid white;
+      border-bottom: var(--border-width) solid white;
+      transform: rotate(-45deg) translate(15%, -25%);
+    }
+  }
 `
 
 S.Radio = styled.input`
