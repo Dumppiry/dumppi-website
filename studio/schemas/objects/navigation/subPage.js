@@ -45,6 +45,13 @@ export default {
   preview: {
     select: {
       title: "page.title.fi",
+      showInSubNav: "showInSubNavigation",
+    },
+    prepare({ title, showInSubNav }) {
+      return {
+        title,
+        subtitle: showInSubNav ? "In subnav" : "Not in subnav",
+      };
     },
   },
 };

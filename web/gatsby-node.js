@@ -73,6 +73,7 @@ const createPages = async ({ graphql, actions, reporter }) => {
             ...EventsPageFragment
           }
           subPages {
+            showInSubNavigation
             page {
               __typename
               ...PageFragment
@@ -140,11 +141,17 @@ const createPages = async ({ graphql, actions, reporter }) => {
           break
       }
 
+      const subNavigationItems = node.subPages
+        .filter((sp) => sp.showInSubNavigation)
+        .map((sp) => sp.page._id)
+
       const page = {
         path: `/${topPath}`,
         component,
         context: {
           id: node.page._id,
+          subNavigationItems,
+          parentId: null,
         },
       }
       createLocalePage(page, createPage, locale, reporter)
@@ -165,6 +172,8 @@ const createPages = async ({ graphql, actions, reporter }) => {
           component,
           context: {
             id: sp.page._id,
+            parentId: node.page._id,
+            subNavigationItems,
           },
         }
         createLocalePage(page, createPage, locale, reporter)

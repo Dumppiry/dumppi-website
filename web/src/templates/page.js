@@ -10,6 +10,7 @@ import SectionBlockContent from "../sections/section-block-content"
 
 const PageTemplate = ({ data, pageContext, ...rest }) => {
   const { _id, title, content } = data.page
+  const { parent, subNavItems } = data
   const { setLocale, setCurrentPageId } = useCurrentPage()
 
   useEffect(() => {
@@ -18,7 +19,7 @@ const PageTemplate = ({ data, pageContext, ...rest }) => {
   })
 
   return (
-    <Layout pageTitle={title}>
+    <Layout pageTitle={parent.title ?? title} subNavItems={subNavItems}>
       <SEO title={title} />
       <SectionBlockContent blocks={content} />
     </Layout>
@@ -28,7 +29,11 @@ const PageTemplate = ({ data, pageContext, ...rest }) => {
 export default localize(PageTemplate)
 
 export const query = graphql`
-  query PageTemplateQuery($id: String!) {
+  query PageTemplateQuery(
+    $id: String!
+    $parentId: String
+    $subNavigationItems: [String!]
+  ) {
     page: sanityPage(_id: { eq: $id }) {
       _id
       _type
@@ -38,6 +43,16 @@ export const query = graphql`
         fi
       }
       content: _rawContent(resolveReferences: { maxDepth: 8 })
+    }
+    subNavItems: allSanityPage(filter: { _id: { in: $subNavigationItems } }) {
+      nodes {
+        _id
+        title: _rawTitle
+      }
+    }
+    parent: sanityPage(_id: { eq: $parentId }) {
+      _id
+      title: _rawTitle
     }
   }
 `
