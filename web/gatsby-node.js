@@ -45,7 +45,7 @@ const createFrontPage = async ({ graphql, actions, reporter }) => {
   if (result.errors) throw result.errors
 
   const locales = ["fi", ...extraLanguages]
-  locales.map(locale => {
+  locales.map((locale) => {
     const page = {
       path: `/`,
       component: require.resolve("./src/templates/front-page.js"),
@@ -73,10 +73,12 @@ const createPages = async ({ graphql, actions, reporter }) => {
             ...EventsPageFragment
           }
           subPages {
-            __typename
-            ...PageFragment
-            ...BenefitsPageFragment
-            ...EventsPageFragment
+            page {
+              __typename
+              ...PageFragment
+              ...BenefitsPageFragment
+              ...EventsPageFragment
+            }
           }
         }
       }
@@ -124,8 +126,8 @@ const createPages = async ({ graphql, actions, reporter }) => {
   const topLevelItems = (result.data.nav || {}).topLevelItems || []
 
   const locales = ["fi", ...extraLanguages]
-  locales.map(locale => {
-    topLevelItems.map(node => {
+  locales.map((locale) => {
+    topLevelItems.map((node) => {
       const topPath = node.page.slug[locale].current
 
       let component = require.resolve("./src/templates/page.js")
@@ -147,9 +149,9 @@ const createPages = async ({ graphql, actions, reporter }) => {
       }
       createLocalePage(page, createPage, locale, reporter)
 
-      node.subPages.map(sp => {
+      node.subPages.map((sp) => {
         let component = require.resolve("./src/templates/page.js")
-        switch (sp.__typename) {
+        switch (sp.page.__typename) {
           case "SanityBenefitsPage":
             component = require.resolve("./src/templates/benefits-page.js")
             break
@@ -159,10 +161,10 @@ const createPages = async ({ graphql, actions, reporter }) => {
         }
 
         const page = {
-          path: `/${topPath}/${sp.slug[locale].current}`,
+          path: `/${topPath}/${sp.page.slug[locale].current}`,
           component,
           context: {
-            id: sp._id,
+            id: sp.page._id,
           },
         }
         createLocalePage(page, createPage, locale, reporter)
@@ -208,7 +210,7 @@ const createEventPages = async ({ graphql, actions, reporter }) => {
   const events = (result.data.allSanityEvent || {}).nodes || []
 
   const locales = ["fi", ...extraLanguages]
-  locales.map(locale => {
+  locales.map((locale) => {
     const basePath = result.data.sanityEventsPage.slug[locale].current
     const page = {
       path: `/${basePath}`,
@@ -219,7 +221,7 @@ const createEventPages = async ({ graphql, actions, reporter }) => {
     }
     createLocalePage(page, createPage, locale, reporter)
 
-    events.map(node => {
+    events.map((node) => {
       const path = node.slug[locale].current
       const page = {
         path: `/${basePath}/${path}`,

@@ -22,9 +22,11 @@ export const FullPageNavQuery = graphql`
           ...EventsPageFragment
         }
         subPages {
-          ...PageFragment
-          ...BenefitsPageFragment
-          ...EventsPageFragment
+          page {
+            ...PageFragment
+            ...BenefitsPageFragment
+            ...EventsPageFragment
+          }
         }
       }
     }
@@ -63,7 +65,7 @@ const MenuModal = () => {
   ) : null
 }
 
-const FullPageNav = props => {
+const FullPageNav = (props) => {
   const portalRoot =
     typeof document !== `undefined`
       ? document.getElementById("fullpage-menu")

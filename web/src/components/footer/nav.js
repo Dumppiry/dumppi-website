@@ -20,14 +20,14 @@ const Nav = ({ items, ...rest }) => {
       columnClassName="masonry-grid_column"
       {...rest}
     >
-      {items.map(item => (
+      {items.map((item) => (
         <S.TopLevelItem key={item._key}>
           <S.Link id={item.page._id}>{item.page.title[locale]}</S.Link>
           {item.subPages.length > 0 && (
             <S.SubItems>
-              {item.subPages.map(sp => (
-                <S.SubLevelItem key={sp._id}>
-                  <S.Link id={sp._id}>{sp.title[locale]}</S.Link>
+              {item.subPages.map((sp) => (
+                <S.SubLevelItem key={sp.page._id}>
+                  <S.Link id={sp.page._id}>{sp.page.title[locale]}</S.Link>
                 </S.SubLevelItem>
               ))}
             </S.SubItems>

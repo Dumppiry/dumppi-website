@@ -10,14 +10,14 @@ export default {
       name: "topLevelItems",
       title: "Top-level Items",
       type: "array",
-      of: [{ type: "navigationItem" }]
-    }
+      of: [{ type: "navigationItem" }],
+    },
   ],
   preview: {
     prepare() {
       return {
-        title: "Full Navigation"
+        title: "Full Navigation",
       };
-    }
-  }
+    },
+  },
 };
