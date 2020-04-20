@@ -6,7 +6,7 @@ import JobCard from "./job-card"
 
 const JOBS_QUERY = graphql`
   query JobsQuery {
-    allJobs: allSanityJob {
+    allJobs: allSanityJob(sort: { fields: _updatedAt, order: DESC }) {
       nodes {
         ...JobFields
       }
@@ -54,18 +54,21 @@ const JOBS_QUERY = graphql`
         }
       }
     }
+    expireDate
   }
 `
 
 const JobsList = ({ type, ...rest }) => {
   const { allJobs, recentJobs } = useStaticQuery(JOBS_QUERY)
-  console.log(type)
   const jobs = type.includes("Recent") ? recentJobs : allJobs
+
   return (
     <S.List {...rest}>
-      {jobs.nodes.map(job => (
-        <JobCard key={job._id} {...job} />
-      ))}
+      {jobs.nodes
+        .filter((job) => new Date() < new Date(job.expireDate))
+        .map((job) => (
+          <JobCard key={job._id} {...job} />
+        ))}
     </S.List>
   )
 }
