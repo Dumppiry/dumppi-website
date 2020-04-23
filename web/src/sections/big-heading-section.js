@@ -1,16 +1,24 @@
 import React from "react"
-import styled from "styled-components"
+import styled, { css } from "styled-components"
 
 import ButtonLink from "../components/button-link"
 import PortableText from "../components/portable-text/heading"
 
+import { useCurrentPage } from "../hooks/current-page"
+
 const BigHeadingSection = ({ heading, buttons }) => {
+  const { currentPageId } = useCurrentPage()
+  const isFrontPage = currentPageId === "frontPage"
+
   return (
-    <S.Section>
-      <S.Content>
+    <S.Section isFrontPage={isFrontPage}>
+      <S.Content isFrontPage={isFrontPage}>
         <PortableText blocks={heading} />
         {buttons?.length > 0 && (
-          <S.ButtonContainer oneChild={buttons.length === 1}>
+          <S.ButtonContainer
+            isFrontPage={isFrontPage}
+            oneChild={buttons.length === 1}
+          >
             {buttons.map((b, index) => (
               <S.ButtonLink
                 key={b._key}
@@ -32,10 +40,10 @@ const S = {}
 
 S.Section = styled.section`
   margin: 5rem 0;
-  text-align: center;
+  text-align: left;
   border-radius: 1rem;
-  padding: 2rem;
   background-color: white;
+  padding: 2rem 0;
 
   h1 {
     margin: 0 0 2.5rem 0;
@@ -48,17 +56,29 @@ S.Section = styled.section`
     color: #949494;
   }
 
-  @media (min-width: 768px) {
-    padding: 5rem;
-  }
+  ${(props) =>
+    props.isFrontPage &&
+    css`
+      text-align: center;
+      padding: 2rem;
+
+      @media (min-width: 768px) {
+        padding: 5rem;
+      }
+    `}
 `
 
 S.Content = styled.div`
   max-width: 38rem;
-  margin: auto;
+
+  ${(props) =>
+    props.isFrontPage &&
+    css`
+      margin: auto;
+    `}
 `
 
-S.ButtonContainer = styled.div`
+const BCFrontPageStyles = css`
   --grid-columns: 1;
   margin: auto;
   display: grid;
@@ -71,6 +91,18 @@ S.ButtonContainer = styled.div`
     align-items: stretch;
     justify-content: stretch;
   }
+`
+
+const BCNormalStyles = css`
+  display: flex;
+
+  & > * {
+    margin-right: 1.25rem;
+  }
+`
+
+S.ButtonContainer = styled.div`
+  ${(props) => (props.isFrontPage ? BCFrontPageStyles : BCNormalStyles)}
 `
 
 S.ButtonLink = styled(ButtonLink)`
