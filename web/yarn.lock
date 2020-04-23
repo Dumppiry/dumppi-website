@@ -8080,6 +8080,16 @@ iconv-lite@0.4.24, iconv-lite@^0.4.17, iconv-lite@^0.4.24, iconv-lite@~0.4.13:
   dependencies:
     safer-buffer ">= 2.1.2 < 3"
 
+ics@^2.19.0:
+  version "2.19.0"
+  resolved "https://registry.yarnpkg.com/ics/-/ics-2.19.0.tgz#d32718ce03f4fae244ce51bfe5ca8848baf6300a"
+  integrity sha512-5zNEg0CXXpTD+lTguIwQP9FQSLhH4GPprqUuj0/Cql9hTBIdj7md/azNiPbefppjpkpJ9Dp7y0GgCgueD2wu3w==
+  dependencies:
+    "@hapi/joi" "^15.1.1"
+    lodash "^4.17.15"
+    moment "^2.24.0"
+    uuid "^3.3.3"
+
 icss-replace-symbols@^1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/icss-replace-symbols/-/icss-replace-symbols-1.1.0.tgz#06ea6f83679a7749e386cfe1fe812ae5db223ded"
