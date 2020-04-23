@@ -3,11 +3,12 @@ import PropTypes from "prop-types"
 import styled from "styled-components"
 
 import Navigation from "./navigation"
+import SubNav from "./navigation/sub-nav"
 import Footer from "./footer"
 
 import { useNavigation } from "../hooks/navigation"
 
-const Layout = ({ children, pageTitle }) => {
+const Layout = ({ children, page, subNavItems }) => {
   const { hideNav } = useNavigation()
 
   useEffect(() => {
@@ -16,7 +17,8 @@ const Layout = ({ children, pageTitle }) => {
 
   return (
     <S.Layout>
-      <Navigation pageTitle={pageTitle} />
+      <Navigation page={page} />
+      <SubNav items={subNavItems} />
       <S.Content>{children}</S.Content>
       <Footer />
     </S.Layout>

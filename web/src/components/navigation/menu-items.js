@@ -27,17 +27,17 @@ const MenuItems = ({ items }) => {
 
   return (
     <S.Items variants={listVariants} initial="hidden" animate="show">
-      {items.map(item => (
+      {items.map((item) => (
         <S.TopLevelItem key={item._key} variants={itemVariants}>
           <S.Link id={item.page._id} activeClassName="active">
             {item.page.title[locale]}
           </S.Link>
           {item.subPages.length > 0 && (
             <S.SubItems>
-              {item.subPages.map(sp => (
+              {item.subPages.map((sp) => (
                 <S.SubLevelItem>
-                  <S.Link id={sp._id} activeClassName="active">
-                    {sp.title[locale]}
+                  <S.Link id={sp.page._id} activeClassName="active">
+                    {sp.page.title[locale]}
                   </S.Link>
                 </S.SubLevelItem>
               ))}

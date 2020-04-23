@@ -23,6 +23,7 @@ function localize(Component) {
         <Component
           {...this.props}
           data={this.getLocalizedContent(this.props.data)}
+          pageContext={this.getLocalizedContent(this.props.pageContext)}
         />
       )
     }

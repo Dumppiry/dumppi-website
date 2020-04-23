@@ -4,13 +4,14 @@ import styled from "styled-components"
 
 import NavBar from "./nav-bar"
 import FullPageNav from "./full-page-nav"
+import { InternalLink } from "../link"
 
-const Navigation = ({ pageTitle }) => {
+const Navigation = ({ page }) => {
   return (
     <S.Navigation>
       <NavBar />
       <AnimatePresence>
-        {pageTitle && (
+        {page?.title && (
           <S.Heading
             key="content"
             initial="collapsed"
@@ -21,7 +22,9 @@ const Navigation = ({ pageTitle }) => {
               collapsed: { opacity: 0, height: 0 },
             }}
           >
-            <h1>{pageTitle}</h1>
+            <h1>
+              <InternalLink id={page._id}>{page.title}</InternalLink>
+            </h1>
           </S.Heading>
         )}
       </AnimatePresence>
@@ -49,5 +52,10 @@ S.Heading = styled(motion.div)`
 
   h1 {
     font-size: 3.75rem;
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
   }
 `

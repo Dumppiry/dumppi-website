@@ -58,12 +58,14 @@ import eventLink from "./objects/event/link";
 import externalLink from "./objects/links/externalLink";
 import internalLink from "./objects/links/internalLink";
 import link from "./objects/links/link";
+// Navigation
+import navigationItem from "./objects/navigation/navigationItem";
+import subPage from "./objects/navigation/subPage";
 // Other
 import defaultField from "./objects/defaultField";
 import field from "./objects/field";
 import keyFigure from "./objects/keyFigure";
 import mainImage from "./objects/mainImage";
-import navigationItem from "./objects/navigationItem";
 import product from "./objects/product";
 import youtube from "./objects/youtube";
 
@@ -113,9 +115,10 @@ export default createSchema({
     externalLink,
     internalLink,
     link,
+    navigationItem,
+    subPage,
     defaultField,
     field,
-    navigationItem,
     keyFigure,
     mainImage,
     product,

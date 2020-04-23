@@ -32,9 +32,11 @@ const Footer = () => {
             ...EventsPageFragment
           }
           subPages {
-            ...PageFragment
-            ...BenefitsPageFragment
-            ...EventsPageFragment
+            page {
+              ...PageFragment
+              ...BenefitsPageFragment
+              ...EventsPageFragment
+            }
           }
         }
       }
