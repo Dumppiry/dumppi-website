@@ -145,13 +145,18 @@ const createPages = async ({ graphql, actions, reporter }) => {
     topLevelItems.map((node) => {
       const topPath = node.page.slug[locale].current
 
+      const subNavigationItems =
+        node.page.__typename === "SanityEventsPage"
+          ? [{ page: node.page }, ...node.subPages]
+          : node.subPages
+
       const page = {
         path: `/${topPath}`,
         component: resolvePageTemplate(node.page.__typename),
         context: {
           id: node.page._id,
-          parentId: null,
-          subNavigationItems: node.subPages,
+          parent: null,
+          subNavigationItems,
         },
       }
       createLocalePage(page, createPage, locale, reporter)
@@ -162,8 +167,8 @@ const createPages = async ({ graphql, actions, reporter }) => {
           component: resolvePageTemplate(sp.page.__typename),
           context: {
             id: sp.page._id,
-            parentId: node.page._id,
-            subNavigationItems: node.subPages,
+            parent: node.page,
+            subNavigationItems,
           },
         }
         createLocalePage(page, createPage, locale, reporter)

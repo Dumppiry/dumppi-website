@@ -10,9 +10,9 @@ import { useCurrentPage } from "../hooks/current-page"
 import SectionBlockContent from "../sections/section-block-content"
 
 const PageTemplate = ({ data, pageContext, ...rest }) => {
-  const { parent, page } = data
+  const { page } = data
   const { _id, title, content } = page
-  const { subNavigationItems } = pageContext
+  const { parent, subNavigationItems } = pageContext
   const { setLocale, setCurrentPageId } = useCurrentPage()
 
   useEffect(() => {
@@ -34,7 +34,7 @@ const PageTemplate = ({ data, pageContext, ...rest }) => {
 export default localize(PageTemplate)
 
 export const query = graphql`
-  query PageTemplateQuery($id: String!, $parentId: String) {
+  query PageTemplateQuery($id: String!) {
     page: sanityPage(_id: { eq: $id }) {
       _id
       _type
@@ -44,10 +44,6 @@ export const query = graphql`
         fi
       }
       content: _rawContent(resolveReferences: { maxDepth: 8 })
-    }
-    parent: sanityPage(_id: { eq: $parentId }) {
-      _id
-      title: _rawTitle
     }
   }
 `

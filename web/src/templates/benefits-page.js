@@ -10,8 +10,8 @@ import localize from "../hoc/localize"
 import { useCurrentPage } from "../hooks/current-page"
 
 const BenefitTemplate = ({ data, pageContext, ...rest }) => {
-  const { benefits, page, parent } = data
-  const { subNavigationItems } = pageContext
+  const { benefits, page } = data
+  const { parent, subNavigationItems } = pageContext
   const { setLocale, setCurrentPageId } = useCurrentPage()
 
   useEffect(() => {
@@ -33,12 +33,8 @@ const BenefitTemplate = ({ data, pageContext, ...rest }) => {
 export default localize(BenefitTemplate)
 
 export const query = graphql`
-  query BenefitsTemplateQuery($parentId: String) {
+  query BenefitsTemplateQuery {
     page: sanityBenefitsPage {
-      _id
-      title: _rawTitle
-    }
-    parent: sanityPage(_id: { eq: $parentId }) {
       _id
       title: _rawTitle
     }

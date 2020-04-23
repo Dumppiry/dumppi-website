@@ -10,8 +10,8 @@ import localize from "../hoc/localize"
 import { useCurrentPage } from "../hooks/current-page"
 
 const EventTemplate = ({ data, pageContext, ...rest }) => {
-  const { events, page, parent } = data
-  const { subNavigationItems } = pageContext
+  const { events, page } = data
+  const { parent, subNavigationItems } = pageContext
   const { setLocale, setCurrentPageId } = useCurrentPage()
 
   useEffect(() => {
@@ -33,12 +33,8 @@ const EventTemplate = ({ data, pageContext, ...rest }) => {
 export default localize(EventTemplate)
 
 export const query = graphql`
-  query EventsTemplateQuery($locale: String!, $parentId: String) {
+  query EventsTemplateQuery($locale: String!) {
     page: sanityEventsPage {
-      _id
-      title: _rawTitle
-    }
-    parent: sanityPage(_id: { eq: $parentId }) {
       _id
       title: _rawTitle
     }
