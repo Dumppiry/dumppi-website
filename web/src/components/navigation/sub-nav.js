@@ -2,14 +2,17 @@ import React from "react"
 import styled from "styled-components"
 
 import { InternalLink } from "../link"
+import { useCurrentPage } from "../../hooks/current-page"
 
 const SubNav = ({ items }) => {
-  return items?.nodes.length > 0 ? (
+  const { locale } = useCurrentPage()
+
+  return items?.length > 0 ? (
     <S.SubNav>
       <S.Content>
-        {items.nodes.map((item) => (
-          <S.Link id={item._id} activeClassName="active">
-            {item.title}
+        {items.map((item) => (
+          <S.Link id={item.page._id} activeClassName="active">
+            {item.page.title[locale]}
           </S.Link>
         ))}
       </S.Content>

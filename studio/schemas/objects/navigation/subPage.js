@@ -35,22 +35,14 @@ export default {
         });
       },
     },
-    {
-      name: "showInSubNavigation",
-      title: "Show in subnavigation",
-      type: "boolean",
-      validation: (Rule) => Rule.required(),
-    },
   ],
   preview: {
     select: {
       title: "page.title.fi",
-      showInSubNav: "showInSubNavigation",
     },
-    prepare({ title, showInSubNav }) {
+    prepare({ title }) {
       return {
         title,
-        subtitle: showInSubNav ? "In subnav" : "Not in subnav",
       };
     },
   },

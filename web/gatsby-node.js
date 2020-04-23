@@ -73,7 +73,6 @@ const createPages = async ({ graphql, actions, reporter }) => {
             ...EventsPageFragment
           }
           subPages {
-            showInSubNavigation
             page {
               __typename
               ...PageFragment
@@ -87,6 +86,11 @@ const createPages = async ({ graphql, actions, reporter }) => {
 
     fragment PageFragment on SanityPage {
       _id
+      title {
+        _type
+        fi
+        en
+      }
       slug {
         fi {
           current
@@ -99,6 +103,11 @@ const createPages = async ({ graphql, actions, reporter }) => {
 
     fragment BenefitsPageFragment on SanityBenefitsPage {
       _id
+      title {
+        _type
+        fi
+        en
+      }
       slug {
         fi {
           current
@@ -111,6 +120,11 @@ const createPages = async ({ graphql, actions, reporter }) => {
 
     fragment EventsPageFragment on SanityEventsPage {
       _id
+      title {
+        _type
+        fi
+        en
+      }
       slug {
         fi {
           current
@@ -141,17 +155,13 @@ const createPages = async ({ graphql, actions, reporter }) => {
           break
       }
 
-      const subNavigationItems = node.subPages
-        .filter((sp) => sp.showInSubNavigation)
-        .map((sp) => sp.page._id)
-
       const page = {
         path: `/${topPath}`,
         component,
         context: {
           id: node.page._id,
-          subNavigationItems,
           parentId: null,
+          subNavigationItems: node.subPages,
         },
       }
       createLocalePage(page, createPage, locale, reporter)
@@ -173,7 +183,7 @@ const createPages = async ({ graphql, actions, reporter }) => {
           context: {
             id: sp.page._id,
             parentId: node.page._id,
-            subNavigationItems,
+            subNavigationItems: node.subPages,
           },
         }
         createLocalePage(page, createPage, locale, reporter)
