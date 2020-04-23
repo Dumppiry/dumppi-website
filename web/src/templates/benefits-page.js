@@ -1,5 +1,6 @@
 import React, { useEffect } from "react"
 import { graphql } from "gatsby"
+import isEmpty from "lodash/isEmpty"
 
 import Layout from "../components/layout"
 import SEO from "../components/seo"
@@ -9,7 +10,8 @@ import localize from "../hoc/localize"
 import { useCurrentPage } from "../hooks/current-page"
 
 const BenefitTemplate = ({ data, pageContext, ...rest }) => {
-  const { benefits, page } = data
+  const { benefits, page, parent } = data
+  const { subNavigationItems } = pageContext
   const { setLocale, setCurrentPageId } = useCurrentPage()
 
   useEffect(() => {
@@ -18,7 +20,10 @@ const BenefitTemplate = ({ data, pageContext, ...rest }) => {
   })
 
   return (
-    <Layout pageTitle={page.title}>
+    <Layout
+      page={!isEmpty(parent) ? parent : page}
+      subNavItems={subNavigationItems}
+    >
       <SEO title={page.title} />
       <BenefitList benefits={benefits} />
     </Layout>
@@ -28,8 +33,12 @@ const BenefitTemplate = ({ data, pageContext, ...rest }) => {
 export default localize(BenefitTemplate)
 
 export const query = graphql`
-  query BenefitsTemplateQuery {
+  query BenefitsTemplateQuery($parentId: String) {
     page: sanityBenefitsPage {
+      _id
+      title: _rawTitle
+    }
+    parent: sanityPage(_id: { eq: $parentId }) {
       _id
       title: _rawTitle
     }

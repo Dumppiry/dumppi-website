@@ -1,5 +1,6 @@
 import React, { useEffect } from "react"
 import { graphql } from "gatsby"
+import isEmpty from "lodash/isEmpty"
 
 import Layout from "../components/layout"
 import SEO from "../components/seo"
@@ -9,8 +10,8 @@ import { useCurrentPage } from "../hooks/current-page"
 import SectionBlockContent from "../sections/section-block-content"
 
 const PageTemplate = ({ data, pageContext, ...rest }) => {
-  const { _id, title, content } = data.page
-  const { parent } = data
+  const { parent, page } = data
+  const { _id, title, content } = page
   const { subNavigationItems } = pageContext
   const { setLocale, setCurrentPageId } = useCurrentPage()
 
@@ -20,7 +21,10 @@ const PageTemplate = ({ data, pageContext, ...rest }) => {
   })
 
   return (
-    <Layout pageTitle={parent.title ?? title} subNavItems={subNavigationItems}>
+    <Layout
+      page={!isEmpty(parent) ? parent : page}
+      subNavItems={subNavigationItems}
+    >
       <SEO title={title} />
       <SectionBlockContent blocks={content} />
     </Layout>

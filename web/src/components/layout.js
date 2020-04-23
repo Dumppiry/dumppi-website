@@ -8,7 +8,7 @@ import Footer from "./footer"
 
 import { useNavigation } from "../hooks/navigation"
 
-const Layout = ({ children, pageTitle, subNavItems }) => {
+const Layout = ({ children, page, subNavItems }) => {
   const { hideNav } = useNavigation()
 
   useEffect(() => {
@@ -17,7 +17,7 @@ const Layout = ({ children, pageTitle, subNavItems }) => {
 
   return (
     <S.Layout>
-      <Navigation pageTitle={pageTitle} />
+      <Navigation page={page} />
       <SubNav items={subNavItems} />
       <S.Content>{children}</S.Content>
       <Footer />
