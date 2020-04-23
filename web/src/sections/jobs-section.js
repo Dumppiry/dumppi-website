@@ -1,14 +1,76 @@
 import React from "react"
+import { graphql, useStaticQuery } from "gatsby"
 import styled from "styled-components"
 
 import PortableText from "../components/portable-text/heading"
 import JobsList from "../components/jobs/jobs-list"
+import ButtonLink from "../components/button-link"
 
-const JobsSection = ({ heading, type }) => {
+const JOBS_QUERY = graphql`
+  query JobsQuery {
+    allJobs: allSanityJob(sort: { fields: _updatedAt, order: DESC }) {
+      nodes {
+        ...JobFields
+      }
+    }
+    recentJobs: allSanityJob(
+      sort: { fields: _updatedAt, order: DESC }
+      limit: 3
+    ) {
+      nodes {
+        ...JobFields
+      }
+    }
+  }
+
+  fragment JobFields on SanityJob {
+    _id
+    title
+    location
+    link
+    type {
+      title {
+        _type
+        fi
+        en
+      }
+      color {
+        hex
+      }
+    }
+    category {
+      title {
+        _type
+        fi
+        en
+      }
+    }
+    company {
+      _id
+      name
+      image {
+        asset {
+          fluid(maxWidth: 400) {
+            ...GatsbySanityImageFluid
+          }
+        }
+      }
+    }
+    expireDate
+  }
+`
+
+const JobsSection = ({ heading, type, allJobsPage, ...rest }) => {
+  const { allJobs, recentJobs } = useStaticQuery(JOBS_QUERY)
+  const jobs = type.includes("Recent") ? recentJobs : allJobs
+
   return (
     <S.Section>
       <PortableText blocks={heading} />
-      <JobsList type={type} />
+      <S.JobsList jobs={jobs} />
+      {!!allJobsPage && (
+        <S.ButtonLink title={allJobsPage.title} link={allJobsPage.link[0]} />
+      )}
     </S.Section>
   )
 }
@@ -32,4 +94,12 @@ S.Section = styled.section`
     font-size: 1.25rem;
     color: #949494;
   }
+`
+
+S.JobsList = styled(JobsList)`
+  margin: 2.5rem 0;
+`
+
+S.ButtonLink = styled(ButtonLink)`
+  align-self: center;
 `

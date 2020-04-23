@@ -22,7 +22,6 @@ const EventStatus = ({
       axios
         .get(`/.netlify/functions/get-event-attendees?eventId=${_id}`)
         .then(({ data }) => {
-          console.log(data)
           if (_.isArray(data)) setSubmissions(data)
         })
     }
@@ -87,7 +86,7 @@ const EventStatus = ({
   )
 }
 
-const getIcon = status => {
+const getIcon = (status) => {
   switch (status) {
     case "full":
       return <FiUserX />
@@ -166,7 +165,7 @@ S.StatusBar = styled.div`
   display: flex;
   justify-content: space-between;
 
-  ${props => {
+  ${(props) => {
     if (props.status === "free") return FreeStyles
     if (props.status === "open") return OpenStyles
     if (props.status === "full") return FullStyles

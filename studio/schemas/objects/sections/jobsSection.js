@@ -11,7 +11,7 @@ export default {
     {
       name: "heading",
       title: "Heading",
-      type: "localeHeadingPortableText"
+      type: "localeHeadingPortableText",
     },
     {
       name: "type",
@@ -19,23 +19,29 @@ export default {
       type: "string",
       options: {
         list: ["All", "Recent (only 3 most recently added)"],
-        layout: "radio"
-      }
-    }
+        layout: "radio",
+      },
+    },
+    {
+      name: "allJobsPage",
+      title: "Link to all jobs page",
+      type: "link",
+      description: "Provide a link to all jobs page (optional)",
+    },
   ],
   preview: {
     select: {
-      heading: "heading"
+      heading: "heading",
     },
     prepare({ heading }) {
       return {
         title: heading[defaultLanguage][0].children
-          .map(child => child.text)
+          .map((child) => child.text)
           .join(""),
         subtitle: heading[defaultLanguage][1]?.children
-          .map(child => child.text)
-          .join("")
+          .map((child) => child.text)
+          .join(""),
       };
-    }
-  }
+    },
+  },
 };

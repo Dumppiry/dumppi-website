@@ -60,8 +60,7 @@ S.Section = styled.section`
 `
 
 S.EventList = styled(EventList)`
-  margin-top: 5rem;
-  margin-bottom: 2.5rem;
+  margin: 2.5rem 0;
 `
 
 S.ButtonLink = styled(ButtonLink)`
