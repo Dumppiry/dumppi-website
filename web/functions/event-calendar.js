@@ -65,7 +65,7 @@ exports.handler = async (evt, context) => {
 
     return {
       statusCode: 200,
-      body: calendar,
+      body: "BEGIN:VCALENDAR\n" + calendar,
     }
   } catch (error) {
     console.log(error)
