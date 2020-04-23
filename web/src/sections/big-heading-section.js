@@ -65,29 +65,27 @@ S.ButtonContainer = styled.div`
   grid-template-columns: repeat(var(--grid-columns), 1fr);
   grid-gap: 1.25rem;
 
-  @media (min-width: 575px) {
-  }
   @media (min-width: 768px) {
-    --grid-columns: ${props => (props.oneChild ? "1" : "2")};
+    --grid-columns: ${(props) => (props.oneChild ? "1" : "2")};
     width: 80%;
     align-items: stretch;
     justify-content: stretch;
-  }
-  @media (min-width: 991px) {
-  }
-  @media (min-width: 1199px) {
   }
 `
 
 S.ButtonLink = styled(ButtonLink)`
   height: 100%;
-  :nth-child(even) {
-    justify-self: start;
-  }
-  :nth-child(odd) {
-    justify-self: end;
-  }
-  :only-child {
-    justify-self: center;
+  justify-self: center;
+
+  @media (min-width: 768px) {
+    :nth-child(even) {
+      justify-self: start;
+    }
+    :nth-child(odd) {
+      justify-self: end;
+    }
+    :only-child {
+      justify-self: center;
+    }
   }
 `

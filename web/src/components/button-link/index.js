@@ -16,7 +16,7 @@ const ButtonLink = ({ title, primary, link, ...rest }) => {
 
     case "externalLink":
       return (
-        <S.ExtLink href={link.url}>
+        <S.ExtLink href={link.url} {...rest}>
           <Button primary={primary} title={title} as="span" />
         </S.ExtLink>
       )
@@ -33,7 +33,7 @@ ButtonLink.propTypes = {
   primary: PropTypes.bool,
   link: PropTypes.shape({
     _type: PropTypes.oneOf(["internalLink", "externalLink"]),
-    url: props => {
+    url: (props) => {
       switch (props._type) {
         case "externalLink":
           if (!props.url) {
