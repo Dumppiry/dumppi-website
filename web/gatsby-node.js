@@ -145,19 +145,9 @@ const createPages = async ({ graphql, actions, reporter }) => {
     topLevelItems.map((node) => {
       const topPath = node.page.slug[locale].current
 
-      let component = require.resolve("./src/templates/page.js")
-      switch (node.page.__typename) {
-        case "SanityBenefitsPage":
-          component = require.resolve("./src/templates/benefits-page.js")
-          break
-
-        default:
-          break
-      }
-
       const page = {
         path: `/${topPath}`,
-        component,
+        component: resolvePageTemplate(node.page.__typename),
         context: {
           id: node.page._id,
           parentId: null,
@@ -167,19 +157,9 @@ const createPages = async ({ graphql, actions, reporter }) => {
       createLocalePage(page, createPage, locale, reporter)
 
       node.subPages.map((sp) => {
-        let component = require.resolve("./src/templates/page.js")
-        switch (sp.page.__typename) {
-          case "SanityBenefitsPage":
-            component = require.resolve("./src/templates/benefits-page.js")
-            break
-
-          default:
-            break
-        }
-
         const page = {
           path: `/${topPath}/${sp.page.slug[locale].current}`,
-          component,
+          component: resolvePageTemplate(sp.page.__typename),
           context: {
             id: sp.page._id,
             parentId: node.page._id,
@@ -231,14 +211,6 @@ const createEventPages = async ({ graphql, actions, reporter }) => {
   const locales = ["fi", ...extraLanguages]
   locales.map((locale) => {
     const basePath = result.data.sanityEventsPage.slug[locale].current
-    const page = {
-      path: `/${basePath}`,
-      component: require.resolve("./src/templates/events-page.js"),
-      context: {
-        id: result.data.sanityEventsPage._id,
-      },
-    }
-    createLocalePage(page, createPage, locale, reporter)
 
     events.map((node) => {
       const path = node.slug[locale].current
@@ -252,6 +224,19 @@ const createEventPages = async ({ graphql, actions, reporter }) => {
       createLocalePage(page, createPage, locale, reporter)
     })
   })
+}
+
+const resolvePageTemplate = (type) => {
+  switch (type) {
+    case "SanityBenefitsPage":
+      return require.resolve("./src/templates/benefits-page.js")
+
+    case "SanityEventsPage":
+      return require.resolve("./src/templates/events-page.js")
+
+    default:
+      return require.resolve("./src/templates/page.js")
+  }
 }
 
 exports.createPages = ({ graphql, actions, reporter }) => {

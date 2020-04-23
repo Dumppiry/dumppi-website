@@ -1,5 +1,6 @@
 import React, { useEffect } from "react"
 import { graphql } from "gatsby"
+import isEmpty from "lodash/isEmpty"
 
 import Layout from "../components/layout"
 import SEO from "../components/seo"
@@ -9,7 +10,8 @@ import localize from "../hoc/localize"
 import { useCurrentPage } from "../hooks/current-page"
 
 const EventTemplate = ({ data, pageContext, ...rest }) => {
-  const { events, page } = data
+  const { events, page, parent } = data
+  const { subNavigationItems } = pageContext
   const { setLocale, setCurrentPageId } = useCurrentPage()
 
   useEffect(() => {
@@ -18,7 +20,10 @@ const EventTemplate = ({ data, pageContext, ...rest }) => {
   })
 
   return (
-    <Layout pageTitle={page.title}>
+    <Layout
+      page={!isEmpty(parent) ? parent : page}
+      subNavItems={subNavigationItems}
+    >
       <SEO title={page.title} />
       <EventList events={events} />
     </Layout>
@@ -28,8 +33,12 @@ const EventTemplate = ({ data, pageContext, ...rest }) => {
 export default localize(EventTemplate)
 
 export const query = graphql`
-  query EventsTemplateQuery($locale: String!) {
+  query EventsTemplateQuery($locale: String!, $parentId: String) {
     page: sanityEventsPage {
+      _id
+      title: _rawTitle
+    }
+    parent: sanityPage(_id: { eq: $parentId }) {
       _id
       title: _rawTitle
     }
