@@ -8,6 +8,7 @@ import EventRegistration from "./event-registration"
 import PortableText from "../components/block-content"
 import { ExternalLink } from "../components/link"
 import { useCurrentPage } from "../hooks/current-page"
+import { createLocaleTextGetter } from "../utils"
 
 const TRANSLATIONS_QUERY = graphql`
   query EventTranslationsQuery {
@@ -22,7 +23,9 @@ const TRANSLATIONS_QUERY = graphql`
   }
 `
 
-const Event = props => {
+const Event = (props) => {
+  const { locale } = useCurrentPage()
+
   const {
     _id,
     title,
@@ -41,10 +44,11 @@ const Event = props => {
     registrationEndDate,
     registrationMaxCapacity,
     registrationForm,
-  } = props
+  } = createLocaleTextGetter(locale)(props)
 
-  const { locale } = useCurrentPage()
-  const { translations } = useStaticQuery(TRANSLATIONS_QUERY)
+  const { translations } = createLocaleTextGetter(locale)(
+    useStaticQuery(TRANSLATIONS_QUERY)
+  )
 
   const isOneDayEvent = (start, end) =>
     start.getFullYear() === end.getFullYear() &&
@@ -57,7 +61,7 @@ const Event = props => {
       <h1>{title}</h1>
       <S.Meta>
         <S.Card>
-          <S.CardTitle>{translations.time[locale]}</S.CardTitle>
+          <S.CardTitle>{translations.time}</S.CardTitle>
           {isOneDayEvent(new Date(startDate), new Date(endDate)) ? (
             <>
               <S.CardSubtitle>
@@ -109,7 +113,7 @@ const Event = props => {
         {location && (
           <S.Card>
             {" "}
-            <S.CardTitle>{translations.location[locale]}</S.CardTitle>
+            <S.CardTitle>{translations.location}</S.CardTitle>
             <S.CardSubtitle>
               <FiMapPin /> {location.title}
             </S.CardSubtitle>
@@ -118,27 +122,27 @@ const Event = props => {
         )}
         {typeof price === "number" && (
           <S.Card>
-            <S.CardTitle>{translations.price[locale]}</S.CardTitle>
+            <S.CardTitle>{translations.price}</S.CardTitle>
             <S.CardSubtitle huge>{price.toFixed(2)} €</S.CardSubtitle>
           </S.Card>
         )}
         {links?.length > 0 && (
           <S.Card>
-            <S.CardTitle>{translations.links[locale]}</S.CardTitle>
-            {links.map(link => (
+            <S.CardTitle>{translations.links}</S.CardTitle>
+            {links.map((link) => (
               <S.CardLink href={link.url}>{link.title}</S.CardLink>
             ))}
           </S.Card>
         )}
         {category?.title && (
           <S.Card>
-            <S.CardTitle>{translations.category[locale]}</S.CardTitle>
+            <S.CardTitle>{translations.category}</S.CardTitle>
             <S.CardSubtitle>{category.title}</S.CardSubtitle>
           </S.Card>
         )}
         {contactPerson?.name && (
           <S.Card>
-            <S.CardTitle>{translations.contactPerson[locale]}</S.CardTitle>
+            <S.CardTitle>{translations.contactPerson}</S.CardTitle>
             <S.CardSubtitle>{contactPerson.name}</S.CardSubtitle>
             <S.EmailLink href={`mailto:${contactPerson.email}`}>
               {contactPerson.email}
@@ -249,7 +253,7 @@ const SubtitleStyles = css`
 S.CardSubtitle = styled.span`
   ${SubtitleStyles}
 
-  ${props =>
+  ${(props) =>
     props.huge &&
     css`
       font-size: 42px;
