@@ -45,6 +45,23 @@ exports.handler = async (evt, context) => {
 
       const duration = moment.duration(end.diff(start))
 
+      const blocks = (event.description[lang ? lang : "fi"] || []).filter(
+        (block) => block._type === "block"
+      )
+
+      const description = `
+      ${blocks
+        .map((block) =>
+          block.children
+            .filter((child) => child._type === "span")
+            .map((span) => span.text)
+            .join("")
+        )
+        .join("")}
+
+        ${url}
+      `
+
       return {
         start: [
           start.year(),
@@ -55,7 +72,7 @@ exports.handler = async (evt, context) => {
         ],
         duration: { hours: duration.hours(), minutes: duration.minutes() },
         title: event.title[lang ? lang : "fi"],
-        description: `${url}`,
+        description,
         location: `${event.location.title}, ${event.location.address}`,
         url,
       }
