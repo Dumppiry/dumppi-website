@@ -57,7 +57,7 @@ exports.handler = async (evt, context) => {
             .map((span) => span.text)
             .join("")
         )
-        .join("")}
+        .join("\n\n")}
 
         ${url}
       `
