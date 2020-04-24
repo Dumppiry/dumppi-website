@@ -29,12 +29,12 @@ S.Container = styled(ExternalLink)`
   display: flex;
   flex-direction: column;
   border-radius: 10px;
-  background-color: ${props => (props.color ? props.color.hex : "#ffffff")};
+  background-color: ${(props) => (props.color ? props.color.hex : "#ffffff")};
   box-shadow: 0 5px 40px 0 #f0f0f0;
   transition: all 200ms ease-in-out;
-  height: 350px;
-  width: 290px;
+  min-height: 350px;
   text-decoration: none;
+  padding: 2rem;
 
   :hover {
     box-shadow: 0 5px 40px 10px #f0f0f0;
@@ -48,12 +48,11 @@ S.Description = styled.span`
   font-weight: 500;
   letter-spacing: -0.35px;
   line-height: 24px;
-  color: ${props => (props.color ? "#ffffff" : "#949494")};
-  margin: auto 2rem 2rem 2rem;
+  color: ${(props) => (props.color ? "#ffffff" : "#949494")};
+  margin-top: auto;
 `
 
 S.Img = styled(Img)`
   height: 2rem;
-  margin-top: 2rem;
-  margin-left: 2rem;
+  margin-bottom: 2rem;
 `

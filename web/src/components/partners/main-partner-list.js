@@ -38,7 +38,7 @@ const MainPartnerList = ({ ...rest }) => {
 
   return (
     <S.List {...rest}>
-      {allSanityCompany.nodes.map(company => (
+      {allSanityCompany.nodes.map((company) => (
         <MainPartnerCard key={company._id} partner={company} />
       ))}
     </S.List>
