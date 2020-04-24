@@ -24,6 +24,7 @@
     "gatsby-source-sanity": "^5.0.6",
     "get-youtube-id": "^1.0.1",
     "graphql-tag": "^2.10.3",
+    "ics": "^2.19.0",
     "lodash": "^4.17.15",
     "moment": "^2.24.0",
     "prop-types": "^15.7.2",
