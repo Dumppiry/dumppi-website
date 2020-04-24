@@ -26,6 +26,5 @@ S.Toggle = styled.button`
   display: inline-flex;
   align-items: center;
   margin: 0;
-  outline: none;
   cursor: pointer;
 `
