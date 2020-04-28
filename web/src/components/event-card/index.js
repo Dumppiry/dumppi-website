@@ -38,6 +38,7 @@ const EventCard = ({
   registrationStartDate,
   registrationEndDate,
   registrationMaxCapacity,
+  submissionCount,
   ...rest
 }) => {
   const { locale } = useCurrentPage()
@@ -57,7 +58,8 @@ const EventCard = ({
     minute: "numeric",
   }
   const dateTimeFormat = new Intl.DateTimeFormat(locale, options)
-  const localizeDate = dateString => dateTimeFormat.format(new Date(dateString))
+  const localizeDate = (dateString) =>
+    dateTimeFormat.format(new Date(dateString))
 
   return (
     <S.Container id={_id}>
@@ -80,6 +82,7 @@ const EventCard = ({
           registrationEndDate,
           registrationMaxCapacity,
           locale,
+          submissionCount,
           _id,
         }}
       />

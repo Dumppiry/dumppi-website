@@ -7,7 +7,6 @@ const client = sanityClient({
   projectId: sanity.projectId,
   dataset: sanity.dataset,
   token: SANITY_WRITE_TOKEN,
-  useCdn: false,
 })
 
 exports.handler = async (event, context) => {
@@ -16,11 +15,11 @@ exports.handler = async (event, context) => {
   try {
     const query = `*[_type == "event" && _id == $eventId][0]{registrationSubmissions}`
     const params = { eventId }
-    const results = await client.fetch(query, params)
+    const { registrationSubmissions } = await client.fetch(query, params)
 
     const submissions =
-      (results.registrationSubmissions &&
-        results.registrationSubmissions.map((rs) => {
+      (registrationSubmissions &&
+        registrationSubmissions.map((rs) => {
           const submission = JSON.parse(rs)
           return [submission.nickname || submission.name, submission.comment]
         })) ||
