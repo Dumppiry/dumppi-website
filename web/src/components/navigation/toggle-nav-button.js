@@ -8,7 +8,7 @@ const ToggleNavButton = () => {
   const { showNav, toggleNav } = useNavigation()
 
   return (
-    <S.Toggle onClick={toggleNav}>
+    <S.Toggle onClick={toggleNav} aria-label="Menu">
       {showNav ? <FiX size={24} /> : <FiAlignRight size={24} />}
     </S.Toggle>
   )
@@ -26,6 +26,5 @@ S.Toggle = styled.button`
   display: inline-flex;
   align-items: center;
   margin: 0;
-  outline: none;
   cursor: pointer;
 `

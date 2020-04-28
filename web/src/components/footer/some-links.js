@@ -6,10 +6,10 @@ import { ExternalLink } from "../link"
 const SocialMediaLinks = ({ links = [], ...rest }) => {
   return (
     <S.Container {...rest}>
-      {links.map(link => {
+      {links.map((link) => {
         const Icon = link.icon
         return (
-          <S.Link key={link.key} href={link.url}>
+          <S.Link key={link.key} href={link.url} aria-label={link.key}>
             {<Icon />}
           </S.Link>
         )

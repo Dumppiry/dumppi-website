@@ -22,15 +22,19 @@ const Nav = ({ items, ...rest }) => {
     >
       {items.map((item) => (
         <S.TopLevelItem key={item._key}>
-          <S.Link id={item.page._id}>{item.page.title[locale]}</S.Link>
+          <li>
+            <S.Link id={item.page._id}>{item.page.title[locale]}</S.Link>
+          </li>
           {item.subPages.length > 0 && (
-            <S.SubItems>
-              {item.subPages.map((sp) => (
-                <S.SubLevelItem key={sp.page._id}>
-                  <S.Link id={sp.page._id}>{sp.page.title[locale]}</S.Link>
-                </S.SubLevelItem>
-              ))}
-            </S.SubItems>
+            <li>
+              <S.SubItems>
+                {item.subPages.map((sp) => (
+                  <S.SubLevelItem key={sp.page._id}>
+                    <S.Link id={sp.page._id}>{sp.page.title[locale]}</S.Link>
+                  </S.SubLevelItem>
+                ))}
+              </S.SubItems>
+            </li>
           )}
         </S.TopLevelItem>
       ))}
@@ -63,7 +67,7 @@ S.SubItems = styled.ul`
   flex-direction: column;
 `
 
-S.TopLevelItem = styled.li`
+S.TopLevelItem = styled.ul`
   color: #ffffff;
   font-family: Inter;
   font-size: 14px;
@@ -72,6 +76,9 @@ S.TopLevelItem = styled.li`
   line-height: 17px;
   text-transform: uppercase;
   margin-bottom: 2.5em;
+
+  list-style: none;
+  margin-left: 0;
 
   display: flex;
   flex-direction: column;

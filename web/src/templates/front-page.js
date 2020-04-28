@@ -25,7 +25,7 @@ const PageTemplate = ({ data, pageContext, ...rest }) => {
       <SEO title={title} />
       <S.Img fluid={image.asset.fluid} />
       <S.Content>
-        <BigHeadingSection {...hero} />
+        <BigHeadingSection {...hero} isFrontPage />
         <SectionBlockContent blocks={content} />
       </S.Content>
     </Layout>
