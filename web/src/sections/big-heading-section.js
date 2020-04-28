@@ -4,12 +4,7 @@ import styled, { css } from "styled-components"
 import ButtonLink from "../components/button-link"
 import PortableText from "../components/portable-text/heading"
 
-import { useCurrentPage } from "../hooks/current-page"
-
-const BigHeadingSection = ({ heading, buttons }) => {
-  const { currentPageId } = useCurrentPage()
-  const isFrontPage = currentPageId === "frontPage"
-
+const BigHeadingSection = ({ heading, buttons, isFrontPage }) => {
   return (
     <S.Section isFrontPage={isFrontPage}>
       <S.Content isFrontPage={isFrontPage}>
