@@ -33,6 +33,7 @@ export default {
         { type: "keyFiguresSection" },
         { type: "productsSection" },
         { type: "mainPartnersSection" },
+        { type: "pastEventsSection" },
       ],
     },
   ],

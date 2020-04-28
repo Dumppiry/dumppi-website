@@ -52,6 +52,7 @@ import productsSection from "./objects/sections/productsSection";
 import smallPeopleGroup from "./objects/sections/smallPeopleGroup";
 import smallPeopleSection from "./objects/sections/smallPeopleSection";
 import textSection from "./objects/sections/textSection";
+import pastEventsSection from "./objects/sections/pastEventsSection";
 // Event stuff
 import eventLink from "./objects/event/link";
 // Links
@@ -111,6 +112,7 @@ export default createSchema({
     smallPeopleGroup,
     smallPeopleSection,
     textSection,
+    pastEventsSection,
     eventLink,
     externalLink,
     internalLink,

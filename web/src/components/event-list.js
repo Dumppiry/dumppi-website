@@ -49,17 +49,25 @@ const getAllMonths = (start, end, locale) => {
 
   let month = moment(startDate) //clone the startDate
 
-  while (month.month() <= endDate.month()) {
-    dates.push(month.format("MMMM YYYY"))
-    month.add(1, "month")
+  if (endDate.isBefore(startDate)) {
+    while (month.month() >= endDate.month()) {
+      dates.push(month.format("MMMM YYYY"))
+      month.add(-1, "month")
+    }
+  } else {
+    while (month.month() <= endDate.month()) {
+      dates.push(month.format("MMMM YYYY"))
+      month.add(1, "month")
+    }
   }
+
   return dates
 }
 
 const includeEmptyMonths = (months, eventsByMonths) => {
-  let monthsObj = _.keyBy(months, m => m)
+  let monthsObj = _.keyBy(months, (m) => m)
   _.keys(monthsObj).map(
-    key =>
+    (key) =>
       (monthsObj[key] = eventsByMonths.hasOwnProperty(key)
         ? eventsByMonths[key]
         : [])
@@ -67,7 +75,7 @@ const includeEmptyMonths = (months, eventsByMonths) => {
   return monthsObj
 }
 
-const EventList = ({ events, ...rest }) => {
+const EventList = ({ events, showPast, ...rest }) => {
   const { locale } = useCurrentPage()
   const data = useStaticQuery(EVENTS_QUERY)
   const months =
@@ -80,22 +88,29 @@ const EventList = ({ events, ...rest }) => {
 
   let eventData = events
     ? _.groupBy(
-        events.nodes.filter(n => new Date(n.startDate) > new Date()),
-        n => n.month
+        events.nodes.filter((n) =>
+          !!showPast ? true : new Date(n.startDate) > new Date()
+        ),
+        (n) => n.month
       ) // { march: [], april: [] ...}
     : data.events.nodes
+
   if (months) eventData = includeEmptyMonths(months, eventData)
 
   return events ? (
-    _.keys(eventData).map(month => (
+    _.keys(eventData).map((month) => (
       <S.Container key={month}>
         <S.Title>{month}</S.Title>
         {eventData[month].length === 0 ? (
           <p>{data.settings.noEventsText[locale]}</p>
         ) : (
           <S.List {...rest}>
-            {eventData[month].map(event => (
-              <EventCard key={event._id} {...event} title={event.title} />
+            {eventData[month].map((event) => (
+              <EventCard
+                key={event._id}
+                {...event}
+                title={event.title[locale] ? event.title[locale] : event.title}
+              />
             ))}
           </S.List>
         )}
@@ -104,9 +119,9 @@ const EventList = ({ events, ...rest }) => {
   ) : (
     <S.List {...rest}>
       {eventData
-        .filter(event => new Date(event.startDate) > new Date())
+        .filter((event) => new Date(event.startDate) > new Date())
         .slice(0, 3)
-        .map(event => (
+        .map((event) => (
           <EventCard key={event._id} {...event} title={event.title[locale]} />
         ))}
     </S.List>

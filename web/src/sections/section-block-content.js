@@ -12,6 +12,7 @@ import KeyFiguresSection from "./key-figures-section"
 import ProductsSection from "./products-section"
 import MainPartnersSection from "./main-partners-section"
 import TextSection from "./text-section"
+import PastEventsSection from "./past-events-section"
 
 const SectionBlockContent = ({ blocks }) => {
   const container = {
@@ -34,7 +35,7 @@ const SectionBlockContent = ({ blocks }) => {
 
   return (
     <motion.div variants={container} initial="hidden" animate="show">
-      {blocks.map(block => {
+      {blocks.map((block) => {
         let Component
         switch (block._type) {
           case "bigHeadingSection":
@@ -75,6 +76,10 @@ const SectionBlockContent = ({ blocks }) => {
 
           case "textSection":
             Component = TextSection
+            break
+
+          case "pastEventsSection":
+            Component = PastEventsSection
             break
 
           default:
