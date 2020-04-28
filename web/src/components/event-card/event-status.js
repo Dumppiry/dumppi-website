@@ -12,19 +12,20 @@ const EventStatus = ({
   registrationStartDate,
   registrationEndDate,
   locale,
+  submissionCount,
   ...rest
 }) => {
   const [registrationOpen, setRegistrationOpen] = useState(false)
-  const [submissions, setSubmissions] = useState(undefined)
+  // const [submissions, setSubmissions] = useState(undefined)
 
   useEffect(() => {
-    if (!submissions) {
-      axios
-        .get(`/.netlify/functions/get-event-attendees?eventId=${_id}`)
-        .then(({ data }) => {
-          if (_.isArray(data)) setSubmissions(data)
-        })
-    }
+    // if (!submissions) {
+    //   axios
+    //     .get(`/.netlify/functions/get-event-attendees?eventId=${_id}`)
+    //     .then(({ data }) => {
+    //       if (_.isArray(data)) setSubmissions(data)
+    //     })
+    // }
     const interval = setInterval(() => {
       if (
         new Date(registrationStartDate) <= new Date() &&
@@ -43,16 +44,16 @@ const EventStatus = ({
     hasRegistration &&
     registrationOpen &&
     registrationMaxCapacity &&
-    _.isArray(submissions)
+    submissionCount
 
   const returnStatus = () => {
     if (price === 0 || !hasRegistration) return "free"
-    if (showSubmissions && submissions.length < registrationMaxCapacity)
+    if (showSubmissions && submissionCount < registrationMaxCapacity)
       return "open"
     if (
       registrationOpen &&
       showSubmissions &&
-      submissions.length >= registrationMaxCapacity
+      submissionCount >= registrationMaxCapacity
     )
       return "full"
     if (hasRegistration && new Date(registrationStartDate) > new Date())
@@ -79,7 +80,7 @@ const EventStatus = ({
               minute: "numeric",
             })
           : showSubmissions
-          ? `${submissions.length}/${registrationMaxCapacity}`
+          ? `${submissionCount}/${registrationMaxCapacity}`
           : ""}
       </span>
     </S.StatusBar>

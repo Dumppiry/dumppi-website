@@ -7,7 +7,6 @@ const client = sanityClient({
   projectId: sanity.projectId,
   dataset: sanity.dataset,
   token: SANITY_WRITE_TOKEN,
-  useCdn: true,
 })
 
 exports.handler = async (event, context) => {
