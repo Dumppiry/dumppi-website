@@ -48,6 +48,7 @@ import jobsSection from "./objects/sections/jobsSection";
 import keyFigureSection from "./objects/sections/keyFiguresSection";
 import mainPartnersSection from "./objects/sections/mainPartnersSection";
 import partnersSection from "./objects/sections/partnersSection";
+import peopleProfilesSection from "./objects/sections/peopleProfilesSection";
 import productsSection from "./objects/sections/productsSection";
 import smallPeopleGroup from "./objects/sections/smallPeopleGroup";
 import smallPeopleSection from "./objects/sections/smallPeopleSection";
@@ -67,6 +68,7 @@ import defaultField from "./objects/defaultField";
 import field from "./objects/field";
 import keyFigure from "./objects/keyFigure";
 import mainImage from "./objects/mainImage";
+import personProfile from "./objects/personProfile";
 import product from "./objects/product";
 import youtube from "./objects/youtube";
 
@@ -108,6 +110,7 @@ export default createSchema({
     keyFigureSection,
     mainPartnersSection,
     partnersSection,
+    peopleProfilesSection,
     productsSection,
     smallPeopleGroup,
     smallPeopleSection,
@@ -123,6 +126,7 @@ export default createSchema({
     field,
     keyFigure,
     mainImage,
+    personProfile,
     product,
     youtube,
     localeBigHeadingPortableText,

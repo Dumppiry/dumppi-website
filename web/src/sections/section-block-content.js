@@ -5,14 +5,16 @@ import { isEmpty } from "lodash"
 import BigHeadingSection from "./big-heading-section"
 import BigPeopleSection from "./big-people-section"
 import FutureEventsSection from "./future-events-section"
-import PartnersSection from "./partners-section"
 import JobsSection from "./jobs-section"
-import SmallPeopleSection from "./small-people-section"
 import KeyFiguresSection from "./key-figures-section"
-import ProductsSection from "./products-section"
 import MainPartnersSection from "./main-partners-section"
-import TextSection from "./text-section"
+import PartnersSection from "./partners-section"
 import PastEventsSection from "./past-events-section"
+import PeopleProfilesSection from "./people-profiles-section"
+import ProductsSection from "./products-section"
+import SmallPeopleSection from "./small-people-section"
+import TextSection from "./text-section"
+import peopleProfilesSection from "../../../studio/schemas/objects/sections/peopleProfilesSection"
 
 const SectionBlockContent = ({ blocks }) => {
   const container = {
@@ -50,28 +52,32 @@ const SectionBlockContent = ({ blocks }) => {
             Component = FutureEventsSection
             break
 
-          case "partnersSection":
-            Component = PartnersSection
-            break
-
           case "jobsSection":
             Component = JobsSection
-            break
-
-          case "smallPeopleSection":
-            Component = SmallPeopleSection
             break
 
           case "keyFiguresSection":
             Component = KeyFiguresSection
             break
 
+          case "mainPartnersSection":
+            Component = MainPartnersSection
+            break
+
+          case "partnersSection":
+            Component = PartnersSection
+            break
+
+          case "peopleProfilesSection":
+            Component = PeopleProfilesSection
+            break
+
           case "productsSection":
             Component = ProductsSection
             break
 
-          case "mainPartnersSection":
-            Component = MainPartnersSection
+          case "smallPeopleSection":
+            Component = SmallPeopleSection
             break
 
           case "textSection":
