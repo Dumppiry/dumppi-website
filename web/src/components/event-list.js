@@ -78,10 +78,11 @@ const includeEmptyMonths = (months, eventsByMonths) => {
 const EventList = ({ events, showPast, ...rest }) => {
   const { locale } = useCurrentPage()
   const data = useStaticQuery(EVENTS_QUERY)
+
   const months =
     events &&
     getAllMonths(
-      events.nodes[0].startDate,
+      new Date(), // Start the months from current day.
       events.nodes[events.nodes.length - 1].startDate,
       locale
     )
