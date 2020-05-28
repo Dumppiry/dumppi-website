@@ -1,5 +1,5 @@
 [build]
   base = "web/"
-  command = "yarn build"
+  command = "yarn --ignore-optional && yarn build"
   functions = 'functions'
   publish = "public"
