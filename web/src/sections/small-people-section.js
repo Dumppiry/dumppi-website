@@ -9,11 +9,11 @@ const SmallPeopleSection = ({ heading, groups }) => {
     <S.Section>
       <h2>{heading}</h2>
       {groups?.length > 0 &&
-        groups.map(section => (
+        groups.map((section) => (
           <S.Group key={section._key}>
             <PortableText blocks={section.heading} />
             <S.People>
-              {section.people.map(person => (
+              {section.people.map((person) => (
                 <Person key={person._id} person={person} />
               ))}
             </S.People>
