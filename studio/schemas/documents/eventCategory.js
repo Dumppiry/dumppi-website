@@ -1,4 +1,4 @@
-import { FiBookmark } from "react-icons/lib/fi";
+import { FiBookmark } from "react-icons/fi";
 
 export default {
   name: "eventCategory",
@@ -9,23 +9,23 @@ export default {
     {
       name: "title",
       title: "Title",
-      type: "localeString",
+      type: "localeString"
     },
     {
       name: "color",
       title: "Color",
-      type: "color",
-    },
+      type: "color"
+    }
   ],
   preview: {
     select: {
-      title: "title.fi",
+      title: "title.fi"
     },
     prepare({ title }) {
       return {
         title,
-        media: FiBookmark,
+        media: FiBookmark
       };
-    },
-  },
+    }
+  }
 };

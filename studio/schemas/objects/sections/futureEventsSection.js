@@ -1,4 +1,4 @@
-import { FiCalendar } from "react-icons/lib/fi";
+import { FiCalendar } from "react-icons/fi";
 
 import { defaultLanguage } from "../../../supportedLanguages";
 
@@ -11,22 +11,22 @@ export default {
     {
       name: "heading",
       title: "Heading",
-      type: "localeHeadingPortableText",
-    },
+      type: "localeHeadingPortableText"
+    }
   ],
   preview: {
     select: {
-      heading: "heading",
+      heading: "heading"
     },
     prepare({ heading }) {
       return {
         title: heading[defaultLanguage][0].children
-          .map((child) => child.text)
+          .map(child => child.text)
           .join(""),
         subtitle: heading[defaultLanguage][1].children
-          .map((child) => child.text)
-          .join(""),
+          .map(child => child.text)
+          .join("")
       };
-    },
-  },
+    }
+  }
 };

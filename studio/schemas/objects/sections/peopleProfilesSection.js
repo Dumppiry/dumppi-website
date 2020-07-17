@@ -1,4 +1,4 @@
-import { FiUsers } from "react-icons/lib/fi";
+import { FiUsers } from "react-icons/fi";
 
 import { defaultLanguage } from "../../../supportedLanguages";
 

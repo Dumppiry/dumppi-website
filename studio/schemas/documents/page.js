@@ -1,4 +1,4 @@
-import { FiFileText } from "react-icons/lib/fi";
+import { FiFileText } from "react-icons/fi";
 
 export default {
   name: "page",

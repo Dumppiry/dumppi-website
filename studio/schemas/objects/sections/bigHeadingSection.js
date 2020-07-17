@@ -1,4 +1,4 @@
-import { FiType } from "react-icons/lib/fi";
+import { FiType } from "react-icons/fi";
 
 import { defaultLanguage } from "../../../supportedLanguages";
 

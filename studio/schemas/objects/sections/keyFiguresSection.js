@@ -1,4 +1,4 @@
-import { FiActivity } from "react-icons/lib/fi";
+import { FiActivity } from "react-icons/fi";
 
 export default {
   name: "keyFiguresSection",
@@ -10,17 +10,17 @@ export default {
       name: "figures",
       title: "Figures",
       type: "array",
-      of: [{ type: "keyFigure" }],
-    },
+      of: [{ type: "keyFigure" }]
+    }
   ],
   preview: {
     select: {
-      figures: "figures",
+      figures: "figures"
     },
     prepare({ figures }) {
       return {
-        title: figures.map((f) => `${f.figure} ${f.description.fi}`).join(", "),
+        title: figures.map(f => `${f.figure} ${f.description.fi}`).join(", ")
       };
-    },
-  },
+    }
+  }
 };
