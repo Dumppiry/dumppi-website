@@ -17,8 +17,8 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: "12.x"
-      - run: npm install
       - run: cd web
+      - run: npm install
       # This triggers `gatsby build` script in "package.json"
       - run: npm run build
       # 4. Deploy the gatsby build to Netlify
