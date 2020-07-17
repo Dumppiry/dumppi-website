@@ -17,10 +17,9 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: "12.x"
-      - run: cd web
-      - run: npm install
+      - run: cd web && npm install
       # This triggers `gatsby build` script in "package.json"
-      - run: npm run build
+      - run: cd web && npm run build
       # 4. Deploy the gatsby build to Netlify
       - uses: netlify/actions/cli@master
         env:
@@ -30,5 +29,5 @@ jobs:
           NETLIFY_SITE_ID: "0833e003-8187-4733-9187-48802d453c7b"
         with:
           # 5. "gatsby build" creates "public" folder, which is what we are deploying
-          args: deploy --dir=public --prod
+          args: deploy --dir=web/public --prod
           # secrets: '["NETLIFY_AUTH_TOKEN", "NETLIFY_SITE_ID"]'
