@@ -5,6 +5,10 @@ on:
     branches:
       - "master"
 
+env:
+  SANITY_READ_TOKEN: ${{ secrets.SANITY_READ_TOKEN }}
+  SANITY_WRITE_TOKEN: ${{ secrets.SANITY_WRITE_TOKEN }}
+
 jobs:
   build:
     # 2. Using the latest Ubuntu image
