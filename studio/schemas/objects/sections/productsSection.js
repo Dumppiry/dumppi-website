@@ -1,4 +1,4 @@
-import { FiPackage } from "react-icons/fi";
+import { FiPackage } from "react-icons/lib/fi";
 
 export default {
   name: "productsSection",
@@ -9,25 +9,25 @@ export default {
     {
       name: "heading",
       title: "Heading",
-      type: "localeString"
+      type: "localeString",
     },
     {
       name: "products",
       title: "Products",
       type: "array",
-      of: [{ type: "product" }]
-    }
+      of: [{ type: "product" }],
+    },
   ],
   preview: {
     select: {
       title: "heading.fi",
-      products: "products"
+      products: "products",
     },
     prepare({ title, products }) {
       return {
         title,
-        subtitle: products.map(p => p.title.fi).join(", ")
+        subtitle: products.map((p) => p.title.fi).join(", "),
       };
-    }
-  }
+    },
+  },
 };

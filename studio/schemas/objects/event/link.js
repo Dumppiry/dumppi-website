@@ -1,4 +1,4 @@
-import { FiLink2 } from "react-icons/fi";
+import { FiLink2 } from "react-icons/lib/fi";
 
 export default {
   name: "eventLink",
@@ -10,7 +10,7 @@ export default {
     {
       name: "url",
       type: "url",
-      validation: Rule => Rule.uri({ scheme: "https" })
-    }
-  ]
+      validation: (Rule) => Rule.uri({ scheme: "https" }),
+    },
+  ],
 };

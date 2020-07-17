@@ -1,4 +1,4 @@
-import { FiAlignRight } from "react-icons/fi";
+import { FiAlignRight } from "react-icons/lib/fi";
 
 export default {
   name: "fullNavigation",

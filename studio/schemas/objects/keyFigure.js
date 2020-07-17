@@ -1,4 +1,4 @@
-import { FiPercent } from "react-icons/fi";
+import { FiPercent } from "react-icons/lib/fi";
 
 export default {
   name: "keyFigure",
@@ -9,19 +9,19 @@ export default {
     {
       name: "description",
       title: "Description",
-      type: "localeString"
+      type: "localeString",
     },
     {
       name: "figure",
       title: "Figure",
       type: "string",
-      description: "This should be a number like thing"
-    }
+      description: "This should be a number like thing",
+    },
   ],
   preview: {
     select: {
       title: "figure",
-      subtitle: "description.fi"
-    }
-  }
+      subtitle: "description.fi",
+    },
+  },
 };

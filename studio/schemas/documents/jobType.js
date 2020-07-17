@@ -1,5 +1,5 @@
 import React from "react";
-import { FiBookmark } from "react-icons/fi";
+import { FiBookmark } from "react-icons/lib/fi";
 
 const ColorPreview = ({ color }) => {
   return (
@@ -18,26 +18,26 @@ export default {
     {
       name: "title",
       title: "Title",
-      type: "localeString"
+      type: "localeString",
     },
     {
       name: "color",
       title: "Color",
       type: "color",
-      validation: Rule => Rule.required()
-    }
+      validation: (Rule) => Rule.required(),
+    },
   ],
   preview: {
     select: {
       title: "title.fi",
-      color: "color"
+      color: "color",
     },
     prepare({ title, color }) {
       console.log(color);
       return {
         title,
-        media: () => <ColorPreview color={color} />
+        media: () => <ColorPreview color={color} />,
       };
-    }
-  }
+    },
+  },
 };

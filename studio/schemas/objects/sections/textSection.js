@@ -1,4 +1,4 @@
-import { FiFileText } from "react-icons/fi";
+import { FiFileText } from "react-icons/lib/fi";
 
 export default {
   name: "textSection",

@@ -1,4 +1,4 @@
-import { FiFileText } from "react-icons/fi";
+import { FiFileText } from "react-icons/lib/fi";
 
 export default {
   name: "benefitsPage",
@@ -10,13 +10,13 @@ export default {
       name: "title",
       title: "Title",
       type: "localeString",
-      validation: Rule => Rule.required()
+      validation: (Rule) => Rule.required(),
     },
     {
       name: "slug",
       title: "Slug",
       type: "localeSlug",
-      validation: Rule => Rule.required()
+      validation: (Rule) => Rule.required(),
     },
     {
       name: "content",
@@ -28,18 +28,18 @@ export default {
         { type: "smallPeopleSection" },
         { type: "partnersSection" },
         { type: "jobsSection" },
-        { type: "mainPartnersSection" }
-      ]
-    }
+        { type: "mainPartnersSection" },
+      ],
+    },
   ],
   preview: {
     select: {
-      title: "title"
+      title: "title",
     },
     prepare({ title }) {
       return {
-        title: title.fi
+        title: title.fi,
       };
-    }
-  }
+    },
+  },
 };

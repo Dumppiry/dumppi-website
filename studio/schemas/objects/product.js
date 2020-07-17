@@ -1,6 +1,6 @@
 import React from "react";
-import * as Fi from "react-icons/fi";
-import { FiPackage } from "react-icons/fi";
+import * as Fi from "react-icons/lib/fi";
+import { FiPackage } from "react-icons/lib/fi";
 
 const Icon = ({ name }) => {
   const TagName = Fi[name];
@@ -16,31 +16,31 @@ export default {
     {
       name: "title",
       title: "Title",
-      type: "localeString"
+      type: "localeString",
     },
     {
       name: "description",
       title: "Description",
-      type: "localeString"
+      type: "localeString",
     },
     {
       name: "icon",
       title: "Icon",
       type: "string",
       description:
-        "Please select an icon from here https://react-icons.netlify.com/#/icons/fi. E.g. FiActivity, otherwise contact support lol."
-    }
+        "Please select an icon from here https://react-icons.netlify.com/#/icons/fi. E.g. FiActivity, otherwise contact support lol.",
+    },
   ],
   preview: {
     select: {
       title: "title.fi",
-      icon: "icon"
+      icon: "icon",
     },
     prepare({ title, icon }) {
       return {
         title,
-        media: () => icon && <Icon name={icon} />
+        media: () => icon && <Icon name={icon} />,
       };
-    }
-  }
+    },
+  },
 };

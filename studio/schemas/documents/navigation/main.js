@@ -1,4 +1,4 @@
-import { FiAlignRight } from "react-icons/fi";
+import { FiAlignRight } from "react-icons/lib/fi";
 
 export default {
   name: "mainNavigation",
@@ -16,17 +16,17 @@ export default {
           to: [
             { type: "page" },
             { type: "eventsPage" },
-            { type: "benefitsPage" }
-          ]
-        }
-      ]
-    }
+            { type: "benefitsPage" },
+          ],
+        },
+      ],
+    },
   ],
   preview: {
     prepare() {
       return {
-        title: "Main Navigation"
+        title: "Main Navigation",
       };
-    }
-  }
+    },
+  },
 };

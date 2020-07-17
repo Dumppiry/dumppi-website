@@ -1,4 +1,4 @@
-import { FiPenTool } from "react-icons/fi";
+import { FiPenTool } from "react-icons/lib/fi";
 
 export default {
   name: "eventRegistrationForm",
@@ -9,24 +9,24 @@ export default {
     {
       name: "title",
       title: "Title",
-      type: "string"
+      type: "string",
     },
     {
       name: "fields",
       title: "Fields",
       type: "array",
-      of: [{ type: "field" }]
-    }
+      of: [{ type: "field" }],
+    },
   ],
   preview: {
     select: {
-      title: "title"
+      title: "title",
     },
     prepare({ title }) {
       return {
         title,
-        media: FiPenTool
+        media: FiPenTool,
       };
-    }
-  }
+    },
+  },
 };

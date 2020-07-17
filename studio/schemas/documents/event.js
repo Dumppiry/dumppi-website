@@ -1,4 +1,4 @@
-import { FiCalendar } from "react-icons/fi";
+import { FiCalendar } from "react-icons/lib/fi";
 
 import supportedLanguages from "../../supportedLanguages";
 

@@ -1,4 +1,4 @@
-import { FiUsers } from "react-icons/fi";
+import { FiUsers } from "react-icons/lib/fi";
 
 import { defaultLanguage } from "../../../supportedLanguages";
 
@@ -11,32 +11,32 @@ export default {
     {
       name: "heading",
       title: "Heading",
-      type: "localeString"
+      type: "localeString",
     },
     {
       name: "groups",
       title: "Groups",
       type: "array",
-      of: [{ type: "smallPeopleGroup" }]
-    }
+      of: [{ type: "smallPeopleGroup" }],
+    },
   ],
   preview: {
     select: {
       heading: "heading",
-      groups: "groups"
+      groups: "groups",
     },
     prepare({ heading, groups }) {
       const subtitle = groups
-        .map(group => {
+        .map((group) => {
           return group.heading[defaultLanguage][0].children
-            .map(child => child.text)
+            .map((child) => child.text)
             .join("");
         })
         .join(", ");
       return {
         title: heading[defaultLanguage],
-        subtitle
+        subtitle,
       };
-    }
-  }
+    },
+  },
 };

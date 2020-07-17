@@ -1,4 +1,4 @@
-import { FiFileText } from "react-icons/fi";
+import { FiFileText } from "react-icons/lib/fi";
 
 export default {
   name: "frontPage",
@@ -9,18 +9,18 @@ export default {
     {
       name: "title",
       title: "Title",
-      type: "localeString"
+      type: "localeString",
     },
     {
       name: "image",
       title: "Image",
-      type: "image"
+      type: "image",
     },
     {
       name: "hero",
       title: "Hero",
       type: "bigHeadingSection",
-      validation: Rule => Rule.required()
+      validation: (Rule) => Rule.required(),
     },
     {
       name: "content",
@@ -33,18 +33,18 @@ export default {
         { type: "futureEventsSection" },
         { type: "partnersSection" },
         { type: "jobsSection" },
-        { type: "mainPartnersSection" }
-      ]
-    }
+        { type: "mainPartnersSection" },
+      ],
+    },
   ],
   preview: {
     select: {
-      title: "title"
+      title: "title",
     },
     prepare({ title }) {
       return {
-        title: title.fi
+        title: title.fi,
       };
-    }
-  }
+    },
+  },
 };

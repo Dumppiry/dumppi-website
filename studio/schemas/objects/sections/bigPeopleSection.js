@@ -1,4 +1,4 @@
-import { FiUsers } from "react-icons/fi";
+import { FiUsers } from "react-icons/lib/fi";
 
 import { defaultLanguage } from "../../../supportedLanguages";
 
@@ -11,28 +11,28 @@ export default {
     {
       name: "heading",
       title: "Heading",
-      type: "localeHeadingPortableText"
+      type: "localeHeadingPortableText",
     },
     {
       name: "people",
       title: "People",
       type: "array",
-      of: [{ type: "reference", to: [{ type: "person" }] }]
-    }
+      of: [{ type: "reference", to: [{ type: "person" }] }],
+    },
   ],
   preview: {
     select: {
-      heading: "heading"
+      heading: "heading",
     },
     prepare({ heading }) {
       return {
         title: heading[defaultLanguage][0].children
-          .map(child => child.text)
+          .map((child) => child.text)
           .join(""),
         subtitle: heading[defaultLanguage][1]?.children
-          .map(child => child.text)
-          .join("")
+          .map((child) => child.text)
+          .join(""),
       };
-    }
-  }
+    },
+  },
 };

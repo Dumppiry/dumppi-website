@@ -1,5 +1,5 @@
 import React from "react";
-import { FiTruck } from "react-icons/fi";
+import { FiTruck } from "react-icons/lib/fi";
 
 const Expired = () => (
   <span style={{ backgroundColor: "red", width: "100%", height: "100%" }} />

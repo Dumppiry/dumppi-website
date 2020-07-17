@@ -1,4 +1,4 @@
-import { FiMapPin } from "react-icons/fi";
+import { FiMapPin } from "react-icons/lib/fi";
 
 export default {
   name: "location",
@@ -10,18 +10,18 @@ export default {
       name: "title",
       title: "Title",
       type: "string",
-      validation: Rule => Rule.required()
+      validation: (Rule) => Rule.required(),
     },
     {
       name: "address",
       title: "Address",
-      type: "string"
+      type: "string",
     },
     {
       name: "googleMapsLink",
       title: "Google Maps link",
       type: "url",
-      validation: Rule => Rule.uri({ scheme: "https" })
-    }
-  ]
+      validation: (Rule) => Rule.uri({ scheme: "https" }),
+    },
+  ],
 };
