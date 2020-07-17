@@ -17,6 +17,7 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: "12.x"
+      - run: npm install -g yarn
       - run: yarn
       - run: cd web
       # This triggers `gatsby build` script in "package.json"
