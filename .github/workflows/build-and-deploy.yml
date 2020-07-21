@@ -1,6 +1,9 @@
 name: Build and Deploy to Netlify
 
 on:
+  repository_dispatch:
+    types:
+      - start-build-and-deploy
   push:
     branches:
       - "master"
