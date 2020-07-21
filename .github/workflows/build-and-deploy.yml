@@ -7,6 +7,8 @@ on:
   push:
     branches:
       - "master"
+    paths:
+      - "web/**"
 
 env:
   SANITY_READ_TOKEN: ${{ secrets.SANITY_READ_TOKEN }}
