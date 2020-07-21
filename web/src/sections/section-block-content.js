@@ -14,7 +14,6 @@ import PeopleProfilesSection from "./people-profiles-section"
 import ProductsSection from "./products-section"
 import SmallPeopleSection from "./small-people-section"
 import TextSection from "./text-section"
-import peopleProfilesSection from "../../../studio/schemas/objects/sections/peopleProfilesSection"
 
 const SectionBlockContent = ({ blocks }) => {
   const container = {
