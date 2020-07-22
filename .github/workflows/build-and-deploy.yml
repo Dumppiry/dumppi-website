@@ -42,6 +42,8 @@ jobs:
         working-directory: ./studio
       - run: yarn build
         working-directory: ./studio
+      - run: cp netlify.toml dist/netlify.toml
+        working-directory: ./studio
       - uses: netlify/actions/cli@master
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
