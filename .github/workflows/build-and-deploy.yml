@@ -29,11 +29,7 @@ jobs:
         working-directory: ./web
       - uses: netlify/actions/cli@master
         env:
-          # NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
-          # NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
-          NETLIFY_AUTH_TOKEN: "188547f71bbdcb5649496bfb2c0871503913570f934224e7b89929c146ee3556"
-          NETLIFY_SITE_ID: "0833e003-8187-4733-9187-48802d453c7b"
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
         with:
-          # 5. "gatsby build" creates "public" folder, which is what we are deploying
           args: deploy --dir=web/public --prod
-          # secrets: '["NETLIFY_AUTH_TOKEN", "NETLIFY_SITE_ID"]'
