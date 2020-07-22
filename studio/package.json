@@ -18,7 +18,6 @@
   ],
   "dependencies": {
     "@sanity/base": "^1.149.10",
-    "@sanity/cli": "^1.149.18",
     "@sanity/color-input": "^1.149.7",
     "@sanity/components": "^1.149.10",
     "@sanity/core": "^1.149.12",
@@ -39,7 +38,9 @@
     "react-table": "^7.0.0",
     "sanity-plugin-dashboard-widget-netlify": "^1.0.1"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "@sanity/cli": "^1.149.18"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/papivaan/dumppi-website.git"

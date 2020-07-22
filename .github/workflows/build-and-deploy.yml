@@ -33,6 +33,8 @@ jobs:
 
   studio:
     runs-on: ubuntu-latest
+    env:
+      SANITY_STUDIO_GH_TOKEN: ${{ secrets.SANITY_STUDIO_GH_TOKEN }}
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v2-beta
