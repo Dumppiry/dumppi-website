@@ -7,17 +7,14 @@ on:
   push:
     branches:
       - "master"
-    paths:
-      - "web/**"
 
 env:
   SANITY_READ_TOKEN: ${{ secrets.SANITY_READ_TOKEN }}
   SANITY_WRITE_TOKEN: ${{ secrets.SANITY_WRITE_TOKEN }}
 
 jobs:
-  build:
+  web:
     runs-on: ubuntu-latest
-
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v2-beta
@@ -33,3 +30,21 @@ jobs:
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
         with:
           args: deploy --dir=web/public --prod
+
+  studio:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2-beta
+        with:
+          node-version: "14"
+      - run: yarn
+        working-directory: ./studio
+      - run: yarn build
+        working-directory: ./studio
+      - uses: netlify/actions/cli@master
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_STUDIO_ID }}
+        with:
+          args: deploy --dir=studio/dist --prod
