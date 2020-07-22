@@ -8,6 +8,7 @@
   "license": "UNLICENSED",
   "scripts": {
     "dev": "sanity start",
+    "build": "sanity build",
     "sanity-deploy": "sanity deploy",
     "graphql-deploy": "sanity graphql deploy --playground",
     "test": "sanity check"
