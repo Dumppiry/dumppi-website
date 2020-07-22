@@ -15,7 +15,8 @@
     "@sanity/dashboard",
     "@sanity/desk-tool",
     "@sanity/color-input",
-    "dashboard-widget-netlify"
+    "dashboard-widget-netlify",
+    "dashboard-widget-github-actions"
   ],
   "env": {
     "development": {
