@@ -23,9 +23,9 @@ jobs:
       - uses: actions/setup-node@v2-beta
         with:
           node-version: "14"
-      - run: npm ci
+      - run: yarn
         working-directory: ./web
-      - run: npm run build
+      - run: yarn build
         working-directory: ./web
       - uses: netlify/actions/cli@master
         env:

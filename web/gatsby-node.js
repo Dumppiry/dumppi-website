@@ -1,7 +1,8 @@
 // Get your list of languages from somewhere, env file, config.json, etc
 // for sake of this snippet I am putting it here
+const { zipFunctions } = require("@netlify/zip-it-and-ship-it")
 
-const extraLanguages = ["en"] // English is currently the default so it isn't needed here.
+const extraLanguages = ["en"] // Finnish is currently the default so it isn't needed here.
 
 const createLocalePage = (page, createPage, locale, reporter) => {
   const { context, ...rest } = page
@@ -263,4 +264,13 @@ exports.createSchemaCustomization = ({ actions }) => {
     }
   `
   createTypes(typeDefs)
+}
+
+// Make sure that Netlify functions work also after building in GitHub actions
+// Similar case: https://www.gatsbyjs.com/docs/netlify/getting-started/#does-gatsby-cloud-work-with-netlify-functions
+exports.onPostBuild = async ({ reporter }) => {
+  // Configure where the functions are kept and where we want to move them.
+  const zipped = await zipFunctions("functions", "public/functions")
+  reporter.info(`Zipped ${zipped.length || 0} functions:`)
+  zipped.map((f) => console.log(`  - ${f.path}`))
 }
