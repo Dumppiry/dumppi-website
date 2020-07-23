@@ -46,7 +46,7 @@ S.Section = styled.section`
     color: #2c2c2c;
   }
   p {
-    margin: 0;
+    margin: 1.5rem 0;
     font-size: min(4vw, 1.25rem);
     color: #949494;
   }
