@@ -34,19 +34,19 @@ export default BigHeadingSection
 const S = {}
 
 S.Section = styled.section`
-  margin: 5rem 0;
   text-align: left;
   border-radius: 1rem;
   background-color: white;
-  padding: 2rem 0;
+  padding: 0;
+  margin: 3rem 0;
 
   h1 {
-    margin: 0 0 2.5rem 0;
+    margin: 1rem 0;
     font-size: min(10vw, 3.75rem);
     color: #2c2c2c;
   }
   p {
-    margin: 2.5rem 0;
+    margin: 0;
     font-size: min(4vw, 1.25rem);
     color: #949494;
   }
@@ -54,8 +54,16 @@ S.Section = styled.section`
   ${(props) =>
     props.isFrontPage &&
     css`
-      text-align: center;
+      margin: 5rem 0;
       padding: 2rem;
+      text-align: center;
+
+      h1 {
+        margin: 0 0 2.5rem 0;
+      }
+      p {
+        margin: 2.5rem 0;
+      }
 
       @media (min-width: 768px) {
         padding: 5rem;
