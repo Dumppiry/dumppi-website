@@ -17,7 +17,7 @@ const serializers = {
       <span style={{ color: "#AF271D" }}>{children}</span>
     ),
     internalLink: ({ mark, children }) => (
-      <InternalLink id={mark.page._ref}>{children}</InternalLink>
+      <InternalLink id={mark.page._id}>{children}</InternalLink>
     ),
     externalLink: ({ mark, children }) => (
       <ExternalLink href={mark.url}>{children}</ExternalLink>
