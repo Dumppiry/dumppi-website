@@ -5,6 +5,7 @@ import Snackbar from "part:@sanity/components/snackbar/default";
 import styles from "./ActionItem.css";
 
 import request from "../utils/request";
+import { fetchSecrets } from "../utils/secrets";
 
 const ActionItem = ({ action, repo }) => {
   const { name, badge_url } = action;
@@ -15,23 +16,26 @@ const ActionItem = ({ action, repo }) => {
 
   const triggerAction = () => {
     setLoading(true);
-    request({
-      url: `/repos/${repo.owner}/${repo.name}/dispatches`,
-      body: JSON.stringify({
-        event_type: "start-build-and-deploy",
-      }),
-    })
-      .then((response) => {
-        setLoading(false);
-
-        response.statusCode === 204
-          ? setSuccess(true)
-          : setError(response.statusMessage);
+    fetchSecrets().then((secrets) => {
+      request({
+        url: `/repos/${repo.owner}/${repo.name}/dispatches`,
+        body: JSON.stringify({
+          event_type: "start-build-and-deploy",
+        }),
+        headers: { Authorization: `Bearer ${secrets.accessToken}` },
       })
-      .catch((error) => {
-        setError(error);
-        setLoading(false);
-      });
+        .then((response) => {
+          setLoading(false);
+
+          response.statusCode === 204
+            ? setSuccess(true)
+            : setError(response.statusMessage);
+        })
+        .catch((error) => {
+          setError(error);
+          setLoading(false);
+        });
+    });
   };
 
   const renderErrorSnackbar = () => (

@@ -1,21 +1,28 @@
-import React, { useState } from "react";
-import headers from "get-it/lib/middleware/headers";
+import React, { useEffect, useState } from "react";
 
+import Button from "part:@sanity/components/buttons/default";
 import AnchorButton from "part:@sanity/components/buttons/anchor";
+import TextInput from "part:@sanity/components/textinputs/default";
 
 import styles from "./Widget.css";
 import ActionsList from "./components/ActionsList";
 
-import request from "./utils/request";
+import { fetchSecrets, saveSecrets } from "./utils/secrets";
 
 const Widget = (props) => {
-  const { title, repo, github_token } = props;
+  const { title, repo } = props;
+  const [secrets, setSecrets] = useState({});
+  const [token, setToken] = useState("");
 
-  request.use(
-    headers({
-      Authorization: `Bearer ${github_token}`,
-    })
-  );
+  useEffect(() => {
+    fetchSecrets().then((secrets) => {
+      setSecrets(secrets);
+    });
+  }, []);
+
+  const saveSecret = () => {
+    saveSecrets(token).then((secrets) => setSecrets(secrets));
+  };
 
   return (
     <div className={styles.container}>
@@ -23,7 +30,20 @@ const Widget = (props) => {
         <h2 className={styles.title}>{title}</h2>
       </header>
       <div className={styles.content}>
-        <ActionsList repo={repo} />
+        {secrets?.accessToken ? (
+          <ActionsList repo={repo} />
+        ) : (
+          <div>
+            <p>Needs setup</p>
+            <TextInput
+              value={token}
+              onChange={(e) => setToken(e.target.value)}
+            />
+            <Button inverted kind="simple" onClick={saveSecret}>
+              Save secret
+            </Button>
+          </div>
+        )}
       </div>
       <div className={styles.footer}>
         <AnchorButton

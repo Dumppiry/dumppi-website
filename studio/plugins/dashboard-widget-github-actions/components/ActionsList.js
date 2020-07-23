@@ -6,6 +6,7 @@ import styles from "./ActionsList.css";
 import ActionItem from "./ActionItem";
 
 import request from "../utils/request";
+import { fetchSecrets } from "../utils/secrets";
 
 const ActionsList = ({ repo }) => {
   const [actions, setActions] = useState([]);
@@ -13,18 +14,21 @@ const ActionsList = ({ repo }) => {
   const [error, setError] = useState();
 
   useEffect(() => {
-    request({
-      url: `/repos/${repo.owner}/${repo.name}/actions/workflows`,
-    })
-      .then((response) => {
-        if (response.body.workflows) {
-          setActions(response.body.workflows ?? []);
-        } else {
-          setError(response.body.message);
-        }
-        setLoading(false);
+    fetchSecrets().then((secrets) => {
+      request({
+        url: `/repos/${repo.owner}/${repo.name}/actions/workflows`,
+        headers: { Authorization: `Bearer ${secrets.accessToken}` },
       })
-      .catch((error) => console.error(error));
+        .then((response) => {
+          if (response.body.workflows) {
+            setActions(response.body.workflows ?? []);
+          } else {
+            setError(response.body.message);
+          }
+          setLoading(false);
+        })
+        .catch((error) => console.error(error));
+    });
   }, []);
 
   if (loading) return <Progress />;
