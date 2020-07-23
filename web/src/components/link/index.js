@@ -43,9 +43,6 @@ export const InternalLink = ({ id, locale, children, ...rest }) => {
       node.context?.locale === (locale ?? currentLocale)
   )?.path
 
-  // While locale is loading path === undefined
-  if (!path) return null // Fixes the warning: External link undefined was detected in a Link component. Use the Link component only for internal links.
-
   return (
     <S.IntLink to={path} {...rest}>
       {children}
