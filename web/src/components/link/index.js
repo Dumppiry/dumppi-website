@@ -15,7 +15,7 @@ export const ExternalLink = ({ href, children, ...rest }) => {
 
 ExternalLink.propTypes = {
   href: PropTypes.string.isRequired,
-  children: PropTypes.element.isRequired,
+  children: PropTypes.node.isRequired,
 }
 
 export const InternalLink = ({ id, locale, children, ...rest }) => {
@@ -43,6 +43,9 @@ export const InternalLink = ({ id, locale, children, ...rest }) => {
       node.context?.locale === (locale ?? currentLocale)
   )?.path
 
+  // While locale is loading path === undefined
+  if (!path) return null // Fixes the warning: External link undefined was detected in a Link component. Use the Link component only for internal links.
+
   return (
     <S.IntLink to={path} {...rest}>
       {children}
@@ -52,7 +55,7 @@ export const InternalLink = ({ id, locale, children, ...rest }) => {
 
 InternalLink.propTypes = {
   id: PropTypes.string.isRequired,
-  children: PropTypes.element.isRequired,
+  children: PropTypes.node.isRequired,
 }
 
 const S = {}
