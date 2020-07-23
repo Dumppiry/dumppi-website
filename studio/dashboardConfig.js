@@ -8,7 +8,6 @@ export default {
           owner: "Dumppiry",
           name: "dumppi-website",
         },
-        github_token: process.env.SANITY_STUDIO_GH_TOKEN,
       },
     },
   ],
