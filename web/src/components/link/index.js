@@ -60,6 +60,9 @@ const S = {}
 const LinkStyles = css`
   color: #af271d;
   transition: all 120ms ease-in-out;
+  :hover {
+    opacity: 0.95;
+  }
 `
 
 S.ExtLink = styled.a`

@@ -19,10 +19,11 @@ const QUERY = graphql`
 `
 
 const SmallPersonCard = ({ person, ...rest }) => {
+  const { title, name, phoneNumber, email, image } = person
   const { settings } = useStaticQuery(QUERY)
 
   const fixedProps = getFixedGatsbyImage(
-    person.image?.asset._id ?? settings.placeholderPersonImage.asset._id,
+    image?.asset._id ?? settings.placeholderPersonImage.asset._id,
     { width: 100, height: 100 },
     sanity
   )
@@ -31,10 +32,14 @@ const SmallPersonCard = ({ person, ...rest }) => {
     <S.Container {...rest}>
       <S.SmallPersonImage fixed={fixedProps} />
       <S.Info>
-        {person.title && <S.Title>{person.title}</S.Title>}
-        <S.Name>{person.name}</S.Name>
-        <S.AdditionalInfo>{person.phoneNumber}</S.AdditionalInfo>
-        <S.AdditionalInfo>{person.email}</S.AdditionalInfo>
+        {title && <S.Title>{title}</S.Title>}
+        <S.Name>{name}</S.Name>
+        <S.AdditionalInfo>
+          <a href={`tel:${phoneNumber}`}>{phoneNumber}</a>
+        </S.AdditionalInfo>
+        <S.AdditionalInfo>
+          <a href={`mailto:${email}`}>{email}</a>
+        </S.AdditionalInfo>
       </S.Info>
     </S.Container>
   )
@@ -85,4 +90,12 @@ S.AdditionalInfo = styled.span`
   font-weight: 500;
   letter-spacing: -0.31px;
   line-height: 17px;
+
+  a {
+    color: inherit;
+    text-decoration: none;
+    &:hover {
+      color: #af271d;
+    }
+  }
 `
