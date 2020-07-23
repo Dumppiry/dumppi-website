@@ -129,8 +129,10 @@ const Event = (props) => {
         {links?.length > 0 && (
           <S.Card>
             <S.CardTitle>{translations.links}</S.CardTitle>
-            {links.map((link) => (
-              <S.CardLink href={link.url}>{link.title}</S.CardLink>
+            {links.map((link, index) => (
+              <S.CardLink key={index} href={link.url}>
+                {link.title}
+              </S.CardLink>
             ))}
           </S.Card>
         )}
