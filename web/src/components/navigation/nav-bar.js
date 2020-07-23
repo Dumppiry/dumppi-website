@@ -59,9 +59,9 @@ const NavBar = () => {
       </S.BrandLink>
       <S.List>
         <S.Span>
-          {mainNav.items.map(item => (
+          {mainNav.items.map((item) => (
             <S.ListItem key={item._id}>
-              <S.Link id={item._id}>{item.title[locale]}</S.Link>
+              <S.Link id={item._id}>{item.title[locale] ?? ""}</S.Link>
             </S.ListItem>
           ))}
         </S.Span>
@@ -107,7 +107,7 @@ S.Span = styled.span`
 
 S.ListItem = styled.li`
   margin: 1em;
-  margin-right: ${props => (props.nav ? 0 : "2em")};
+  margin-right: ${(props) => (props.nav ? 0 : "2em")};
   display: flex;
   align-items: center;
 `
