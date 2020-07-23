@@ -9,10 +9,11 @@ export const createLocaleTextGetter = (languageCode) => {
         return value[language]
       }
 
-      return Object.keys(value ?? {}).reduce((result, key) => {
-        result[key] = localize(value[key], languages)
-        return result
-      }, {})
+      if (value)
+        return Object.keys(value ?? {}).reduce((result, key) => {
+          result[key] = localize(value[key], languages)
+          return result
+        }, {})
     }
     return value
   }
