@@ -4,13 +4,24 @@ import BaseBlockContent from "@sanity/block-content-to-react"
 import config from "../../client-config"
 
 import { ExternalLink, InternalLink } from "./link"
+import Blockquote from "./blockquote"
 import Image from "./image"
 import Video from "./video"
+
+const BlockRenderer = (props) => {
+  switch (props.node.style) {
+    case "blockquote":
+      return <Blockquote>{props.children}</Blockquote>
+    default:
+      return BaseBlockContent.defaultSerializers.types.block(props)
+  }
+}
 
 const serializers = {
   types: {
     youtube: ({ node }) => <Video {...node} />,
     mainImage: ({ node }) => <Image {...node} />,
+    block: BlockRenderer,
   },
   marks: {
     highlight: ({ children }) => (
@@ -28,6 +39,7 @@ const serializers = {
 }
 
 const BlockContent = ({ blocks, ...rest }) => {
+  console.log(blocks)
   return (
     <BaseBlockContent
       blocks={blocks}
