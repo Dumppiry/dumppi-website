@@ -11,7 +11,7 @@ import BlockContent from "../components/block-content"
 const PeopleProfilesSection = ({ heading, people }) => {
   return (
     <S.Section>
-      <Heading blocks={heading} />
+      <S.Heading blocks={heading} />
       {people && (
         <S.People>
           {people.map((p) => (
@@ -46,7 +46,9 @@ const S = {}
 
 S.Section = styled.section`
   margin: 3rem 0;
+`
 
+S.Heading = styled(Heading)`
   h2 {
     margin: 1.25rem 0;
     font-size: 2.5rem;
@@ -77,12 +79,6 @@ S.Person = styled.article`
 
   @media (min-width: 768px) {
     grid-template-columns: 400px auto;
-  }
-
-  p {
-    margin: inherit;
-    font-size: inherit;
-    color: inherit;
   }
 `
 

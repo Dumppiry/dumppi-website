@@ -19,8 +19,8 @@ const serializers = {
   },
 }
 
-const HeadingPortableText = ({ blocks }) => {
-  return <PortableText blocks={blocks} serializers={serializers} />
+const HeadingPortableText = ({ blocks, ...rest }) => {
+  return <PortableText blocks={blocks} serializers={serializers} {...rest} />
 }
 
 export default HeadingPortableText
