@@ -1,6 +1,6 @@
 import React from "react"
 import Img from "gatsby-image"
-import { getFixedGatsbyImage } from "gatsby-source-sanity"
+import { getFluidGatsbyImage } from "gatsby-source-sanity"
 import styled from "styled-components"
 
 import config from "../../client-config"
@@ -26,9 +26,9 @@ const PeopleProfilesSection = ({ heading, people }) => {
 export default PeopleProfilesSection
 
 const Person = ({ person, bio }) => {
-  const fluidProps = getFixedGatsbyImage(
+  const fluidProps = getFluidGatsbyImage(
     person.image.asset._id,
-    { width: 400 },
+    { maxWidth: 400 },
     config.sanity
   )
   return (
@@ -87,6 +87,7 @@ S.Person = styled.article`
 `
 
 S.Img = styled(Img)`
-  width: 400px;
+  width: 100%;
+  max-width: 400px;
   height: 400px;
 `
