@@ -12,7 +12,7 @@ import MenuItems from "./menu-items"
 import { useNavigation } from "../../hooks/navigation"
 
 export const FullPageNavQuery = graphql`
-  query MyQuery {
+  query FullPageNavQuery {
     nav: sanityFullNavigation {
       items: topLevelItems {
         _key
@@ -22,6 +22,7 @@ export const FullPageNavQuery = graphql`
           ...EventsPageFragment
         }
         subPages {
+          hideFromFullNavigation
           page {
             ...PageFragment
             ...BenefitsPageFragment

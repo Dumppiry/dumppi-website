@@ -35,6 +35,16 @@ export default {
         });
       },
     },
+    {
+      name: "hideFromFullNavigation",
+      title: "Hide from full navigation",
+      type: "boolean",
+    },
+    {
+      name: "hideFromFooterNavigation",
+      title: "Hide from footer navigation",
+      type: "boolean",
+    },
   ],
   preview: {
     select: {

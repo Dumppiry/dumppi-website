@@ -7,8 +7,8 @@ const SubNav = ({ items }) => {
   return items?.length > 0 ? (
     <S.SubNav>
       <S.Content>
-        {items.map((item) => (
-          <S.Link id={item.page._id} activeClassName="active">
+        {items.map((item, index) => (
+          <S.Link key={index} id={item.page._id} activeClassName="active">
             {item.page.title}
           </S.Link>
         ))}

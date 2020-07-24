@@ -28,11 +28,13 @@ const Nav = ({ items, ...rest }) => {
           {item.subPages.length > 0 && (
             <li>
               <S.SubItems>
-                {item.subPages.map((sp) => (
-                  <S.SubLevelItem key={sp.page._id}>
-                    <S.Link id={sp.page._id}>{sp.page.title[locale]}</S.Link>
-                  </S.SubLevelItem>
-                ))}
+                {item.subPages
+                  .filter((sp) => !sp.hideFromFooterNavigation)
+                  .map((sp) => (
+                    <S.SubLevelItem key={sp.page._id}>
+                      <S.Link id={sp.page._id}>{sp.page.title[locale]}</S.Link>
+                    </S.SubLevelItem>
+                  ))}
               </S.SubItems>
             </li>
           )}

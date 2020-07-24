@@ -20,6 +20,8 @@ const PageTemplate = ({ data, pageContext, ...rest }) => {
     setCurrentPageId(_id)
   })
 
+  console.log({ page, pageContext })
+
   return (
     <Layout
       page={!isEmpty(parent) ? parent : page}

@@ -34,13 +34,15 @@ const MenuItems = ({ items }) => {
           </S.Link>
           {item.subPages.length > 0 && (
             <S.SubItems>
-              {item.subPages.map((sp) => (
-                <S.SubLevelItem>
-                  <S.Link id={sp.page._id} activeClassName="active">
-                    {sp.page.title[locale]}
-                  </S.Link>
-                </S.SubLevelItem>
-              ))}
+              {item.subPages
+                .filter((sp) => !sp.hideFromFullNavigation)
+                .map((sp) => (
+                  <S.SubLevelItem key={sp.page._id}>
+                    <S.Link id={sp.page._id} activeClassName="active">
+                      {sp.page.title[locale]}
+                    </S.Link>
+                  </S.SubLevelItem>
+                ))}
             </S.SubItems>
           )}
         </S.TopLevelItem>

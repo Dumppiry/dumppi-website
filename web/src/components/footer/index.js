@@ -32,6 +32,7 @@ const Footer = () => {
             ...EventsPageFragment
           }
           subPages {
+            hideFromFooterNavigation
             page {
               ...PageFragment
               ...BenefitsPageFragment
