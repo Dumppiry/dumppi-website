@@ -3,12 +3,15 @@ import { graphql, useStaticQuery } from "gatsby"
 import Img from "gatsby-image/withIEPolyfill"
 import styled from "styled-components"
 
+import { ExternalLink } from "../link"
+
 const PARTNERS_QUERY = graphql`
   query PartnersQuery {
     sanityPartners {
       partners {
         _id
         name
+        link
         image {
           asset {
             fluid(maxWidth: 500) {
@@ -21,15 +24,17 @@ const PARTNERS_QUERY = graphql`
   }
 `
 
-const PartnerList = props => {
+const PartnerList = (props) => {
   const { sanityPartners } = useStaticQuery(PARTNERS_QUERY)
 
   return (
     <S.List {...props}>
-      {sanityPartners.partners.map(partner => (
-        <S.Item key={partner._id}>
-          <Img fluid={partner.image.asset.fluid} objectFit="contain" />
-        </S.Item>
+      {sanityPartners.partners.map((partner) => (
+        <ExternalLink key={partner._id} href={partner.link}>
+          <S.Item>
+            <Img fluid={partner.image.asset.fluid} objectFit="contain" />
+          </S.Item>
+        </ExternalLink>
       ))}
     </S.List>
   )
