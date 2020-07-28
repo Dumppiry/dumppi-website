@@ -80,7 +80,7 @@ const EventList = ({ events, showPast, ...rest }) => {
   const data = useStaticQuery(EVENTS_QUERY)
 
   const months =
-    events &&
+    events?.nodes.length > 0 &&
     getAllMonths(
       new Date(), // Start the months from current day.
       events.nodes[events.nodes.length - 1].startDate,
