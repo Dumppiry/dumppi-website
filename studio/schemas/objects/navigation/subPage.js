@@ -1,3 +1,5 @@
+import linkableItems from "../../utils/linkableItems";
+
 export default {
   name: "subPage",
   title: "Sub Page",
@@ -7,7 +9,7 @@ export default {
       name: "page",
       title: "Page",
       type: "reference",
-      to: [{ type: "page" }, { type: "eventsPage" }, { type: "benefitsPage" }],
+      to: linkableItems,
       validation: (Rule) => {
         return Rule.custom((field, context) => {
           const pageId = field._ref;

@@ -1,5 +1,7 @@
 import React from "react";
 
+import linkableItems from "../../utils/linkableItems";
+
 const InternalLinkRender = ({ children }) => <span>{children} 🔗</span>;
 
 export default {
@@ -11,7 +13,7 @@ export default {
       name: "page",
       title: "Page",
       type: "reference",
-      to: [{ type: "page" }, { type: "frontPage" }],
+      to: linkableItems,
       validation: (Rule) => Rule.required(),
     },
   ],

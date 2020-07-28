@@ -1,5 +1,7 @@
 import { FiAlignRight } from "react-icons/fi";
 
+import linkableItems from "../../utils/linkableItems";
+
 export default {
   name: "mainNavigation",
   title: "Main Navigation",
@@ -13,20 +15,20 @@ export default {
       of: [
         {
           type: "reference",
-          to: [
-            { type: "page" },
-            { type: "eventsPage" },
-            { type: "benefitsPage" }
-          ]
-        }
-      ]
-    }
+          to: linkableItems,
+        },
+      ],
+      validation: (Rule) =>
+        Rule.max(4).warning(
+          "Are you sure you want this many items in the main navigation?"
+        ),
+    },
   ],
   preview: {
     prepare() {
       return {
-        title: "Main Navigation"
+        title: "Main Navigation",
       };
-    }
-  }
+    },
+  },
 };

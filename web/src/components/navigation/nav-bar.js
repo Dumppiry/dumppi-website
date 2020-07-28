@@ -8,41 +8,57 @@ import { useCurrentPage } from "../../hooks/current-page"
 import ToggleNavButton from "./toggle-nav-button"
 import { InternalLink } from "../link"
 
-const NavBar = () => {
-  const { settings, mainNav, frontPage } = useStaticQuery(graphql`
-    query NavigationQuery {
-      settings: sanitySettings {
-        siteTitle
-        logo {
-          _type
-          asset {
-            fixed(height: 50, width: 50) {
-              ...GatsbySanityImageFixed_noBase64
-            }
+const NavBarQuery = graphql`
+  query NavigationQuery {
+    settings: sanitySettings {
+      siteTitle
+      logo {
+        _type
+        asset {
+          fixed(height: 50, width: 50) {
+            ...GatsbySanityImageFixed_noBase64
           }
         }
-      }
-      mainNav: sanityMainNavigation {
-        items {
-          ... on SanityEventsPage {
-            _id
-            title: _rawTitle
-          }
-          ... on SanityBenefitsPage {
-            _id
-            title: _rawTitle
-          }
-          ... on SanityPage {
-            _id
-            title: _rawTitle
-          }
-        }
-      }
-      frontPage: sanityFrontPage {
-        _id
       }
     }
-  `)
+    mainNav: sanityMainNavigation {
+      items {
+        ...BenefitsPageFragment
+        ...EventsPageFragment
+        ...FrontPageFragment
+        ...LegalDocFragment
+        ...PageFragment
+      }
+    }
+    frontPage: sanityFrontPage {
+      _id
+    }
+  }
+
+  fragment BenefitsPageFragment on SanityBenefitsPage {
+    _id
+    title: _rawTitle
+  }
+  fragment EventsPageFragment on SanityEventsPage {
+    _id
+    title: _rawTitle
+  }
+  fragment FrontPageFragment on SanityFrontPage {
+    _id
+    title: _rawTitle
+  }
+  fragment LegalDocFragment on SanityLegalDocument {
+    _id
+    title: _rawTitle
+  }
+  fragment PageFragment on SanityPage {
+    _id
+    title: _rawTitle
+  }
+`
+
+const NavBar = () => {
+  const { settings, mainNav, frontPage } = useStaticQuery(NavBarQuery)
 
   const { locale } = useCurrentPage()
 

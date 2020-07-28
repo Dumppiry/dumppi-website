@@ -17,31 +17,43 @@ export const FullPageNavQuery = graphql`
       items: topLevelItems {
         _key
         page {
-          ...PageFragment
           ...BenefitsPageFragment
           ...EventsPageFragment
+          ...FrontPageFragment
+          ...LegalDocFragment
+          ...PageFragment
         }
         subPages {
           hideFromFullNavigation
           page {
-            ...PageFragment
             ...BenefitsPageFragment
             ...EventsPageFragment
+            ...FrontPageFragment
+            ...LegalDocFragment
+            ...PageFragment
           }
         }
       }
     }
   }
 
-  fragment PageFragment on SanityPage {
-    _id
-    title: _rawTitle
-  }
   fragment BenefitsPageFragment on SanityBenefitsPage {
     _id
     title: _rawTitle
   }
   fragment EventsPageFragment on SanityEventsPage {
+    _id
+    title: _rawTitle
+  }
+  fragment FrontPageFragment on SanityFrontPage {
+    _id
+    title: _rawTitle
+  }
+  fragment LegalDocFragment on SanityLegalDocument {
+    _id
+    title: _rawTitle
+  }
+  fragment PageFragment on SanityPage {
     _id
     title: _rawTitle
   }
