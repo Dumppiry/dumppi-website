@@ -1,6 +1,5 @@
 import React, { useEffect } from "react"
 import { graphql } from "gatsby"
-import isEmpty from "lodash/isEmpty"
 
 import Layout from "../components/layout"
 import SEO from "../components/seo"
@@ -12,7 +11,6 @@ import SectionBlockContent from "../sections/section-block-content"
 const PageTemplate = ({ data, pageContext, ...rest }) => {
   const { page } = data
   const { _id, title, content } = page
-  const { parent, subNavigationItems } = pageContext
   const { setLocale, setCurrentPageId } = useCurrentPage()
 
   useEffect(() => {
@@ -21,10 +19,7 @@ const PageTemplate = ({ data, pageContext, ...rest }) => {
   })
 
   return (
-    <Layout
-      page={!isEmpty(parent) ? parent : page}
-      subNavItems={subNavigationItems}
-    >
+    <Layout page={page}>
       <SEO title={title} />
       <SectionBlockContent blocks={content} />
     </Layout>
@@ -34,8 +29,8 @@ const PageTemplate = ({ data, pageContext, ...rest }) => {
 export default localize(PageTemplate)
 
 export const query = graphql`
-  query PageTemplateQuery($id: String!) {
-    page: sanityPage(_id: { eq: $id }) {
+  query LegalDocTemplateQuery($id: String!) {
+    page: sanityLegalDocument(_id: { eq: $id }) {
       _id
       _type
       title {

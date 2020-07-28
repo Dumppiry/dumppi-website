@@ -14,6 +14,7 @@ import location from "./documents/location";
 import job from "./documents/job";
 import jobCategory from "./documents/jobCategory";
 import jobType from "./documents/jobType";
+import legalDocument from "./documents/legalDocument";
 import page from "./documents/page";
 import frontPage from "./documents/frontPage";
 import eventsPage from "./documents/eventsPage";
@@ -90,6 +91,7 @@ export default createSchema({
     job,
     jobCategory,
     jobType,
+    legalDocument,
     page,
     frontPage,
     eventsPage,

@@ -232,6 +232,48 @@ const createEventPages = async ({ graphql, actions, reporter }) => {
   })
 }
 
+const createLegalPages = async ({ graphql, actions, reporter }) => {
+  const { createPage } = actions
+
+  const result = await graphql(`
+    {
+      allSanityLegalDocument {
+        nodes {
+          _id
+          __typename
+          slug {
+            fi {
+              current
+            }
+            en {
+              current
+            }
+          }
+        }
+      }
+    }
+  `)
+
+  if (result.errors) throw result.errors
+
+  const legalDocs = (result.data.allSanityLegalDocument || {}).nodes || []
+
+  const locales = ["fi", ...extraLanguages]
+  locales.map((locale) => {
+    legalDocs.map((node) => {
+      const path = node.slug[locale].current
+      const page = {
+        path: `/${path}`,
+        component: resolvePageTemplate(node.__typename),
+        context: {
+          id: node._id,
+        },
+      }
+      createLocalePage(page, createPage, locale, reporter)
+    })
+  })
+}
+
 const resolvePageTemplate = (type) => {
   switch (type) {
     case "SanityBenefitsPage":
@@ -239,6 +281,9 @@ const resolvePageTemplate = (type) => {
 
     case "SanityEventsPage":
       return require.resolve("./src/templates/events-page.js")
+
+    case "SanityLegalDocument":
+      return require.resolve("./src/templates/legalDoc.js")
 
     default:
       return require.resolve("./src/templates/page.js")
@@ -249,6 +294,7 @@ exports.createPages = ({ graphql, actions, reporter }) => {
   createFrontPage({ graphql, actions, reporter })
   createPages({ graphql, actions, reporter })
   createEventPages({ graphql, actions, reporter })
+  createLegalPages({ graphql, actions, reporter })
 }
 
 exports.createSchemaCustomization = ({ actions }) => {
