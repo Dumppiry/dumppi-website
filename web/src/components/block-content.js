@@ -39,7 +39,6 @@ const serializers = {
 }
 
 const BlockContent = ({ blocks, ...rest }) => {
-  console.log(blocks)
   return (
     <BaseBlockContent
       blocks={blocks}
