@@ -21,12 +21,12 @@ export default {
         list: ["All", "Recent (only 3 most recently added)"],
         layout: "radio",
       },
+      validation: (Rule) => Rule.required(),
     },
     {
-      name: "allJobsPage",
-      title: "Link to all jobs page",
+      name: "cta",
+      title: "Call to action",
       type: "link",
-      description: "Provide a link to all jobs page (optional)",
     },
   ],
   preview: {
