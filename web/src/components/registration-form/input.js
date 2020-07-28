@@ -44,6 +44,7 @@ const Input = (props) => {
           type="checkbox"
           name={id}
           value={value}
+          checked={value}
           onChange={handleChange}
           required={required}
         />

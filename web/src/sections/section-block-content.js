@@ -4,6 +4,7 @@ import { isEmpty } from "lodash"
 
 import BigHeadingSection from "./big-heading-section"
 import BigPeopleSection from "./big-people-section"
+import FormSection from "./form-section"
 import FutureEventsSection from "./future-events-section"
 import JobsSection from "./jobs-section"
 import KeyFiguresSection from "./key-figures-section"
@@ -45,6 +46,10 @@ const SectionBlockContent = ({ blocks }) => {
 
           case "bigPeopleSection":
             Component = BigPeopleSection
+            break
+
+          case "formSection":
+            Component = FormSection
             break
 
           case "futureEventsSection":

@@ -6,6 +6,7 @@ import schemaTypes from "all:part:@sanity/base/schema-type";
 
 // Document types
 import company from "./documents/company";
+import contactForm from "./documents/contactForm";
 import event from "./documents/event";
 import eventCategory from "./documents/eventCategory";
 import eventRegistrationForm from "./documents/eventRegistrationForm";
@@ -44,6 +45,7 @@ import headingPortableText from "./objects/portableText/headingPortableText";
 // Sections
 import bigHeadingSection from "./objects/sections/bigHeadingSection";
 import bigPeopleSection from "./objects/sections/bigPeopleSection";
+import formSection from "./objects/sections/formSection";
 import futureEventsSection from "./objects/sections/futureEventsSection";
 import jobsSection from "./objects/sections/jobsSection";
 import keyFigureSection from "./objects/sections/keyFiguresSection";
@@ -64,6 +66,10 @@ import link from "./objects/links/link";
 // Navigation
 import navigationItem from "./objects/navigation/navigationItem";
 import subPage from "./objects/navigation/subPage";
+// Form fields
+import checkbox from "./objects/form/checkbox";
+import singleSelection from "./objects/form/singleSelection";
+import textField from "./objects/form/textField";
 // Other
 import defaultField from "./objects/defaultField";
 import field from "./objects/field";
@@ -83,6 +89,7 @@ export default createSchema({
     /* Your types here! */
     // Document types
     company,
+    contactForm,
     event,
     eventCategory,
     eventRegistrationForm,
@@ -107,6 +114,7 @@ export default createSchema({
     // Object types
     bigHeadingSection,
     bigPeopleSection,
+    formSection,
     futureEventsSection,
     jobsSection,
     keyFigureSection,
@@ -124,6 +132,9 @@ export default createSchema({
     link,
     navigationItem,
     subPage,
+    checkbox,
+    singleSelection,
+    textField,
     defaultField,
     field,
     keyFigure,

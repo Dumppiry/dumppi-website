@@ -33,6 +33,7 @@ export default {
         { type: "jobsSection" },
         { type: "keyFiguresSection" },
         { type: "productsSection" },
+        { type: "formSection" },
         { type: "mainPartnersSection" },
         { type: "pastEventsSection" },
       ],
