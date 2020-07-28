@@ -14,8 +14,8 @@ const LanguageMenu = () => {
 
   return (
     <div>
-      {languages.map(lang => (
-        <S.Link id={currentPageId} locale={lang.code}>
+      {languages.map((lang) => (
+        <S.Link key={lang.code} id={currentPageId} locale={lang.code}>
           {lang.title}
         </S.Link>
       ))}
