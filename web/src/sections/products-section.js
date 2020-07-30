@@ -15,6 +15,7 @@ export default ProductsSection
 const S = {}
 
 S.Section = styled.section`
+  margin: 5rem 0;
   display: flex;
   flex-direction: column;
 `

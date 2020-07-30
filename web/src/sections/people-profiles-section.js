@@ -45,7 +45,7 @@ const Person = ({ person, bio }) => {
 const S = {}
 
 S.Section = styled.section`
-  margin: 3rem 0;
+  margin: 5rem 0;
 `
 
 S.Heading = styled(Heading)`
