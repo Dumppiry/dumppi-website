@@ -60,16 +60,14 @@ const JOBS_QUERY = graphql`
   }
 `
 
-const JobsSection = ({ heading, type, cta, ...rest }) => {
+const JobsSection = ({ heading, type, emptyStateMessage, cta, ...rest }) => {
   const { allJobs, recentJobs } = useStaticQuery(JOBS_QUERY)
   const jobs = type.includes("Recent") ? recentJobs : allJobs
-
-  console.log(cta)
 
   return (
     <S.Section>
       <PortableText blocks={heading} />
-      <S.JobsList jobs={jobs} />
+      <S.JobsList jobs={jobs} emptyStateMessage={emptyStateMessage} />
       {!!cta && <S.ButtonLink title={cta.title} link={cta.link[0]} />}
     </S.Section>
   )

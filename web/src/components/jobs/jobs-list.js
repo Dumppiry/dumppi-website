@@ -3,14 +3,17 @@ import styled from "styled-components"
 
 import JobCard from "./job-card"
 
-const JobsList = ({ jobs, ...rest }) => {
+const JobsList = ({ jobs, emptyStateMessage, ...rest }) => {
+  const nonExpiredJobs = jobs.nodes.filter(
+    (job) => new Date() < new Date(job.expireDate)
+  )
+
+  if (nonExpiredJobs.length <= 0) return <p>{emptyStateMessage}</p>
   return (
     <S.List {...rest}>
-      {jobs.nodes
-        .filter((job) => new Date() < new Date(job.expireDate))
-        .map((job) => (
-          <JobCard key={job._id} {...job} />
-        ))}
+      {nonExpiredJobs.map((job) => (
+        <JobCard key={job._id} {...job} />
+      ))}
     </S.List>
   )
 }

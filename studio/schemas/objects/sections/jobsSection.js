@@ -18,9 +18,19 @@ export default {
       title: "Type",
       type: "string",
       options: {
-        list: ["All", "Recent (only 3 most recently added)"],
+        list: [
+          { title: "All", value: "all" },
+          { title: "Recent (only 3 most recently added)", value: "recent" },
+        ],
         layout: "radio",
       },
+      validation: (Rule) => Rule.required(),
+    },
+    {
+      name: "emptyStateMessage",
+      title: "Empty state message",
+      type: "localeString",
+      description: "Text to show if there no jobs available.",
       validation: (Rule) => Rule.required(),
     },
     {
