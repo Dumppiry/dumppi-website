@@ -1,44 +1,12 @@
 import React from "react"
 import styled from "styled-components"
-import { graphql, useStaticQuery } from "gatsby"
 
 import MainPartnerCard from "./main-partner-card"
 
-const MAIN_PARTNERS_QUERY = graphql`
-  query MainPartnersQuery {
-    allSanityCompany(
-      filter: { description: { fi: { ne: null }, en: { ne: null } } }
-    ) {
-      nodes {
-        _id
-        link
-        name
-        cardColor {
-          hex
-        }
-        description {
-          en
-          fi
-          _type
-        }
-        image {
-          asset {
-            fluid(maxWidth: 150) {
-              ...GatsbySanityImageFluid
-            }
-          }
-        }
-      }
-    }
-  }
-`
-
-const MainPartnerList = ({ ...rest }) => {
-  const { allSanityCompany } = useStaticQuery(MAIN_PARTNERS_QUERY)
-
+const MainPartnerList = ({ partners, ...rest }) => {
   return (
     <S.List {...rest}>
-      {allSanityCompany.nodes.map((company) => (
+      {partners.map((company) => (
         <MainPartnerCard key={company._id} partner={company} />
       ))}
     </S.List>

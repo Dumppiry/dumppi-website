@@ -5,12 +5,8 @@ import styled from "styled-components"
 
 import config from "../../../client-config"
 
-const Image = ({ asset, alt, caption }) => {
-  const fluidProps = getFluidGatsbyImage(
-    asset._id,
-    { maxWidth: 960 },
-    config.sanity
-  )
+const Image = ({ asset, alt, caption, maxWidth = 960 }) => {
+  const fluidProps = getFluidGatsbyImage(asset._id, { maxWidth }, config.sanity)
   return (
     <S.Figure>
       <S.Img fluid={fluidProps} alt={alt} />

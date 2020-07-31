@@ -4,11 +4,11 @@ import styled from "styled-components"
 import PortableText from "../components/portable-text/heading"
 import MainPartnerList from "../components/partners/main-partner-list"
 
-const MainPartnersSection = ({ heading }) => {
+const MainPartnersSection = ({ heading, partners }) => {
   return (
     <S.Section>
       <PortableText blocks={heading} />
-      <MainPartnerList />
+      <MainPartnerList partners={partners} />
     </S.Section>
   )
 }
