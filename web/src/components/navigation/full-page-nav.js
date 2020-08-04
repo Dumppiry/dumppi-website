@@ -140,7 +140,6 @@ S.HeaderWrapper = styled.div`
 
 S.Content = styled.div`
   width: 100%;
-  max-width: 940px;
   margin: auto;
   padding: 2rem;
   height: 100%;
