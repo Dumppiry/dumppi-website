@@ -22,8 +22,7 @@ const SectionBlockContent = ({ blocks }) => {
     show: {
       opacity: 1,
       transition: {
-        delayChildren: 0.1,
-        staggerChildren: 0.3,
+        staggerChildren: 0.2,
       },
     },
   }
