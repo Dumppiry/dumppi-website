@@ -8,6 +8,7 @@
     "@netlify/zip-it-and-ship-it": "^1.3.3",
     "@sanity/block-content-to-react": "^2.0.7",
     "@sanity/client": "^1.149.7",
+    "@sanity/image-url": "^0.140.19",
     "@u-wave/react-youtube": "^0.7.1",
     "axios": "^0.19.2",
     "dotenv": "^8.2.0",

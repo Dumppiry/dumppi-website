@@ -1,6 +1,5 @@
 import React, { useEffect } from "react"
 import { graphql } from "gatsby"
-import Img from "gatsby-image"
 import styled from "styled-components"
 
 import Layout from "../components/layout"
@@ -10,6 +9,8 @@ import { useCurrentPage } from "../hooks/current-page"
 
 import SectionBlockContent from "../sections/section-block-content"
 import BigHeadingSection from "../sections/big-heading-section"
+
+import urlFor from "../utils/url-for"
 
 const PageTemplate = ({ data, pageContext, ...rest }) => {
   const { _id, title, image, content, hero } = data.page
@@ -23,7 +24,8 @@ const PageTemplate = ({ data, pageContext, ...rest }) => {
   return (
     <Layout>
       <SEO title={title} />
-      <S.Img fluid={image.asset.fluid} />
+      {/* <S.Img fluid={image.asset.fluid} /> */}
+      <S.Img src={urlFor(image).height(800).width(2200).fit("crop").url()} />
       <S.Content>
         <BigHeadingSection {...hero} isFrontPage />
         <SectionBlockContent blocks={content} />
@@ -46,9 +48,22 @@ export const query = graphql`
       }
       image {
         asset {
-          fluid {
-            ...GatsbySanityImageFluid
+          _id
+          metadata {
+            lqip
           }
+        }
+        crop {
+          top
+          bottom
+          left
+          right
+        }
+        hotspot {
+          x
+          y
+          height
+          width
         }
       }
       hero: _rawHero(resolveReferences: { maxDepth: 8 })
@@ -59,15 +74,13 @@ export const query = graphql`
 
 const S = {}
 
-S.Img = styled(Img)`
-  width: 100vw;
+S.Img = styled.img`
   min-height: 500px;
-  position: relative;
-  left: 50%;
-  right: 50%;
-  margin-left: -50vw;
-  margin-right: -50vw;
   max-height: 40vh;
+  width: 100vw;
+  min-width: 100vw;
+  margin-left: calc(50% - 50vw);
+  object-fit: cover;
 `
 
 S.Content = styled.div`
