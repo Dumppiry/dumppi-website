@@ -1,10 +1,8 @@
 import React from "react"
 import { graphql, useStaticQuery } from "gatsby"
-import Img from "gatsby-image"
-import { getFluidGatsbyImage } from "gatsby-source-sanity"
 import styled from "styled-components"
 
-import { sanity } from "../../../client-config"
+import urlFor from "../../utils/url-for"
 
 const QUERY = graphql`
   query BigPersonCardQuery {
@@ -22,15 +20,19 @@ const BigPersonCard = ({ person, ...rest }) => {
   const { title, name, phoneNumber, email, image } = person
   const { settings } = useStaticQuery(QUERY)
 
-  const fluidProps = getFluidGatsbyImage(
-    image?.asset?._id ?? settings.placeholderPersonImage.asset._id,
-    { maxWidth: 290 },
-    sanity
-  )
-
   return (
     <S.Container {...rest}>
-      <S.BigPersonImage fluid={fluidProps} />
+      <S.ImgWrapper>
+        <S.BigPersonImage
+          src={urlFor(image ?? settings.placeholderPersonImage.asset._id)
+            .height(493)
+            .width(360)
+            .fit("crop")
+            .url()}
+          alt={name}
+          contain={!image}
+        />
+      </S.ImgWrapper>
       <S.Info>
         <S.Title>{title}</S.Title>
         <S.Name>{name}</S.Name>
@@ -60,10 +62,24 @@ S.Container = styled.div`
   box-shadow: 0 5px 40px 0 #f0f0f0;
 `
 
-S.BigPersonImage = styled(Img)`
+S.ImgWrapper = styled.div`
+  position: relative;
+  overflow: hidden;
   width: 100%;
   height: 60%;
+`
+
+S.BigPersonImage = styled.img`
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
   border-radius: 10px 10px 0 0;
+  object-fit: ${(props) => (props.contain ? "contain" : "cover")};
+  object-position: center;
 `
 
 S.Info = styled.div`

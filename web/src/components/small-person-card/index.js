@@ -1,8 +1,8 @@
 import React from "react"
 import { graphql, useStaticQuery } from "gatsby"
-import Img from "gatsby-image"
-import { getFixedGatsbyImage } from "gatsby-source-sanity"
 import styled from "styled-components"
+
+import urlFor from "../../utils/url-for"
 
 import { sanity } from "../../../client-config"
 
@@ -22,15 +22,16 @@ const SmallPersonCard = ({ person, ...rest }) => {
   const { title, name, phoneNumber, email, image } = person
   const { settings } = useStaticQuery(QUERY)
 
-  const fixedProps = getFixedGatsbyImage(
-    image?.asset._id ?? settings.placeholderPersonImage.asset._id,
-    { width: 100, height: 100 },
-    sanity
-  )
-
   return (
     <S.Container {...rest}>
-      <S.SmallPersonImage fixed={fixedProps} />
+      <S.SmallPersonImage
+        src={urlFor(image ?? settings.placeholderPersonImage.asset._id)
+          .width(100)
+          .height(100)
+          .fit("crop")
+          .url()}
+        alt={name}
+      />
       <S.Info>
         {title && <S.Title>{title}</S.Title>}
         <S.Name>{name}</S.Name>
@@ -54,11 +55,12 @@ S.Container = styled.div`
   align-items: center;
 `
 
-S.SmallPersonImage = styled(Img)`
+S.SmallPersonImage = styled.img`
   width: 100px;
   height: 100px;
   border-radius: 50%;
 `
+
 S.Info = styled.div`
   margin-left: 20px;
   display: flex;
