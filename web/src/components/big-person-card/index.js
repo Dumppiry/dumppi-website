@@ -30,6 +30,7 @@ const BigPersonCard = ({ person, ...rest }) => {
             .fit("crop")
             .url()}
           alt={name}
+          loading="lazy"
           contain={!image}
         />
       </S.ImgWrapper>

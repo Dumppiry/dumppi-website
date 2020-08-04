@@ -31,6 +31,7 @@ const SmallPersonCard = ({ person, ...rest }) => {
           .fit("crop")
           .url()}
         alt={name}
+        loading="lazy"
       />
       <S.Info>
         {title && <S.Title>{title}</S.Title>}
