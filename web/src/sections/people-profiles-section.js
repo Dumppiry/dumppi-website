@@ -11,11 +11,11 @@ import BlockContent from "../components/block-content"
 const PeopleProfilesSection = ({ heading, people }) => {
   return (
     <S.Section>
-      <S.Heading blocks={heading} />
+      <Heading blocks={heading} />
       {people && (
         <S.People>
           {people.map((p) => (
-            <Person person={p.person} bio={p.bio} />
+            <Person key={p._key} person={p.person} bio={p.bio} />
           ))}
         </S.People>
       )}
@@ -46,19 +46,6 @@ const S = {}
 
 S.Section = styled.section`
   margin: 5rem 0;
-`
-
-S.Heading = styled(Heading)`
-  h2 {
-    margin: 1.25rem 0;
-    font-size: 2.5rem;
-    color: #2c2c2c;
-  }
-  p {
-    margin: 1.25rem 0;
-    font-size: 1.25rem;
-    color: #949494;
-  }
 `
 
 S.People = styled.div`

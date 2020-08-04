@@ -35,11 +35,6 @@ S.Section = styled.section`
     font-size: 2.5rem;
     color: #2c2c2c;
   }
-  p {
-    margin: 1.25rem 0;
-    font-size: 1.25rem;
-    color: #949494;
-  }
 `
 
 S.Group = styled.div`

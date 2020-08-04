@@ -21,7 +21,14 @@ const serializers = {
 }
 
 const HeadingPortableText = ({ blocks, ...rest }) => {
-  return <S.PortableText blocks={blocks} serializers={serializers} {...rest} />
+  return (
+    <S.PortableText
+      blocks={blocks}
+      serializers={serializers}
+      renderContainerOnSingleChild
+      {...rest}
+    />
+  )
 }
 
 export default HeadingPortableText
