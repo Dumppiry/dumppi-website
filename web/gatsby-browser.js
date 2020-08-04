@@ -11,10 +11,14 @@ const PropTypes = require("prop-types")
 const { CurrentPageProvider } = require("./src/hooks/current-page")
 const { NavigationProvider } = require("./src/hooks/navigation")
 
+const { PrankProvider } = require("./src/hooks/prank")
+
 const Wrapper = ({ element }) => (
-  <NavigationProvider>
-    <CurrentPageProvider>{element}</CurrentPageProvider>
-  </NavigationProvider>
+  <PrankProvider>
+    <NavigationProvider>
+      <CurrentPageProvider>{element}</CurrentPageProvider>
+    </NavigationProvider>
+  </PrankProvider>
 )
 
 Wrapper.propTypes = {
