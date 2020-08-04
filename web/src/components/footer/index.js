@@ -8,11 +8,12 @@ import BlockContent from "../block-content"
 import Nav from "./nav"
 import SomeLinks from "./some-links"
 import { useCurrentPage } from "../../hooks/current-page"
+import { InternalLink } from "../link"
 
 const Footer = () => {
   const { locale } = useCurrentPage()
 
-  const { settings, nav } = useStaticQuery(graphql`
+  const { settings, nav, legalDocuments } = useStaticQuery(graphql`
     query FooterQuery {
       settings: sanitySettings {
         siteTitle
@@ -43,6 +44,12 @@ const Footer = () => {
               ...PageFragment
             }
           }
+        }
+      }
+      legalDocuments: allSanityLegalDocument {
+        nodes {
+          _id
+          title: _rawTitle
         }
       }
     }
@@ -101,6 +108,11 @@ const Footer = () => {
           <S.Contact>
             <S.Title>{settings.contactInfoText[locale]}</S.Title>
             <BlockContent blocks={settings.postalAddress} />
+            {legalDocuments.nodes.map((doc) => (
+              <S.LegalLink key={doc._id} id={doc._id}>
+                {doc.title[locale]}
+              </S.LegalLink>
+            ))}
             <S.SomeLinks links={soMeLinks} />
             <S.Text>© {settings.siteTitle}</S.Text>
           </S.Contact>
@@ -161,6 +173,18 @@ S.Title = styled.span`
   line-height: 17px;
   text-transform: uppercase;
   margin-bottom: 1.5em;
+`
+
+S.LegalLink = styled(InternalLink)`
+  color: #ffffff;
+  font-family: Inter;
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: -0.31px;
+  line-height: 17px;
+  text-transform: none;
+  text-decoration: none;
+  margin-bottom: 0.5em;
 `
 
 S.Text = styled.p`
