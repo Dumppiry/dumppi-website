@@ -67,6 +67,7 @@ S.Section = styled.section`
 
       @media (min-width: 768px) {
         padding: 5rem;
+        padding-bottom: 2rem;
       }
     `}
 `
