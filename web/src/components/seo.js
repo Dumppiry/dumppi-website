@@ -34,9 +34,6 @@ const SEO = ({ description, lang, meta, title }) => {
 
   return (
     <Helmet
-      htmlAttributes={{
-        lang,
-      }}
       title={title}
       titleTemplate={`%s | ${site.siteTitle}`}
       meta={[
@@ -73,7 +70,9 @@ const SEO = ({ description, lang, meta, title }) => {
           content: metaDescription,
         },
       ].concat(meta)}
-    />
+    >
+      <html lang={locale} />
+    </Helmet>
   )
 }
 
