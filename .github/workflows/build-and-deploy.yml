@@ -33,7 +33,7 @@ jobs:
           netlify-site-id: ${{ secrets.NETLIFY_SITE_ID }}
           build-dir: ./public
           comment-on-commit: true
-          working-directory: ./web
+        working-directory: ./web
 
   studio:
     runs-on: ubuntu-latest
@@ -56,4 +56,4 @@ jobs:
           netlify-site-id: ${{ secrets.NETLIFY_STUDIO_ID }}
           build-dir: ./dist
           comment-on-commit: true
-          working-directory: ./studio
+        working-directory: ./studio
