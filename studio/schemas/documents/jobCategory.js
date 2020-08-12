@@ -1,4 +1,3 @@
-import React from "react";
 import { FiBookmark } from "react-icons/fi";
 
 export default {
@@ -10,12 +9,12 @@ export default {
     {
       name: "title",
       title: "Title",
-      type: "localeString"
-    }
+      type: "localeString",
+    },
   ],
   preview: {
     select: {
-      title: "title.fi"
-    }
-  }
+      title: "title.fi",
+    },
+  },
 };

@@ -1,10 +1,15 @@
 import S from "@sanity/desk-tool/structure-builder";
 import {
   FiSettings,
+  FiBookmark,
   FiAlignRight,
+  FiPenTool,
   FiFileText,
   FiCalendar,
+  FiMessageSquare,
   FiGift,
+  FiTruck,
+  FiUser,
 } from "react-icons/fi";
 import { FaRegHandshake } from "react-icons/fa";
 
@@ -83,21 +88,91 @@ export default () =>
         .title("Events")
         .icon(FiCalendar)
         .child(
-          S.documentList()
-            .schemaType("event")
+          S.list()
             .title("Events")
-            .filter('_type == "event"')
-            .child(
-              S.document().views([
-                S.view.form(),
-                S.view.component(EventSubmissionsPreview).title("Attendees"),
-              ])
-            )
+            .items([
+              S.listItem()
+                .title("Events")
+                .icon(FiCalendar)
+                .child(
+                  S.documentTypeList("event").child(
+                    S.document().views([
+                      S.view.form(),
+                      S.view
+                        .component(EventSubmissionsPreview)
+                        .title("Attendees"),
+                    ])
+                  )
+                ),
+              S.listItem()
+                .title("Categories")
+                .icon(FiBookmark)
+                .child(S.documentTypeList("eventCategory")),
+            ])
         ),
       S.listItem()
         .title("Partners")
         .icon(FaRegHandshake)
         .child(S.editor().schemaType("partners").documentId("partners")),
+      S.listItem()
+        .title("Forms")
+        .icon(FiPenTool)
+        .child(
+          S.list()
+            .title("Forms")
+            .items([
+              S.listItem()
+                .title("Contact forms")
+                .icon(FiMessageSquare)
+                .child(S.documentTypeList("contactForm")),
+              S.listItem()
+                .title("Registration forms")
+                .icon(FiPenTool)
+                .child(S.documentTypeList("eventRegistrationForm")),
+            ])
+        ),
+      S.listItem()
+        .title("Jobs")
+        .icon(FiTruck)
+        .child(
+          S.list()
+            .title("Jobs")
+            .items([
+              S.listItem()
+                .title("Jobs")
+                .icon(FiTruck)
+                .child(S.documentTypeList("job")),
+              S.listItem()
+                .title("Categories")
+                .icon(FiBookmark)
+                .child(S.documentTypeList("jobCategory")),
+              S.listItem()
+                .title("Types")
+                .icon(FiBookmark)
+                .child(S.documentTypeList("jobType")),
+            ])
+        ),
+      S.listItem()
+        .title("Benefits")
+        .icon(FiGift)
+        .child(
+          S.list()
+            .title("Benefits")
+            .items([
+              S.listItem()
+                .title("Benefits")
+                .icon(FiGift)
+                .child(S.documentTypeList("benefit")),
+              S.listItem()
+                .title("Categories")
+                .icon(FiBookmark)
+                .child(S.documentTypeList("benefitCategory")),
+            ])
+        ),
+      S.listItem()
+        .title("People")
+        .icon(FiUser)
+        .child(S.documentTypeList("person")),
       ...S.documentTypeListItems().filter(
         (listItem) =>
           ![
@@ -105,11 +180,21 @@ export default () =>
             "eventSettings",
             "mainNavigation",
             "fullNavigation",
+            "page",
             "frontPage",
             "eventsPage",
             "event",
+            "eventCategory",
             "partners",
             "benefitsPage",
+            "job",
+            "jobCategory",
+            "jobType",
+            "contactForm",
+            "eventRegistrationForm",
+            "benefit",
+            "benefitCategory",
+            "person",
           ].includes(listItem.getId())
       ),
     ]);
