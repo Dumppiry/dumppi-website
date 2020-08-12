@@ -7,9 +7,7 @@ import styles from "./ActionItem.css";
 import request from "../utils/request";
 import { fetchSecrets } from "../utils/secrets";
 
-const ActionItem = ({ action, repo }) => {
-  const { name, badge_url } = action;
-
+const ActionItem = ({ title, repo, eventType, workflowName }) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(false);
@@ -20,7 +18,7 @@ const ActionItem = ({ action, repo }) => {
       request({
         url: `/repos/${repo.owner}/${repo.name}/dispatches`,
         body: JSON.stringify({
-          event_type: "start-build-and-deploy",
+          event_type: eventType,
         }),
         headers: { Authorization: `Bearer ${secrets.accessToken}` },
       })
@@ -63,12 +61,16 @@ const ActionItem = ({ action, repo }) => {
       {success && renderSuccessSnackbar()}
       <li className={styles.item}>
         <div>
+          <h4>{title}</h4>
           <a
-            href={`https://github.com/${repo.owner}/${repo.name}/actions?query=workflow%3A"${name}"`}
+            href={`https://github.com/${repo.owner}/${repo.name}/actions?query=workflow%3A"${workflowName}"`}
             target="_blank"
             rel="noreferrer noopener"
           >
-            <img src={badge_url} alt={name} />
+            <img
+              src={`https://github.com/Dumppiry/dumppi-website/workflows/${workflowName}/badge.svg`}
+              alt={workflowName}
+            />
           </a>
         </div>
         <Button inverted loading={loading} onClick={triggerAction}>

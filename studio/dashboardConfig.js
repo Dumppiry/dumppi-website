@@ -8,6 +8,13 @@ export default {
           owner: "Dumppiry",
           name: "dumppi-website",
         },
+        actions: [
+          {
+            title: "dumppi.fi website",
+            workflowName: "Build and Deploy Website to Netlify",
+            eventType: "build-and-deploy-web",
+          },
+        ],
       },
     },
   ],

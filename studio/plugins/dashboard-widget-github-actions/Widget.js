@@ -10,7 +10,7 @@ import ActionsList from "./components/ActionsList";
 import { fetchSecrets, saveSecrets } from "./utils/secrets";
 
 const Widget = (props) => {
-  const { title, repo } = props;
+  const { title, repo, actions } = props;
   const [secrets, setSecrets] = useState({});
   const [token, setToken] = useState("");
 
@@ -31,7 +31,7 @@ const Widget = (props) => {
       </header>
       <div className={styles.content}>
         {secrets?.accessToken ? (
-          <ActionsList repo={repo} />
+          <ActionsList repo={repo} actions={actions} />
         ) : (
           <div>
             <p>Needs setup</p>
