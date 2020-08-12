@@ -1,5 +1,23 @@
 export default {
   widgets: [
+    { name: "structure-menu" },
+    {
+      name: "project-info",
+      options: {
+        data: [
+          {
+            title: "Website",
+            value: "https://dumppi.fi",
+            category: "apps",
+          },
+          {
+            title: "GitHub",
+            value: "https://github.com/dumppiry/dumppi-website",
+            category: "Code",
+          },
+        ],
+      },
+    },
     {
       name: "github-actions",
       options: {
@@ -17,5 +35,7 @@ export default {
         ],
       },
     },
+    { name: "minesweeper", layout: { width: "medium" } },
+    { name: "cats", layout: { width: "medium" } },
   ],
 };

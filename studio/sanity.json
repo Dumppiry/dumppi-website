@@ -15,12 +15,16 @@
     "@sanity/dashboard",
     "@sanity/desk-tool",
     "@sanity/color-input",
-    "dashboard-widget-netlify",
-    "dashboard-widget-github-actions"
+    "dashboard-widget-structure-menu",
+    "dashboard-widget-github-actions",
+    "dashboard-widget-cats",
+    "minesweeper"
   ],
   "env": {
     "development": {
-      "plugins": ["@sanity/vision"]
+      "plugins": [
+        "@sanity/vision"
+      ]
     }
   },
   "parts": [

@@ -36,7 +36,8 @@
     "react-icons": "^3.10.0",
     "react-markdown": "^4.3.1",
     "react-table": "^7.0.0",
-    "sanity-plugin-dashboard-widget-netlify": "^1.0.1"
+    "sanity-plugin-dashboard-widget-cats": "^0.0.2",
+    "sanity-plugin-minesweeper": "^0.0.3"
   },
   "devDependencies": {
     "@sanity/cli": "^1.149.18"
