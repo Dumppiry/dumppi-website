@@ -159,10 +159,12 @@ export default {
   preview: {
     select: {
       title: "title",
+      image: "image",
     },
-    prepare({ title }) {
+    prepare({ title, image }) {
       return {
         title: title?.fi,
+        media: image,
       };
     },
   },
