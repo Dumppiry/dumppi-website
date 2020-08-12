@@ -4,7 +4,7 @@ import {
   FiAlignRight,
   FiFileText,
   FiCalendar,
-  FiGift
+  FiGift,
 } from "react-icons/fi";
 import { FaRegHandshake } from "react-icons/fa";
 
@@ -17,51 +17,67 @@ export default () =>
       S.listItem()
         .title("Settings")
         .icon(FiSettings)
-        .child(
-          S.editor()
-            .schemaType("settings")
-            .documentId("settings")
-        ),
+        .child(S.editor().schemaType("settings").documentId("settings")),
       S.listItem()
         .title("Event Settings")
         .icon(FiSettings)
         .child(
-          S.editor()
-            .schemaType("eventSettings")
-            .documentId("eventSettings")
+          S.editor().schemaType("eventSettings").documentId("eventSettings")
         ),
       S.listItem()
         .title("Main Navigation")
         .icon(FiAlignRight)
         .child(
-          S.editor()
-            .schemaType("mainNavigation")
-            .documentId("mainNavigation")
+          S.editor().schemaType("mainNavigation").documentId("mainNavigation")
         ),
       S.listItem()
         .title("Full Navigation")
         .icon(FiAlignRight)
         .child(
-          S.editor()
-            .schemaType("fullNavigation")
-            .documentId("fullNavigation")
+          S.editor().schemaType("fullNavigation").documentId("fullNavigation")
         ),
       S.divider(),
       S.listItem()
-        .title("Front Page")
+        .title("Pages")
         .icon(FiFileText)
         .child(
-          S.editor()
-            .schemaType("frontPage")
-            .documentId("frontPage")
-        ),
-      S.listItem()
-        .title("Events Page")
-        .icon(FiCalendar)
-        .child(
-          S.editor()
-            .schemaType("eventsPage")
-            .documentId("eventsPage")
+          S.list()
+            .title("Pages")
+            .items([
+              S.listItem()
+                .title("Front Page")
+                .icon(FiFileText)
+                .child(
+                  S.editor().schemaType("frontPage").documentId("frontPage")
+                ),
+              S.listItem()
+                .title("Events Page")
+                .icon(FiCalendar)
+                .child(
+                  S.editor().schemaType("eventsPage").documentId("eventsPage")
+                ),
+              S.listItem()
+                .title("Benefits page")
+                .icon(FiGift)
+                .child(
+                  S.editor()
+                    .schemaType("benefitsPage")
+                    .documentId("benefitsPage")
+                ),
+              S.divider(),
+              S.listItem()
+                .title("Pages")
+                .icon(FiFileText)
+                .child(
+                  S.documentList()
+                    .schemaType("page")
+                    .title("Pages")
+                    .filter('_type == "page"')
+                    .menuItems([...S.documentTypeList("page").getMenuItems()])
+                    .defaultOrdering([{ field: "title.fi", direction: "asc" }])
+                    .child(S.document())
+                ),
+            ])
         ),
       S.listItem()
         .title("Events")
@@ -74,28 +90,16 @@ export default () =>
             .child(
               S.document().views([
                 S.view.form(),
-                S.view.component(EventSubmissionsPreview).title("Attendees")
+                S.view.component(EventSubmissionsPreview).title("Attendees"),
               ])
             )
         ),
       S.listItem()
         .title("Partners")
         .icon(FaRegHandshake)
-        .child(
-          S.editor()
-            .schemaType("partners")
-            .documentId("partners")
-        ),
-      S.listItem()
-        .title("Benefits page")
-        .icon(FiGift)
-        .child(
-          S.editor()
-            .schemaType("benefitsPage")
-            .documentId("benefitsPage")
-        ),
+        .child(S.editor().schemaType("partners").documentId("partners")),
       ...S.documentTypeListItems().filter(
-        listItem =>
+        (listItem) =>
           ![
             "settings",
             "eventSettings",
@@ -105,7 +109,7 @@ export default () =>
             "eventsPage",
             "event",
             "partners",
-            "benefitsPage"
+            "benefitsPage",
           ].includes(listItem.getId())
-      )
+      ),
     ]);
