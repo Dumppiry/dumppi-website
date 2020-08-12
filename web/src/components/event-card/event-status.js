@@ -73,10 +73,10 @@ const EventStatus = ({
       <span>
         {status === "toBeOpen"
           ? new Date(registrationStartDate).toLocaleString(locale, {
-              day: "numeric",
-              month: "numeric",
-              hour: "numeric",
-              minute: "numeric",
+              day: "2-digit",
+              month: "2-digit",
+              hour: "2-digit",
+              minute: "2-digit",
             })
           : showSubmissions
           ? `${submissions.length}/${registrationMaxCapacity}`
@@ -123,7 +123,7 @@ const statusDisplayTexts = {
     en: "Registration has ended",
   },
   default: {
-    fi: "Hetkinen...",
+    fi: "Ladataan...",
     en: "Loading...",
   },
 }
@@ -163,6 +163,7 @@ S.StatusBar = styled.div`
   padding: 1rem 1.5rem;
   color: #2c2c2c;
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
 
   ${(props) => {
