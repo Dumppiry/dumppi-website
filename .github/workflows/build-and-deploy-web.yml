@@ -3,10 +3,13 @@ name: Build and Deploy to Netlify
 on:
   repository_dispatch:
     types:
+      - build-and-deploy-web
       - start-build-and-deploy
   push:
     branches:
       - "master"
+    paths:
+      - "web/**"
 
 env:
   SANITY_READ_TOKEN: ${{ secrets.SANITY_READ_TOKEN }}
@@ -14,7 +17,7 @@ env:
   SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
 
 jobs:
-  web:
+  build-and-deploy:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -32,26 +35,4 @@ jobs:
           args: deploy --dir=web/public --prod
         env:
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
-          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
-
-  studio:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2-beta
-        with:
-          node-version: "14"
-          registry-url: "https://registry.npmjs.org"
-      - run: yarn
-        working-directory: ./studio
-      - run: yarn build
-        working-directory: ./studio
-      - run: cp netlify.toml dist/netlify.toml
-        working-directory: ./studio
-      - name: Publish
-        uses: netlify/actions/cli@master
-        with:
-          args: deploy --dir=studio/dist --prod
-        env:
-          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_STUDIO_ID }}
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
