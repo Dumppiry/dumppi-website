@@ -10,8 +10,8 @@ const ColorPreview = ({ color }) => {
 };
 
 export default {
-  name: "jobType",
-  title: "Job Type",
+  name: "blogCategory",
+  title: "Blog Category",
   type: "document",
   icon: FiBookmark,
   fields: [
@@ -19,6 +19,13 @@ export default {
       name: "title",
       title: "Title",
       type: "localeString",
+      validation: (Rule) => Rule.required(),
+    },
+    {
+      name: "description",
+      title: "Description",
+      type: "localeText",
+      validation: (Rule) => Rule.required(),
     },
     {
       name: "color",
@@ -30,11 +37,13 @@ export default {
   preview: {
     select: {
       title: "title.fi",
+      description: "description.fi",
       color: "color",
     },
-    prepare({ title, color }) {
+    prepare({ title, description, color }) {
       return {
         title,
+        subtitle: description,
         media: () => <ColorPreview color={color} />,
       };
     },

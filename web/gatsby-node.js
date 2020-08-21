@@ -178,6 +178,44 @@ const createPages = async ({ graphql, actions, reporter }) => {
   })
 }
 
+const createBlogPosts = async ({ graphql, actions, reporter }) => {
+  const { createPage } = actions
+
+  const result = await graphql(`
+    {
+      allSanityBlogPost {
+        nodes {
+          _id
+          __typename
+          slug {
+            current
+          }
+        }
+      }
+    }
+  `)
+
+  if (result.errors) throw result.errors
+
+  const posts = (result.data.allSanityBlogPost || {}).nodes || []
+
+  const locales = ["fi", ...extraLanguages]
+  locales.forEach((locale) => {
+    posts.forEach((post) => {
+      const path = `/blogi/${post.slug.current}`
+      const page = {
+        path,
+        component: resolvePageTemplate(post.__typename),
+        context: {
+          id: post._id,
+        },
+      }
+      reporter.info(`Creating blog post: ${path}`)
+      createLocalePage(page, createPage, locale, reporter)
+    })
+  })
+}
+
 const createEventPages = async ({ graphql, actions, reporter }) => {
   const { createPage } = actions
 
@@ -285,16 +323,22 @@ const resolvePageTemplate = (type) => {
     case "SanityLegalDocument":
       return require.resolve("./src/templates/legalDoc.js")
 
+    case "SanityBlogPost":
+      return require.resolve("./src/templates/blog/blog-post.js")
+
     default:
       return require.resolve("./src/templates/page.js")
   }
 }
 
-exports.createPages = ({ graphql, actions, reporter }) => {
-  createFrontPage({ graphql, actions, reporter })
-  createPages({ graphql, actions, reporter })
-  createEventPages({ graphql, actions, reporter })
-  createLegalPages({ graphql, actions, reporter })
+exports.createPages = async ({ graphql, actions, reporter }) => {
+  await Promise.all([
+    createFrontPage({ graphql, actions, reporter }),
+    createPages({ graphql, actions, reporter }),
+    createBlogPosts({ graphql, actions, reporter }),
+    createEventPages({ graphql, actions, reporter }),
+    createLegalPages({ graphql, actions, reporter }),
+  ])
 }
 
 exports.createSchemaCustomization = ({ actions }) => {

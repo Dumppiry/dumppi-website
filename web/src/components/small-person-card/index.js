@@ -36,12 +36,16 @@ const SmallPersonCard = ({ person, ...rest }) => {
       <S.Info>
         {title && <S.Title>{title}</S.Title>}
         <S.Name>{name}</S.Name>
-        <S.AdditionalInfo>
-          <a href={`tel:${phoneNumber}`}>{phoneNumber}</a>
-        </S.AdditionalInfo>
-        <S.AdditionalInfo>
-          <a href={`mailto:${email}`}>{email}</a>
-        </S.AdditionalInfo>
+        {phoneNumber && (
+          <S.AdditionalInfo>
+            <a href={`tel:${phoneNumber}`}>{phoneNumber}</a>
+          </S.AdditionalInfo>
+        )}
+        {email && (
+          <S.AdditionalInfo>
+            <a href={`mailto:${email}`}>{email}</a>
+          </S.AdditionalInfo>
+        )}
       </S.Info>
     </S.Container>
   )
@@ -60,6 +64,7 @@ S.SmallPersonImage = styled.img`
   width: 100px;
   height: 100px;
   border-radius: 50%;
+  margin: 0;
 `
 
 S.Info = styled.div`
