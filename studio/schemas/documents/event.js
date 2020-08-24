@@ -160,12 +160,88 @@ export default {
     select: {
       title: "title",
       image: "image",
+      location: "location.title",
+      startDate: "startDate",
+      hasRegistration: "hasRegistration",
+      registrationStartDate: "registrationStartDate",
+      registrationEndDate: "registrationEndDate",
+      registrationSubmissions: "registrationSubmissions",
+      registrationMaxCapacity: "registrationMaxCapacity",
     },
-    prepare({ title, image }) {
+    prepare({
+      title,
+      image,
+      location,
+      startDate,
+      hasRegistration,
+      registrationStartDate,
+      registrationEndDate,
+      registrationSubmissions,
+      registrationMaxCapacity,
+    }) {
+      const startDateString = new Date(startDate).toLocaleString("fi", {
+        month: "short",
+        day: "2-digit",
+        hour: "2-digit",
+        minute: "2-digit",
+      });
+
+      const subtitle = `${location ? `${location}. ` : ""}${startDateString}`;
+      const description = `${
+        registrationSubmissions?.length ?? 0
+      }/${registrationMaxCapacity} attendees. Registration starts at ${new Date(
+        registrationStartDate
+      ).toLocaleString("fi", {
+        month: "2-digit",
+        day: "2-digit",
+        hour: "2-digit",
+        minute: "2-digit",
+      })} and ends at ${new Date(registrationEndDate).toLocaleString("fi", {
+        month: "2-digit",
+        day: "2-digit",
+        hour: "2-digit",
+        minute: "2-digit",
+      })}
+      `;
+
       return {
         title: title?.fi,
         media: image,
+        subtitle,
+        description: hasRegistration ? description : "No registration",
       };
     },
   },
+  orderings: [
+    {
+      title: "Title, ASC",
+      name: "titleAsc",
+      by: [{ field: "title.fi", direction: "asc" }],
+    },
+    {
+      title: "Title, DESC",
+      name: "titleDesc",
+      by: [{ field: "title.fi", direction: "desc" }],
+    },
+    {
+      title: "Start date, ASC",
+      name: "startDateAsc",
+      by: [{ field: "startDate", direction: "asc" }],
+    },
+    {
+      title: "Start date, DESC",
+      name: "startDateDesc",
+      by: [{ field: "startDate", direction: "desc" }],
+    },
+    {
+      title: "Registration start, ASC",
+      name: "registrationStartAsc",
+      by: [{ field: "registrationStartDate", direction: "asc" }],
+    },
+    {
+      title: "Registration start, DESC",
+      name: "registrationStartDesc",
+      by: [{ field: "registrationStartDate", direction: "desc" }],
+    },
+  ],
 };
