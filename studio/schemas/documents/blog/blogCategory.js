@@ -22,6 +22,12 @@ export default {
       validation: (Rule) => Rule.required(),
     },
     {
+      name: "slug",
+      title: "Slug",
+      type: "localeSlug",
+      validation: (Rule) => Rule.required(),
+    },
+    {
       name: "description",
       title: "Description",
       type: "localeText",

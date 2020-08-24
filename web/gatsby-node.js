@@ -184,12 +184,38 @@ const createBlogPosts = async ({ graphql, actions, reporter }) => {
   const result = await graphql(`
     {
       settings: sanityPage(_id: { regex: "/(drafts.|)blogPage/" }) {
+        _id
+        title {
+          _type
+          en
+          fi
+        }
         slug {
           en {
             current
           }
           fi {
             current
+          }
+        }
+      }
+      allSanityBlogCategory {
+        nodes {
+          _id
+          __typename
+          title {
+            _type
+            en
+            fi
+          }
+          slug {
+            _type
+            en {
+              current
+            }
+            fi {
+              current
+            }
           }
         }
       }
@@ -206,22 +232,39 @@ const createBlogPosts = async ({ graphql, actions, reporter }) => {
   `)
 
   if (result.errors) throw result.errors
-  const { allSanityBlogPost, settings } = result.data
+  const { allSanityBlogPost, allSanityBlogCategory, settings } = result.data
 
   const posts = (allSanityBlogPost || {}).nodes || []
+  const categories = (allSanityBlogCategory || {}).nodes || []
 
   const locales = ["fi", ...extraLanguages]
   locales.forEach((locale) => {
     const baseSlug = settings.slug[locale].current
+    const subNavigationItems = categories.map((cat) => ({ page: cat }))
 
     const page = {
       path: `/${baseSlug}`,
       component: require.resolve("./src/templates/blog/blog-list.js"),
       context: {
         id: "blogPage",
+        subNavigationItems,
       },
     }
     createLocalePage(page, createPage, locale, reporter)
+
+    categories.forEach((category) => {
+      const path = `/${baseSlug}/${category.slug[locale].current}`
+      const page = {
+        path,
+        component: resolvePageTemplate(category.__typename),
+        context: {
+          id: category._id,
+          parent: settings,
+          subNavigationItems,
+        },
+      }
+      createLocalePage(page, createPage, locale, reporter)
+    })
 
     posts.forEach((post) => {
       const path = `/${baseSlug}/${post.slug.current}`
@@ -230,6 +273,7 @@ const createBlogPosts = async ({ graphql, actions, reporter }) => {
         component: resolvePageTemplate(post.__typename),
         context: {
           id: post._id,
+          subNavigationItems,
         },
       }
       createLocalePage(page, createPage, locale, reporter)
@@ -343,6 +387,9 @@ const resolvePageTemplate = (type) => {
 
     case "SanityLegalDocument":
       return require.resolve("./src/templates/legalDoc.js")
+
+    case "SanityBlogCategory":
+      return require.resolve("./src/templates/blog/blog-category-list.js")
 
     case "SanityBlogPost":
       return require.resolve("./src/templates/blog/blog-post.js")

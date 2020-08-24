@@ -2,14 +2,11 @@ import React from "react"
 import styled from "styled-components"
 
 import { InternalLink as Link } from "../link"
-import EventStatus from "../event-card/event-status"
 
 import { useCurrentPage } from "../../hooks/current-page"
 import urlFor from "../../utils/url-for"
 
 const BlogCard = ({ _id, title, excerpt, publishDate, category, image }) => {
-  const { locale } = useCurrentPage()
-
   return (
     <S.Container id={_id}>
       <S.Image src={urlFor(image.asset._id).height(360).url()} />

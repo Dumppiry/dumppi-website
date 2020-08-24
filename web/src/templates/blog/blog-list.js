@@ -4,15 +4,16 @@ import styled from "styled-components"
 
 import Layout from "../../components/layout"
 import SEO from "../../components/seo"
-import BlogCard from "../../components/blog/blog-card"
+import BlogList from "../../components/blog/blog-list"
 
 import SectionBlockContent from "../../sections/section-block-content"
 
 import { useCurrentPage } from "../../hooks/current-page"
 import localize from "../../hoc/localize"
 
-const BlogList = ({ data, pageContext }) => {
+const BlogListTemplate = ({ data, pageContext }) => {
   const { page, posts } = data
+  const { subNavigationItems } = pageContext
   const { setLocale, setCurrentPageId } = useCurrentPage()
 
   useEffect(() => {
@@ -21,31 +22,17 @@ const BlogList = ({ data, pageContext }) => {
   })
 
   return (
-    <Layout page={page}>
+    <Layout page={page} subNavItems={subNavigationItems}>
       <SEO title={page.title} />
       <S.Content>
         <SectionBlockContent blocks={page.content} />
-        <S.List>
-          {posts.nodes.map((post) => {
-            return (
-              <BlogCard
-                key={post._id}
-                _id={post._id}
-                title={post.title}
-                excerpt={post.excerpt}
-                publishDate={post.publishDate}
-                category={post.category}
-                image={post.image}
-              />
-            )
-          })}
-        </S.List>
+        <BlogList posts={posts} />
       </S.Content>
     </Layout>
   )
 }
 
-export default localize(BlogList)
+export default localize(BlogListTemplate)
 
 export const query = graphql`
   query BlogListTemplateQuery($locale: String!) {
@@ -105,18 +92,4 @@ const S = {}
 
 S.Content = styled.div`
   margin: 3rem 0;
-`
-
-S.List = styled.ul`
-  --grid-columns: 1;
-  display: grid;
-  grid-template-columns: repeat(var(--grid-columns), 1fr);
-  grid-gap: 2rem;
-
-  @media (min-width: 575px) {
-    --grid-columns: 2;
-  }
-  /* @media (min-width: 768px) {
-    --grid-columns: 3;
-  } */
 `

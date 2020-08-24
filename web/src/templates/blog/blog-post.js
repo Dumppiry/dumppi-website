@@ -10,6 +10,7 @@ import BlockContent from "../../components/block-content"
 import SmallPersonCard from "../../components/small-person-card"
 import Chip from "../../components/chip"
 
+import localize from "../../hoc/localize"
 import { useCurrentPage } from "../../hooks/current-page"
 
 const BlogPost = ({ data, pageContext }) => {
@@ -39,7 +40,7 @@ const BlogPost = ({ data, pageContext }) => {
   )
 }
 
-export default BlogPost
+export default localize(BlogPost)
 
 export const query = graphql`
   query BlogPostTemplateQuery($id: String!) {
