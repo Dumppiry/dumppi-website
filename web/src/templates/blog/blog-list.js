@@ -1,25 +1,69 @@
-import React from "react"
+import React, { useEffect } from "react"
+import styled from "styled-components"
 
-const BlogList = ({ data }) => {
+import Layout from "../../components/layout"
+import SEO from "../../components/seo"
+import BlogCard from "../../components/blog/blog-card"
+
+import SectionBlockContent from "../../sections/section-block-content"
+
+import { useCurrentPage } from "../../hooks/current-page"
+import localize from "../../hoc/localize"
+
+const BlogList = ({ data, pageContext }) => {
+  const { page } = data
+  const { setLocale, setCurrentPageId } = useCurrentPage()
+
+  useEffect(() => {
+    setLocale(pageContext.locale)
+    setCurrentPageId(pageContext.id)
+  })
+
   return (
-    <div>
-      <h2>Posts</h2>
-      {data.posts.nodes.map((post) => {
-        return (
-          <article>
-            <h3>{post.title}</h3>
-            <p>{post.excerpt}</p>
-          </article>
-        )
-      })}
-    </div>
+    <Layout page={page}>
+      <S.Content>
+        <SectionBlockContent blocks={page.content} />
+        {data.posts.nodes.map((post) => {
+          return (
+            <BlogCard
+              key={post._id}
+              title={post.title}
+              excerpt={post.excerpt}
+              category={post.category}
+            />
+          )
+        })}
+      </S.Content>
+    </Layout>
   )
 }
 
-export default BlogList
+export default localize(BlogList)
 
 export const query = graphql`
   query BlogListTemplateQuery {
+    settings: sanityBlogSettings {
+      image {
+        asset {
+          _id
+        }
+        alt {
+          _type
+          fi
+          en
+        }
+      }
+    }
+    page: sanityPage(_id: { regex: "/(drafts.|)blogPage/" }) {
+      _id
+      _type
+      title {
+        _type
+        en
+        fi
+      }
+      content: _rawContent(resolveReferences: { maxDepth: 8 })
+    }
     posts: allSanityBlogPost {
       nodes {
         _id
@@ -30,7 +74,7 @@ export const query = graphql`
         }
         category {
           title {
-            __typename
+            _type
             fi
             en
           }
@@ -42,4 +86,10 @@ export const query = graphql`
       }
     }
   }
+`
+
+const S = {}
+
+S.Content = styled.div`
+  margin: 3rem 0;
 `

@@ -7,6 +7,7 @@ import schemaTypes from "all:part:@sanity/base/schema-type";
 // Document types
 import blogCategory from "./documents/blog/blogCategory";
 import blogPost from "./documents/blog/blogPost";
+import blogSettings from "./documents/blog/blogSettings";
 import company from "./documents/company";
 import contactForm from "./documents/contactForm";
 import event from "./documents/event";
@@ -93,6 +94,7 @@ export default createSchema({
     // Document types
     blogCategory,
     blogPost,
+    blogSettings,
     company,
     contactForm,
     event,

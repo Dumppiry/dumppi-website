@@ -183,6 +183,16 @@ const createBlogPosts = async ({ graphql, actions, reporter }) => {
 
   const result = await graphql(`
     {
+      settings: sanityPage(_id: { regex: "/(drafts.|)blogPage/" }) {
+        slug {
+          en {
+            current
+          }
+          fi {
+            current
+          }
+        }
+      }
       allSanityBlogPost {
         nodes {
           _id
@@ -196,13 +206,25 @@ const createBlogPosts = async ({ graphql, actions, reporter }) => {
   `)
 
   if (result.errors) throw result.errors
+  const { allSanityBlogPost, settings } = result.data
 
-  const posts = (result.data.allSanityBlogPost || {}).nodes || []
+  const posts = (allSanityBlogPost || {}).nodes || []
 
   const locales = ["fi", ...extraLanguages]
   locales.forEach((locale) => {
+    const baseSlug = settings.slug[locale].current
+
+    const page = {
+      path: `/${baseSlug}`,
+      component: require.resolve("./src/templates/blog/blog-list.js"),
+      context: {
+        id: "blogPage",
+      },
+    }
+    createLocalePage(page, createPage, locale, reporter)
+
     posts.forEach((post) => {
-      const path = `/blogi/${post.slug.current}`
+      const path = `/${baseSlug}/${post.slug.current}`
       const page = {
         path,
         component: resolvePageTemplate(post.__typename),
@@ -210,7 +232,6 @@ const createBlogPosts = async ({ graphql, actions, reporter }) => {
           id: post._id,
         },
       }
-      reporter.info(`Creating blog post: ${path}`)
       createLocalePage(page, createPage, locale, reporter)
     })
   })

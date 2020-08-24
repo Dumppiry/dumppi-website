@@ -63,7 +63,8 @@ export default {
   preview: {
     select: {
       title: "title",
-      subtitle: "excerpt",
+      subtitle: "category.title.fi",
+      media: "image",
     },
   },
 };
