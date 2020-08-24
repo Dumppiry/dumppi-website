@@ -273,7 +273,7 @@ const createBlogPosts = async ({ graphql, actions, reporter }) => {
         component: resolvePageTemplate(post.__typename),
         context: {
           id: post._id,
-          subNavigationItems,
+          subNavigationItems: [{ page: settings }, ...subNavigationItems],
         },
       }
       createLocalePage(page, createPage, locale, reporter)
