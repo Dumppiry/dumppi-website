@@ -11,7 +11,7 @@ import { useCurrentPage } from "../../hooks/current-page"
 import localize from "../../hoc/localize"
 
 const BlogList = ({ data, pageContext }) => {
-  const { page } = data
+  const { page, posts } = data
   const { setLocale, setCurrentPageId } = useCurrentPage()
 
   useEffect(() => {
@@ -21,9 +21,10 @@ const BlogList = ({ data, pageContext }) => {
 
   return (
     <Layout page={page}>
+      <SEO title={page.title} />
       <S.Content>
         <SectionBlockContent blocks={page.content} />
-        {data.posts.nodes.map((post) => {
+        {posts.nodes.map((post) => {
           return (
             <BlogCard
               key={post._id}
