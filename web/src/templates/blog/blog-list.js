@@ -1,4 +1,5 @@
 import React, { useEffect } from "react"
+import { graphql } from "gatsby"
 import styled from "styled-components"
 
 import Layout from "../../components/layout"
@@ -24,16 +25,21 @@ const BlogList = ({ data, pageContext }) => {
       <SEO title={page.title} />
       <S.Content>
         <SectionBlockContent blocks={page.content} />
-        {posts.nodes.map((post) => {
-          return (
-            <BlogCard
-              key={post._id}
-              title={post.title}
-              excerpt={post.excerpt}
-              category={post.category}
-            />
-          )
-        })}
+        <S.List>
+          {posts.nodes.map((post) => {
+            return (
+              <BlogCard
+                key={post._id}
+                _id={post._id}
+                title={post.title}
+                excerpt={post.excerpt}
+                publishDate={post.publishDate}
+                category={post.category}
+                image={post.image}
+              />
+            )
+          })}
+        </S.List>
       </S.Content>
     </Layout>
   )
@@ -42,7 +48,7 @@ const BlogList = ({ data, pageContext }) => {
 export default localize(BlogList)
 
 export const query = graphql`
-  query BlogListTemplateQuery {
+  query BlogListTemplateQuery($locale: String!) {
     settings: sanityBlogSettings {
       image {
         asset {
@@ -65,7 +71,7 @@ export const query = graphql`
       }
       content: _rawContent(resolveReferences: { maxDepth: 8 })
     }
-    posts: allSanityBlogPost {
+    posts: allSanityBlogPost(sort: { fields: publishDate, order: DESC }) {
       nodes {
         _id
         title
@@ -84,6 +90,12 @@ export const query = graphql`
           }
         }
         excerpt
+        publishDate(fromNow: true, locale: $locale)
+        image {
+          asset {
+            _id
+          }
+        }
       }
     }
   }
@@ -93,4 +105,18 @@ const S = {}
 
 S.Content = styled.div`
   margin: 3rem 0;
+`
+
+S.List = styled.ul`
+  --grid-columns: 1;
+  display: grid;
+  grid-template-columns: repeat(var(--grid-columns), 1fr);
+  grid-gap: 2rem;
+
+  @media (min-width: 575px) {
+    --grid-columns: 2;
+  }
+  /* @media (min-width: 768px) {
+    --grid-columns: 3;
+  } */
 `

@@ -4,8 +4,6 @@ import styled from "styled-components"
 
 import urlFor from "../../utils/url-for"
 
-import { sanity } from "../../../client-config"
-
 const QUERY = graphql`
   query SmallPersonCardQuery {
     settings: sanitySettings {

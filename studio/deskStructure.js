@@ -131,6 +131,10 @@ export default () =>
                 .icon(FiFileText)
                 .child(S.editor().schemaType("page").documentId("blogPage")),
               S.listItem()
+                .title("Categories")
+                .icon(FiBookmark)
+                .child(S.documentTypeList("blogCategory")),
+              S.listItem()
                 .title("Posts")
                 .icon(FiEdit)
                 .child(S.documentTypeList("blogPost")),
@@ -204,15 +208,16 @@ export default () =>
           ![
             "settings",
             "eventSettings",
-            "blogSettings",
             "mainNavigation",
             "fullNavigation",
             "page",
-            "blogPost",
             "frontPage",
             "eventsPage",
             "event",
             "eventCategory",
+            "blogSettings",
+            "blogPost",
+            "blogCategory",
             "partners",
             "benefitsPage",
             "job",

@@ -57,7 +57,8 @@ const EventCard = ({
     minute: "numeric",
   }
   const dateTimeFormat = new Intl.DateTimeFormat(locale, options)
-  const localizeDate = dateString => dateTimeFormat.format(new Date(dateString))
+  const localizeDate = (dateString) =>
+    dateTimeFormat.format(new Date(dateString))
 
   return (
     <S.Container id={_id}>
@@ -70,7 +71,7 @@ const EventCard = ({
         {location?.title && (
           <S.AdditionalInfo>{`@ ${location.title}`}</S.AdditionalInfo>
         )}
-        <S.ReadMore>{settings.readMoreText[locale]} -></S.ReadMore>
+        <S.ReadMore>{settings.readMoreText[locale]} -&gt;</S.ReadMore>
       </S.EventInfo>
       <EventStatus
         {...{

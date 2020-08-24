@@ -38,7 +38,10 @@ export default {
       title: "Authors",
       type: "array",
       of: [{ type: "reference", to: [{ type: "person" }] }],
-      validation: (Rule) => Rule.required(),
+      validation: (Rule) =>
+        Rule.min(1).warning(
+          "Assigning an author or two makes the text nicer to read."
+        ),
     },
     {
       name: "image",
@@ -51,7 +54,13 @@ export default {
       title: "Excerpt",
       description: "Short preview text",
       type: "text",
-      validation: (Rule) => Rule.required(),
+      validation: (Rule) => [
+        Rule.required().min(50),
+        Rule.max(200).warning("A bit shorter text would be nicer."),
+        Rule.max(250).error(
+          "Please write a shorter excerpt, max. 250 characters."
+        ),
+      ],
     },
     {
       name: "content",
