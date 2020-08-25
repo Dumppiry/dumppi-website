@@ -238,47 +238,49 @@ const createBlogPosts = async ({ graphql, actions, reporter }) => {
   const categories = (allSanityBlogCategory || {}).nodes || []
 
   const locales = ["fi", ...extraLanguages]
-  locales.forEach((locale) => {
-    const baseSlug = settings.slug[locale].current
-    const subNavigationItems = categories.map((cat) => ({ page: cat }))
+  settings &&
+    settings.slug &&
+    locales.forEach((locale) => {
+      const baseSlug = settings.slug[locale].current
+      const subNavigationItems = categories.map((cat) => ({ page: cat }))
 
-    const page = {
-      path: `/${baseSlug}`,
-      component: require.resolve("./src/templates/blog/blog-list.js"),
-      context: {
-        id: "blogPage",
-        subNavigationItems,
-      },
-    }
-    createLocalePage(page, createPage, locale, reporter)
-
-    categories.forEach((category) => {
-      const path = `/${baseSlug}/${category.slug[locale].current}`
       const page = {
-        path,
-        component: resolvePageTemplate(category.__typename),
+        path: `/${baseSlug}`,
+        component: require.resolve("./src/templates/blog/blog-list.js"),
         context: {
-          id: category._id,
-          parent: settings,
+          id: "blogPage",
           subNavigationItems,
         },
       }
       createLocalePage(page, createPage, locale, reporter)
-    })
 
-    posts.forEach((post) => {
-      const path = `/${baseSlug}/${post.slug.current}`
-      const page = {
-        path,
-        component: resolvePageTemplate(post.__typename),
-        context: {
-          id: post._id,
-          subNavigationItems: [{ page: settings }, ...subNavigationItems],
-        },
-      }
-      createLocalePage(page, createPage, locale, reporter)
+      categories.forEach((category) => {
+        const path = `/${baseSlug}/${category.slug[locale].current}`
+        const page = {
+          path,
+          component: resolvePageTemplate(category.__typename),
+          context: {
+            id: category._id,
+            parent: settings,
+            subNavigationItems,
+          },
+        }
+        createLocalePage(page, createPage, locale, reporter)
+      })
+
+      posts.forEach((post) => {
+        const path = `/${baseSlug}/${post.slug.current}`
+        const page = {
+          path,
+          component: resolvePageTemplate(post.__typename),
+          context: {
+            id: post._id,
+            subNavigationItems: [{ page: settings }, ...subNavigationItems],
+          },
+        }
+        createLocalePage(page, createPage, locale, reporter)
+      })
     })
-  })
 }
 
 const createEventPages = async ({ graphql, actions, reporter }) => {
