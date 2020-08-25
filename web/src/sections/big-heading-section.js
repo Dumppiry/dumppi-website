@@ -1,19 +1,16 @@
 import React from "react"
-import styled, { css } from "styled-components"
+import styled from "styled-components"
 
 import ButtonLink from "../components/button-link"
 import PortableText from "../components/portable-text/heading"
 
-const BigHeadingSection = ({ heading, buttons, isFrontPage }) => {
+const BigHeadingSection = ({ heading, buttons }) => {
   return (
-    <S.Section isFrontPage={isFrontPage}>
-      <S.Content isFrontPage={isFrontPage}>
+    <S.Section>
+      <S.Content>
         <PortableText blocks={heading} />
         {buttons?.length > 0 && (
-          <S.ButtonContainer
-            isFrontPage={isFrontPage}
-            oneChild={buttons.length === 1}
-          >
+          <S.ButtonContainer oneChild={buttons.length === 1}>
             {buttons.map((b, index) => (
               <S.ButtonLink
                 key={b._key}
@@ -50,63 +47,18 @@ S.Section = styled.section`
     font-size: min(4vw, 1.25rem);
     color: #949494;
   }
-
-  ${(props) =>
-    props.isFrontPage &&
-    css`
-      margin: 5rem 0;
-      padding: 2rem;
-      text-align: center;
-
-      h1 {
-        margin: 0 0 2.5rem 0;
-      }
-      p {
-        margin: 2.5rem 0;
-      }
-
-      @media (min-width: 768px) {
-        padding: 5rem;
-        padding-bottom: 2rem;
-      }
-    `}
 `
 
 S.Content = styled.div`
   max-width: 38rem;
-
-  ${(props) =>
-    props.isFrontPage &&
-    css`
-      margin: auto;
-    `}
 `
 
-const BCFrontPageStyles = css`
-  --grid-columns: 1;
-  margin: auto;
-  display: grid;
-  grid-template-columns: repeat(var(--grid-columns), 1fr);
-  grid-gap: 1.25rem;
-
-  @media (min-width: 768px) {
-    --grid-columns: ${(props) => (props.oneChild ? "1" : "2")};
-    width: 80%;
-    align-items: stretch;
-    justify-content: stretch;
-  }
-`
-
-const BCNormalStyles = css`
+S.ButtonContainer = styled.div`
   display: flex;
 
   & > * {
     margin-right: 1.25rem;
   }
-`
-
-S.ButtonContainer = styled.div`
-  ${(props) => (props.isFrontPage ? BCFrontPageStyles : BCNormalStyles)}
 `
 
 S.ButtonLink = styled(ButtonLink)`

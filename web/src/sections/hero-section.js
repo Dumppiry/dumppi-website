@@ -1,5 +1,5 @@
 import React from "react"
-import styled, { css } from "styled-components"
+import styled from "styled-components"
 
 import ButtonLink from "../components/button-link"
 import PortableText from "../components/portable-text/heading"
