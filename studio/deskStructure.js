@@ -1,5 +1,6 @@
 import S from "@sanity/desk-tool/structure-builder";
 import {
+  FiEdit,
   FiSettings,
   FiBookmark,
   FiAlignRight,
@@ -111,6 +112,35 @@ export default () =>
             ])
         ),
       S.listItem()
+        .title("Blog")
+        .icon(FiEdit)
+        .child(
+          S.list()
+            .title("Blog")
+            .items([
+              S.listItem()
+                .title("Settings")
+                .icon(FiSettings)
+                .child(
+                  S.editor()
+                    .schemaType("blogSettings")
+                    .documentId("blogSettings")
+                ),
+              S.listItem()
+                .title("Blog page")
+                .icon(FiFileText)
+                .child(S.editor().schemaType("page").documentId("blogPage")),
+              S.listItem()
+                .title("Categories")
+                .icon(FiBookmark)
+                .child(S.documentTypeList("blogCategory")),
+              S.listItem()
+                .title("Posts")
+                .icon(FiEdit)
+                .child(S.documentTypeList("blogPost")),
+            ])
+        ),
+      S.listItem()
         .title("Partners")
         .icon(FaRegHandshake)
         .child(S.editor().schemaType("partners").documentId("partners")),
@@ -185,6 +215,9 @@ export default () =>
             "eventsPage",
             "event",
             "eventCategory",
+            "blogSettings",
+            "blogPost",
+            "blogCategory",
             "partners",
             "benefitsPage",
             "job",

@@ -4,9 +4,12 @@ import styled from "styled-components"
 import ButtonLink from "../components/button-link"
 import PortableText from "../components/portable-text/heading"
 
-const BigHeadingSection = ({ heading, buttons }) => {
+import urlFor from "../utils/url-for"
+
+const HeroSection = ({ image, heading, buttons }) => {
   return (
     <S.Section>
+      <S.Img src={urlFor(image).height(800).width(2200).fit("crop").url()} />
       <S.Content>
         <PortableText blocks={heading} />
         {buttons?.length > 0 && (
@@ -26,38 +29,66 @@ const BigHeadingSection = ({ heading, buttons }) => {
   )
 }
 
-export default BigHeadingSection
+export default HeroSection
 
 const S = {}
 
 S.Section = styled.section`
   text-align: left;
-  border-radius: 1rem;
+
   background-color: white;
   padding: 0;
-  margin: 3rem 0;
+  margin-bottom: 3rem;
 
   h1 {
-    margin: 1rem 0;
     font-size: min(10vw, 3.75rem);
     color: #2c2c2c;
+    margin: 0 0 2.5rem 0;
   }
   p {
-    margin: 1.5rem 0;
+    margin: 2.5rem 0;
     font-size: min(4vw, 1.25rem);
     color: #949494;
   }
+
+  text-align: center;
 `
 
 S.Content = styled.div`
-  max-width: 38rem;
+  margin: auto;
+  margin-top: -250px;
+  background-color: white;
+  border-radius: 1rem;
+  position: relative;
+
+  padding: 2rem;
+  @media (min-width: 768px) {
+    padding: 5rem;
+    padding-bottom: 2rem;
+  }
+`
+
+S.Img = styled.img`
+  min-height: 500px;
+  max-height: 40vh;
+  width: 100vw;
+  min-width: 100vw;
+  margin-left: calc(50% - 50vw);
+  object-fit: cover;
 `
 
 S.ButtonContainer = styled.div`
-  display: flex;
+  --grid-columns: 1;
+  margin: auto;
+  display: grid;
+  grid-template-columns: repeat(var(--grid-columns), 1fr);
+  grid-gap: 1.25rem;
 
-  & > * {
-    margin-right: 1.25rem;
+  @media (min-width: 768px) {
+    --grid-columns: ${(props) => (props.oneChild ? "1" : "2")};
+    width: 80%;
+    align-items: stretch;
+    justify-content: stretch;
   }
 `
 

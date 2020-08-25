@@ -8,12 +8,10 @@ import localize from "../hoc/localize"
 import { useCurrentPage } from "../hooks/current-page"
 
 import SectionBlockContent from "../sections/section-block-content"
-import BigHeadingSection from "../sections/big-heading-section"
-
-import urlFor from "../utils/url-for"
+import HeroSection from "../sections/hero-section"
 
 const PageTemplate = ({ data, pageContext, ...rest }) => {
-  const { _id, title, image, content, hero } = data.page
+  const { _id, title, content, hero } = data.page
   const { setLocale, setCurrentPageId } = useCurrentPage()
 
   useEffect(() => {
@@ -24,10 +22,12 @@ const PageTemplate = ({ data, pageContext, ...rest }) => {
   return (
     <Layout>
       <SEO title={title} />
-      {/* <S.Img fluid={image.asset.fluid} /> */}
-      <S.Img src={urlFor(image).height(800).width(2200).fit("crop").url()} />
       <S.Content>
-        <BigHeadingSection {...hero} isFrontPage />
+        <HeroSection
+          image={hero.image}
+          heading={hero.heading}
+          buttons={hero.buttons}
+        />
         <SectionBlockContent blocks={content} />
       </S.Content>
     </Layout>
@@ -46,26 +46,6 @@ export const query = graphql`
         en
         fi
       }
-      image {
-        asset {
-          _id
-          metadata {
-            lqip
-          }
-        }
-        crop {
-          top
-          bottom
-          left
-          right
-        }
-        hotspot {
-          x
-          y
-          height
-          width
-        }
-      }
       hero: _rawHero(resolveReferences: { maxDepth: 8 })
       content: _rawContent(resolveReferences: { maxDepth: 8 })
     }
@@ -83,7 +63,4 @@ S.Img = styled.img`
   object-fit: cover;
 `
 
-S.Content = styled.div`
-  margin-top: -250px;
-  position: relative;
-`
+S.Content = styled.div``

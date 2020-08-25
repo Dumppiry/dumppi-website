@@ -5,6 +5,9 @@ import createSchema from "part:@sanity/base/schema-creator";
 import schemaTypes from "all:part:@sanity/base/schema-type";
 
 // Document types
+import blogCategory from "./documents/blog/blogCategory";
+import blogPost from "./documents/blog/blogPost";
+import blogSettings from "./documents/blog/blogSettings";
 import company from "./documents/company";
 import contactForm from "./documents/contactForm";
 import event from "./documents/event";
@@ -47,6 +50,7 @@ import bigHeadingSection from "./objects/sections/bigHeadingSection";
 import bigPeopleSection from "./objects/sections/bigPeopleSection";
 import formSection from "./objects/sections/formSection";
 import futureEventsSection from "./objects/sections/futureEventsSection";
+import heroSection from "./objects/sections/heroSection";
 import jobsSection from "./objects/sections/jobsSection";
 import keyFigureSection from "./objects/sections/keyFiguresSection";
 import mainPartnersSection from "./objects/sections/mainPartnersSection";
@@ -74,6 +78,7 @@ import textField from "./objects/form/textField";
 import defaultField from "./objects/defaultField";
 import field from "./objects/field";
 import keyFigure from "./objects/keyFigure";
+import imageWithAlt from "./objects/imageWithAlt";
 import mainImage from "./objects/mainImage";
 import personProfile from "./objects/personProfile";
 import product from "./objects/product";
@@ -88,6 +93,9 @@ export default createSchema({
   types: schemaTypes.concat([
     /* Your types here! */
     // Document types
+    blogCategory,
+    blogPost,
+    blogSettings,
     company,
     contactForm,
     event,
@@ -116,6 +124,7 @@ export default createSchema({
     bigPeopleSection,
     formSection,
     futureEventsSection,
+    heroSection,
     jobsSection,
     keyFigureSection,
     mainPartnersSection,
@@ -138,6 +147,7 @@ export default createSchema({
     defaultField,
     field,
     keyFigure,
+    imageWithAlt,
     mainImage,
     personProfile,
     product,

@@ -178,6 +178,111 @@ const createPages = async ({ graphql, actions, reporter }) => {
   })
 }
 
+const createBlogPosts = async ({ graphql, actions, reporter }) => {
+  const { createPage } = actions
+
+  const result = await graphql(`
+    {
+      settings: sanityPage(_id: { regex: "/(drafts.|)blogPage/" }) {
+        _id
+        title {
+          _type
+          en
+          fi
+        }
+        slug {
+          en {
+            current
+          }
+          fi {
+            current
+          }
+        }
+      }
+      allSanityBlogCategory {
+        nodes {
+          _id
+          __typename
+          title {
+            _type
+            en
+            fi
+          }
+          slug {
+            _type
+            en {
+              current
+            }
+            fi {
+              current
+            }
+          }
+        }
+      }
+      allSanityBlogPost {
+        nodes {
+          _id
+          __typename
+          slug {
+            current
+          }
+        }
+      }
+    }
+  `)
+
+  if (result.errors) throw result.errors
+  const { allSanityBlogPost, allSanityBlogCategory, settings } = result.data
+
+  const posts = (allSanityBlogPost || {}).nodes || []
+  const categories = (allSanityBlogCategory || {}).nodes || []
+
+  const locales = ["fi", ...extraLanguages]
+  settings &&
+    settings.slug &&
+    locales.forEach((locale) => {
+      const baseSlug = settings.slug[locale].current
+      const subNavigationItems = categories.map((cat) => ({ page: cat }))
+
+      const page = {
+        path: `/${baseSlug}`,
+        component: require.resolve("./src/templates/blog/blog-list.js"),
+        context: {
+          id: "blogPage",
+          subNavigationItems,
+        },
+      }
+      createLocalePage(page, createPage, locale, reporter)
+
+      categories.forEach((category) => {
+        const path = `/${baseSlug}/${category.slug[locale].current}`
+        const page = {
+          path,
+          component: resolvePageTemplate(category.__typename),
+          context: {
+            id: category._id,
+            parent: settings,
+            subNavigationItems,
+          },
+        }
+        createLocalePage(page, createPage, locale, reporter)
+      })
+
+      posts.forEach((post) => {
+        const path = `/${baseSlug}/${post.slug.current}`
+        const page = {
+          path,
+          component: resolvePageTemplate(post.__typename),
+          context: {
+            id: post._id,
+            subNavigationItems: [{ page: settings }, ...subNavigationItems],
+          },
+        }
+        createLocalePage(page, createPage, locale, reporter)
+      })
+    })
+}
+
 const createEventPages = async ({ graphql, actions, reporter }) => {
   const { createPage } = actions
 
@@ -285,16 +390,25 @@ const resolvePageTemplate = (type) => {
     case "SanityLegalDocument":
       return require.resolve("./src/templates/legalDoc.js")
 
+    case "SanityBlogCategory":
+      return require.resolve("./src/templates/blog/blog-category-list.js")
+
+    case "SanityBlogPost":
+      return require.resolve("./src/templates/blog/blog-post.js")
+
     default:
       return require.resolve("./src/templates/page.js")
   }
 }
 
-exports.createPages = ({ graphql, actions, reporter }) => {
-  createFrontPage({ graphql, actions, reporter })
-  createPages({ graphql, actions, reporter })
-  createEventPages({ graphql, actions, reporter })
-  createLegalPages({ graphql, actions, reporter })
+exports.createPages = async ({ graphql, actions, reporter }) => {
+  await Promise.all([
+    createFrontPage({ graphql, actions, reporter }),
+    createPages({ graphql, actions, reporter }),
+    createBlogPosts({ graphql, actions, reporter }),
+    createEventPages({ graphql, actions, reporter }),
+    createLegalPages({ graphql, actions, reporter }),
+  ])
 }
 
 exports.createSchemaCustomization = ({ actions }) => {

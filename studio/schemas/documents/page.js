@@ -23,6 +23,7 @@ export default {
       title: "Content",
       type: "array",
       of: [
+        { type: "heroSection" },
         { type: "bigHeadingSection" },
         { type: "textSection" },
         { type: "bigPeopleSection" },

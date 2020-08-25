@@ -12,17 +12,9 @@ export default {
       type: "localeString",
     },
     {
-      name: "image",
-      title: "Image",
-      type: "image",
-      options: {
-        hotspot: true,
-      },
-    },
-    {
       name: "hero",
       title: "Hero",
-      type: "bigHeadingSection",
+      type: "heroSection",
       validation: (Rule) => Rule.required(),
     },
     {
