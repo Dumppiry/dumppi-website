@@ -24,6 +24,10 @@ const BlogCategoryListTemplate = ({ data, pageContext }) => {
     <Layout page={parent} subNavItems={subNavigationItems}>
       <SEO title={category.title} />
       <S.Content>
+        <S.Heading>
+          <h2>{category.title}</h2>
+          <p>{category.description}</p>
+        </S.Heading>
         <BlogList posts={posts} />
       </S.Content>
     </Layout>
@@ -40,6 +44,11 @@ export const query = graphql`
         _type
         fi
         en
+      }
+      description {
+        _type
+        en
+        fi
       }
     }
     posts: allSanityBlogPost(
@@ -79,4 +88,17 @@ const S = {}
 
 S.Content = styled.div`
   margin: 3rem 0;
+`
+
+S.Heading = styled.div`
+  h2 {
+    margin: 1rem 0;
+    font-size: min(10vw, 3.75rem);
+    color: #2c2c2c;
+  }
+  p {
+    margin: 1.5rem 0;
+    font-size: min(4vw, 1.25rem);
+    color: #949494;
+  }
 `

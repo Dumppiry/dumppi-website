@@ -9,12 +9,9 @@ import { useCurrentPage } from "../hooks/current-page"
 
 import SectionBlockContent from "../sections/section-block-content"
 import HeroSection from "../sections/hero-section"
-import BigHeadingSection from "../sections/big-heading-section"
-
-import urlFor from "../utils/url-for"
 
 const PageTemplate = ({ data, pageContext, ...rest }) => {
-  const { _id, title, image, content, hero } = data.page
+  const { _id, title, content, hero } = data.page
   const { setLocale, setCurrentPageId } = useCurrentPage()
 
   useEffect(() => {
