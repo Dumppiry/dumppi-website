@@ -6,6 +6,7 @@ import BigHeadingSection from "./big-heading-section"
 import BigPeopleSection from "./big-people-section"
 import FormSection from "./form-section"
 import FutureEventsSection from "./future-events-section"
+import HeroSection from "./hero-section"
 import JobsSection from "./jobs-section"
 import KeyFiguresSection from "./key-figures-section"
 import MainPartnersSection from "./main-partners-section"
@@ -53,6 +54,10 @@ const SectionBlockContent = ({ blocks }) => {
 
           case "futureEventsSection":
             Component = FutureEventsSection
+            break
+
+          case "heroSection":
+            Component = HeroSection
             break
 
           case "jobsSection":

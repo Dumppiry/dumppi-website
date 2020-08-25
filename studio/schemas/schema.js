@@ -50,6 +50,7 @@ import bigHeadingSection from "./objects/sections/bigHeadingSection";
 import bigPeopleSection from "./objects/sections/bigPeopleSection";
 import formSection from "./objects/sections/formSection";
 import futureEventsSection from "./objects/sections/futureEventsSection";
+import heroSection from "./objects/sections/heroSection";
 import jobsSection from "./objects/sections/jobsSection";
 import keyFigureSection from "./objects/sections/keyFiguresSection";
 import mainPartnersSection from "./objects/sections/mainPartnersSection";
@@ -123,6 +124,7 @@ export default createSchema({
     bigPeopleSection,
     formSection,
     futureEventsSection,
+    heroSection,
     jobsSection,
     keyFigureSection,
     mainPartnersSection,

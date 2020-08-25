@@ -7,6 +7,7 @@ export default {
       name: "image",
       title: "Image",
       type: "imageWithAlt",
+      validation: (Rule) => Rule.required(),
     },
   ],
   preview: {

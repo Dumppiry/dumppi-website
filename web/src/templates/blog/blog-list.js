@@ -10,9 +10,10 @@ import SectionBlockContent from "../../sections/section-block-content"
 
 import { useCurrentPage } from "../../hooks/current-page"
 import localize from "../../hoc/localize"
+import urlFor from "../../utils/url-for"
 
 const BlogListTemplate = ({ data, pageContext }) => {
-  const { page, posts } = data
+  const { page, posts, settings } = data
   const { subNavigationItems } = pageContext
   const { setLocale, setCurrentPageId } = useCurrentPage()
 
@@ -90,6 +91,10 @@ export const query = graphql`
 
 const S = {}
 
-S.Content = styled.div`
+S.Content = styled.div``
+
+S.Img = styled.img`
   margin: 3rem 0;
+  border-radius: 0.625rem;
+  max-height: 50vh;
 `
