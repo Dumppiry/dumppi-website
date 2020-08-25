@@ -10,7 +10,7 @@ import { useCurrentPage } from "../../hooks/current-page"
 import localize from "../../hoc/localize"
 
 const BlogCategoryListTemplate = ({ data, pageContext }) => {
-  const { category, posts } = data
+  const { category, posts, settings } = data
   const { parent, subNavigationItems } = pageContext
 
   const { setLocale, setCurrentPageId } = useCurrentPage()
@@ -28,7 +28,7 @@ const BlogCategoryListTemplate = ({ data, pageContext }) => {
           <h2>{category.title}</h2>
           <p>{category.description}</p>
         </S.Heading>
-        <BlogList posts={posts} />
+        <BlogList posts={posts} emptyString={settings.noPostsText} />
       </S.Content>
     </Layout>
   )
@@ -38,6 +38,13 @@ export default localize(BlogCategoryListTemplate)
 
 export const query = graphql`
   query BlogCategoryListTemplateQuery($locale: String!, $id: String) {
+    settings: sanityBlogSettings {
+      noPostsText {
+        _type
+        en
+        fi
+      }
+    }
     category: sanityBlogCategory(_id: { eq: $id }) {
       _id
       title {

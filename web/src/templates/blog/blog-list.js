@@ -27,7 +27,7 @@ const BlogListTemplate = ({ data, pageContext }) => {
       <SEO title={page.title} />
       <S.Content>
         <SectionBlockContent blocks={page.content} />
-        <BlogList posts={posts} />
+        <BlogList posts={posts} emptyString={settings.noPostsText} />
       </S.Content>
     </Layout>
   )
@@ -38,15 +38,10 @@ export default localize(BlogListTemplate)
 export const query = graphql`
   query BlogListTemplateQuery($locale: String!) {
     settings: sanityBlogSettings {
-      image {
-        asset {
-          _id
-        }
-        alt {
-          _type
-          fi
-          en
-        }
+      noPostsText {
+        _type
+        en
+        fi
       }
     }
     page: sanityPage(_id: { regex: "/(drafts.|)blogPage/" }) {

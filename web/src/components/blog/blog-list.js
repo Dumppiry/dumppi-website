@@ -3,8 +3,10 @@ import styled from "styled-components"
 
 import BlogCard from "../../components/blog/blog-card"
 
-const BlogList = ({ posts }) => {
-  return (
+const BlogList = ({ posts, emptyString }) => {
+  return posts.nodes.length <= 0 ? (
+    <h2>{emptyString}</h2>
+  ) : (
     <S.List>
       {posts.nodes.map((post) => {
         return (
