@@ -32,6 +32,7 @@ export default {
       title: "Category",
       type: "reference",
       to: [{ type: "blogCategory" }],
+      validation: (Rule) => Rule.required(),
     },
     {
       name: "authors",
