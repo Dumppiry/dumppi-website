@@ -20,7 +20,7 @@ exports.handler = async (event, context) => {
 
     const submissions =
       (results.registrationSubmissions &&
-        results.registrationSubmissions.map((rs) => {
+        results.registrationSubmissions.filter(Boolean).map((rs) => {
           const submission = JSON.parse(rs)
           return [submission.nickname || submission.name, submission.comment]
         })) ||
