@@ -49,6 +49,7 @@ S.List = styled.ul`
   display: grid;
   grid-template-columns: repeat(var(--grid-columns), 1fr);
   grid-gap: 3rem 15%;
+  align-items: center;
   list-style: none;
   margin: 0;
 
