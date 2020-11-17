@@ -29,7 +29,7 @@ const FutureEventsSection = ({ heading }) => {
   return (
     <S.Section>
       <PortableText blocks={heading} />
-      <S.EventList />
+      <S.EventList type="nextThree" />
       <S.ButtonLink
         title={settings.readMoreText[locale]}
         link={{ _type: "internalLink", page: { _id: eventsPage._id } }}

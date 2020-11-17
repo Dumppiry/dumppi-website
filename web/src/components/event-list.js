@@ -1,10 +1,7 @@
 import React from "react"
 import { graphql, useStaticQuery } from "gatsby"
 import styled from "styled-components"
-import _ from "lodash"
-import moment from "moment"
-// for some reason this needs to be imported, lol :D
-import "moment/locale/fi"
+import PropTypes from "prop-types"
 
 import EventCard from "./event-card"
 
@@ -41,92 +38,42 @@ const EVENTS_QUERY = graphql`
   }
 `
 
-const getAllMonths = (start, end, locale) => {
-  moment.locale(locale)
-  const startDate = moment(start)
-  const endDate = moment(end)
-  let dates = []
-
-  let month = moment(startDate) //clone the startDate
-
-  if (endDate.isBefore(startDate)) {
-    while (month.month() >= endDate.month()) {
-      dates.push(month.format("MMMM YYYY"))
-      month.add(-1, "month")
-    }
-  } else {
-    while (month.month() <= endDate.month()) {
-      dates.push(month.format("MMMM YYYY"))
-      month.add(1, "month")
-    }
-  }
-
-  return dates
-}
-
-const includeEmptyMonths = (months, eventsByMonths) => {
-  let monthsObj = _.keyBy(months, (m) => m)
-  _.keys(monthsObj).map(
-    (key) =>
-      (monthsObj[key] = eventsByMonths.hasOwnProperty(key)
-        ? eventsByMonths[key]
-        : [])
-  )
-  return monthsObj
-}
-
-const EventList = ({ events, showPast, ...rest }) => {
+const EventList = ({ type }) => {
   const { locale } = useCurrentPage()
-  const data = useStaticQuery(EVENTS_QUERY)
+  const { events } = useStaticQuery(EVENTS_QUERY)
 
-  const months =
-    events?.nodes.length > 0 &&
-    getAllMonths(
-      new Date(), // Start the months from current day.
-      events.nodes[events.nodes.length - 1].startDate,
-      locale
-    )
+  return (
+    <S.Container>
+      <S.List>
+        {events.nodes
+          ?.filter((e) => {
+            const end = new Date(e.endDate)
+            const now = new Date()
 
-  let eventData = events
-    ? _.groupBy(
-        events.nodes.filter((n) =>
-          !!showPast ? true : new Date(n.startDate) > new Date()
-        ),
-        (n) => n.month
-      ) // { march: [], april: [] ...}
-    : data.events.nodes
+            switch (type) {
+              case "allFuture":
+              case "nextThree":
+                return end >= now
 
-  if (months) eventData = includeEmptyMonths(months, eventData)
+              case "allPast":
+                return end < now
 
-  return events ? (
-    _.keys(eventData).map((month) => (
-      <S.Container key={month}>
-        <S.Title>{month}</S.Title>
-        {eventData[month].length === 0 ? (
-          <p>{data.settings.noEventsText[locale]}</p>
-        ) : (
-          <S.List {...rest}>
-            {eventData[month].map((event) => (
-              <EventCard
-                key={event._id}
-                {...event}
-                title={event.title[locale] ? event.title[locale] : event.title}
-              />
-            ))}
-          </S.List>
-        )}
-      </S.Container>
-    ))
-  ) : (
-    <S.List {...rest}>
-      {eventData
-        .filter((event) => new Date(event.startDate) > new Date())
-        .slice(0, 3)
-        .map((event) => (
-          <EventCard key={event._id} {...event} title={event.title[locale]} />
-        ))}
-    </S.List>
+              default:
+                return end >= now
+            }
+          })
+          .slice(0, type === "nextThree" ? 3 : undefined)
+          .sort(type === "allPast" ? (a, b) => a - b : undefined)
+          .map((event) => (
+            <EventCard key={event._id} {...event} title={event.title[locale]} />
+          ))}
+      </S.List>
+    </S.Container>
   )
+}
+
+EventList.propTypes = {
+  type: PropTypes.oneOf(["allFuture", "allPast", "nextThree"]).isRequired,
 }
 
 export default EventList
@@ -151,5 +98,5 @@ S.Title = styled.h1`
   text-transform: capitalize;
 `
 S.Container = styled.div`
-  margin-top: 5rem;
+  margin: 3rem 0;
 `

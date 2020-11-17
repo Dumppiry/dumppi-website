@@ -25,7 +25,7 @@ const EventTemplate = ({ data, pageContext, ...rest }) => {
       subNavItems={subNavigationItems}
     >
       <SEO title={page.title} />
-      <EventList events={events} />
+      <EventList type="allFuture" />
     </Layout>
   )
 }
