@@ -27,7 +27,7 @@ jobs:
           registry-url: "https://registry.npmjs.org"
       - run: yarn
         working-directory: ./web
-      - run: yarn build
+      - run: NODE_OPTIONS=--max-old-space-size=8192 yarn build
         working-directory: ./web
       - name: Publish
         uses: netlify/actions/cli@master
