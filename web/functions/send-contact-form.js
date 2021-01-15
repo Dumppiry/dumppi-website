@@ -26,9 +26,13 @@ exports.handler = async (event, context) => {
 
   ${formattedValues}
   `
+  
+  console.log("Sending message", { message })
 
   try {
     const res = await axios.post(SLACK_URL, JSON.stringify({ text: message }))
+    console.log("Result from Axios", { res })
+
     return {
       statusCode: 200,
       body: JSON.stringify({ data: res.data }),
