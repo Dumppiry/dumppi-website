@@ -14,6 +14,7 @@ const formatValues = (values) => {
 
 exports.handler = async (event, context) => {
   const SLACK_URL = process.env.SLACK_WEBHOOK_URL
+  console.log("SLACK_URL", SLACK_URL)
 
   const { formId, formTitle, values } = JSON.parse(event.body)
   const formattedValues = formatValues(values)
