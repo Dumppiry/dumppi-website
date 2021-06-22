@@ -10,7 +10,7 @@ import Heading from "../components/portable-text/heading"
 import BlockContent from "../components/block-content"
 
 const QUERY = graphql`
-  query SmallPersonCardQuery {
+  query PeopleProfilesSettingsQuery {
     settings: sanitySettings {
       placeholderPersonImage {
         asset {
