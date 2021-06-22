@@ -42,7 +42,7 @@ const Person = ({ person, bio }) => {
   const { settings } = useStaticQuery(QUERY)
 
   const fluidProps = getFluidGatsbyImage(
-    person.image.asset._id ?? settings.placeholderPersonImage.asset._id,
+    person.image?.asset._id ?? settings.placeholderPersonImage.asset._id,
     { maxWidth: 400 },
     config.sanity
   )
