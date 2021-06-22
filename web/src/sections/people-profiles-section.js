@@ -1,4 +1,5 @@
 import React from "react"
+import { graphql, useStaticQuery } from "gatsby"
 import Img from "gatsby-image"
 import { getFluidGatsbyImage } from "gatsby-source-sanity"
 import styled from "styled-components"
@@ -7,6 +8,18 @@ import config from "../../client-config"
 
 import Heading from "../components/portable-text/heading"
 import BlockContent from "../components/block-content"
+
+const QUERY = graphql`
+  query SmallPersonCardQuery {
+    settings: sanitySettings {
+      placeholderPersonImage {
+        asset {
+          _id
+        }
+      }
+    }
+  }
+`
 
 const PeopleProfilesSection = ({ heading, people }) => {
   return (
@@ -26,11 +39,14 @@ const PeopleProfilesSection = ({ heading, people }) => {
 export default PeopleProfilesSection
 
 const Person = ({ person, bio }) => {
+  const { settings } = useStaticQuery(QUERY)
+
   const fluidProps = getFluidGatsbyImage(
-    person.image.asset._id,
+    person.image.asset._id ?? settings.placeholderPersonImage.asset._id,
     { maxWidth: 400 },
     config.sanity
   )
+
   return (
     <S.Person>
       <S.Img fluid={fluidProps} alt={person.name} />
