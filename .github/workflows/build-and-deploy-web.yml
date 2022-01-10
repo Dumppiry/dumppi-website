@@ -30,7 +30,9 @@ jobs:
       - run: NODE_OPTIONS=--max-old-space-size=8192 yarn build
         working-directory: ./web
       - name: Publish
-        uses: netlify/actions/cli@master
+        # TODO: Change this back when the colors.js corruption has been handled
+        # uses: netlify/actions/cli@master
+        uses: SamusElderg/actions/cli@master
         with:
           args: deploy --dir=web/public --prod
         env:
