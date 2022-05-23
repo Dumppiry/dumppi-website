@@ -66,3 +66,18 @@ ntl deploy --prod
 ## Slack form submissions
 
 To be able to retrieve notifications in Slack from contact forms etc. a GitHub Secret needs to be set. Go to ´Settings -> Secrets´ and create/edit a secret called `SLACK_WEBHOOK_URL`. You can retrieve the webhook url from your Slack workspaces settings within the app `Incoming Webhooks`.
+
+## Change authtoken owner
+
+Sanity studio needs personal access token to be able to activate build action. This is stored in Sanitys database and can be changed as follows:
+
+This is how its done with Linux. Should work on Windows if curl is installed.
+
+Copy and paste this to terminal. You need to replace `<sanity-write-token>` with your write token from sanity and `<github-personal-access-token>` with your personal access token.
+
+```bash
+curl 'https://ubo8m1s0.api.sanity.io/v2021-06-07/data/mutate/production?dryRun=false' \
+    -H 'Authorization: Bearer <sanity-write-token>' \
+    -H 'Content-Type: application/json' \
+    --data-binary '{"mutations": [{"patch": {"query": "*[_type == \"github.accessToken\"]","set": {"accessToken": "<github-personal-access-token>"}}}]}'
+```
