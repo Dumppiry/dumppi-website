@@ -13,7 +13,7 @@ const SmallPeopleSection = ({ heading, groups }) => {
           <S.Group key={section._key}>
             <PortableText blocks={section.heading} />
             <S.People>
-              {section.people.map((person) => (
+              {section.people?.map((person) => (
                 <Person key={person._id} person={person} />
               ))}
             </S.People>
