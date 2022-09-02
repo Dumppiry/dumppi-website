@@ -20,9 +20,9 @@
   },
   "homepage": "https://github.com/papivaan/dumppi-website#readme",
   "devDependencies": {
-    "@sanity/cli": "^1.149.2",
-    "gatsby-cli": "^2.10.6",
-    "lerna": "^3.20.2"
+    "@sanity/cli": "1.149.2",
+    "gatsby-cli": "2.10.6",
+    "lerna": "3.20.2"
   },
   "dependencies": {}
 }
