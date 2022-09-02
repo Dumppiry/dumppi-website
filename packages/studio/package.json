@@ -6,6 +6,7 @@
   "main": "package.json",
   "author": "Paavo Väänänen <vaananen.paavo@gmail.com>",
   "license": "UNLICENSED",
+  "packageManager": "yarn@3.2.3",
   "scripts": {
     "dev": "sanity start",
     "build": "sanity build",
