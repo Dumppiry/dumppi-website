@@ -8,10 +8,6 @@
     "packages/*"
   ],
   "scripts": {
-    "dev": "lerna run dev --parallel",
-    "sanity-deploy": "lerna run sanity-deploy",
-    "graphql-deploy": "lerna run graphql-deploy",
-    "postinstall": "lerna bootstrap",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -22,11 +18,5 @@
   "bugs": {
     "url": "https://github.com/papivaan/dumppi-website/issues"
   },
-  "homepage": "https://github.com/papivaan/dumppi-website#readme",
-  "devDependencies": {
-    "@sanity/cli": "1.149.2",
-    "gatsby-cli": "2.10.6",
-    "lerna": "3.20.2"
-  },
-  "dependencies": {}
+  "homepage": "https://github.com/papivaan/dumppi-website#readme"
 }

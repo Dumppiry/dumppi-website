@@ -42,6 +42,7 @@
     "typography": "0.16.19"
   },
   "devDependencies": {
+    "gatsby-cli": "2.10.6",
     "gatsby-plugin-force-trailing-slashes": "1.0.4",
     "netlify-cli": "2.46.0",
     "prettier": "2.0.4"
