@@ -24,16 +24,14 @@ jobs:
         with:
           node-version: "14"
           registry-url: "https://registry.npmjs.org"
-      - run: yarn
-        working-directory: ./studio
-      - run: yarn build
-        working-directory: ./studio
+      - run: yarn --immutable
+      - run: yarn workspace @dumppi/studio build
       - run: cp netlify.toml dist/netlify.toml
-        working-directory: ./studio
+        working-directory: ./packages/studio
       - name: Publish
         uses: netlify/actions/cli@master
         with:
-          args: deploy --dir=studio/dist --prod
+          args: deploy --dir=packages/studio/dist --prod
         env:
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_STUDIO_ID }}
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}

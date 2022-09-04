@@ -25,14 +25,14 @@ jobs:
         with:
           node-version: "14"
           registry-url: "https://registry.npmjs.org"
-      - run: yarn
-        working-directory: ./web
-      - run: NODE_OPTIONS=--max-old-space-size=8192 yarn build
-        working-directory: ./web
+      - run: yarn --immutable
+      - run: yarn workspace @dumppi/web build
+        env:
+          NODE_OPTIONS: "--max-old-space-size=8192"
       - name: Publish
         uses: netlify/actions/cli@master
         with:
-          args: deploy --dir=web/public --prod
+          args: deploy --dir=packages/web/public --prod
         env:
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
