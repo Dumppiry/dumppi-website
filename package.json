@@ -1,6 +1,6 @@
 {
   "private": true,
-  "name": "dumppi-website",
+  "name": "dumppi",
   "version": "1.0.0",
   "description": "Dumppi ry website",
   "packageManager": "yarn@3.2.3",
