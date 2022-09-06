@@ -10,7 +10,7 @@ on:
       - master
     paths:
       - packages/web/**
-      - .github/workflows/build-and-deploy-web.yml
+      - build-and-deploy-web.yml
 
 jobs:
   build-and-deploy:
@@ -39,9 +39,6 @@ jobs:
       - run: yarn workspace @dumppi/web build
         env:
           NODE_OPTIONS: "--max-old-space-size=8192"
-          SANITY_READ_TOKEN: ${{ secrets.SANITY_READ_TOKEN }}
-          SANITY_WRITE_TOKEN: ${{ secrets.SANITY_WRITE_TOKEN }}
-          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
 
       - name: Publish
         uses: jaska120/netlify-actions/cli@master
@@ -50,3 +47,6 @@ jobs:
         env:
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          SANITY_READ_TOKEN: ${{ secrets.SANITY_READ_TOKEN }}
+          SANITY_WRITE_TOKEN: ${{ secrets.SANITY_WRITE_TOKEN }}
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
