@@ -4,8 +4,14 @@
 # Dependency directories
 **/node_modules
 
-# lerna files
-/lerna-debug.log
-
 # Local Netlify folder
 .netlify
+
+# Yarn
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
