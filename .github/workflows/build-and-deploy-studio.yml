@@ -6,28 +6,40 @@ on:
       - build-and-deploy-studio
   push:
     branches:
-      - "master"
+      - master
     paths:
-      - "studio/**"
-
-env:
-  SANITY_READ_TOKEN: ${{ secrets.SANITY_READ_TOKEN }}
-  SANITY_WRITE_TOKEN: ${{ secrets.SANITY_WRITE_TOKEN }}
-  SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+      - packages/studio/**
+      - .github/workflows/build-and-deploy-studio.yml
 
 jobs:
   build-and-deploy:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2-beta
+      - uses: actions/checkout@v3
+
+      - uses: actions/setup-node@v3
         with:
-          node-version: "14"
-          registry-url: "https://registry.npmjs.org"
+          node-version-file: ".nvmrc"
+
+      - name: Get yarn cache directory path
+        id: yarn-cache-dir-path
+        run: echo "::set-output name=dir::$(yarn config get cacheFolder)"
+
+      - uses: actions/cache@v3
+        id: yarn-cache
+        with:
+          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
+
       - run: yarn --immutable
+
       - run: yarn workspace @dumppi/studio build
+
       - run: cp netlify.toml dist/netlify.toml
         working-directory: ./packages/studio
+
       - name: Publish
         uses: jaska120/netlify-actions/cli@master
         with:
@@ -35,3 +47,6 @@ jobs:
         env:
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_STUDIO_ID }}
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          SANITY_READ_TOKEN: ${{ secrets.SANITY_READ_TOKEN }}
+          SANITY_WRITE_TOKEN: ${{ secrets.SANITY_WRITE_TOKEN }}
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
