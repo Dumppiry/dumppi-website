@@ -1,13 +1,6 @@
-# Dummpi monorepo
+# dumppi-website
 
-[![dumppi.fi](https://github.com/Dumppiry/dumppi-website/actions/workflows/build-and-deploy-web.yml/badge.svg)](https://github.com/Dumppiry/dumppi-website/actions/workflows/build-and-deploy-web.yml)
-
-[![studio.dumppi.fi](https://github.com/Dumppiry/dumppi-website/actions/workflows/build-and-deploy-studio.yml/badge.svg)](https://github.com/Dumppiry/dumppi-website/actions/workflows/build-and-deploy-studio.yml)
-
-## Prerequisite
-
-1. [Node.js](https://nodejs.org/en/) must be installed.
-   - Please refer to [.nvmrc](.nvmrc) for currently used version
+![Build and Deploy to Netlify](https://github.com/Dumppiry/dumppi-website/workflows/Build%20and%20Deploy%20to%20Netlify/badge.svg)
 
 ## Quick start
 
