@@ -36,6 +36,10 @@ jobs:
       - run: yarn --immutable
 
       - run: yarn workspace @dumppi/studio build
+        env:
+          SANITY_READ_TOKEN: ${{ secrets.SANITY_READ_TOKEN }}
+          SANITY_WRITE_TOKEN: ${{ secrets.SANITY_WRITE_TOKEN }}
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
 
       - run: cp netlify.toml dist/netlify.toml
         working-directory: ./packages/studio
@@ -47,6 +51,3 @@ jobs:
         env:
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_STUDIO_ID }}
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
-          SANITY_READ_TOKEN: ${{ secrets.SANITY_READ_TOKEN }}
-          SANITY_WRITE_TOKEN: ${{ secrets.SANITY_WRITE_TOKEN }}
-          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
