@@ -11,6 +11,11 @@ on:
       - packages/studio/**
       - .github/workflows/build-and-deploy-studio.yml
 
+env:
+  SANITY_READ_TOKEN: ${{ secrets.SANITY_READ_TOKEN }}
+  SANITY_WRITE_TOKEN: ${{ secrets.SANITY_WRITE_TOKEN }}
+  SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+
 jobs:
   build-and-deploy:
     runs-on: ubuntu-20.04
@@ -36,10 +41,6 @@ jobs:
       - run: yarn --immutable
 
       - run: yarn workspace @dumppi/studio build
-        env:
-          SANITY_READ_TOKEN: ${{ secrets.SANITY_READ_TOKEN }}
-          SANITY_WRITE_TOKEN: ${{ secrets.SANITY_WRITE_TOKEN }}
-          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
 
       - run: cp netlify.toml dist/netlify.toml
         working-directory: ./packages/studio
