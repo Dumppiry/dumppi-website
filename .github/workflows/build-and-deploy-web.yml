@@ -30,7 +30,7 @@ jobs:
         env:
           NODE_OPTIONS: "--max-old-space-size=8192"
       - name: Publish
-        uses: jaska120/netlify-actions/cli@master
+        uses: netlify/actions/cli@master
         with:
           args: deploy --dir=packages/web/public --prod
         env:
