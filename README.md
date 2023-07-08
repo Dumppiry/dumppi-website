@@ -63,9 +63,9 @@ yarn build
 ntl deploy --prod
 ```
 
-## Slack form submissions
+## Teams form submissions
 
-To be able to retrieve notifications in Slack from contact forms etc. a GitHub Secret needs to be set. Go to ´Settings -> Secrets´ and create/edit a secret called `SLACK_WEBHOOK_URL`. You can retrieve the webhook url from your Slack workspaces settings within the app `Incoming Webhooks`.
+To be able to retrieve notifications in Teams from contact forms etc. a GitHub Secret needs to be set. Go to ´Settings -> Secrets´ and create/edit a secret called `TEAMS_WEBHOOK_URL`. You can retrieve the webhook url from your Teams team settings within the app by pressing three dots next to a channel and choosing `Connectors`.
 
 ## Change authtoken owner
 
