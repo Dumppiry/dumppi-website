@@ -14,7 +14,7 @@ on:
 env:
   SANITY_READ_TOKEN: ${{ secrets.SANITY_READ_TOKEN }}
   SANITY_WRITE_TOKEN: ${{ secrets.SANITY_WRITE_TOKEN }}
-  SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+  TEAMS_WEBHOOK_URL: ${{ secrets.TEAMS_WEBHOOK_URL }}
 
 jobs:
   build-and-deploy:

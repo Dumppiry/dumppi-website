@@ -19,6 +19,7 @@ export default {
       validation: (Rule) => Rule.required(),
     },
     {
+      // FIXME Slack is not used anymore. This should probably be deleted.
       name: "slackChannel",
       title: "Slack Channel",
       description:
