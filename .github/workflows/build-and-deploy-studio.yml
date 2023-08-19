@@ -31,7 +31,7 @@ jobs:
       - name: Publish
         uses: Dumppiry/netlify-actions/cli@master
         with:
-          args: deploy --dir=packages/studio/dist --filter @dumppi/studio --prod
+          args: deploy --dir=dist --filter @dumppi/studio --prod
         env:
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_STUDIO_ID }}
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
