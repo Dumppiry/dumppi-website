@@ -1,4 +1,3 @@
-import S from "@sanity/desk-tool/structure-builder";
 import {
   FiEdit,
   FiSettings,
@@ -16,7 +15,7 @@ import { FaRegHandshake } from "react-icons/fa";
 
 import EventSubmissionsPreview from "./components/EventRegistrationSubmissionsPreview";
 
-export default () =>
+export default (S) =>
   S.list()
     .title("Content")
     .items([

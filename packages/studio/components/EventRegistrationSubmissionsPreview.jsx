@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import client from "part:@sanity/base/client";
+import { useClient } from "sanity"
 import { useTable } from "react-table";
 
 // This the simplest example found on the interwebs
@@ -76,7 +76,7 @@ const EventRegistrationSubmissionsPreview = ({ document }) => {
     const params = {
       formId: registrationForm?._ref
     };
-    client.fetch(query, params).then(({ defaultFields, fields }) => {
+    useClient.fetch(query, params).then(({ defaultFields, fields }) => {
       const columns = [...defaultFields, ...fields].map((field, index) => ({
         key: index,
         title: field.label.fi,

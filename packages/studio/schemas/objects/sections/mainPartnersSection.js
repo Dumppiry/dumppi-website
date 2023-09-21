@@ -1,5 +1,5 @@
 import { FaRegHandshake } from "react-icons/fa";
-import client from "part:@sanity/base/client";
+import { useClient } from "sanity"
 
 import { defaultLanguage } from "../../../supportedLanguages";
 
@@ -25,7 +25,7 @@ export default {
           validation: (Rule) =>
             Rule.custom(async (doc) => {
               // Fetch company
-              const company = await client.fetch(
+              const company = await useClient().fetch(
                 /* groq */ `*[_id == $id][0] {name, description, cardColor}`,
                 { id: doc._ref }
               );
