@@ -96,12 +96,14 @@ export default (S) =>
                 .icon(FiCalendar)
                 .child(
                   S.documentTypeList("event").child(
-                    S.document().views([
-                      S.view.form(),
-                      S.view
-                        .component(EventSubmissionsPreview)
-                        .title("Attendees"),
-                    ])
+                    S.document()
+                      .schemaType("event")
+                      .views([
+                        S.view.form(),
+                        S.view
+                          .component(EventSubmissionsPreview)
+                          .title("Attendees"),
+                      ])
                   )
                 ),
               S.listItem()
