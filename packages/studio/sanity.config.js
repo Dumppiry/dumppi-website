@@ -1,13 +1,11 @@
-import { defineConfig } from "sanity"
-import schemas from "./schemas/schema"
-import { deskTool } from "sanity/desk"
-import { colorInput } from "@sanity/color-input"
-import {
-  dashboardTool,
-  projectInfoWidget,
-} from "@sanity/dashboard"
-import { catsWidget } from "sanity-plugin-dashboard-widget-cats"
-import deskStructure from "./deskStructure"
+import { defineConfig } from "sanity";
+import schemas from "./schemas/schema";
+import { deskTool } from "sanity/desk";
+import { colorInput } from "@sanity/color-input";
+import { visionTool } from "@sanity/vision";
+import { dashboardTool, projectInfoWidget } from "@sanity/dashboard";
+import { catsWidget } from "sanity-plugin-dashboard-widget-cats";
+import deskStructure from "./deskStructure";
 
 export default defineConfig({
   title: "dumppi-website",
@@ -15,17 +13,18 @@ export default defineConfig({
   dataset: "production",
   plugins: [
     deskTool({
-      structure: deskStructure
+      structure: deskStructure,
     }),
+    visionTool(),
     colorInput(),
     dashboardTool({
       widgets: [
         projectInfoWidget(),
         catsWidget({ layout: { width: "medium" } }),
-      ]
-    })
+      ],
+    }),
   ],
   schema: {
     types: schemas,
   },
-})
+});
