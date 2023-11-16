@@ -2004,7 +2004,7 @@ __metadata:
     "@sanity/components": ^2.14.0
     "@sanity/dashboard": ^3.1.5
     "@sanity/vision": ^3.16.7
-    "@u-wave/react-youtube": ^0.7.1
+    "@u-wave/react-youtube": ^0.7.4
     get-it: ^4.1.4
     get-youtube-id: ^1.0.1
     prop-types: ^15.6
@@ -2029,7 +2029,7 @@ __metadata:
     "@sanity/block-content-to-react": ^2.0.7
     "@sanity/client": ^1.149.7
     "@sanity/image-url": ^0.140.19
-    "@u-wave/react-youtube": ^0.7.1
+    "@u-wave/react-youtube": ^0.7.4
     axios: ^0.19.2
     dotenv: ^8.2.0
     framer-motion: ^1.10.3
@@ -5642,7 +5642,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@u-wave/react-youtube@npm:^0.7.1":
+"@u-wave/react-youtube@npm:^0.7.4":
   version: 0.7.4
   resolution: "@u-wave/react-youtube@npm:0.7.4"
   dependencies:
