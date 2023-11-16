@@ -1,10 +1,10 @@
 import React from "react";
 
 const highlightIcon = () => <span style={{ fontWeight: "bold" }}>H</span>;
-const highlightRender = props => (
+const highlightRender = (props) => (
   <span style={{ color: "#AF271D" }}>{props.children}</span>
 );
-const TitleStyle = props => (
+const TitleStyle = (props) => (
   <span style={{ fontSize: "2em", fontWeight: 700 }}>{props.children}</span>
 );
 
@@ -23,10 +23,8 @@ export default {
         {
           title: "Heading",
           value: "h1",
-          blockEditor: {
-            render: TitleStyle
-          }
-        }
+          component: TitleStyle,
+        },
       ],
       lists: [],
       marks: {
@@ -34,14 +32,12 @@ export default {
           {
             title: "Highlight",
             value: "highlight",
-            blockEditor: {
-              icon: highlightIcon,
-              render: highlightRender
-            }
-          }
+            icon: highlightIcon,
+            component: highlightRender,
+          },
         ],
-        annotations: []
-      }
-    }
-  ]
+        annotations: [],
+      },
+    },
+  ],
 };

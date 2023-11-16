@@ -23,9 +23,7 @@ export default {
         {
           title: "Heading",
           value: "h2",
-          blockEditor: {
-            render: TitleStyle,
-          },
+          component: TitleStyle,
         },
       ],
       lists: [],
@@ -34,10 +32,8 @@ export default {
           {
             title: "Highlight",
             value: "highlight",
-            blockEditor: {
-              icon: highlightIcon,
-              render: highlightRender,
-            },
+            icon: highlightIcon,
+            component: highlightRender,
           },
         ],
         annotations: [{ type: "internalLink" }, { type: "externalLink" }],
