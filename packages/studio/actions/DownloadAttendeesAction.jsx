@@ -16,6 +16,7 @@ export function DownloadAttendeesAction(props) {
     disabled: !registrationSubmissions || !startDate || !slug?.fi?.current,
     dialog: dialogOpen && {
       type: "popover",
+      onClose: () => setDialogOpen(false),
       content: (
         <CSVLink
           data={registrationSubmissions?.map(JSON.parse) ?? []}
