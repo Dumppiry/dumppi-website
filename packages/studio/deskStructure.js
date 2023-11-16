@@ -80,7 +80,7 @@ export default (S) =>
                     .filter('_type == "page"')
                     .menuItems([...S.documentTypeList("page").getMenuItems()])
                     .defaultOrdering([{ field: "title.fi", direction: "asc" }])
-                    .child(S.document())
+                    .child(S.document().schemaType("page"))
                 ),
             ])
         ),
