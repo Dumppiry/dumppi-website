@@ -21,21 +21,17 @@
     "@sanity/color-input": "^3.1.0",
     "@sanity/components": "^2.14.0",
     "@sanity/dashboard": "^3.1.5",
-    "@sanity/vision": "^3.16.7",
+    "@sanity/vision": "^3.20.0",
     "@u-wave/react-youtube": "^0.7.4",
-    "get-it": "^4.1.4",
+    "get-it": "^8.4.4",
     "get-youtube-id": "^1.0.1",
-    "prop-types": "^15.6",
     "react": "^18.2.0",
-    "react-csv": "^2.0.1",
+    "react-csv": "^2.2.2",
     "react-dom": "^18.2.0",
-    "react-icons": "^3.10.0",
-    "react-markdown": "^4.3.1",
-    "react-table": "^7.0.0",
-    "sanity": "^3.16.7",
-    "sanity-plugin-dashboard-widget-cats": "^2.0.1",
-    "sanity-plugin-minesweeper": "^0.0.3",
-    "styled-components": "^5.2"
+    "react-icons": "^4.12.0",
+    "react-table": "^7.8.0",
+    "sanity": "^3.20.0",
+    "sanity-plugin-dashboard-widget-cats": "^2.0.1"
   },
   "devDependencies": {
     "@sanity/cli": "^1.150.1"
