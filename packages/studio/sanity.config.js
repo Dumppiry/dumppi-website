@@ -4,9 +4,10 @@ import { deskTool } from "sanity/desk";
 import { colorInput } from "@sanity/color-input";
 import { visionTool } from "@sanity/vision";
 import { dashboardTool, projectInfoWidget } from "@sanity/dashboard";
-import { catsWidget } from "sanity-plugin-dashboard-widget-cats";
 import deskStructure from "./deskStructure";
 import { DownloadAttendeesAction } from "./actions/DownloadAttendeesAction";
+import { catsWidget } from "sanity-plugin-dashboard-widget-cats";
+import { documentListWidget } from "sanity-plugin-dashboard-widget-document-list";
 import { githubActionsWidget } from "./plugins/sanity-github-actions-widget";
 
 export default defineConfig({
@@ -16,10 +17,21 @@ export default defineConfig({
   plugins: [
     dashboardTool({
       widgets: [
-        projectInfoWidget(),
+        documentListWidget({
+          layout: {
+            width: "medium",
+            height: "small",
+          },
+          title: "Events",
+          createButtonText: "Create event",
+          types: ["event"],
+          showCreateButton: true,
+
+          query: `*[_type == "event" && startDate > now()] | order(startDate asc)`,
+        }),
         githubActionsWidget({
           layout: {
-            width: "small",
+            width: "medium",
             height: "small",
           },
           sites: [
@@ -32,6 +44,7 @@ export default defineConfig({
             },
           ],
         }),
+        projectInfoWidget(),
         catsWidget({ layout: { width: "medium" } }),
       ],
     }),
