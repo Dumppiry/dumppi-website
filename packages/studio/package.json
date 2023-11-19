@@ -39,7 +39,8 @@
     "styled-components": "^5.2 || ^6"
   },
   "devDependencies": {
-    "@sanity/cli": "^1.150.1"
+    "@sanity/cli": "^1.150.1",
+    "netlify-cli": "^17.5.1"
   },
   "repository": {
     "type": "git",
