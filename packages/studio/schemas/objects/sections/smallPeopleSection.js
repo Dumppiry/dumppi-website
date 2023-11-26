@@ -11,32 +11,36 @@ export default {
     {
       name: "heading",
       title: "Heading",
-      type: "localeString"
+      type: "localeString",
     },
     {
       name: "groups",
       title: "Groups",
       type: "array",
-      of: [{ type: "smallPeopleGroup" }]
-    }
+      of: [{ type: "smallPeopleGroup" }],
+    },
   ],
   preview: {
     select: {
       heading: "heading",
-      groups: "groups"
+      groups: "groups",
     },
     prepare({ heading, groups }) {
       const subtitle = groups
-        .map(group => {
-          return group.heading[defaultLanguage][0].children
-            .map(child => child.text)
-            .join("");
+        .map((group) => {
+          try {
+            return group.heading[defaultLanguage][0].children
+              .map((child) => child.text)
+              .join("");
+          } catch {
+            return "Untitled";
+          }
         })
         .join(", ");
       return {
         title: heading[defaultLanguage],
-        subtitle
+        subtitle,
       };
-    }
-  }
+    },
+  },
 };

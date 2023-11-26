@@ -1,17 +1,17 @@
 import React from "react";
 
 const highlightIcon = () => <span style={{ fontWeight: "bold" }}>H</span>;
-const highlightRender = props => (
+const highlightRender = (props) => (
   <span style={{ color: "#AF271D" }}>{props.children}</span>
 );
-const TitleStyle = props => (
-  <span style={{ fontSize: "2em", fontWeight: 700 }}>{props.children}</span>
+const TitleStyle = (props) => (
+  <span style={{ fontSize: "1.5em", fontWeight: 700 }}>{props.children}</span>
 );
 
 export default {
-  name: "bigHeadingPortableText",
+  name: "headingPortableText",
   type: "array",
-  title: "Big heading portable text",
+  title: "Heading portable text",
   description:
     "Use only with one block of Heading and one block of Normal text",
   of: [
@@ -22,11 +22,9 @@ export default {
         { title: "Normal", value: "normal" },
         {
           title: "Heading",
-          value: "h1",
-          blockEditor: {
-            render: TitleStyle
-          }
-        }
+          value: "h2",
+          component: TitleStyle,
+        },
       ],
       lists: [],
       marks: {
@@ -34,14 +32,12 @@ export default {
           {
             title: "Highlight",
             value: "highlight",
-            blockEditor: {
-              icon: highlightIcon,
-              render: highlightRender
-            }
-          }
+            icon: highlightIcon,
+            component: highlightRender,
+          },
         ],
-        annotations: []
-      }
-    }
-  ]
+        annotations: [{ type: "internalLink" }, { type: "externalLink" }],
+      },
+    },
+  ],
 };

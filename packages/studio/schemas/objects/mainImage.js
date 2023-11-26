@@ -11,7 +11,8 @@ export default {
       description: "Important for accessibility and SEO",
       validation: (Rule) => Rule.required(),
       options: {
-        isHighlighted: true,
+        collapsible: true,
+        collapsed: true,
       },
     },
     {
@@ -20,7 +21,8 @@ export default {
       type: "string",
       description: "This is shown next to the image on the frontend",
       options: {
-        isHighlighted: true,
+        collapsible: true,
+        collapsed: true,
       },
     },
   ],

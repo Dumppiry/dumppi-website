@@ -11,7 +11,8 @@ export default {
       description: "Important for accessibility and SEO",
       validation: (Rule) => Rule.required(),
       options: {
-        isHighlighted: true,
+        collapsible: true,
+        collapsed: true,
       },
     },
   ],

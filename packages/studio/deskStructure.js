@@ -1,4 +1,3 @@
-import S from "@sanity/desk-tool/structure-builder";
 import {
   FiEdit,
   FiSettings,
@@ -16,7 +15,7 @@ import { FaRegHandshake } from "react-icons/fa";
 
 import EventSubmissionsPreview from "./components/EventRegistrationSubmissionsPreview";
 
-export default () =>
+export default (S) =>
   S.list()
     .title("Content")
     .items([
@@ -81,7 +80,7 @@ export default () =>
                     .filter('_type == "page"')
                     .menuItems([...S.documentTypeList("page").getMenuItems()])
                     .defaultOrdering([{ field: "title.fi", direction: "asc" }])
-                    .child(S.document())
+                    .child(S.document().schemaType("page"))
                 ),
             ])
         ),
@@ -97,12 +96,14 @@ export default () =>
                 .icon(FiCalendar)
                 .child(
                   S.documentTypeList("event").child(
-                    S.document().views([
-                      S.view.form(),
-                      S.view
-                        .component(EventSubmissionsPreview)
-                        .title("Attendees"),
-                    ])
+                    S.document()
+                      .schemaType("event")
+                      .views([
+                        S.view.form(),
+                        S.view
+                          .component(EventSubmissionsPreview)
+                          .title("Attendees"),
+                      ])
                   )
                 ),
               S.listItem()

@@ -1,5 +1,6 @@
 /dist
 /node_modules
+.sanity
 
 # Lock files
 /package-lock.json

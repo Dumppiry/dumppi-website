@@ -1,5 +1,5 @@
 import React from "react";
-import { FiBookMark } from "react-icons/fi";
+import { FiBookmark } from "react-icons/fi";
 
 const ColorPreview = ({ color }) => (
   <span
@@ -11,7 +11,7 @@ export default {
   name: "benefitCategory",
   title: "Benefit Category",
   type: "document",
-  icon: FiBookMark,
+  icon: FiBookmark,
   fields: [
     {
       name: "title",

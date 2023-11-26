@@ -1,5 +1,5 @@
 import { FaRegHandshake } from "react-icons/fa";
-import client from "part:@sanity/base/client";
+//import { useClient } from "sanity";
 
 import { defaultLanguage } from "../../../supportedLanguages";
 
@@ -22,18 +22,21 @@ export default {
         {
           type: "reference",
           to: [{ type: "company" }],
-          validation: (Rule) =>
+          // Removed validation because of incorrect use of hooks
+          // TODO Add back if a way is figured to validate without hook
+          /*validation: (Rule) =>
             Rule.custom(async (doc) => {
               // Fetch company
-              const company = await client.fetch(
-                /* groq */ `*[_id == $id][0] {name, description, cardColor}`,
+              console.log(Rule);
+              const company = await useClient().fetch(
+                `*[_id == $id][0] {name, description, cardColor}`,
                 { id: doc._ref }
               );
               // Return error if company does not have a description
               return !company.description
                 ? "Company needs a description"
                 : true;
-            }),
+            }),*/
         },
       ],
       validation: (Rule) => Rule.required().max(4),

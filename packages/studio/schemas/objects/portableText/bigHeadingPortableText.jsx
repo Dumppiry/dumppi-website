@@ -5,13 +5,13 @@ const highlightRender = (props) => (
   <span style={{ color: "#AF271D" }}>{props.children}</span>
 );
 const TitleStyle = (props) => (
-  <span style={{ fontSize: "1.5em", fontWeight: 700 }}>{props.children}</span>
+  <span style={{ fontSize: "2em", fontWeight: 700 }}>{props.children}</span>
 );
 
 export default {
-  name: "headingPortableText",
+  name: "bigHeadingPortableText",
   type: "array",
-  title: "Heading portable text",
+  title: "Big heading portable text",
   description:
     "Use only with one block of Heading and one block of Normal text",
   of: [
@@ -22,10 +22,8 @@ export default {
         { title: "Normal", value: "normal" },
         {
           title: "Heading",
-          value: "h2",
-          blockEditor: {
-            render: TitleStyle,
-          },
+          value: "h1",
+          component: TitleStyle,
         },
       ],
       lists: [],
@@ -34,13 +32,11 @@ export default {
           {
             title: "Highlight",
             value: "highlight",
-            blockEditor: {
-              icon: highlightIcon,
-              render: highlightRender,
-            },
+            icon: highlightIcon,
+            component: highlightRender,
           },
         ],
-        annotations: [{ type: "internalLink" }, { type: "externalLink" }],
+        annotations: [],
       },
     },
   ],

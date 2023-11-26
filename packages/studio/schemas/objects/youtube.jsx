@@ -2,10 +2,14 @@ import React from "react";
 import getYouTubeId from "get-youtube-id";
 import YouTube from "@u-wave/react-youtube";
 
-const Preview = ({ value }) => {
-  const { url } = value;
-  const id = getYouTubeId(url);
-  return <YouTube style={{ width: "100%", height: "400px" }} video={id} />;
+const Preview = (props) => {
+  const id = getYouTubeId(props.url);
+  console.log(props);
+  return (
+    <div>
+      <YouTube style={{ width: "100%", height: "400px" }} video={id} />
+    </div>
+  );
 };
 
 export default {
@@ -19,10 +23,12 @@ export default {
       title: "YouTube video URL",
     },
   ],
+  components: {
+    preview: Preview,
+  },
   preview: {
     select: {
       url: "url",
     },
-    component: Preview,
   },
 };

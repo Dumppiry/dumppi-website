@@ -18,5 +18,8 @@
   "bugs": {
     "url": "https://github.com/papivaan/dumppi-website/issues"
   },
-  "homepage": "https://github.com/papivaan/dumppi-website#readme"
+  "homepage": "https://github.com/papivaan/dumppi-website#readme",
+  "dependencies": {
+    "sanity-plugin-dashboard-widget-cats": "^2.0.1"
+  }
 }
