@@ -1546,7 +1546,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/runtime@npm:^7.0.0, @babel/runtime@npm:^7.10.0, @babel/runtime@npm:^7.12.13, @babel/runtime@npm:^7.12.5, @babel/runtime@npm:^7.14.5, @babel/runtime@npm:^7.14.8, @babel/runtime@npm:^7.15.4, @babel/runtime@npm:^7.17.8, @babel/runtime@npm:^7.18.6, @babel/runtime@npm:^7.21.0, @babel/runtime@npm:^7.23.2, @babel/runtime@npm:^7.3.1, @babel/runtime@npm:^7.3.4, @babel/runtime@npm:^7.7.2, @babel/runtime@npm:^7.7.6, @babel/runtime@npm:^7.8.4, @babel/runtime@npm:^7.9.2":
+"@babel/runtime@npm:^7.0.0, @babel/runtime@npm:^7.10.0, @babel/runtime@npm:^7.12.13, @babel/runtime@npm:^7.12.5, @babel/runtime@npm:^7.14.5, @babel/runtime@npm:^7.14.8, @babel/runtime@npm:^7.15.4, @babel/runtime@npm:^7.17.8, @babel/runtime@npm:^7.18.6, @babel/runtime@npm:^7.20.13, @babel/runtime@npm:^7.21.0, @babel/runtime@npm:^7.23.2, @babel/runtime@npm:^7.3.1, @babel/runtime@npm:^7.3.4, @babel/runtime@npm:^7.7.2, @babel/runtime@npm:^7.7.6, @babel/runtime@npm:^7.8.4, @babel/runtime@npm:^7.9.2":
   version: 7.23.4
   resolution: "@babel/runtime@npm:7.23.4"
   dependencies:
@@ -1942,7 +1942,7 @@ __metadata:
     gatsby-plugin-offline: ^3.1.3
     gatsby-plugin-portal: ^1.0.7
     gatsby-plugin-react-helmet: ^3.2.3
-    gatsby-plugin-styled-components: ^3.2.2
+    gatsby-plugin-styled-components: ^6.12.0
     gatsby-plugin-typography: ^2.4.2
     gatsby-source-sanity: ^5.0.6
     get-youtube-id: ^1.0.1
@@ -16483,16 +16483,18 @@ __metadata:
   languageName: node
   linkType: hard
 
-"gatsby-plugin-styled-components@npm:^3.2.2":
-  version: 3.10.0
-  resolution: "gatsby-plugin-styled-components@npm:3.10.0"
+"gatsby-plugin-styled-components@npm:^6.12.0":
+  version: 6.12.0
+  resolution: "gatsby-plugin-styled-components@npm:6.12.0"
   dependencies:
-    "@babel/runtime": ^7.12.5
+    "@babel/runtime": ^7.20.13
   peerDependencies:
     babel-plugin-styled-components: ">1.5.0"
-    gatsby: ^2.0.32
+    gatsby: ^5.0.0-next
+    react: ^18.0.0 || ^0.0.0
+    react-dom: ^18.0.0 || ^0.0.0
     styled-components: ">=2.0.0"
-  checksum: b544fa4560d101dfbfff357e09e3efca09a07f01c68fb073d04fc0b161aaa48025bac3e9b86da2adfabb92c6b5937a53df310ae9126d7faedcdae856fd1777ff
+  checksum: 913754f2cacccc379f0f1cedc5058fb035e23b1752031a2bc95ae965ac8a04d208bc02daa835776345c9d0cb9ca49145f882222a0bd745362ea4ce18806735d2
   languageName: node
   linkType: hard
 

@@ -22,7 +22,7 @@
     "gatsby-plugin-offline": "^3.1.3",
     "gatsby-plugin-portal": "^1.0.7",
     "gatsby-plugin-react-helmet": "^3.2.3",
-    "gatsby-plugin-styled-components": "^3.2.2",
+    "gatsby-plugin-styled-components": "^6.12.0",
     "gatsby-plugin-typography": "^2.4.2",
     "gatsby-source-sanity": "^5.0.6",
     "get-youtube-id": "^1.0.1",
