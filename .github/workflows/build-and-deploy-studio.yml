@@ -6,7 +6,7 @@ on:
       - build-and-deploy-studio
   push:
     branches:
-      - "master"
+      - "main"
     paths:
       - "studio/**"
 

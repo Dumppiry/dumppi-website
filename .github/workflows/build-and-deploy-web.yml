@@ -7,7 +7,7 @@ on:
       - start-build-and-deploy
   push:
     branches:
-      - "master"
+      - "main"
     paths:
       - "web/**"
 
@@ -36,4 +36,3 @@ jobs:
         env:
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
-
