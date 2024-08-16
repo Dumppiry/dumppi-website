@@ -34,6 +34,8 @@ const Event = (props) => {
     location,
     category,
     price,
+    ticketLink,
+    ticketSaleStartDate,
     startDate,
     endDate,
     links,
@@ -152,6 +154,7 @@ const Event = (props) => {
           </S.Card>
         )}
       </S.Meta>
+
       <S.Content>
         <h2>Tapahtuman kuvaus:</h2>
         <PortableText blocks={description} />
@@ -166,6 +169,11 @@ const Event = (props) => {
           />
         )}
       </S.Content>
+      {ticketLink && (
+        <S.TicketButton href={ticketLink} target="blank">
+          Liput
+        </S.TicketButton>
+      )}
     </S.Event>
   )
 }
@@ -173,6 +181,40 @@ const Event = (props) => {
 export default Event
 
 const S = {}
+
+// Github Copilot wen't brrrrt here
+S.TicketButton = styled.a`
+  position: fixed;
+  bottom: 2rem;
+  right: 0rem;
+  transform: translateX(-50%);
+  background-color: #af271d;
+  color: #fff;
+  padding: 2rem 6rem;
+  border-radius: 10px;
+  text-align: center;
+  text-decoration: none;
+  transition: background-color 200ms ease-in-out;
+  z-index: 9999;
+
+  font-size: 24px;
+  font-weight: 600;
+
+  :hover {
+    background-color: #8a1e16;
+  }
+
+  @media (max-width: 767px) {
+    right: 0;
+    left: 0;
+    transform: none;
+    width: 80%;
+    margin: 0 auto;
+    padding: 1.5rem 2rem;
+    font-size: 18px;
+    bottom: 1rem;
+  }
+`
 
 S.Event = styled.article`
   margin: 5rem 0;

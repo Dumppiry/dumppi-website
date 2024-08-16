@@ -34,6 +34,8 @@ const EventCard = ({
   endDate,
   location,
   price,
+  ticketLink,
+  ticketSaleStartDate,
   hasRegistration,
   registrationStartDate,
   registrationEndDate,
@@ -76,6 +78,8 @@ const EventCard = ({
       <EventStatus
         {...{
           price,
+          ticketLink,
+          ticketSaleStartDate,
           hasRegistration,
           registrationStartDate,
           registrationEndDate,

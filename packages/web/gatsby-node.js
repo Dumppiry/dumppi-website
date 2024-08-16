@@ -422,6 +422,11 @@ exports.createSchemaCustomization = ({ actions }) => {
       id: String
       locale: String
     }
+
+    type SanityEvent implements Node {
+      ticketLink: String
+      ticketSaleStartDate: Date
+    }
   `
   createTypes(typeDefs)
 }

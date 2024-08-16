@@ -4,6 +4,6 @@ module.exports = {
     dataset: process.env.GATSBY_SANITY_DATASET || "production",
     apiUrl:
       process.env.GATSBY_SANITY_API_URL ||
-      "https://ubo8m1s0.api.sanity.io/v1/graphql/production/default",
+      "https://ubo8m1s0.api.sanity.io/v2023-08-01/graphql/production/website",
   },
 }

@@ -7,6 +7,8 @@ import _ from "lodash"
 const EventStatus = ({
   _id,
   price,
+  ticketLink,
+  ticketSaleStartDate,
   hasRegistration,
   registrationMaxCapacity,
   registrationStartDate,
@@ -46,7 +48,7 @@ const EventStatus = ({
     _.isArray(submissions)
 
   const returnStatus = () => {
-    if (price === 0 || !hasRegistration) return "free"
+    if (price === 0 || !hasRegistration || !ticketLink) return "free"
     if (showSubmissions && submissions.length < registrationMaxCapacity)
       return "open"
     if (
@@ -62,7 +64,14 @@ const EventStatus = ({
     return "default"
   }
 
-  const status = returnStatus()
+  const returnExternalTicketStatus = () => {
+    if (price === 0 && !ticketLink) return "free"
+    if (new Date(ticketSaleStartDate) <= new Date()) return "open"
+    if (new Date(ticketSaleStartDate) > new Date()) return "toBeOpen"
+    return "default"
+  }
+
+  const status = ticketLink ? returnExternalTicketStatus() : returnStatus()
 
   return (
     <S.StatusBar status={status}>
@@ -72,7 +81,9 @@ const EventStatus = ({
       </div>
       <span>
         {status === "toBeOpen"
-          ? new Date(registrationStartDate).toLocaleString(locale, {
+          ? new Date(
+              registrationStartDate ?? ticketSaleStartDate
+            ).toLocaleString(locale, {
               day: "2-digit",
               month: "2-digit",
               hour: "2-digit",

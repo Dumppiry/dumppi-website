@@ -23,6 +23,8 @@ const EVENTS_QUERY = graphql`
         startDate
         endDate
         price
+        ticketLink
+        ticketSaleStartDate
         hasRegistration
         registrationStartDate
         registrationEndDate

@@ -66,6 +66,8 @@ export const query = graphql`
         }
       }
       price
+      ticketLink
+      ticketSaleStartDate
       contactPerson: _rawContactPerson(resolveReferences: { maxDepth: 2 })
       startDate
       endDate
