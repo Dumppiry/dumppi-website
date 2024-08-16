@@ -171,7 +171,7 @@ const Event = (props) => {
       </S.Content>
       {ticketLink && (
         <S.TicketButton href={ticketLink} target="blank">
-          Liput
+          {locale === "fi" ? "Liput" : "Tickets"}
         </S.TicketButton>
       )}
     </S.Event>
