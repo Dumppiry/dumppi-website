@@ -13,7 +13,7 @@ on:
 
 env:
   SANITY_READ_TOKEN: ${{ secrets.SANITY_READ_TOKEN }}
-  SANITY_WRITE_TOKEN: ${{ secrets.SANITY_WRITE_TOKEN }}
+  #SANITY_WRITE_TOKEN: ${{ secrets.SANITY_WRITE_TOKEN }} Should not be needed.
   TEAMS_WEBHOOK_URL: ${{ secrets.TEAMS_WEBHOOK_URL }}
 
 jobs:
