@@ -58,6 +58,7 @@ S.Description = styled.span`
 `
 
 S.Img = styled(Img)`
-  height: 2rem;
+  height: 15rem;
+  width: 100%;
   margin-bottom: 2rem;
 `
