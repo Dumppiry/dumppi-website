@@ -5,10 +5,8 @@
 ## Quick start
 
 1. Clone this repository
-2. `yarn` in the studio and web folders
-3. `yarn dev` in the studio folder to start the studio locally
-   - Your studio should be running on [http://localhost:3333](http://localhost:3333)
-4. `yarn develop` in the web folder to start the frontend locally
+2. `yarn` in the project root directory
+4. `yarn dev` in the web folder to start the frontend locally
    - Your frontend should be running on [http://localhost:8000](http://localhost:8000)
 
 ## Environment variables for local development
@@ -50,7 +48,6 @@ Login as webmaster@dumppi.fi
 2. Build and deploy website
 
 ```bash
-cd web
 yarn build
 ntl deploy --prod
 ```
@@ -58,7 +55,6 @@ ntl deploy --prod
 3. Build and deploy Sanity studio
 
 ```bash
-cd studio
 yarn build
 ntl deploy --prod
 ```
@@ -69,15 +65,4 @@ To be able to retrieve notifications in Teams from contact forms etc. a GitHub S
 
 ## Change authtoken owner
 
-Sanity studio needs personal access token to be able to activate build action. This is stored in Sanitys database and can be changed as follows:
-
-This is how its done with Linux. Should work on Windows if curl is installed.
-
-Copy and paste this to terminal. You need to replace `<sanity-write-token>` with your write token from sanity and `<github-personal-access-token>` with your personal access token.
-
-```bash
-curl 'https://ubo8m1s0.api.sanity.io/v2021-06-07/data/mutate/production?dryRun=false' \
-    -H 'Authorization: Bearer <sanity-write-token>' \
-    -H 'Content-Type: application/json' \
-    --data-binary '{"mutations": [{"patch": {"query": "*[_type == \"github.accessToken\"]","set": {"accessToken": "<github-personal-access-token>"}}}]}'
-```
+Sanity studio needs personal access token to be able to activate build action. This is stored in Sanitys database and can be changed from the Studi GUI.

@@ -1,7 +1,7 @@
 const axios = require("axios")
 const sanityClient = require("@sanity/client")
 
-const { sanity } = require("../client-config")
+const { sanity } = require("../web/client-config")
 
 const { SANITY_WRITE_TOKEN } = process.env
 
