@@ -7,7 +7,7 @@ on:
       - start-build-and-deploy
   push:
     branches:
-      - 'main'
+      - "main"
 
 env:
   SANITY_READ_TOKEN: ${{ secrets.SANITY_READ_TOKEN }}S
@@ -17,16 +17,16 @@ jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
-          node-version: '14'
-          registry-url: 'https://registry.npmjs.org'
-          cache: 'yarn'
+          node-version: "14"
+          registry-url: "https://registry.npmjs.org"
+          #cache: 'yarn'
       - run: yarn --immutable
       - run: yarn build
         env:
-          NODE_OPTIONS: '--max-old-space-size=8192'
+          NODE_OPTIONS: "--max-old-space-size=8192"
       - name: Publish
         uses: Dumppiry/netlify-actions/cli@master
         with:
