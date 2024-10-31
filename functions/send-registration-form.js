@@ -1,7 +1,7 @@
 const axios = require("axios")
 const sanityClient = require("@sanity/client")
 
-const { sanity } = require("../web/client-config")
+const { sanity } = require("../client-config")
 
 const { SANITY_WRITE_TOKEN } = process.env
 
@@ -15,7 +15,7 @@ const client = sanityClient({
 const validateFields = (allFields, submittedFields) => {
   const errors = []
 
-  allFields.forEach(field => {
+  allFields.forEach((field) => {
     const { required, inputType } = field
     const id = field.fieldId.current
     // console.log(`Validating ${id}, required: ${required}`)
@@ -50,7 +50,7 @@ exports.handler = async (event, context) => {
   const res = await client.fetch(query, params)
 
   const allFields = [
-    ...res.defFields.map(df => df.field),
+    ...res.defFields.map((df) => df.field),
     ...res.event.registrationForm.fields,
   ]
 
