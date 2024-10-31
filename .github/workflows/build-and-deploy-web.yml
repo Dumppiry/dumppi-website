@@ -10,7 +10,7 @@ on:
       - "main"
 
 env:
-  SANITY_READ_TOKEN: ${{ secrets.SANITY_READ_TOKEN }}S
+  SANITY_READ_TOKEN: ${{ secrets.SANITY_READ_TOKEN }}
   TEAMS_WEBHOOK_URL: ${{ secrets.TEAMS_WEBHOOK_URL }}
 
 jobs:
