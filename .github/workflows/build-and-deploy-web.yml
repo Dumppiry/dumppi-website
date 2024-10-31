@@ -8,12 +8,9 @@ on:
   push:
     branches:
       - 'main'
-    paths:
-      - 'web/**'
 
 env:
-  SANITY_READ_TOKEN: ${{ secrets.SANITY_READ_TOKEN }}
-  #SANITY_WRITE_TOKEN: ${{ secrets.SANITY_WRITE_TOKEN }} Should not be needed.
+  SANITY_READ_TOKEN: ${{ secrets.SANITY_READ_TOKEN }}S
   TEAMS_WEBHOOK_URL: ${{ secrets.TEAMS_WEBHOOK_URL }}
 
 jobs:
@@ -27,13 +24,13 @@ jobs:
           registry-url: 'https://registry.npmjs.org'
           cache: 'yarn'
       - run: yarn --immutable
-      - run: yarn workspace @dumppi/web build
+      - run: yarn build
         env:
           NODE_OPTIONS: '--max-old-space-size=8192'
       - name: Publish
         uses: Dumppiry/netlify-actions/cli@master
         with:
-          args: deploy --dir=packages/web/public --filter @dumppi/web --prod
+          args: deploy --dir=/public --prod
         env:
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}

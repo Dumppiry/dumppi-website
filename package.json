@@ -1,25 +1,71 @@
 {
+  "name": "dumppi-website",
   "private": true,
-  "name": "dumppi",
-  "version": "1.0.0",
-  "description": "Dumppi ry website",
+  "description": "Main website of Dumppi Ry",
+  "version": "1.1.0",
+  "author": "Dumppi Ry",
   "packageManager": "yarn@3.2.3",
-  "workspaces": [
-    "packages/*"
+  "dependencies": {
+    "@netlify/zip-it-and-ship-it": "^1.3.3",
+    "@sanity/block-content-to-react": "^2.0.7",
+    "@sanity/client": "^1.149.7",
+    "@sanity/image-url": "^0.140.19",
+    "@u-wave/react-youtube": "^0.7.4",
+    "axios": "^0.19.2",
+    "dotenv": "^8.2.0",
+    "framer-motion": "^1.10.3",
+    "gatsby": "^2.26.1",
+    "gatsby-image": "^2.3.3",
+    "gatsby-plugin-apollo": "^3.0.1",
+    "gatsby-plugin-google-analytics": "^2.3.13",
+    "gatsby-plugin-manifest": "^2.3.4",
+    "gatsby-plugin-offline": "^3.1.3",
+    "gatsby-plugin-portal": "^1.0.7",
+    "gatsby-plugin-react-helmet": "^3.2.3",
+    "gatsby-plugin-styled-components": "^6.12.0",
+    "gatsby-plugin-typography": "^2.4.2",
+    "gatsby-source-sanity": "^5.0.6",
+    "get-youtube-id": "^1.0.1",
+    "graphql-tag": "^2.10.3",
+    "lodash": "^4.17.15",
+    "moment": "^2.24.0",
+    "prop-types": "^15.7.2",
+    "react": "16.13.1",
+    "react-dom": "16.13.1",
+    "react-helmet": "^6.0.0",
+    "react-i18next": "^11.3.4",
+    "react-icons": "^3.9.0",
+    "react-masonry-css": "^1.0.14",
+    "react-remove-scroll": "^2.3.0",
+    "react-typography": "^0.16.19",
+    "styled-components": "^5.1.0",
+    "typography": "^0.16.19"
+  },
+  "devDependencies": {
+    "gatsby-cli": "^2.10.6",
+    "gatsby-plugin-force-trailing-slashes": "^1.0.4",
+    "netlify-cli": "^2.46.0",
+    "prettier": "^2.0.4"
+  },
+  "keywords": [
+    "gatsby"
   ],
+  "license": "MIT",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "gatsby build",
+    "dev": "gatsby develop --host 0.0.0.0",
+    "develop": "netlify dev",
+    "format": "prettier --write \"**/*.{js,jsx,json,md}\"",
+    "start": "npm run develop",
+    "serve": "gatsby serve",
+    "clean": "gatsby clean",
+    "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/papivaan/dumppi-website.git"
+    "url": "https://github.com/gatsbyjs/gatsby-starter-default"
   },
-  "license": "ISC",
   "bugs": {
-    "url": "https://github.com/papivaan/dumppi-website/issues"
-  },
-  "homepage": "https://github.com/papivaan/dumppi-website#readme",
-  "dependencies": {
-    "sanity-plugin-dashboard-widget-cats": "^2.0.1"
+    "url": "https://github.com/gatsbyjs/gatsby/issues"
   }
 }
