@@ -1,12 +1,25 @@
 # dumppi-website
 
-![Build and Deploy to Netlify](https://github.com/Dumppiry/dumppi-website/workflows/Build%20and%20Deploy%20to%20Netlify/badge.svg)
+Official website of Dumppi Ry.
+
+## Requirements
+
+- Node
+- Yarn
+
+### Node
+
+Install node. Use Node 14. Easiest way to install specific Node version is to use [Node Version Manager](https://github.com/nvm-sh/nvm).
+
+### Yarn
+
+This project uses Yarn as a package manager. See Yarns [install guide](https://classic.yarnpkg.com/lang/en/docs/install/#debian-stable).
 
 ## Quick start
 
 1. Clone this repository
 2. `yarn` in the project root directory
-4. `yarn dev` in the web folder to start the frontend locally
+3. `yarn dev` in the web folder to start the frontend locally
    - Your frontend should be running on [http://localhost:8000](http://localhost:8000)
 
 ## Environment variables for local development
@@ -63,6 +76,8 @@ ntl deploy --prod
 
 To be able to retrieve notifications in Teams from contact forms etc. a GitHub Secret needs to be set. Go to ´Settings -> Secrets´ and create/edit a secret called `TEAMS_WEBHOOK_URL`. You can retrieve the webhook url from your Teams team settings within the app by pressing three dots next to a channel and choosing `Connectors`.
 
-## Change authtoken owner
+## Change authtoken
 
-Sanity studio needs personal access token to be able to activate build action. This is stored in Sanitys database and can be changed from the Studi GUI.
+Sanity studio needs Github access token to be able to activate build action. This is stored in Sanitys database and can be changed from the Studio GUI.
+
+Create a finegrained token in github settings -> developer settings -> Personal access tokens -> fine-grained tokens. Set expiration and give read & write permission for content to this repository.
