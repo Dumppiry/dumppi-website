@@ -1,4 +1,4 @@
-const axios = require("axios")
+const { MailtrapClient } = require("mailtrap")
 
 const formatValues = (values) => {
   return Object.keys(values)
@@ -6,37 +6,50 @@ const formatValues = (values) => {
     .map((key) => {
       return {
         name: `${key}:`,
-        value: `${values[key]}`
+        value: `${values[key]}`,
       }
     })
 }
 
 exports.handler = async (event, context) => {
-  const TEAMS_URL = process.env.TEAMS_WEBHOOK_URL
-  console.log("TEAMS_URL", TEAMS_URL)
+  const API_KEY = process.env.MAILTRAP_API_KEY
+  const client = new MailtrapClient({
+    token: API_KEY,
+  })
+  const sender = {
+    email: "no-reply@dumppi.fi",
+    name: "Dumppi.fi",
+  }
+  const recipients = [
+    {
+      email: "hallitus@dumppi.fi",
+    },
+  ]
 
   const { formId, formTitle, values } = JSON.parse(event.body)
   const formattedValues = formatValues(values)
 
   console.log(values)
 
-  const message = {
-    type: "MessageCard",
+  const details = {
     summary: "New contact request was send from dumppi.fi",
-    sections: [
-      {
-        activityTitle: `# ${formTitle}`,
-        activitySubtitle: `${formId}`,
-        facts: formattedValues,
-        markdown: true,
-      },
-    ],
+    activityTitle: `# ${formTitle}`,
+    activitySubtitle: `${formId}`,
+    facts: formattedValues,
   }
+  const message = `${details.summary}\n\n${details.activityTitle}\n${
+    details.activitySubtitle
+  }\n\n${details.facts.map((fact) => `${fact.name} ${fact.value}`).join("\n")}`
 
   console.log("Sending message", { message })
 
   try {
-    const res = await axios.post(TEAMS_URL, message)
+    const res = await client.send({
+      from: sender,
+      to: recipients,
+      subject: `${values.name} contacted from dumppi.fi`,
+      text: message,
+    })
 
     return {
       statusCode: 200,

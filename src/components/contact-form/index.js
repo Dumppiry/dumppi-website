@@ -44,7 +44,7 @@ const ContactForm = ({ form }) => {
 
     try {
       await axios.post(
-        "/.netlify/functions/send-contact-form-email",
+        "/.netlify/functions/send-contact-form",
         {
           formId: form._id,
           formTitle: form.title,
